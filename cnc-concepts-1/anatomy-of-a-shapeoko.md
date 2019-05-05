@@ -29,6 +29,8 @@ While doing steps requires modulating the current between the two phases, holdin
 
 A pulley is installed on the motor shaft, and drives a "**GT2**" belt \(the "2" corresponds to the distance in mm  between two teeth of the belt\)
 
+
+
 ![](../.gitbook/assets/belt_pulley.png)
 
 The pulleys used on the Shapeoko3 happen to have 20 teeth, with \(obviously\) the same 2mm spacing as the belt : so when the shaft does one full revolution, the belt moves by 20 teeth, i.e. 40mm.
@@ -191,7 +193,7 @@ What GRBL does is listen to incoming commands on the USB interface, and acts upo
 * GRBL also uses hardware input signals from the **limit switches** and potentially from a **probe**, and commands an output "**PWM**" spindle signal to potentially drive the RPM of a spindle  
 
 {% hint style="info" %}
-The PWM/Spindle signal is unused on a sock Shapeoko, but installing a spindle is a popular mod, and then this signal comes in handy. More details in [Spindle upgrade](../upgrading-the-machine/spindle-upgrade.md) section
+The PWM/Spindle signal is unused on a stock Shapeoko, but installing a spindle is a popular mod, and then this signal comes in handy. More details in [Spindle upgrade](../upgrading-the-machine/spindle-upgrade.md) section
 {% endhint %}
 
 Below are the three most useful GRBL commands when using the Shapeoko:
@@ -199,6 +201,44 @@ Below are the three most useful GRBL commands when using the Shapeoko:
 * **$$** prints out the current value of the settings
 * **$&lt;x&gt;=&lt;val&gt;** writes value val in setting x
 * **$H** homes the machines
+
+## Router vs. spindle
+
+All of the above of course serves a single purpose: moving a router and its tool in three dimensions. The very concept of the Shapeoko is to be able to use an inexpensive consumer-grade compact **router**. The most popular ones \(if only because they are supported out of the box by the Shapeoko mechanical kit\) are:
+
+* the DeWalt DWP611 in the US, or its european counterpart the D26200
+* the Makita RTC0701 in the US, or its european counterpart the RTC0700C
+* Carbide3D's "Carbide compact router", for the US only, which is a very close sibling of the Makita.
+
+but in theory any other hand router could be fitted on the Shapeoko, with the right mount adapter.
+
+The most significant difference between the DeWalt and the Makita is the RPM range: the Makita can be set from 10.000 RPM to 30.000RPM, while the DeWalt is limited to 16.000 to 27.000RPM.
+
+| Dial position \(Makita\) | RPM |
+| :--- | :--- |
+| 1 | ~10,000 |
+| 2 |  ~12,000 |
+| 3 | ~17,000 |
+| 4 | ~22,000 |
+| 5 | ~27,000 |
+| 6 | ~30,000 |
+
+| Dial position \(DeWalt\) | RPM |
+| :--- | :--- |
+| 1 | ~16,500 |
+| 2 | ~18,000 |
+| 3 | ~19,800 |
+| 4 | ~21,500 |
+| 5 | ~24,200 |
+| 6 | ~27,000 |
+
+If you know you will need to be using lower RPMs, the Makita may be a better choice. Other than that, both routers have been used successfully for all kinds of jobs on the Shapeoko.
+
+Pro CNC's usually have a **spindle**, not a router, and that is a possible \(and popular\) upgrade path for the Shapeoko, check out the [Spindle upgrade](../upgrading-the-machine/spindle-upgrade.md) section for more.
+
+
+
+
 
 
 
