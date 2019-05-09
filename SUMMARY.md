@@ -16,6 +16,7 @@
   * [Squaring](building-the-shapeoko/squaring.md)
   * [Tramming and surfacing](building-the-shapeoko/tramming-and-surfacing.md)
   * [X/Y/Z calibration](building-the-shapeoko/x-y-z-calibration.md)
+  * [Measuring runout](building-the-shapeoko/measuring-runout.md)
 * [Setting up a workspace](setting-up-a-workspace/README.md)
   * [Dust collection](setting-up-a-workspace/dust-collection.md)
   * [Enclosures](setting-up-a-workspace/enclosures.md)
