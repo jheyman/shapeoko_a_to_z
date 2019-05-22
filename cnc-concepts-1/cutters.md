@@ -67,7 +67,9 @@ Even more specialized: **thread milling** bits are used in conjunction with very
 
 And there are many more, but these should cover a large part of the usecases/projects.
 
+## Starter set
 
+&lt;TODO guidelines to buy endmills to start&gt;
 
 
 

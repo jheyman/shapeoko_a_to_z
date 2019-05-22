@@ -1,2 +1,2 @@
-# Tips and tricks
+# Assembly tips and tricks
 

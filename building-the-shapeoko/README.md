@@ -1,2 +1,2 @@
-# Building the Shapeoko
+# Building and tuning the Shapeoko
 
