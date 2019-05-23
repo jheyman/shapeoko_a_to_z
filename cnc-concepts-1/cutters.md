@@ -37,6 +37,22 @@ and here's a 1/4" one with a single flute:
 
 ![](../.gitbook/assets/tools_1flute_025inch.png)
 
+**Downcut** endmills have their flute\(s\) oriented the other way, as in this 1/4" 1-flute downcut:
+
+![](../.gitbook/assets/tools_1flute_downcut_025inch.png)
+
+Here's another downcut endmill, 2-flute, 1/8":
+
+![](../.gitbook/assets/tools_2flute_downcut_0125inch.png)
+
+And then there are the funny looking **compression** endmills, that start with an upcut section at the tip, and have a downcut section higher up the shaft, here's a 1/4", 2-flute version:
+
+![](../.gitbook/assets/tools_2flute_compression_025inch.png)
+
+and a smaller 1/8", 1-flute compression endmill:
+
+![](../.gitbook/assets/tools_1flute_compression_0125inch.png)
+
 **Ballnose** endmills are better suited for machining smooth 3D curves \(but are quite inefficient for machining flat pockets\), here's a 2-flute 1/4" ballnose:
 
 ![](../.gitbook/assets/tools_2flute_ballnose_025inch.png)
