@@ -46,6 +46,8 @@
   * [belts upgrade](upgrading-the-machine/belts-upgrade.md)
   * [SuperPID](upgrading-the-machine/superpid.md)
   * [Spindle upgrade](upgrading-the-machine/spindle-upgrade.md)
+* [Maintenance](maintenance/README.md)
+  * [Replacing endmills](maintenance/replacing-endmills.md)
 * [Troubleshooting FAQs](troubleshooting.md)
 * [Feeds and Speeds reference](feeds-and-speeds-reference.md)
 

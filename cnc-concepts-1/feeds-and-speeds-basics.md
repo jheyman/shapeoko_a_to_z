@@ -99,106 +99,23 @@ This last element is what makes optimal chipload a bit difficult to predict: not
 
 So it is almost impossible to come up with a rule that will provide the _optimal_ chipload for all machine & usecases directly. What is possible though, is to provide a guideline as to the _minimal_ reasonable chipload that can be used as a starting point, and a process to optimize it on a given machine for a given usecase .
 
-If you look around the web for recommanded chipload values and average them out, you may find something along the lines of: 
-
-<table>
-  <thead>
-    <tr>
-      <th style="text-align:left"></th>
-      <th style="text-align:left">MDF</th>
-      <th style="text-align:left">Soft wood</th>
-      <th style="text-align:left">Hard wood</th>
-      <th style="text-align:left">Acrylic</th>
-      <th style="text-align:left">Aluminium</th>
-    </tr>
-  </thead>
-  <tbody>
-    <tr>
-      <td style="text-align:left">1/16&quot;</td>
-      <td style="text-align:left">
-        <p>0.0007&quot;/</p>
-        <p>0.0178mm</p>
-      </td>
-      <td style="text-align:left">
-        <p>0.0007&quot; /</p>
-        <p>0.0178mm</p>
-      </td>
-      <td style="text-align:left">
-        <p>0.0006&quot; /</p>
-        <p>0.0152mm</p>
-      </td>
-      <td style="text-align:left">
-        <p>0.0005&quot;/</p>
-        <p>0.0127mm</p>
-      </td>
-      <td style="text-align:left">
-        <p>0.0005&quot; /</p>
-        <p>0.0127mm</p>
-      </td>
-    </tr>
-    <tr>
-      <td style="text-align:left">1/8&quot;</td>
-      <td style="text-align:left">
-        <p>0.0055&quot;/</p>
-        <p>0.1397mm</p>
-      </td>
-      <td style="text-align:left">
-        <p>0.0045&quot;/</p>
-        <p>0.1143mm</p>
-      </td>
-      <td style="text-align:left">
-        <p>0.004&quot;/</p>
-        <p>0.1016mm</p>
-      </td>
-      <td style="text-align:left">
-        <p>0.003&quot; /</p>
-        <p>0.0762mm</p>
-      </td>
-      <td style="text-align:left">
-        <p>0.0035&quot;/</p>
-        <p>0.0889mm</p>
-      </td>
-    </tr>
-    <tr>
-      <td style="text-align:left">1/4&quot;</td>
-      <td style="text-align:left">
-        <p>0.0145&quot;/</p>
-        <p>0.3686mm</p>
-      </td>
-      <td style="text-align:left">
-        <p>0.012&quot;/</p>
-        <p>0.3048mm</p>
-      </td>
-      <td style="text-align:left">
-        <p>0.01&quot;/</p>
-        <p>0.254mm</p>
-      </td>
-      <td style="text-align:left">
-        <p>0.008&quot;/</p>
-        <p>0.2032mm</p>
-      </td>
-      <td style="text-align:left">
-        <p>0.006&quot;/</p>
-        <p>0.1524mm</p>
-      </td>
-    </tr>
-  </tbody>
-</table>but these are mostly from endmill manufacturers, who assume you are using their endmill on a pro machine. For the Shapeoko we need to dial back these chiploads. There is no scientific rule to do this, so let's use a few \(over-\)simplification assumptions:
+You can look for for recommanded chipload values from endmill manufacturers, but they usually assume you are using their endmill on a pro machine, which is MUCH more rigid. For the Shapeoko we need to dial back these chiploads. Unfortunately there is no scientific rule to do this, so let's use a few \(over-\)simplification assumptions:
 
 * chipload scales linearly with endmill diameter
 * a commonly seen value for cutting aluminium on a Shapeoko is 0.001" for a 1/4" endmill
-* chipload can be increased for softer materials, let's pick a rough estimate of +25% when going from harder to softer among aluminium, acrylic \(hard plastics\), hard wood, soft wood, and finally MDF.
+* at the other end of the chipload spectrum, the max reachable chipload for a Shapeoko when using a 2-flute 1/4" endmill and lowest RPM \(10.000RPM on the Makita router\), given the Shapeoko's limit to 100inch per minute feedrate, is 100/\(2x10.000\) = 0.005"
+* the ratio of chiploads between hard woods and soft woods should be around the same as the wood hardness ratio \(janka factor\), let's pick an average ratio of about x2 
+* Acrylic \(and plastics in general\) require the highest chiploads, because of thermal constraints: plastic can easily melt if heat is not removed quickly enough, and the only way to ensure this is to make large chips \(using low RPM and high feed rate\). Experimental 
 
-If we apply this recipe, we end-up with this guideline for the minimal useful chiploads on the Shapeoko:
+If we apply this recipe, we end-up with this guideline for reasonable chiploads on the Shapeoko:
 
 <table>
   <thead>
     <tr>
       <th style="text-align:left"></th>
-      <th style="text-align:left">MDF</th>
-      <th style="text-align:left">Soft wood</th>
-      <th style="text-align:left">Hard wood</th>
       <th style="text-align:left">Acrylic</th>
+      <th style="text-align:left">Soft wood / MDF</th>
+      <th style="text-align:left">Hard wood</th>
       <th style="text-align:left">Aluminium</th>
       <th style="text-align:left"></th>
     </tr>
@@ -206,90 +123,77 @@ If we apply this recipe, we end-up with this guideline for the minimal useful ch
   <tbody>
     <tr>
       <td style="text-align:left"></td>
-      <td style="text-align:left">(soft wood + 25%)</td>
-      <td style="text-align:left">(hardwood + 25%)</td>
-      <td style="text-align:left">(acrylic + 25%)</td>
-      <td style="text-align:left">(aluminium + 25%)</td>
-      <td style="text-align:left">(baseline)</td>
+      <td style="text-align:left">softwood + 20%</td>
+      <td style="text-align:left">hardwood + 100%</td>
+      <td style="text-align:left">baseline + 100%</td>
+      <td style="text-align:left">baseline</td>
       <td style="text-align:left"></td>
     </tr>
     <tr>
       <td style="text-align:left">1/16&quot;</td>
       <td style="text-align:left">
-        <p>0.0006&quot;/</p>
-        <p>0.0152mm</p>
+        <p>0.0012&quot; /</p>
+        <p>0.03mm</p>
+      </td>
+      <td style="text-align:left">
+        <p>0.001&quot;/</p>
+        <p>0.025mm</p>
       </td>
       <td style="text-align:left">
         <p>0.0005&quot;/</p>
-        <p>0.0127mm</p>
-      </td>
-      <td style="text-align:left">
-        <p>0.0004&quot;/</p>
-        <p>0.0102mm</p>
-      </td>
-      <td style="text-align:left">
-        <p>0.0003&quot;/</p>
-        <p>0.0076mm</p>
+        <p>0.0125mm</p>
       </td>
       <td style="text-align:left">
         <p>0.00025&quot;/</p>
         <p>0.0063mm</p>
       </td>
-      <td style="text-align:left">(half of 1/8&quot; values)</td>
+      <td style="text-align:left">half of 1/8&quot; values</td>
     </tr>
     <tr>
       <td style="text-align:left">1/8&quot;</td>
       <td style="text-align:left">
-        <p>0.0012&quot;/</p>
-        <p>0.0305mm</p>
+        <p>0.0024&quot; /</p>
+        <p>0.06mm</p>
+      </td>
+      <td style="text-align:left">
+        <p>0.002&quot;/</p>
+        <p>0.05mm</p>
       </td>
       <td style="text-align:left">
         <p>0.001&quot;/</p>
-        <p>0.0254mm</p>
-      </td>
-      <td style="text-align:left">
-        <p>0.0008&quot;/</p>
-        <p>0.0203mm</p>
-      </td>
-      <td style="text-align:left">
-        <p>0.0007&quot;/</p>
-        <p>0.0178mm</p>
+        <p>0.025mm</p>
       </td>
       <td style="text-align:left">
         <p>0.0005&quot;/</p>
         <p>0.0127mm</p>
       </td>
-      <td style="text-align:left">(half of 1/4&quot; values)</td>
+      <td style="text-align:left">half of 1/4&quot; values</td>
     </tr>
     <tr>
       <td style="text-align:left">1/4&quot;</td>
       <td style="text-align:left">
-        <p>0.0025&quot;/</p>
-        <p>0.0635mm</p>
+        <p>0.0048&quot; /</p>
+        <p>0.12 mm</p>
+      </td>
+      <td style="text-align:left">
+        <p>0.004&quot;*/</p>
+        <p>0.1mm*</p>
       </td>
       <td style="text-align:left">
         <p>0.002&quot;/</p>
-        <p>0.0508mm</p>
-      </td>
-      <td style="text-align:left">
-        <p>0.0015&quot;/</p>
-        <p>0.0381mm</p>
-      </td>
-      <td style="text-align:left">
-        <p>0.00125&quot;/</p>
-        <p>0.0318mm</p>
+        <p>0.05mm</p>
       </td>
       <td style="text-align:left">
         <p>0.001&quot;/</p>
         <p>0.0254mm</p>
       </td>
-      <td style="text-align:left">(baseline )</td>
+      <td style="text-align:left">baseline</td>
     </tr>
   </tbody>
 </table>{% hint style="info" %}
-For reference, the absolute maximum chipload that a stock Shapeoko can theroetically achieve is when using the fastest feedrate \(100"/min\), the slowest RPM \(12.000 RPM on the Dewalt router\), and the lowest number of flute \(1\) : max\_chipload =  100 / \(12000\) = 0.083"
+For reference, the absolute maximum chipload that a stock Shapeoko can theoretically achieve when using the fastest feedrate \(100"/min\), the slowest RPM \(10.000 RPM on the Makita router\), and the lowest number of flute \(1\), is  100 / \(1x10000\) = 0.01"  = 0.254mm
 
-The max chipload that can be achieved when using the most common endmill \(3-flute 1/4", e.g. Carbide3D's \#201\) is 100/ \(3x12000\) = 0.0028". So that value for MDF using a 1/4" endmill sounds about right.
+The highest chiploads in this table may not be reachable using any endmill. For example, the max chipload that can be achieved when using the most common 1/4" endmill \(3-flute 1/4", e.g. Carbide3D's \#201\) given the Shapeoko's limit to 100 inch per minute feedrate and the Makita router min RPM of 10.000  is 100/\(3x10000RPM\) = 0.0033". To get a higher chipload, an endmill with lower flute count, and/or a spindle with lower minimal RPM must be used.
 {% endhint %}
 
 ## Radial width of cut / Stepover
