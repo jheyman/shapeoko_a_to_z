@@ -28,7 +28,7 @@ Using a proper "Feeds and speeds" combination is important to :
 
 When first starting CNC, determining feeds and speeds feels a little bit like this:
 
-![](../.gitbook/assets/feed_speed_magic.png)
+![](.gitbook/assets/feed_speed_magic.png)
 
 While there is definitely a good amount of experience involved in finding the perfect feeds and speeds for a given situation, there are still a few underlying principles that are worth understanding for two reasons:
 
@@ -43,13 +43,13 @@ In so-called "conventional" milling, the direction of the endmill movement is su
 
 It starts out very thin, and gradually increases in thickness. The maximum thickness is when the cutting tooth exits the material, noted "C" below, it is typically called the "feed per tooth" or "chipload per tooth", or usually just "**chipload**".
 
-![](../.gitbook/assets/chipcut_conventional.png)
+![](.gitbook/assets/chipcut_conventional.png)
 
 ## Climb milling
 
 "Climb" milling is when the direction of the endmill movement is such that the flutes bite from the outside to the inside of the material. In this situation, the flute first bites a large chunk of material \(blue position\), and as the endmill rotates and moves to the left at feedrate F, the cut gets thinner, until the tooth has nothing left to cut \(purple position\). The resulting chip \(in green\) has a similar shape than in conventional milling, and again the max thickness of the chip is the chipload.
 
-![](../.gitbook/assets/chipcut_climb.png)
+![](.gitbook/assets/chipcut_climb.png)
 
 Climb milling is harder on the machine, so it requires a good rigidity \(which is somewhat limited on a stock Shapeoko, and is what it is...\) and strong workholding \(which is the part one can do something about, using a proper clamping system for example\)
 
@@ -65,7 +65,7 @@ So again this is a goldilocks situation: the chipload must be high enough to avo
 
 Endmills often have several cutting teeth, and each one contributes in turn to removing material during one revolution of the tool. If we sketched the successive bites that the endmill takes into the material, this would look something like this:
 
-![](../.gitbook/assets/chipload_per_revolution800.png)
+![](.gitbook/assets/chipload_per_revolution800.png)
 
 If the endmill has N flutes, one revolution will cut N chips, i.e. a length of N x  chipload. Since the endmill revolves at RPM turns per minute, in one minute N x chipload x RPM will have been cut. And the distance being cut per minute is exactly the definition of feedrate, therefore Feedrate = N x RPM x Chipload, which also means:
 
@@ -113,7 +113,7 @@ If we apply this recipe, we end-up with this guideline for reasonable chiploads 
   <thead>
     <tr>
       <th style="text-align:left"></th>
-      <th style="text-align:left">Acrylic</th>
+      <th style="text-align:left">Plastics</th>
       <th style="text-align:left">Soft wood / MDF</th>
       <th style="text-align:left">Hard wood</th>
       <th style="text-align:left">Aluminium</th>
@@ -202,7 +202,7 @@ The highest chiploads in this table may not be reachable using any endmill. For 
 
 In the example below, the stepover S if 50% of the endmill diameter:
 
-![](../.gitbook/assets/stepover.png)
+![](.gitbook/assets/stepover.png)
 
 
 
@@ -215,7 +215,7 @@ A common rule of thumb is to use:
 
 For Ball-end endmills, stepover value influences surface finish quite a lot. Consider the following sketch of a side view showing multiple passes:
 
-![](../.gitbook/assets/stepover_ballend_scallop.png)
+![](.gitbook/assets/stepover_ballend_scallop.png)
 
 Scallops of residual material will be left at regular interval on the bottom surface. These will be more or less visible depending on how well the material can hold small details. 
 
@@ -226,17 +226,17 @@ Scallops of residual material will be left at regular interval on the bottom sur
 
 We're almost there, but there is one more thing: the above-mentioned chipload values assume that the cutter circumference is engaged deep enough into the stock, that each tooth gets to cut material from the moment it starts biting \(at the bottom of the blue circle\) to the moment it completes the 90° rotation of its useful activity for that revolution. This happens when the cutter's **radial depth of cut \(stepover\)** is 50% of its diameter:
 
-![](../.gitbook/assets/chip_thinning1.png)
+![](.gitbook/assets/chip_thinning1.png)
 
 Now consider what happens if the radial depth of cut is lower than 50% of the diameter, say 20% only:
 
-![](../.gitbook/assets/chip_thinning2.png)
+![](.gitbook/assets/chip_thinning2.png)
 
 For the same RPM and feedrate, the _actual_ size of the chip that each tooth produces is smaller, because the tooth exits the material early and the rest of its 90° of useful action is not used. The thickness of the chip is lower than expected, which also means that less heat is removed, so this is not optimal.
 
 The solution is to compensate this effect by **increasing the feedrate** \(all other parameters staying the same\), such that the size of the chip is increased to approximately the same amount of material that would have been removed if the cutter was engaged at 50% of its diameter:
 
-![](../.gitbook/assets/chip_thinning3.png)
+![](.gitbook/assets/chip_thinning3.png)
 
 The size of the adjusted target chipload is determined by:
 
@@ -288,7 +288,7 @@ $$
 
 Multiple cutting passes at depth of cut d will be required to cut down to a total pocket depth of D:
 
-![](../.gitbook/assets/depth_of_cut.png)
+![](.gitbook/assets/depth_of_cut.png)
 
 DOC is just as important as feeds & speeds to achieve a good cut, yet surprisingly there is much less information about how to determine its value, compared to the abundance of feeds and speeds chart.
 
@@ -318,15 +318,15 @@ Depending on the stepover, the portion ****of the endmill that will be engaged i
 
 * for a 50% stepover, the TEA will be 90°:
 
-![](../.gitbook/assets/tea_90.png)
+![](.gitbook/assets/tea_90.png)
 
 * for a smaller stepover, say 25%, the TEA will be reduced to 60°:
 
-![](../.gitbook/assets/tea_60.png)
+![](.gitbook/assets/tea_60.png)
 
 **Slotting** is a different story: both sides of the endmill are engaged at all times, so the TEA is 180°:
 
-![](../.gitbook/assets/tea_180.png)
+![](.gitbook/assets/tea_180.png)
 
 The force on the endmill will be twice as much as when cutting at 90° TEA, so the max achievable chipload/DOC combination for a given machine/endmill/material is lower. The recommanded chipload/DOC values above include some margin to take this effect into account to some extent.
 
@@ -353,11 +353,11 @@ While we are talking about TEA, let's take a look at what happens when cutting a
 
 Just before moving into the corner, the tool engagement angle is 90°:
 
-![](../.gitbook/assets/tea_before_corner.png)
+![](.gitbook/assets/tea_before_corner.png)
 
 But _while_ cutting the corner, the TEA momentarily goes up to 180°:
 
-![](../.gitbook/assets/tea_during_corner.png)
+![](.gitbook/assets/tea_during_corner.png)
 
 before going down to 90° again. So the machine sees a "spike" in the cutting resistance at each corner. Similarly to slotting, the cure is to dial back feedrate and DOC. 
 
@@ -387,17 +387,17 @@ These numbers are for plunging straight down. If the toolpath uses some kind of 
 
 The previous paragraphs should have highlighted that MANY factors influence the selection of adequate feeds & speeds & DOC settings. But wait, there are more. For example, **tool deflection** needs to be taken into account. Here is a grossly exagerated sketch of an endmill being subject to the cutting force:
 
-![](../.gitbook/assets/tool_deflection.png)
+![](.gitbook/assets/tool_deflection.png)
 
 The amount of deflection depends on the endmill material \(carbide is more rigid than HSS\), diameter \(larger is stiffer\), stickout length, and of course the cutting forces that the endmill is subjected to, that depend on the chipload and DOC and materia being cut.
 
 When using conventional milling, the force tends to be parallel to the stock:
 
-![](../.gitbook/assets/tool_deflection_conventionalcut.png)
+![](.gitbook/assets/tool_deflection_conventionalcut.png)
 
 When using climb milling, the force tends to be perpendicular, i.e. push the endmill away from the material:
 
-![](../.gitbook/assets/tool_deflection_climbcut.png)
+![](.gitbook/assets/tool_deflection_climbcut.png)
 
 Either way, too much deflection is bad:
 

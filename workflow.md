@@ -2,7 +2,7 @@
 
 First things first, it is important to understand the workflow of a typical CNC job: 
 
-![](../.gitbook/assets/workflow800.png)
+![](.gitbook/assets/workflow800.png)
 
 Everything starts in a **CAD** \(Computer-Aided Design\) tool: this is where you will create the 2D or 3D objects to be machined. CAD software packages are usually able to import 2D and 3D features from a variety of file formats, and the most common/useful ones for CNC are "vector" formats. 
 

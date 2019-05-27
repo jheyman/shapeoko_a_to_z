@@ -2,7 +2,7 @@
 
 ## Why bother?
 
-Runout was defined in the [Collets](../cnc-concepts-1/collets.md) section. It is quite possible to ignore it and still succeed in making a lot of successful projets, but it is better to understand how to deal with it in at least two cases:
+Runout was defined in the [Collets](../collets.md) section. It is quite possible to ignore it and still succeed in making a lot of successful projets, but it is better to understand how to deal with it in at least two cases:
 
 * projects requiring **dimensional accuracy**: since the toolpaths in the CAM tool take into account the endmill diameter, and since runout artificially increases the effective diameter, ignoring it will result in parts that have a dimensional error of \(at least\) the runout value.
 * projects requiring **small endmills**, i.e. endmills smaller than 1/8", a.k.a micro-machining. The reason is that the endmill will see +/- 1 runout of variation on the chipload. Since runout can be of the same order of magnitude as the target chipload, a small endmill seeing a chipload twice as high as the optimal target value can easily break.

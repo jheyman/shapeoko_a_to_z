@@ -4,7 +4,7 @@ This section provides details on _how_ the Shapeoko is working internally. None 
 
 ## Mechanical structure
 
-That part is self explanatory, and will be covered in more detail in [Building the Shapeoko](../building-the-shapeoko/). Let's just say that the correct geometry of pieces cut using the Shapeoko will depend on two main things:
+That part is self explanatory, and will be covered in more detail in [Building the Shapeoko](building-the-shapeoko/). Let's just say that the correct geometry of pieces cut using the Shapeoko will depend on two main things:
 
 * making sure the mechanical structure is assembled such that all three axis of movements are _actually_ orthogonal to each other. 
 * making sure that there is no slop nor excessive friction anywhere in the moving parts.
@@ -31,11 +31,11 @@ A pulley is installed on the motor shaft, and drives a "**GT2**" belt \(the "2" 
 
 
 
-![](../.gitbook/assets/belt_pulley.png)
+![](.gitbook/assets/belt_pulley.png)
 
 The pulleys used on the Shapeoko3 happen to have 20 teeth, with \(obviously\) the same 2mm spacing as the belt : so when the shaft does one full revolution, the belt moves by 20 teeth, i.e. 40mm.
 
-This full revolution required 1600 microsteps, which means that it requires 1600/40 = 40 steps to move by 1mm. And this is where the "**40 steps/mm**" setting in the Shapeoko controller comes from \(more on this in the [X/Y/Z calibration](../building-the-shapeoko/x-y-z-calibration.md) section\)
+This full revolution required 1600 microsteps, which means that it requires 1600/40 = 40 steps to move by 1mm. And this is where the "**40 steps/mm**" setting in the Shapeoko controller comes from \(more on this in the [X/Y/Z calibration](building-the-shapeoko/x-y-z-calibration.md) section\)
 
 Which means, the minimal movement that the Shapeoko can theoretically do in any axis is 1/40th of a mm, that's 0.025mm or 0.001". Quite precise, right?
 
@@ -51,7 +51,7 @@ So in theory, telling the motor to do X steps will move the associated axis by X
 
 Another potential reason for losing steps, is that the pulley may slip on the motor shaft if the **set screw** is not tight, so that should be secured/checked \(using a 1.5mm Allen key\):
 
-![](../.gitbook/assets/pulley_setscrew.png)
+![](.gitbook/assets/pulley_setscrew.png)
 
 Finally, the belts must be **tensioned** correctly, to avoid any slop that could lead to the belt jumping the pulley teeth when a large force is required on that axis. This is a goldilocks situation where the belt needs to be tight enough to avoid this problem, but not too tight to avoid bending the motor shaft. 
 
@@ -59,13 +59,13 @@ Finally, the belts must be **tensioned** correctly, to avoid any slop that could
 The usual words to characterize an adequate belt tension are "guitar-string tight". For the Y belts, a good indication of proper tension is that when the gantry is at one end of the rail, it should be possible to lift the belt a bit, but it should not be possible to slide a pinky finger under the middle of the belt.
 {% endhint %}
 
-Natural manufacturing variations across belts & pulleys, a variable level of tensioning, and probably multiple other factors, are such that the actual nb of steps required to move by 1mm may not be _exactly_ 40, but tiny bit more or a tiny bit less: this is covered in [X/Y/Z calibration](../building-the-shapeoko/x-y-z-calibration.md) section.
+Natural manufacturing variations across belts & pulleys, a variable level of tensioning, and probably multiple other factors, are such that the actual nb of steps required to move by 1mm may not be _exactly_ 40, but tiny bit more or a tiny bit less: this is covered in [X/Y/Z calibration](building-the-shapeoko/x-y-z-calibration.md) section.
 
 It is the job of the **controller** to send commands to the stepper drivers \(which in turn will generate the right current waveforms on the motor phases\), to achieve the desired movemements of the machine.
 
 ## Controller board
 
-![](../.gitbook/assets/controller_overview.png)
+![](.gitbook/assets/controller_overview.png)
 
 This is an earlier version of the "CarbideMotion" controller board, the latest one may be slightly different, but fundamentals will likely be the same.
 
@@ -184,7 +184,7 @@ The first six settings should be clear from the whole steps/microsteps section a
 
 What GRBL does is listen to incoming commands on the USB interface, and acts upon receiving them. Here's a very rough description of what's going on inside GRBL:
 
-![](../.gitbook/assets/grbl_internals.png)
+![](.gitbook/assets/grbl_internals.png)
 
 * First there is a **reception buffer**, and that's a critical point because while the arduino microcontroller can execute code with very deterministic timings, that's not the case of the host PC at the other end of the USB cable, which executes e.g. Carbide Motion on Windows. And as everyone experienced, from time to time Windows can decide to go and do something else that the main program, and this could break the flow of G-code commands into the controller. With this buffer, the control software can send a few additional G-code commands in advance of the current one, to ensure that the controller will never starve waiting for the next command from USB.
 * The **G-code commands** are processed by a dedicated piece of code that generates the appropriate signals to drive the stepper driver to produce the desired motion
@@ -193,7 +193,7 @@ What GRBL does is listen to incoming commands on the USB interface, and acts upo
 * GRBL also uses hardware input signals from the **limit switches** and potentially from a **probe**, and commands an output "**PWM**" spindle signal to potentially drive the RPM of a spindle  
 
 {% hint style="info" %}
-The PWM/Spindle signal is unused on a stock Shapeoko, but installing a spindle is a popular mod, and then this signal comes in handy. More details in [Spindle upgrade](../upgrading-the-machine/spindle-upgrade.md) section
+The PWM/Spindle signal is unused on a stock Shapeoko, but installing a spindle is a popular mod, and then this signal comes in handy. More details in [Spindle upgrade](upgrading-the-machine/spindle-upgrade.md) section
 {% endhint %}
 
 Below are the three most useful GRBL commands when using the Shapeoko:
@@ -234,7 +234,7 @@ The most significant difference between the DeWalt and the Makita is the RPM ran
 
 If you know you will need to be using lower RPMs, the Makita may be a better choice. Other than that, both routers have been used successfully for all kinds of jobs on the Shapeoko.
 
-Pro CNC's usually have a **spindle**, not a router, and that is a possible \(and popular\) upgrade path for the Shapeoko, check out the [Spindle upgrade](../upgrading-the-machine/spindle-upgrade.md) section for more.
+Pro CNC's usually have a **spindle**, not a router, and that is a possible \(and popular\) upgrade path for the Shapeoko, check out the [Spindle upgrade](upgrading-the-machine/spindle-upgrade.md) section for more.
 
 
 

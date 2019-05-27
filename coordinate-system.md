@@ -10,7 +10,7 @@ The next question is, where is the origin ? On a CNC like the Shapeoko, there is
 
 The **ZERO** point \(X0,Y0,Z0\) is the point in space against which all movements for a job will be referenced.
 
-![](../.gitbook/assets/coordinate_system800.png)
+![](.gitbook/assets/coordinate_system800.png)
 
 This point is usually referenced somewhere on the stock material \(e.g. a corner, or the center of the top face\), but it can be set anywhere in the workspace. The G-code for a given job will use this reference, and perform movements **relative** to this local origin. So, to successfully cut a piece, manually setting such a Zero position is enough.
 
