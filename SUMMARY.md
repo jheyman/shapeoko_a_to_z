@@ -9,7 +9,7 @@
 * [Cutters](cutters.md)
 * [Collets](collets.md)
 * [Feeds & speeds](feeds-and-speeds-basics.md)
-* [Toolpath basics](toolpath-basics.md)
+* [Toolpaths basics](toolpath-basics.md)
 * [Building and tuning the Shapeoko](building-the-shapeoko/README.md)
   * [Assembly tips and tricks](building-the-shapeoko/tips-and-tricks.md)
   * [Squaring](building-the-shapeoko/squaring.md)

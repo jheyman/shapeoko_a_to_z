@@ -51,3 +51,7 @@ O-flute 1.8" / 10.000RPM / 12000mm/min =&gt; CL 0.12
 
 ![](.gitbook/assets/hdpe_chips.png)
 
+### Tips and tricks
+
+TODO: air jet, coolant, O-flute, ...
+
