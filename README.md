@@ -10,7 +10,7 @@ As fun as it is to go ahead and cut a first project following a tutorial \(and y
 
 In other words, you do not _need_ to know about many of the details presented in the following sections, but chances are it could help you down the line.
 
-@Julien \(you can reach me on the Shapeoko forum \([**https://community.carbide3d.com/**](https://community.carbide3d.com/)\)
+Comments/corrections are most welcome, you can contact me on the Shapeoko forum \([**https://community.carbide3d.com/**](https://community.carbide3d.com/)\) as @Julien.
 
 \*\*\*\*
 
