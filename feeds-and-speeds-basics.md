@@ -103,7 +103,7 @@ You can look for for recommanded chipload values from endmill manufacturers, but
 
 * chipload scales linearly with endmill diameter
 * a commonly seen value for cutting aluminium on a Shapeoko is 0.001" for a 1/4" endmill
-* at the other end of the chipload spectrum, the max reachable chipload for a Shapeoko when using a 2-flute 1/4" endmill and lowest RPM \(10.000RPM on the Makita router\), given the Shapeoko's limit to 100inch per minute feedrate, is 100/\(2x10.000\) = 0.005"
+* at the other end of the chipload spectrum, the max reachable chipload for a Shapeoko when using a 2-flute 1/4" endmill and lowest RPM \(10.000RPM on the Makita router\), given the Shapeoko's limit to 200 inch per minute feedrate, is 200/\(2x10.000\) = 0.01"
 * the ratio of chiploads between hard woods and soft woods should be around the same as the wood hardness ratio \(janka factor\), let's pick an average ratio of about x2 
 * Acrylic \(and plastics in general\) require the highest chiploads, because of thermal constraints: plastic can easily melt if heat is not removed quickly enough, and the only way to ensure this is to make large chips \(using low RPM and high feed rate\). Experimental 
 
@@ -113,7 +113,8 @@ If we apply this recipe, we end-up with this guideline for reasonable chiploads 
   <thead>
     <tr>
       <th style="text-align:left"></th>
-      <th style="text-align:left">Plastics</th>
+      <th style="text-align:left">Soft plastics</th>
+      <th style="text-align:left">Hard plastics</th>
       <th style="text-align:left">Soft wood / MDF</th>
       <th style="text-align:left">Hard wood</th>
       <th style="text-align:left">Aluminium</th>
@@ -123,6 +124,7 @@ If we apply this recipe, we end-up with this guideline for reasonable chiploads 
   <tbody>
     <tr>
       <td style="text-align:left"></td>
+      <td style="text-align:left">Hard plastics + 100%</td>
       <td style="text-align:left">softwood + 20%</td>
       <td style="text-align:left">hardwood + 100%</td>
       <td style="text-align:left">baseline + 100%</td>
@@ -131,6 +133,10 @@ If we apply this recipe, we end-up with this guideline for reasonable chiploads 
     </tr>
     <tr>
       <td style="text-align:left">1/16&quot;</td>
+      <td style="text-align:left">
+        <p>0.0025&quot;/</p>
+        <p>0.06mm</p>
+      </td>
       <td style="text-align:left">
         <p>0.0012&quot; /</p>
         <p>0.03mm</p>
@@ -152,6 +158,10 @@ If we apply this recipe, we end-up with this guideline for reasonable chiploads 
     <tr>
       <td style="text-align:left">1/8&quot;</td>
       <td style="text-align:left">
+        <p>0.005&quot; /</p>
+        <p>0.12mm</p>
+      </td>
+      <td style="text-align:left">
         <p>0.0024&quot; /</p>
         <p>0.06mm</p>
       </td>
@@ -172,6 +182,10 @@ If we apply this recipe, we end-up with this guideline for reasonable chiploads 
     <tr>
       <td style="text-align:left">1/4&quot;</td>
       <td style="text-align:left">
+        <p>0.01&quot; /</p>
+        <p>0.254mm</p>
+      </td>
+      <td style="text-align:left">
         <p>0.0048&quot; /</p>
         <p>0.12 mm</p>
       </td>
@@ -191,9 +205,9 @@ If we apply this recipe, we end-up with this guideline for reasonable chiploads 
     </tr>
   </tbody>
 </table>{% hint style="info" %}
-For reference, the absolute maximum chipload that a stock Shapeoko can theoretically achieve when using the fastest feedrate \(100"/min\), the slowest RPM \(10.000 RPM on the Makita router\), and the lowest number of flute \(1\), is  100 / \(1x10000\) = 0.01"  = 0.254mm
+For reference, the absolute maximum chipload that a stock Shapeoko can theoretically achieve when using the fastest feedrate \(200"/min\), the slowest RPM \(10.000 RPM on the Makita router\), and the lowest number of flute \(1\), is  200 / \(1x10000\) = 0.02" = 0.5mm
 
-The highest chiploads in this table may not be reachable using any endmill. For example, the max chipload that can be achieved when using the most common 1/4" endmill \(3-flute 1/4", e.g. Carbide3D's \#201\) given the Shapeoko's limit to 100 inch per minute feedrate and the Makita router min RPM of 10.000  is 100/\(3x10000RPM\) = 0.0033". To get a higher chipload, an endmill with lower flute count, and/or a spindle with lower minimal RPM must be used.
+The highest chiploads in this table may not be reachable using any endmill. For example, the max chipload that can be achieved when using the most common 1/4" endmill \(3-flute 1/4", e.g. Carbide3D's \#201\) given the Shapeoko's limit to 200 inch per minute feedrate and the Makita router min RPM of 10.000 is 200/\(3x10000RPM\) = 0.0066". To get a higher chipload, an endmill with lower flute count, and/or a spindle with lower minimal RPM must be used.
 {% endhint %}
 
 ## Radial width of cut / Stepover
