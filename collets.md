@@ -12,7 +12,7 @@ From left to right:
 * 1/4" \(6.35mm\) precision collet from Elaire Corp
 * 1/8" \(3.175mm\) precision collet from Elaire Corp
 
-The main constraint with router collets is that the range of available sizes is quite limited, especially toward the smaller diameters. Spindle users have access to "ER" collets that are available in many more sizes, but that is a story for the [Spindle upgrade](upgrading-the-machine/spindle-upgrade.md) section. 
+The main constraint with router collets is that the range of available sizes is quite limited, especially toward the smaller diameters. Spindle users have access to "ER" collets that are available in many more sizes, but that is a story for the [Spindle upgrade]() section. 
 
 Using a **collet adapter/reducer** is generally not recommanded as it tends to increase **runout**, but for most jobs it will still work fine.
 
@@ -38,7 +38,7 @@ The expected width of the slot is the endmill diameter, but the actual width of 
 
 ![](.gitbook/assets/runout_measurement_sketch.png)
 
-Refer to the section about [Managing runout](building-the-shapeoko/measuring-runout.md) for more.
+Refer to the section about [Managing runout](measuring-runout.md) for more.
 
 
 
