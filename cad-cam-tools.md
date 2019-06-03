@@ -1,4 +1,16 @@
-# G-code primer
+# CAD, CAM, G-code
+
+TODO: 
+
+## CAD/CAM tools
+
+CC, Fusion360, VCarve
+
+## G-code senders
+
+CM, UGS, CNCjs
+
+## G-code primer
 
 Ok, so the GRBL software in the Shapeoko controller eats G-code, and it is the job of the G-code sender \(e.g. Carbide Motion\) to feed it. Since the purpose of CAM tools is to generate G-code files, one can perfectly use the Shapeoko without any understanding of the G-code syntax, and without ever opening a generated G-code file. However, having at least a superficial understanding of what the most common G-code instructions do goes a long way when in need of troubleshooting why the machine behaves the way it does.
 
@@ -8,7 +20,7 @@ A G-code file is usually a **plain text** file \(that can be opened with any tex
 
 Each block \(line\) can contain several G-code instructions, but it often contains a single command and its parameters, for better readability.
 
-These instructions are being sent \(by e.g. Carbide Motion\) to the machine, that executes them **in order**. 
+These instructions are being sent \(by e.g. Carbide Motion\) to the machine, that executes them **in order**.
 
 {% hint style="info" %}
 G-code standard does define loop/jump instructions \(GOTO\), but they are not supported by GRBL anyway, so on a Shapeoko the G-code is guaranteed to execute from the top to the bottom of the file sequentially.
@@ -46,7 +58,7 @@ M30
 Let's break this down:
 
 * the **%** line just means "start of program". Well it actually means "Tape start", from the days where CNC used tape readers. Anyway, this sign is optional, you will find some CAM tools add it, others don't.
-*  Everything between parenthesis is a **comment**, and is ignored by GRBL. This is just there for readability of the G-code file.
+* Everything between parenthesis is a **comment**, and is ignored by GRBL. This is just there for readability of the G-code file.
 * **G21** is the command to set **units** to mm \(G20 being the command to set units to inches, instead\)
 * **G90** is the command to go to **absolute positioning** mode, i.e. all subsequent move commands will interpret X/Y/Z values as coordinates relative to the origin of the machine.
 * **G0** is the **Rapid Move** command, it takes X and/or Y and/or Z and/or Feedrate values as parameters, and is intended to reposition the tool to a different location while not cutting anything on the way.
@@ -58,10 +70,10 @@ Let's break this down:
 * **M30** means "End of program" in GRBL.
 
 {% hint style="info" %}
+
 * On a stock Shapeoko with a trim router, there is no automatic control of the router activation nor RPM, so the Spindle commands have no effect
 * The Shapeoko does not have an automatic tool changer, but Carbide Motion uses the M6 tool change command
 * Spaces inside a line are ignored
-{% endhint %}
 
 Beyond this basic example, a few more common commands are:
 
@@ -72,20 +84,4 @@ Beyond this basic example, a few more common commands are:
 * **G54** is the command to select "coordinate system \#1", a.k.a. the coordinate system that is based on the Zero point you set. This command is optional since G54 is the default at GRBL startup anyway.
 
 There are many, many more G-code commands, but basically the commands above will cover 99% of the need on a Shapeoko.
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 

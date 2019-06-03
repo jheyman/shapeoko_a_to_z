@@ -1,4 +1,4 @@
-# Cutting plastics
+# Usecases: cutting plastics
 
 Plastics are relatively easy to mill, but they are much less forgiving than wood if feeds and speeds are not set to adequate values. The reason is that plastic melts easily when heated, and since cutting forces produce heat...the name of the game is to evacuate heat as efficiently as possible.
 

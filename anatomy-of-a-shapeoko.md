@@ -1,10 +1,10 @@
 # Anatomy of a Shapeoko
 
-This section provides details on _how_ the Shapeoko is working internally. None of this info is required to be able to successfully use the machine, but sooner or later you may find some of this information useful for troubleshooting, repairing, or upgrading the machine.
+This section provides details on _how_ the Shapeoko is working internally. None of this info is required to be able to successfully use the machine, but you may find some of this information useful for troubleshooting, repairing, or upgrading the machine.
 
 ## Mechanical structure
 
-That part is self explanatory, and will be covered in more detail in [Building the Shapeoko](). Let's just say that the correct geometry of pieces cut using the Shapeoko will depend on two main things:
+That part is self explanatory, since the Shapeoko is a kit everyone will get acquainted with the \(very simple\) mechanical structure during assembly. The correct geometry of pieces cut on the Shapeoko will depend mainly on:
 
 * making sure the mechanical structure is assembled such that all three axis of movements are _actually_ orthogonal to each other. 
 * making sure that there is no slop nor excessive friction anywhere in the moving parts.

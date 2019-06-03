@@ -1,4 +1,4 @@
-# Cutters
+# Cutters & collets
 
 It's easy to be overwhelmed at first by the variety of tools and their characteristics. Roughly, an endmill is caracterized by:
 
@@ -99,11 +99,80 @@ And there are many more, but these should cover a large part of the usecases/pro
 
 
 
-TO ADD: roughing endmills ?
+&lt;TO ADD: roughing endmills ?&gt;
 
-## Starter set
+## Collets
 
-&lt;TODO guidelines to buy endmills to start&gt;
+There is not much too say about collets, other than "they come in various sizes and quality". Here's a sample set of collets for the Makita router:
+
+![](.gitbook/assets/collets.png)
+
+From left to right:
+
+* 1/4" Makita collet \(comes with the router in the US version\)
+* 6mm Makita collet \(comes with the router in the European version\) with a 6mm to 3.175mm adapter inserted
+* 1/8" \(3.175mm\) cheap unbranded collet
+* 1/4" \(6.35mm\) precision collet from Elaire Corp
+* 1/8" \(3.175mm\) precision collet from Elaire Corp
+
+The main constraint with router collets is that the range of available sizes is quite limited, especially toward the smaller diameters. Spindle users have access to "ER" collets that are available in many more sizes, but that is a story for the Spindle upgrade section.
+
+Using a **collet adapter/reducer** is generally not recommanded as it tends to increase **runout**, but for most jobs it will still work fine.
+
+Below is a short overview of what runout is, but overall this is not something new users have to worry about.
+
+## Runout / TIR
+
+In theory, the rotation axis of the router shaft \(in black\), the axis of the collet \(in blue\), and the axis of the endmill \(in green\) are aligned:
+
+![](.gitbook/assets/runout_theory.png)
+
+But in practice, manufacturing tolerances are such that there are small imperfections at all levels:
+
+* the router shaft itself may not rotate perfectly on its axis
+* the collet geometry may not be perfect, introducing a misalignment of the axis between the outer surface \(attached to the router shaft\) and the inner surface \(holding the endmill\)
+* the endmill itself may not have a perfectly cylindrical shape
+
+The end effect is that the movement of the endmill's tip in the material is the combination of the rotation along its own axis and other unintended deviations. Here's a very \(very\) exagerated view of what happens when cutting a single slot:
+
+![](.gitbook/assets/runout_when_slotting.png)
+
+The expected width of the slot is the endmill diameter, but the actual width of the slot is the sum of the endmill diameter and the amount of deviation \(runout\). This deviation can characterized by the maximal displacement measured at a given position on the surface of the endmill as it rotates \(again, extremely exagerated on the view below\):
+
+![](.gitbook/assets/runout_measurement_sketch.png)
+
+Refer to the section about [&lt;TODO link Managing runout](measuring-runout.md)&gt; for more.
+
+## Endmills & collets starter set
+
+A common question when buying the Shapeoko is "which endmills and collets should I get and how many of each ?". 
+
+* The answer of course is "it depends" \(on the nature of your projects\)
+* The Shapeoko ships with a 1/4" square endmill \(\#201 from Carbide3D store\), and the routers ship with a 1/4" collet: this is enough to get started and make a lot of beginner projects actually.
+* Getting a couple of spare 1/4" square endmills is a good idea: sooner or later, the original \#201 will wear out \(or chip, or even break in case of a really big mistake\)
+* The usual next step is to realize that 1/4" is too large to cut small inside features: getting a couple of 1/8" square endmills will not go to waste anyway.
+  * this comes with the need to get a 1/8" collet, or at least a collet adapter. 
+* If you intend to use 3D toolpaths and curvy surfaces, get a ballnose endmill \(1/4" or 1/8" or smaller depending on the size/precision of your target projects\)
+* Get one V-bit: V-carving is quite easy and satisfying, you will probably want to try it, and it's a very common way to engrave text. They come in different shapes \(angles\), the most common ones are 60 degrees and 90 degrees. Make sure you invest in a good quality V-bit, it makes a big difference \(while it is easier to get away with using cheap square endmills\) 
+* If you intend to cut mostly plastics, do get a O-flute square endmill.
+* If you intend to cut mostly aluminium, ZrN-coated endmills will help.
+* A surfacing bit is useful to reduce the time for surfacing your wasteboard, but honestly not required in the starter set, a 1/4" endmill will do fine.
+* the other types are very specific, so unless you know you will need them for sure, they can wait. 
+
+So my recommandation would be something like:
+
+* 2 x 1/4" square endmills \(2 or 3 flutes\) to complement the one that comes with the machine
+* 1 x 1/8" collet for your router \(or at least a collet adapter to fit 1/8" in the 1/4" collet\)
+* 2 x 1/8" square endmills \(2 flutes\)
+* 1x 60° V-bit 
+* 1 x 90° V-bit
+* \(optionnally for 3D\) 2 x 1/4" ballnose endmills
+* \(optionnally for Plastics\) 1 x O-flute 1/4" square endmill + 1 x O-flute 1/8" square endmill
+* \(optionnally for Aluminium\) a set of ZrN-coated 1/4" endmills
+
+
+
+
 
 
 

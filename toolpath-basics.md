@@ -1,13 +1,15 @@
 # Toolpaths
 
-A **toolpath** is the intended path that the tip of the endmill will follow, to remove material and produce the desired geometry of the workpiece.
+A **toolpath** is the intended trajectory that the tip of the endmill will follow, to remove material and produce the desired geometry of the workpiece.
 
 For a specific object geometry/feature defined in the CAD tool, the CAM tool will generate toolpaths as sets of lines and curves defined in X/Y/Z space, and the post-processor will then generate the corresponding G-code instructions for the machine.
 
-&lt;TODO: 2D versus 3D toolpaths.&gt;
+"2D" toolpaths correspond to cutting a 2D feature in the design, and moving only two axis of the machine at a time \(typically, stepping down along Z only, then moving along X and Y only\). Since X, Y, and Z are moved \(albeit not simultaneously\), this is sometimes called "2.5D".
 
-{% hint style="info" %}
-Not all toolpaths presented below are available in Carbide Create. 3D toolpaths, adaptive toolpaths, and the roughing vs. finishing toolpaths feature require to use other CAM programs. Yet Carbide Create is perfect to master simple 2D toolpaths, before moving on to more complex toolpaths. Screenshots in this section are from Carbide Create, Vectric VCarve, and Fusion360
+"3D" toolpaths correspond to cutting a 3D feature, and potentially moving the three axis of the machine simultaneously. 
+
+{% hint style="warning" %}
+Not all toolpaths presented below are available in Carbide Create: 3D toolpaths, adaptive toolpaths, REST machining, and the roughing vs. finishing toolpaths feature require to use other CAM programs. If you are just starting you can ignore those, Carbide Create is perfect to learn simple 2D toolpaths before moving on to more complex projects. The intent here is to show what is available in advanced CAM programs, and then everyone can decide whether to invest money \(e.g. VCarve\) or time \(e.g. Fusion360\) to access those features. 
 {% endhint %}
 
 Taking the simplest example of a 50x50mm square shape in a CAD tool, placed in the center of a 100x100mm stock material area, with the zero point defined in the lower-left corner, and using a 6mm endmill \(~1/4"\) :
@@ -52,15 +54,13 @@ On the following snapshot, a few circles of the same diameter as the endmill wer
 
 ![](.gitbook/assets/toolpaths_cc_fake_rest_machining.png)
 
-Check out the Fusion360 part of the [Upgrading to advanced software](upgrading-tools.md) section for more details on adaptive clearing and rest machining. 
+Check out the Fusion360 part of the [Upgrading to advanced software]() section for more details on adaptive clearing and rest machining. 
 
 Even though this "concentric squares/pseudo-spiral" toolpath is by far the most common, other patterns exist. Below is an example of the same pocket using a "zigzag" or "raster" patten toolpath, from Vectric VCarve : 
 
 ![](.gitbook/assets/toolpaths_pocket_zigzag.png)
 
 ## Contour/Profile toolpaths
-
-&lt;TODO: parler de slotting et des inconvénients.&gt;
 
 Contour \(a.k.a. Profile\) toolpaths just follow the...contour of a shape, with the option to have the endmill positioned either on the outside or on the inside of the shape, and even right on it:
 
@@ -104,9 +104,9 @@ After it plunges to the depth of cut, the endmill is moved in small spiral movem
 
 Since the cutter load is much lower, one can use much more agressive feeds and speeds and DOC. But of course, it takes much longer to do all these spiral movements rather than going  in a straight line.
 
-## V-Carve toolpaths
+## V-Carving toolpaths
 
-V-carve is a specific toolpath strategy dedicated to using V-bits of a given angle to cut the inside of shapes, resulting in a cut depth that depends on how far apart the sides of the shape are.
+V-carving is a specific toolpath strategy dedicated to using V-bits of a given angle to cut the inside of shapes, resulting in a cut depth that depends on how far apart the sides of the shape are.
 
 Let's take the example of a simple chevron shape, to be cut with a 60degree V-bit:
 
@@ -137,7 +137,7 @@ Carving the outside of characters, within a predefined boundary, is another popu
 a V-bit is very inefficient at removing large amounts of stock, and even worse at carving flat-bottom pockets, so the scenario above would better make use of a first clearing toolpath using a regular endmill in flat areas, and a second toolpath taking care of V-carving around the characters.
 {% endhint %}
 
-## Roughing & finishing strategy
+## Roughing vs. finishing toolpaths
 
 For every toolpath there are two conflicting needs: minimizing the total runtime, and getting the best finish and dimensional accuracy of the workpiece. Instead of settling for a middle ground that accomodates both constraints, a very common approach is to make two toolpaths:
 
@@ -160,7 +160,47 @@ How roughing/finishing is setup depends on the CAD/CAM tool being used:
 
 ![](.gitbook/assets/toolpaths_finishing.png)
 
-## Previewing G-code
+## REST machining
+
+TODO: explain + screenshot
+
+![](.gitbook/assets/fs_usecases_toolholder_roughing_toolpath.png)
+
+xxxx
+
+![](.gitbook/assets/fs_usecases_toolholder_finishing_toolpath.png)
+
+## Lead-in/Lead-out
+
+TODO explain + photo si on le fait pas + workaround dans CC
+
+## Adaptive clearing toolpaths
+
+TODO !
+
+TODO explain optimal load = radial width of cut
+
+## 3D toolpaths
+
+Carbide Create does not support them, and the topic is too wide and too specific the CAM tool to be covered here properly, but here is a simple example:
+
+![](.gitbook/assets/toolpaths_3d_example.png)
+
+Many of the concepts of 2D toolpaths apply, but the notion of roughing + finishing will be paramount for 3D, to get reasonable job time and a smooth finish.
+
+## Drilling
+
+TODO: proper = drillbit, workaround = endmill + peck\_drilling \(faire un GIF de l'animation Fusion ?\)
+
+10.000RPM, PR 600mm/min, pecking depth 0.8mm in HDPE, with single flute 3.175mm 
+
+## Previewing toolpaths from G-code
+
+Pretty much all CAM tools embed a toolpath visualization feature, however what they display is the toolpath defined in the design, and this is not _guaranteed_ to be 100% what the machine will execute, because of the post-processor step: the generated G-code might be subtly different depending on the selected options.
+
+One way to double-check is to visualize the toolpath from the generated G-code file itself. There are a number of offline and online G-code viewers \(CAMotics is a popular open source desktop app, and there are many online G-code viewers too\)
+
+![](.gitbook/assets/toolpaths_camotics_screenshot.png)
 
 
 
