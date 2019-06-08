@@ -16,7 +16,7 @@ Even at the correct chipload, if chips get in the way of the cut, very soon some
 
 * dust shoe \(or manual vaccuuming\)
 * air blast directed at the cut
-* avoiding deep & narrow pockets/slots
+* avoiding deep & narrow pockets/slots when possible
 * using an O-flute endmill \(beyond the chipload vs. RPM/feedrate advantage, it also leaves much more room for chips to get away from the cut\)
 
 Two very common types of plastic are hard plastics like acrylic \(cast or extruded\), and soft plastics like HDPE \(High Density PolyEthylene\), both are illustrated below.
@@ -27,7 +27,7 @@ If the feeds and speeds are correct, you should be making chips, not strings of 
 
 ![](.gitbook/assets/acrylic_chips.png)
 
-For this example I used a 2-flute 1/8" endmill, 10.000 RPM, and a feedrate of 1200mm/min \(47"/min\), to get a chipload of 1200 / \(2x10.000\) = 0.06mm = 0.0023", as recommended in the [Feeds & speeds](feeds-and-speeds-basics.md) section for acrylic. The depth of cut was 50% of the endmill diameter, i.e. 1.5875mm.
+For this example I used a 2-flute 1/8" endmill, 10.000 RPM, and a feedrate of 1200mm/min \(47"/min\), to get a chipload of 1200 / \(2x10.000\) = 0.06mm = 0.0023", as recommended in the [Feeds & speeds](feeds-and-speeds-basics.md) section for acrylic. The depth of cut was 50% of the endmill diameter, i.e. 1.5875mm, and stepover was 0.056"/1.4mm.
 
 If you get gummy edges on the cut, or see plastic accumulating on the endmill, then the feedrate is too low and/or the RPM too high. Here is what it may look like while the router is on:
 
@@ -49,7 +49,7 @@ In the [Feeds & speeds](feeds-and-speeds-basics.md) section, the recommandation 
 
 For HDPE, the chipload needs to be pushed even further, as this is a relatively soft plastic that melts easily.
 
-To get nice clean chips below, I used a 1/8" O-flute at 10.000RPM and 1200mm/min \(47"/min\), granting a chipload of 0.12mm \(0.005"\). The depth of cut was again 50% of the endmill diameter, i.e. 1.5875mm
+To get nice clean chips below, I used a 1/8" O-flute at 10.000RPM and 1200mm/min \(47"/min\), granting a chipload of 0.12mm \(0.005"\). For this example pocketing operation, the depth of cut was again 50% of the endmill diameter, i.e. 0.0625"/1.5875mm, and stepover was 0.056"/1.4mm
 
 ![](.gitbook/assets/hdpe_chips.png)
 
