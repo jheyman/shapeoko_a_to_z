@@ -12,6 +12,8 @@ As fun as it is to go ahead and cut a first project following a tutorial \(and y
 
 Comments/corrections are most welcome, you can contact me on the Shapeoko community forum \([**https://community.carbide3d.com/**](https://community.carbide3d.com/)\) as @Julien.
 
+Special thanks to @snaterst for providing a few pics
+
 ## Safety considerations
 
 This is not \(only\) a legal disclaimer, this is plain old common sense but needs to be said: using a CNC comes with a small number of specific risks for your safety, that are easily adressed:

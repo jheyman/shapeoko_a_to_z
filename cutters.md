@@ -137,11 +137,11 @@ The end effect is that the movement of the endmill's tip in the material is the 
 
 ![](.gitbook/assets/runout_when_slotting.png)
 
-The expected width of the slot is the endmill diameter, but the actual width of the slot is the sum of the endmill diameter and the amount of deviation \(runout\). This deviation can characterized by the maximal displacement measured at a given position on the surface of the endmill as it rotates \(again, extremely exagerated on the view below\):
+The expected width of the slot is the endmill diameter, but the actual width of the slot \(effective cutting diameter\) is the sum of the endmill diameter and the amount of deviation \(runout\). This deviation can characterized by the maximal displacement measured at a given position on the surface of the endmill as it rotates \(again, extremely exagerated on the view below\):
 
 ![](.gitbook/assets/runout_measurement_sketch.png)
 
-Refer to the section about [&lt;TODO link Managing runout](measuring-runout.md)&gt; for more.
+Refer to the runout section in [Dimensional accuracy](x-y-z-calibration.md#managing-runout) for more.
 
 ## Endmills & collets starter set
 

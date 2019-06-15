@@ -54,8 +54,6 @@ On the following snapshot, a few circles of the same diameter as the endmill wer
 
 ![](.gitbook/assets/toolpaths_cc_fake_rest_machining.png)
 
-Check out the Fusion360 part of the [Upgrading to advanced software]() section for more details on adaptive clearing and rest machining. 
-
 Even though this "concentric squares/pseudo-spiral" toolpath is by far the most common, other patterns exist. Below is an example of the same pocket using a "zigzag" or "raster" patten toolpath, from Vectric VCarve : 
 
 ![](.gitbook/assets/toolpaths_pocket_zigzag.png)
@@ -92,17 +90,33 @@ Sometimes this is no big deal and you can just proceed with the reduced DOC and 
 * The tool first goes around the inside of the outer square: no benefit there, this results in slotting.
 * But then the tool proceeds to follow the second/inner blue path, around the outside of the original square, and this is where pocketing helps: the tool now just has to remove the thin remaining layer of material, and has some clearance against the opposite wall, so this is like a cutting pass with a very small stepover: this is perfect to minimize forces, and act as a finishing pass.
 
-A refinement of this approach is to leverage adaptive toolpath 
+## Adaptive clearing toolpaths
 
-Cutting this narrow pocket can also leverage adaptive clearing strategy if the CAM tool supports its. Using a similar strategy as above with extra geometry around the original shape, and creating a 2D adaptive clearing toolpath results in something like this: 
+Pocket and profile toolpaths share a common problem that is not immediately apparent: they involve large tool engagement angles in the material \(constantly when slotting, and temporarily in the corners when pocketing, see [Feeds & speeds](feeds-and-speeds-basics.md#corners) section\), which in turn limits how deep/fast one can cut.
+
+Adaptive clearing \(which is Fusion360's name for their trochoïdal milling family of toolpaths\) is another approach that generates toolpaths that have a constant \(and relatively low\) tool engagement value throughout the cut. When going straight, this is the same as using a very small stepover. When cutting corners, this means taking many small and curvy bites, instead of going straight and taking a sharp 90° turn. 
+
+While a pocketing operation using a very typical stepover of 60% would look like this \(notice the ~180° tool engagement in the corner\), 
+
+![](.gitbook/assets/toolpaths_nonadaptivepocketing.png)
+
+an adaptive clearing toolpath on the same geometry with radial width of cut of 60% would look like this \(notice how the tool is turning before the corner, keeping tool engagement to ~90°\):
+
+![](.gitbook/assets/toolpaths_adaptivepocketing.png)
+
+Coming back to the profile cut example discussed earlier, adaptive clearing can be leveraged to avoid slotting. Using extra geometry around the original shape and creating a 2D adaptive clearing toolpath results in something like this: 
 
 ![](.gitbook/assets/toolpaths_contour_adaptive_profile.png)
 
-After it plunges to the depth of cut, the endmill is moved in small spiral movement, between the inner geometry and the outer geometry: at any given time, the endmill engagement into the material is limited to a small fraction of its circumference, much like a pocket cut with small stepover:
+After it plunges to the depth of cut, the endmill is moved in small spiral movements between the inner geometry and the outer geometry: at any given time, the endmill engagement into the material is constant and limited to a small fraction of its circumference:
 
 ![](.gitbook/assets/toolpaths_contour_adaptive_profile_preview.png)
 
-Since the cutter load is much lower, one can use much more agressive feeds and speeds and DOC. But of course, it takes much longer to do all these spiral movements rather than going  in a straight line.
+Since the cutter load is much lower, one can use much more agressive feeds and speeds and DOC. But of course, it takes much longer to do all these spiral movements rather than going in a straight vertical line.
+
+&lt;TODO: HSM vs regular machining&gt;
+
+
 
 ## V-Carving toolpaths
 
@@ -162,17 +176,36 @@ How roughing/finishing is setup depends on the CAD/CAM tool being used:
 
 ## REST machining
 
-TODO: explain + screenshot
+A very common scenario is to first use a large tool to remove a lot of material quickly, and then switch to a smaller tool to cut finer details. CAM tools that support REST machining can optimize toolpaths such that the tool only works in the areas where material was not already removed by the previous toolpaths.
+
+Consider the case where a large pocket must be cut, but the pocket has tight corners radius:
+
+* a large endmill will be more efficient at removing material quickly, but will not be able to reach into the tight corner
+* a small endmill will be able to reach the corner, but would be very inefficient at cutting the whole pocket
+
+In the example below a 1/4" square endmill is first used, with aggressive feeds and speeds to clear out a lot of pockets quickly, and with some stock to leave:
 
 ![](.gitbook/assets/fs_usecases_toolholder_roughing_toolpath.png)
 
-xxxx
+A second toolpath using an 1/8" endmill and REST machining option, with no stock to leave, takes care of cutting \(only\) the tight corners as well as removing the remaining stock on the pocket walls \(i.e. finishing\)
 
 ![](.gitbook/assets/fs_usecases_toolholder_finishing_toolpath.png)
 
+The power of REST machining lies in the fact that both toolpaths refer to the same geometry \(the pocket outlines\), there is no need to manually create additional geometry or contraints to restrict the 2nd toolpath to working on the walls and corners. 
+
 ## Lead-in/Lead-out
 
-TODO explain + photo si on le fait pas + workaround dans CC
+Consider the case of a profile cut, where the tool plunges straight down at a point somewhere along the profile. During the plunge, the forces on the endmill are vertical, the tool will not deflect. But once the endmill has reached the DOC and starts moving around the profile, lateral forces on the endmill will cause deflection, and the actual cutting path will deviate from the intended path by a tiny amount \(greatly exaggerated on the sketch below\). The resulting profile cut may then end up having a \(small but\) visible notch at the point where the endmill plunged into the material:
+
+![](.gitbook/assets/toolpaths_nolead_in.png)
+
+One way to avoid this is to use a roughing pass with stock to leave: the deflection effect will still happen, but it will happen away from the contour, and a finishing pass \(with very little deflection\) will then come and shave off this irregularity. 
+
+Another way to deal with such problems is to use **lead-in \(**respectively lead-out\) options if the CAM tool supports it: the toolpath with make the endmill plunge away from the profile, and then lead into \(respectively out of\) the profile edge:
+
+![](.gitbook/assets/toolpaths_leadin.png)
+
+At the time of writing, this feature is not supported in Carbide Create, but one can fallback to manually adding geometry around the piece to achieve similar results.
 
 ## Adaptive clearing toolpaths
 

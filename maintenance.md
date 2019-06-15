@@ -1,5 +1,9 @@
 # Maintenance/troubleshooting
 
+## Resurfacing the wasteboard
+
+
+
 ## Replacing endmills
 
 xxx
