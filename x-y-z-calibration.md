@@ -87,7 +87,7 @@ In both cases, the axis of the measurement tool should be aligned carefully to m
 
 ### Limitations of belt calibration
 
-The pitfall of belt calibration is expecting to get excellent accuracy out of it alone. Unfortunately, belt stretch is not fully linear, and many users have found out that the calibration value varies depending on the calibration distance and where on the work area the measurement was made.
+The pitfall of belt calibration is expecting to get excellent accuracy out of it alone. Unfortunately, belt stretch is not fully linear, and many users found out that the calibration value varies depending on the calibration distance, and where on the work area the measurement was made.
 
 It could even be considered to be counter-productive, because of the finite precision of GRBL computations that will round numbers with lots of decimal places, and the rounding effect may be worse with calibrated values.
 

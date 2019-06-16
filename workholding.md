@@ -18,9 +18,7 @@ Many projects require to cut all the way through the stock material, e.g. to cut
 * Mistakes in the CAM design/G-code, or mechanical issues, might \(will!\) cause the endmill to cut deeper than expected, it would be too bad to damage the machine bed.
 * The stock must lay on a surface that is flat and square to the machine's Z axis, and the simplest way to achieve this is to use the machine itself to surface its own base \(see [Squaring, surfacing, tramming](squaring.md)\), so it should be a replaceable part.
 
-It is _possible_ to use the Shapeoko's MDF bed as a wasterboard, but who wants to be replacing the bed of their machine \(considering it would means disassembling it, reassembling with a fresh bed, and then squaring everything again\). It is much more convenient to use a supplementary wasteboard
-
-&lt;TODO sketch with stock + wasteboard + bed + show Z travel&gt;
+It is _possible_ to use the Shapeoko's MDF bed itself as a wasterboard, but who wants to be replacing the bed of their machine? \(considering it would means disassembling it, reassembling with a fresh bed, and then squaring everything again\). It is much more convenient to use a supplementary wasteboard bolted onto the bed.
 
 The \(only?\) downside of using a supplementary wasteboard is that it reduces the maximum Z travel \(i.e. the maximum possible height for a workpiece\)
 
@@ -33,7 +31,9 @@ Wasteboard material is very often MDF \(cheap & easy to procure\), HDPE is anoth
 The wasteboard needs to be held onto the machine's bed, in such a way that it can easily be removed, the usual way is to bolt it onto the bed. 
 
 {% hint style="info" %}
-Make sure the wasteboard dimensions are such that an endmill can reach all sides, with some margin: this will be important for surfacing the wasteboard.  The max dimensions vary depending on the machine \(and accesories\) setup, so actually moving the router in the four corner limit positions, measuring where the endmill ends up being, and making the wasteboard area slightly smaller than that, is an easy way to get this right.
+Make sure the wasteboard X/Y dimensions are such that an endmill can reach all sides, with some margin: this will be important for surfacing the wasteboard.  The max dimensions vary depending on the machine \(and accessories\) setup, so actually moving the router in the four corner positions, measuring where the endmill ends up being, and making the wasteboard area slightly smaller than that, is an easy way to get this right.
+
+For Z dimension/thickness, make sure to include margin for a few future surfacing operations
 {% endhint %}
 
 ## Threaded table, T-tracks, clamps
