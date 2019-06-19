@@ -206,7 +206,7 @@ Below are the three most useful GRBL commands when using the Shapeoko:
 * **$&lt;x&gt;=&lt;val&gt;** writes value val in setting x
 * **$H** homes the machines
 
-## Router vs. spindle
+## Trim Router
 
 All of the above of course serves a single purpose: moving a router and its tool in three dimensions. The very concept of the Shapeoko is to be able to use an inexpensive consumer-grade compact **router**. The most popular ones \(if only because they are supported out of the box by the Shapeoko mechanical kit\) are:
 
@@ -238,7 +238,7 @@ The most significant difference between the DeWalt and the Makita is the RPM ran
 
 If you know you will need to be using lower RPMs, the Makita may be a better choice. Other than that, both routers have been used successfully for all kinds of jobs on the Shapeoko.
 
-Pro CNC's usually have a **spindle**, not a router, and that is a possible \(and popular\) upgrade path for the Shapeoko, check out the [Spindle upgrade]() section for more.
+Pro CNC's usually have a **spindle**, not a router, and that is a possible \(and popular\) upgrade path for the Shapeoko, check out the [Upgrading the machine](upgrading-the-machine.md) section for more.
 
 
 
