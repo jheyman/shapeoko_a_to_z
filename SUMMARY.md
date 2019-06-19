@@ -2,8 +2,7 @@
 
 * [Introduction](README.md)
 * [Roadmap](roadmap.md)
-* [Workflow](workflow.md)
-* [Coordinate system](coordinate-system.md)
+* [CNC workflow](workflow.md)
 * [Anatomy of a Shapeoko](anatomy-of-a-shapeoko.md)
 * [CAD, CAM, G-code](cad-cam-tools.md)
 * [Cutters & collets](cutters.md)
@@ -19,6 +18,5 @@
 * [Usecases: cutting metal](cutting-metal.md)
 * [Maintenance/troubleshooting](maintenance.md)
 * [Upgrading the machine](upgrading-the-machine.md)
-* [Troubleshooting](troubleshooting.md)
 * [Feeds and Speeds usecases](feeds-and-speeds-reference.md)
 

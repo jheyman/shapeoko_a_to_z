@@ -22,7 +22,7 @@ Whenever the machine is turned off, it is possible to move the machine manually,
 
 ## Homing
 
-The reason for homing was covered in the [Coordinate system](coordinate-system.md) section: the only way the Shapeoko can tell for sure where it is, is when it contacts the three limit switches. Without homing, each time the machine is power cycled it would then be unable to go back to any specific coordinates, e.g. if the rails have been moved manually in the meantime.
+The reason for homing was covered in the [Coordinate system]() section: the only way the Shapeoko can tell for sure where it is, is when it contacts the three limit switches. Without homing, each time the machine is power cycled it would then be unable to go back to any specific coordinates, e.g. if the rails have been moved manually in the meantime.
 
 You could argue that homing is useless since you are going to manually jog to the Zero point and set it to be the reference anyway. For a job that can be done in a single run / with a single tool, that could work. but the power of homing is that it will allow to return with great precision to Zero point defined last \(which happens to be stored in the non-volatile memory of the controller, by the GRBL software\). 
 

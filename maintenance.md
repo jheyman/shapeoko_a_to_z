@@ -18,3 +18,7 @@ xxx
 
 xxx
 
+## Pulleys
+
+![](.gitbook/assets/pulley_setscrew.png)
+
