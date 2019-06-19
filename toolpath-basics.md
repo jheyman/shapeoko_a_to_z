@@ -112,11 +112,14 @@ After it plunges to the depth of cut, the endmill is moved in small spiral movem
 
 ![](.gitbook/assets/toolpaths_contour_adaptive_profile_preview.png)
 
-Since the cutter load is much lower, one can use much more agressive feeds and speeds and DOC. But of course, it takes much longer to do all these spiral movements rather than going in a straight vertical line.
+Since the cutter engagement is lower, one can use much more agressive feeds and speeds \(but of course, it takes longer to do all these spiral movements rather than going in a straight vertical line, so whether or not this results in a longer or shorter job time depends on the situation\)
 
-&lt;TODO: HSM vs regular machining&gt;
+For the same reason, the DOC can also be increased very significantly, which leads to a very interesting "side effect": 
 
+![](.gitbook/assets/toolpaths_regular_vs_hsm.png)
 
+* in regular toolpaths, the DOC per pass is limited \(on a Shapeoko\) to typically less that the endmill diameter, so the same tiny part of the endmill tip is used, pass after pass. This part wears out quickly, while the rest of the flute length remains unused.
+*  in adaptive toolpaths, the DOC can be higher, so most of the flute length can be used, and it wears out evenly  
 
 ## V-Carving toolpaths
 
@@ -207,25 +210,24 @@ Another way to deal with such problems is to use **lead-in \(**respectively lead
 
 At the time of writing, this feature is not supported in Carbide Create, but one can fallback to manually adding geometry around the piece to achieve similar results.
 
-## Adaptive clearing toolpaths
-
-TODO !
-
-TODO explain optimal load = radial width of cut
-
 ## 3D toolpaths
 
-Carbide Create does not support them, and the topic is too wide and too specific the CAM tool to be covered here properly, but here is a simple example:
+Carbide Create does not support them, and the topic is too wide and too specific the CAM tool to be covered here properly, but here is a simple example of milling a donut shape:
 
 ![](.gitbook/assets/toolpaths_3d_example.png)
 
 Many of the concepts of 2D toolpaths apply, but the notion of roughing + finishing will be paramount for 3D, to get reasonable job time and a smooth finish.
 
-## Drilling
+## Drilling toolpaths
 
-TODO: proper = drillbit, workaround = endmill + peck\_drilling \(faire un GIF de l'animation Fusion ?\)
+For drilling a hole, a first option is to use an endmill smaller than the hole, and do a pocket toolpath. It works fine, but turns out to be inconvenient:
 
-10.000RPM, PR 600mm/min, pecking depth 0.8mm in HDPE, with single flute 3.175mm 
+* If a job that could otherwise be done completely with e.g. a 1/4" endmill needs 1/4" holes, a 1/8" endmill will be required just to mill the hole pockets.
+* small endmills usually have a short length of cut and shank, so cutting a deep 1/8" hole with a 1/16" endmill could turn out to be impossible
+
+A useful alternative is to use specific drilling toolpaths, that just plunge the endmill vertically, so it becomes possible to do a 1/4" hole with a 1/4" endmill. However, an endmill is very bad at drilling, it is just not designed for this, so the plunge rate should be limited, and the "**peck-drilling**" option used: the tool will cut a small DOC, retract to clear out the chips, and then plunge again, repeatedly until the full depth has been cut
+
+A more efficient alternative is of course to use a drill bit instead of an endmill , but...it implies an additional tool change.  
 
 ## Previewing toolpaths from G-code
 
