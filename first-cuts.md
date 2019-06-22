@@ -36,21 +36,27 @@ If you turn off the machine to change tools, this will be needed. But even if yo
 
 Unless you have installed a spindle or a PID controller \(see [Upgrading the machine](upgrading-the-machine.md)\), you need to adjust RPM manually using the knob on the trim router. 
 
-The [Anatomy of a Shapeoko](anatomy-of-a-shapeoko.md#trim-router) section has a reminder about the mapping between knob values and actual RPM, but the actual RPM can be slightly different than advertised and it's not easy to interpolate between knob settings to use intermediate RPM values, so I find it much easier to buy a laser tachymeter \(about 20$\), turn the router on, and adjust the know to get the desired value:
+The [Anatomy of a Shapeoko](anatomy-of-a-shapeoko.md#trim-router) section has a reminder about the mapping between knob values and RPMs, but the actual RPM can be slightly different than advertised and it's not easy to interpolate between knob settings to use intermediate values, so I find it much easier to buy a laser tachymeter \(about 20$\), turn the router on, and adjust the knob to get the desired value:
 
- &lt;TODO include blog pic of tachymeter&gt;
+![](.gitbook/assets/tachometer_measurement.png)
+
+All it takes is a small patch of white/reflective tape on the collet nut.
 
 ## Zeroing \(manually\)
 
-After jogging to the vertical of the intended zero point on the stock surface, lower Z gradually then use fine steps to touch off on e.g. a piece of paper placed between the tool and the stock, stopping as soon as the paper cannot be moved freely. Yes, it does mean that you will zero a tiny bit above the real stock surface, but the average thickness of a piece of paper is around 0.004" / 0.1mm, and chances are that you are already compressing the paper since it cannot move anymore, so you will actually be very, very close to stock surface.
+After jogging to the vertical of the intended X/Y point on the stock surface, lower Z gradually then use fine steps to touch off on e.g. a piece of paper placed between the tool and the stock, stopping as soon as the paper cannot be moved freely under the tool anymore, and then tell the G-code sender to reset Z. Yes, it does mean that you will zero a tiny bit above the real stock surface, but the average thickness of a piece of paper is around 0.004" / 0.1mm, and chances are that you are already compressing the paper since it cannot move anymore, so you will actually be very, very close to stock surface.
 
-*  Double-check your Z jog step before doing the final steps to touch off. It is very easy to hit on the "down" arrow one time too many by mistake, and if the step is still say 0.1", this might bury your tool into the stock, or more likely break it if it is a small endmill.
+Miscellaneous tips:
+
+*  Double-check your Z jog step before doing the final steps to touch off. It is very easy to hit the "down" arrow one time too many by mistake, and if the step is still say 0.1", this might bury your tool into the stock, or more likely break it if it is a small endmill.
 * Touching off with a very pointy V-bit can be tricky, it's easy to go too far down without noticing, so you should use even finer jog steps and/or extra caution.
-* TODO check CC 4.0 behavior + mention alternate senders.
+* For jobs involving multiple tools, consider the fact that you will have to re-zero after tool change: it is more convenient to zero on a part of the surface that will...still be there after the first tool has done its job.
+
+The main limitation of manual zeroing is that you need to eyeball the X/Y location, which for some jobs is not precise enough. And of course, the manual careful jogging to touch off is somewhat time consuming.
 
 ## Zeroing \(with a Probe\)
 
-With a touch probe, the touch off process can be automated. The Shapeoko controller has a dedicated "Probe" input, that works like the other limit switches: it detects whether there is continuity between the two pins:
+Enter the touch probe, to automate the zeroing process. The Shapeoko controller has a dedicated "Probe" input, that works like the other limit switches, it detects whether there is continuity between the two pins:
 
 ![](.gitbook/assets/job_probing_principle.png)
 
@@ -78,25 +84,29 @@ One problem remains: the X0/Y0 computations depend on \(half the\) diameter of t
 
 ## Running the job
 
-TODO: Carbide motion, retract policy
+This is straightforward, nothing special to be said here so I'll just share my own habits:
+
+* if your G-code sender allows, raise the tool. It is normally not necessary, but depending on your CAM post-processors settings, the G-code may or may not contain an opening statement to do it, so this will give you a \(little bit\) of time to react if things go wrong. 
+* double-check that the dust shoe is lowered at stock surface level and won't crash into anything during the job.
+* turn on the dust collection \(and air jet/lubricant mister if applicable\)
+* put on your safety goggles and/or close the enclosure window.
+* turn on the router.
+* hit start...with your hand/mouse over the pause/stop button.
+* At least the first time I run a new project I like to watch & listen, looking for hints of incorrect cutting parameters \(chatter, bad looking chips\), debris build-up, or anything I might have done wrong in the CAD/CAM, or could optimize. 
 
 ## Tool change
 
-* **safety**: if you are using a router of spindle that is externally controlled, I recommand actually cutting power \(wherever this is done in the chain\). If you are manually turning the router on and off, this is less of a risk BUT I choose to be extra cautious, and also kill router power at the source \(in my case, on the control panel that powers everything\) 
-* 
-## Crashing the machine
-
-TODO: be prepared, don't overthink it 
-
-limit switches = homing, not limit protection
-
- soft limits 
-
-zeroing issues
-
- belt issues 
-
-inspection after a crash
+* Some people like to bring the router to the front using a predefined position in the G-code sender, to have easier access. 
+* I guess most people do not turn the machine off, but I do it for a variety of reasons:
+  * paranoia: I don't like to have my hands in the work area while the machine is powered. Too much software and hardware to trust.
+  * re-zeroing will be required anyway after the tool change: I might as well re-home too, which can only help precision.
+  * it feels weird to tighten the collet nut with the steppers on/locked.
+* **safety**: if you are using a router or spindle that is externally controlled, I would recommend actually cutting its power source \(wherever this is done in the chain\). Do you really trust your PID/VFD that much?  If you are manually turning the router on and off, this is less of a risk but I choose to be extra cautious \(paranoid?\), and also kill the router power source \(in my case, flipping a switch on a control panel\) 
+* remove the tool and collet and make sure the collet taper is free from any debris/dust \(that could create runout for the next tool\)
+* install new tool, monkey-tight nut, etc.
+* Re-zero Z
+  * Yes, this is obvious, but if you are anything like me, one day you will be in a rush and forget to do it
+  * be careful of the "return to Z0 + xxx mm" command. It is very convenient, until one day the second tool sticks out by more than xxx compared to the previous one...
 
 
 

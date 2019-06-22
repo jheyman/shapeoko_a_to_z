@@ -44,13 +44,5 @@ However, the machine also has a **Home** position, which is a specific predefine
 
 If a G-code file is executed from an arbitrary Zero point, why does it matter where Home is ? The trick is that the **coordinates of the Zero point** itself, are defined with respect to the Home position, and happen to be stored in the permanent memory of the machine. So when the machine is in an arbitrary position and is turned off, the next time it will be turned on, Homing allows to go back to this known **absolute** position, and from there return to the previous Zero position.
 
-
-
-  
-
-
-
-
-
-CAM tool
+TODO: transition to Shapeoko anatomy section 
 

@@ -197,7 +197,7 @@ What GRBL does is listen to incoming commands on the USB interface, and acts upo
 * GRBL also uses hardware input signals from the **limit switches** and potentially from a **probe**, and commands an output "**PWM**" spindle signal to potentially drive the RPM of a spindle  
 
 {% hint style="info" %}
-The PWM/Spindle signal is unused on a stock Shapeoko, but installing a spindle is a popular mod, and then this signal comes in handy. More details in [Spindle upgrade]() section
+The PWM/Spindle signal is unused on a stock Shapeoko, but installing a spindle is a popular mod, and then this signal comes in handy. More details in [Upgrading the machine](upgrading-the-machine.md) section
 {% endhint %}
 
 Below are the three most useful GRBL commands when using the Shapeoko:

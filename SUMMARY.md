@@ -1,10 +1,9 @@
 # Table of contents
 
 * [Introduction](README.md)
-* [Roadmap](roadmap.md)
 * [CNC workflow](workflow.md)
 * [Anatomy of a Shapeoko](anatomy-of-a-shapeoko.md)
-* [CAD, CAM, G-code](cad-cam-tools.md)
+* [CAD, CAM, and G-code](cad-cam-tools.md)
 * [Cutters & collets](cutters.md)
 * [Feeds & speeds](feeds-and-speeds-basics.md)
 * [Toolpaths](toolpath-basics.md)

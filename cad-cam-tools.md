@@ -1,24 +1,32 @@
-# CAD, CAM, G-code
+# CAD, CAM, and G-code
 
-TODO: 
+This section provides a brief overview of the popular software for doing CAD, CAM, and sending G-code to the Shapeoko, at the time of writing. Most users start using their Shapeoko with Carbide Create and Carbide Motion, some stick to them while others move on to something else, for a variety of reasons.
 
 ## CAD/CAM tools
 
-CC, Fusion360, VCarve
+Most users obviously start with **Carbide Create,** which really is a great solution to get started with CNC, because it has _just_ the right amount of features to not overwhelm newbies with tons of parameters but still allow them to experience the full design workflow: stock setup, creating a 2D design, creating basic toolpaths based on these design elements, previsualizing these toolpaths and the final workpiece, and finally generate G-code to run on the machine.
 
-## G-code senders
+If/once you outgrow it, Vectric **V-Carve** is a very popular \(albeit somewhat pricey\) upgrade path. The name is slightly confusing, as it is not only specialized in V-carving but is a complete generic CAD/CAM tool. The workflow is quite similar to Carbide Create's, which makes the transition easy. It has more CAD features \(layers is what I like most\), intermediate-level CAM features \(built-in support for roughing and finishing strategy is great\), and it is just a very polished and robust software.
 
-CM, UGS, CNCjs
+And then there is **Fusion360**, the almighty 3D CAD/CAM tool from Autodesk. Its CAM module has all the bells and whistles and a truckload of settings, which is also why it has an admittedly steep learning curve that can repel many casual CNC users. But if you get past those first few weeks of figuring out its workflow and main settings, it opens up a fascinating range of possibilities, and not only for CNC. Now there is a small catch: while it has an offline mode, this is primarily an online/cloud-oriented tool, it's from Autodesk, and it's free for students and hobbyist...for now. Not everyone feels comfortable with investing a lot of time into learning how to use a tool that might become unusable locally if the servers are shutdown, or could become costly. Also, it does not do Vcarving. 
+
+I happen to use all three, depending on the project at hand. I will use Carbide Create when I need a simple 2.5D piece done quickly and get cutting. V-Carve is my go-to solution for the 2.5D projects that are more complex and/or involve Vcarving, or when I know that I will need to use a roughing+finishing toolpath strategy. And then I will use Fusion360 for all things 3D, for metal work \(mainly because of the adaptive clearing feature\), and whenever I feel like I need to make the design parametric so as to be able to adjust dimensions without having to redesign everything.
+
+Of course, there are many, many other CAD/CAM tools out there, those are the ones that are most popular right now in the Shapeoko community.
+
+{% hint style="info" %}
+While the post-processor to generate G-code is built in Carbide Create, with VCarve and Fusion you need to initially add it \(easy enough\) and you get to tune it to your liking, which is very convenient.
+{% endhint %}
 
 ## G-code primer
 
-Ok, so the GRBL software in the Shapeoko controller eats G-code, and it is the job of the G-code sender \(e.g. Carbide Motion\) to feed it. Since the purpose of CAM tools is to generate G-code files, one can perfectly use the Shapeoko without any understanding of the G-code syntax, and without ever opening a generated G-code file. However, having at least a superficial understanding of what the most common G-code instructions do goes a long way when in need of troubleshooting why the machine behaves the way it does.
+So the CAD/CAM tool generated a G-code file. One can perfectly use the Shapeoko without any understanding of the G-code syntax or ever opening a generated G-code file. Still, having at least a superficial understanding of what the most common G-code instructions do goes a long way for  troubleshooting why the machine behaves the way it does.
 
 G-code is a \(somewhat\) standard language to define instructions to be fed to a multi-axis machine, CNC and 3D printers being prime examples.
 
 A G-code file is usually a **plain text** file \(that can be opened with any text editor\), containing a sequence of G-code "blocks", i.e. lines of instructions.
 
-Each block \(line\) can contain several G-code instructions, but it often contains a single command and its parameters, for better readability.
+Each block \(line\) can contain several G-code instructions, but it often has a single command and its parameters, for better readability.
 
 These instructions are being sent \(by e.g. Carbide Motion\) to the machine, that executes them **in order**.
 
@@ -69,7 +77,7 @@ Let's break this down:
 * **M5** is used to turn the **Spindle off**.
 * **M30** means "End of program" in GRBL.
 
-{% hint style="info" %}
+
 
 * On a stock Shapeoko with a trim router, there is no automatic control of the router activation nor RPM, so the Spindle commands have no effect
 * The Shapeoko does not have an automatic tool changer, but Carbide Motion uses the M6 tool change command
@@ -84,4 +92,10 @@ Beyond this basic example, a few more common commands are:
 * **G54** is the command to select "coordinate system \#1", a.k.a. the coordinate system that is based on the Zero point you set. This command is optional since G54 is the default at GRBL startup anyway.
 
 There are many, many more G-code commands, but basically the commands above will cover 99% of the need on a Shapeoko.
+
+## G-code senders
+
+xxx
+
+
 
