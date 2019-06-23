@@ -87,7 +87,7 @@ $$
 
 The feedrate/RPM values are consequences of the desired chipload value, so let's first have a look at what a good chipload value is.
 
-## Chipload versus endmill size & material
+## Shapeoko chiploads guideline
 
 Optimal chipload depends on a lot of things, but mostly:
 
@@ -323,7 +323,7 @@ There are two direct implications of having to limit the DOC to relatively small
 * cutting deep into the material will require many passes, hence of lot of time.
 * during each cutting pass, only the tip of the endmill is used, so this part will wear out over time, while the rest of the length of cut is never used.
 
-Check out the **adaptive clearing** **toolpath** described later in the book, for how to address these two limitations.
+Check out the **adaptive clearing** strategy in the [Toolpaths](toolpath-basics.md) section, for how to address this.
 {% endhint %}
 
 ## Slotting

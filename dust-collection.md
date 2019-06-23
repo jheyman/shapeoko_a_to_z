@@ -87,6 +87,12 @@ Mine is a crude version made from MDF parts, it does not look fancy but does the
 
 ![](.gitbook/assets/emergency_stop.png)
 
+## Control pad
+
+TODO
+
+![](.gitbook/assets/upgrades_jog_pendant.png)
+
 ## Air jet & lubrication
 
 While a dust collection system works great for cutting wood & plastics, cutting **metal** is different: the chips may be too heavy to be efficiently sucked out of the cut, and if any lubrication is required it is incompatible with the use of a dust shoe.
@@ -97,15 +103,23 @@ The usual solution is to use an air jet to push the chips away from the cut. A m
 
 This means that metal chips will be flying all over the work area, so it can be useful to add specific protections.
 
-Some kind of **coarse filter** on top of the router: the picture above shows a quick and dirty hack that protects the router air inlets from flying chips, while still letting the air enter freely. Some people just put a sock on the top part of the router. Whatever works for you, but do protect it somehow, metal chips going into the router air intake will not end well.
+Some kind of **filter** on top of the router: the picture above shows a quick and dirty hack that protects the router air inlets from flying chips, while still letting the air enter freely. Some just put a sock on the top part of the router. Whatever works for you, but do protect it somehow, metal chips going into the router air intake will not end well.
 
-A **chip guard** can be installed where the dust shoe would normally be, to prevent chips from going upwards and getting stuck in the Z-axis or router:
+A **chip guard** can be installed to prevent chips from going upwards and getting stuck in the Z-axis or router, while still allowing the locline/air jet to be aimed at the cut:
 
-![](.gitbook/assets/setup_chipguard.jpeg)
+![](.gitbook/assets/setup_chipguard.png)
 
-Protection **walls** can be installed on the sides/back of the machine, to at least keep the chips contained within the work area:
+## Side walls
+
+Protection walls can be installed on the sides/back of the machine, to at least keep the chips contained within the work area, when not using a dust shoe:
 
 ![](.gitbook/assets/setup_protectionwalls.jpeg)
+
+Mine are just made from 0.1" thick hard foam strips glued to aluminum corner guards, bolted onto the wasteboard. 
+
+{% hint style="info" %}
+In an MDF wasteboard, another idea is to cut slots in the wasteboard, making it very  easy to insert/remove them at will.
+{% endhint %}
 
 They do a good job of containing the chips \(but if you look closely enough at the picture below, you will see that some chips ended up on the left rail anyway\) :
 

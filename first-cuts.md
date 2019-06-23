@@ -34,13 +34,17 @@ If you turn off the machine to change tools, this will be needed. But even if yo
 
 ## Setting & checking RPM
 
-Unless you have installed a spindle or a PID controller \(see [Upgrading the machine](upgrading-the-machine.md)\), you need to adjust RPM manually using the knob on the trim router. 
+Unless you have installed a spindle or a PID controller \(see [Upgrading the machine](upgrading-the-machine.md)\), you need to adjust RPM manually using the knob on the trim router. The [Anatomy of a Shapeoko](anatomy-of-a-shapeoko.md#trim-router) section has a reminder about the mapping between knob values and RPMs, but the actual RPM can be slightly different than advertised, and on my router the knob did not even have a reference point on the casing, so I added a visual cue to at least have a repeatable setting:
 
-The [Anatomy of a Shapeoko](anatomy-of-a-shapeoko.md#trim-router) section has a reminder about the mapping between knob values and RPMs, but the actual RPM can be slightly different than advertised and it's not easy to interpolate between knob settings to use intermediate values, so I find it much easier to buy a laser tachymeter \(about 20$\), turn the router on, and adjust the knob to get the desired value:
+![](.gitbook/assets/rpm_knob.png)
+
+But it's not easy to interpolate between knob settings to use intermediate RPM values, so I found it much easier to buy a laser tachymeter \(about 20$\), turn the router on, and adjust the knob to get the desired value:
 
 ![](.gitbook/assets/tachometer_measurement.png)
 
-All it takes is a small patch of white/reflective tape on the collet nut.
+All it takes is a small patch of white/reflective tape on the collet nut:
+
+![](.gitbook/assets/tachometer_reflector.png)
 
 ## Zeroing \(manually\)
 
@@ -75,6 +79,8 @@ The probing goes like this:
 * The probing cycle starts with the tool raised above the probe. It could be anywhere above, but there is usually a target area above which to \(coarsely\) position the tool, to facilitate the rest of the sequence
 * the tool is lowered along Z, until it makes contact. When it does, the software can just read the current Z and subtract the thickness of the probe \(PZ in the sketch above\) to get Z0. This Z touch off sequence can be repeated to average out values and improve precision
 * if the probing cycle is configured to also probe X and Y,  it retracts the tool and proceeds to move to the left side, past the edge of the probe, lowers the tool and then comes back towards the left side of the probe until it detects contact: it can then determine X0 by reading the current X value, add PX, and also add half the \(preconfigured\) diameter D of the tool itself. Probing Y is similar.
+
+![](.gitbook/assets/job_probe_on_corner.png)
 
 If the stock shape does not have a straigth corner, the probe can also sit on top of the stock completely, aligned manually against one side, and probed on that side only. Or just used for Z probing only.
 

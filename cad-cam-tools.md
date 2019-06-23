@@ -6,11 +6,11 @@ This section provides a brief overview of the popular software for doing CAD, CA
 
 Most users obviously start with **Carbide Create,** which really is a great solution to get started with CNC, because it has _just_ the right amount of features to not overwhelm newbies with tons of parameters but still allow them to experience the full design workflow: stock setup, creating a 2D design, creating basic toolpaths based on these design elements, previsualizing these toolpaths and the final workpiece, and finally generate G-code to run on the machine.
 
-If/once you outgrow it, Vectric **V-Carve** is a very popular \(albeit somewhat pricey\) upgrade path. The name is slightly confusing, as it is not only specialized in V-carving but is a complete generic CAD/CAM tool. The workflow is quite similar to Carbide Create's, which makes the transition easy. It has more CAD features \(layers is what I like most\), intermediate-level CAM features \(built-in support for roughing and finishing strategy is great\), and it is just a very polished and robust software.
+If/once you outgrow it, Vectric **V-Carve** is a very popular \(albeit somewhat pricey\) upgrade path. The name is slightly confusing, as it is not only specialized in V-carving but is a complete generic CAD/CAM tool. The workflow is quite similar to Carbide Create's, which makes the transition easy. It has more CAD features \(layers is what I like most\), intermediate-level CAM features \(built-in support for roughing and finishing strategy is great\), and it is just a very polished and robust software. You can also go crazy and buy the top of the line **Aspire** software from Vectric, if you need the advanced/pro features it offers.
 
 And then there is **Fusion360**, the almighty 3D CAD/CAM tool from Autodesk. Its CAM module has all the bells and whistles and a truckload of settings, which is also why it has an admittedly steep learning curve that can repel many casual CNC users. But if you get past those first few weeks of figuring out its workflow and main settings, it opens up a fascinating range of possibilities, and not only for CNC. Now there is a small catch: while it has an offline mode, this is primarily an online/cloud-oriented tool, it's from Autodesk, and it's free for students and hobbyist...for now. Not everyone feels comfortable with investing a lot of time into learning how to use a tool that might become unusable locally if the servers are shutdown, or could become costly. Also, it does not do Vcarving. 
 
-I happen to use all three, depending on the project at hand. I will use Carbide Create when I need a simple 2.5D piece done quickly and get cutting. V-Carve is my go-to solution for the 2.5D projects that are more complex and/or involve Vcarving, or when I know that I will need to use a roughing+finishing toolpath strategy. And then I will use Fusion360 for all things 3D, for metal work \(mainly because of the adaptive clearing feature\), and whenever I feel like I need to make the design parametric so as to be able to adjust dimensions without having to redesign everything.
+I happen to use all three, depending on the project at hand. I will use Carbide Create when I need a simple 2.5D piece done quickly and get cutting. V-Carve is my go-to solution for the 2.5D projects that are more complex and/or involve Vcarving, 2-sided work, or require a roughing+finishing toolpath strategy. And then I will use Fusion360 for all things 3D, for metal work \(mainly because of the adaptive clearing feature\), and whenever I feel like I need to make the design parametric so as to be able to adjust dimensions without having to redesign everything.
 
 Of course, there are many, many other CAD/CAM tools out there, those are the ones that are most popular right now in the Shapeoko community.
 
@@ -77,11 +77,11 @@ Let's break this down:
 * **M5** is used to turn the **Spindle off**.
 * **M30** means "End of program" in GRBL.
 
-
-
+{% hint style="info" %}
 * On a stock Shapeoko with a trim router, there is no automatic control of the router activation nor RPM, so the Spindle commands have no effect
 * The Shapeoko does not have an automatic tool changer, but Carbide Motion uses the M6 tool change command
 * Spaces inside a line are ignored
+{% endhint %}
 
 Beyond this basic example, a few more common commands are:
 
@@ -95,7 +95,23 @@ There are many, many more G-code commands, but basically the commands above will
 
 ## G-code senders
 
-xxx
+Again, most users will initially use **Carbide Motion** to send G-code to the Shapeoko, and there is very good chance that many will never need to consider anything else. After all the workflow is quite simple \(load G-code, zero, run\), and Carbide Motion does the job.
+
+But here are a few reasons why other senders can be considered too:
+
+* **Live toolpath simulation**. It is quite convenient to be able to visualize the toolpaths contained in the G-code file that was loaded, if only to double-check that it looks right before running it, and then to monitor the cut and be able see what move is coming next in the toolpath.
+* **G-code Macros**. Small snippets of G-code with associated buttons/shortcuts in the UI can be very useful to streamline the workflow. It can be as simple as just going to X0/Y0, or be a complex custom automated probing routine
+* **Machine limits customization**. While Carbide Motion is setup for a stock Shapeoko, and while it does provide access to modify the various GRBL parameters, some aspects are hardcoded \(e.g. the probe dimensions, that match Carbide3D's probe, or the Z limits that match a stock Z-axis\). If you start modding your machine, you _may_ come to a point where you need from customization than Carbide Motion allows.
+
+There are many alternative G-code senders in various states of maturity/activity, I will just focus on the two that I know and seem to be most popular on the Shapeoko forum.
+
+**Universal G-code Sender** is xxx
+
+
+
+**CNCjs** is xxx
+
+TODO raspberry pi usecase
 
 
 

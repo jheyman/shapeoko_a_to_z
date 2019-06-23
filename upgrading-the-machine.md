@@ -1,14 +1,14 @@
 # Upgrading the machine
 
-## Control panel
+The Shapeoko is a great machine out of the box, and there is really no _need_ to modify it to get good results. No, really, check out Winston Moy's videos if you need convincing. Still, once you are reasonably comfortable with the machine, and how to set optimal CAD/CAM parameters, chances are you may be tempted to optimize the machine itself. 
 
-xxx
+There are many possible hardware upgrades. Some are cheap, some are definitely expensive: whether they add enough value for money is debatable and depends on your usecases.
 
-## Control pads
+## Proximity switches
 
-xxx
+\(contactless\)
 
-## Probes
+![](.gitbook/assets/upgrades_proximity_switch.png)
 
 xxx
 
@@ -20,9 +20,17 @@ xxx
 
 xxx
 
+![](.gitbook/assets/upgrades_aluminum_bed.png)
+
 ## Belts upgrade
 
-xxx
+TODO
+
+![](.gitbook/assets/upgrades_steel_core_belt.png)
+
+TODO
+
+![](.gitbook/assets/upgrades_steel_core_belt_mounted.png)
 
 ## Spindle upgrade
 
