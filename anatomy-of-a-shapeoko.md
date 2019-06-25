@@ -77,7 +77,7 @@ This is an earlier version of the "CarbideMotion" controller board, the latest o
 
 | pin column1 | pin column2 | pin column 3 |
 | :--- | :--- | :--- |
-| 5V | SPINDLE PWM \(= D11 = MOSI= | GND |
+| 5V | SPINDLE PWM \(= D11 = MOSI\) | GND |
 | LIMIT Z \(= D12 = MISO\) | SPINDLE DIR \(= D13 = SCK\) | RESET |
 
 * **\#6** is the Arduino controller \(ATMega328P\) that runs GRBL, the motion control software

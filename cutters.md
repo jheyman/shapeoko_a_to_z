@@ -115,6 +115,10 @@ From left to right:
 * 1/4" \(6.35mm\) precision collet from Elaire Corp
 * 1/8" \(3.175mm\) precision collet from Elaire Corp
 
+{% hint style="info" %}
+Mistakenly using a 1/4" \(6.35mm\) collet for holding a 6mm endmill will likely end badly, with the endmill slipping in the collet during the job. The wiggle of a 6mm endmill in a 1/4" collet is hard to overlook, but beware.
+{% endhint %}
+
 The main constraint with router collets is that the range of available sizes is quite limited, especially toward the smaller diameters. Spindle users have access to "ER" collets that are available in many more sizes, but that is a story for the Spindle upgrade section.
 
 Using a **collet adapter/reducer** is generally not recommanded as it tends to increase **runout**, but for most jobs it will still work fine.

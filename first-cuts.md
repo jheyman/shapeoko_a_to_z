@@ -82,7 +82,7 @@ The probing goes like this:
 
 ![](.gitbook/assets/job_probe_on_corner.png)
 
-If the stock shape does not have a straigth corner, the probe can also sit on top of the stock completely, aligned manually against one side, and probed on that side only. Or just used for Z probing only.
+If the stock shape does not have a straigth corner, the probe can also sit on top of the stock surface and be used for Z probing only \(the software will know that when Z probing only is selected, it should compensate for the total height of the probe, not just the step.
 
 One problem remains: the X0/Y0 computations depend on \(half the\) diameter of the tool, so the geometry of the tool must have been configured beforehand, and this manual operation is error prone. Also, the _actual_ precise diameter is often not quite the advertised value, so this will introduce a _slight_ error in X0/Y0, which will result in a shift between runs with different tools. One more probing trick can be useful: if the probe has hole, one can lower the tool into the hole and then probe the its sides : probe left and memorize current X value, then probe right and memory current X value : the average \(middle\) of these two values is at the X center of the hole. Repeating this operation by probing on the front/back side of the hole will locate the Y center of the hole. Since the location of the center of the hole is at a known distance from the inner corner of the probe, this gives X0 and Y0. Z-probing can then be done normally elsewhere on the top surface. The beauty of this method is that it is independent of the tool diameter ! 
 
@@ -106,10 +106,10 @@ This is straightforward, nothing special to be said here so I'll just share my o
 * I guess most people do not turn the machine off, but I do it for a variety of reasons:
   * paranoia: I don't like to have my hands in the work area while the machine is powered. Too much software and hardware to trust.
   * re-zeroing will be required anyway after the tool change: I might as well re-home too, which can only help precision.
-  * it feels weird to tighten the collet nut with the steppers on/locked.
-* **safety**: if you are using a router or spindle that is externally controlled, I would recommend actually cutting its power source \(wherever this is done in the chain\). Do you really trust your PID/VFD that much?  If you are manually turning the router on and off, this is less of a risk but I choose to be extra cautious \(paranoid?\), and also kill the router power source \(in my case, flipping a switch on a control panel\) 
-* remove the tool and collet and make sure the collet taper is free from any debris/dust \(that could create runout for the next tool\)
-* install new tool, monkey-tight nut, etc.
+  * it feels a bit weird to tighten the collet nut with the steppers locked in place.
+* **Safety**: if you are using a router or spindle that is externally controlled, I would recommend actually cutting its power source \(wherever this is done in the chain\). Do you really trust your PID/VFD that much?  If you are manually turning the router on and off, this is less of a risk but I choose to be extra cautious \(paranoid?\), and also kill the router power source \(in my case, flipping a switch on a control panel\) 
+* Remove the tool and collet and make sure the collet taper is free from any debris/dust \(that could create runout for the next tool\)
+* Install new tool, monkey-tight nut, etc.
 * Re-zero Z
   * Yes, this is obvious, but if you are anything like me, one day you will be in a rush and forget to do it
   * be careful of the "return to Z0 + xxx mm" command. It is very convenient, until one day the second tool sticks out by more than xxx compared to the previous one...

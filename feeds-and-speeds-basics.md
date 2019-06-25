@@ -259,7 +259,7 @@ Chipload(adjusted) = \frac{Diameter}{2 * \sqrt{(Diameter * RadialDOC) - RadialDO
 $$
 
 {% hint style="info" %}
-In many situations, it's possible to just ignore the chip thinning effect and proceed with a recommanded chipload value. But it's easy enough to use a feeds & speeds calculator that does take it into account, more on this below.
+For basic toolpaths, the stepover is often in the 40% to 50% range, and it's possible to just ignore chip thinning altogether. Where chip thinning really matters is for adaptive clearing toolpaths, that typically use small stepovers \(more on this in the [Toolpaths](toolpath-basics.md#adaptive-clearing-toolpaths) section\)
 {% endhint %}
 
 ## Choosing RPM and Feedrate

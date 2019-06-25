@@ -94,15 +94,19 @@ Sometimes this is no big deal and you can just proceed with the reduced DOC and 
 
 Pocket and profile toolpaths share a common problem that is not immediately apparent: they involve large tool engagement angles in the material \(constantly when slotting, and temporarily in the corners when pocketing, see [Feeds & speeds](feeds-and-speeds-basics.md#corners) section\), which in turn limits how deep/fast one can cut.
 
-Adaptive clearing \(which is Fusion360's name for their trochoïdal milling family of toolpaths\) is another approach that generates toolpaths that have a constant \(and relatively low\) tool engagement value throughout the cut. When going straight, this is the same as using a very small stepover. When cutting corners, this means taking many small and curvy bites, instead of going straight and taking a sharp 90° turn. 
+**Adaptive clearing** \(which is Fusion360's name for their trochoïdal milling family of toolpaths\) is another approach that generates toolpaths that have a constant \(and relatively low\) tool engagement value throughout the cut. When going straight, this is the same as using a very small stepover. When cutting corners, this means taking many small and curvy bites, instead of going straight and taking a sharp 90° turn. 
 
 While a pocketing operation using a very typical stepover of 60% would look like this \(notice the ~180° tool engagement in the corner\), 
 
 ![](.gitbook/assets/toolpaths_nonadaptivepocketing.png)
 
-an adaptive clearing toolpath on the same geometry with radial width of cut of 60% would look like this \(notice how the tool is turning before the corner, keeping tool engagement to ~90°\):
+An adaptive clearing toolpath on the same geometry with radial width of cut of 60% would look like this \(notice how the tool is turning before the corner, keeping tool engagement to ~90°\):
 
 ![](.gitbook/assets/toolpaths_adaptivepocketing.png)
+
+{% hint style="info" %}
+In Fusion360, the radial width of cut \(stepover\) parameter is called **optimal load**
+{% endhint %}
 
 Coming back to the profile cut example discussed earlier, adaptive clearing can be leveraged to avoid slotting. Using extra geometry around the original shape and creating a 2D adaptive clearing toolpath results in something like this: 
 
@@ -120,6 +124,10 @@ For the same reason, the DOC can also be increased very significantly, which lea
 
 * in regular toolpaths, the DOC per pass is limited \(on a Shapeoko\) to typically less that the endmill diameter, so the same tiny part of the endmill tip is used, pass after pass. This part wears out quickly, while the rest of the flute length remains unused.
 *  in adaptive toolpaths, the DOC can be higher, so most of the flute length can be used, and it wears out evenly  
+
+{% hint style="info" %}
+Adaptive clearing is typically used with a radial width of cut that is \(much\) lower than 50% of the endmill diameter, so chip thinning must be taken into account in the feeds and speeds settings, as described in the [Feeds & speeds](feeds-and-speeds-basics.md#chip-thinning) section
+{% endhint %}
 
 ## V-Carving toolpaths
 
