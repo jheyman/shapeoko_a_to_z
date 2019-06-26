@@ -21,34 +21,59 @@ Many users do not have the luxury of having multiple options for where to instal
 
 The regular setup with the four leveling feet works fine, but is susceptible to a couple of issues:
 
-* the MDF bed can sag in the middle, especially on large models \(XL and XXL\). Usually not by much, but enough to be a nuisance. Just adding a custom support point in the middle under the machine fixes this weakness, easy enough.
-* the other point that made me consider removing the feet is that I am using the tape & glue workholding method a lot, it involves pushing the stock firmly onto the wasteboard for a few seconds, and it did not feel right to be pushing in the middle of the bed, exactly where the natural sag already happens. As many others have done, I removed the four feet. My solution was to install the Shapeoko on top of a thick piece of MDF \(with holes to accomodate the protruded welded nuts under the steel plates\), with a narrower and thinner piece of MDF inserted between the plates on top of that, plus a thing sheet of roofing felt to provide a little damping. As long as the bench underneath is reasonably level, this will provide a lot of rigidity, and I can now push on the bed as hard as I need to without fear of deformation. 
+* the MDF bed can sag in the middle, especially on large models \(XL and XXL\). Usually not by much, but enough to be a nuisance. Just adding a custom support point in the middle underneath the bed/rail addresses this weakness, easy enough.
+* the other point that made me consider removing the feet is that I am using the tape & glue workholding method a lot, it involves pushing the stock firmly onto the wasteboard for a few seconds, and it did not feel right to be pushing in the middle of the bed, exactly where the natural sag already happens. As many others have done, I removed the four feet. My solution was to install the Shapeoko on top of a thick piece of MDF \(with holes to accomodate the protruded welded nuts under the steel plates\), with a narrower and thinner piece of MDF inserted between the plates on top of that, plus a thin sheet of roofing felt to provide a little damping. As long as the bench underneath is reasonably level, getting rid of the feet is not a problem, and this will provide a lot of additional rigidity: I can now push on the bed as hard as I need to. 
 
 ![](.gitbook/assets/setup_thick_bed.jpeg)
 
 ## Dust collection
 
-CNC is just messy. While it is quite possible to operate the machine without a dust collection system and just clean-up manually once the job is finished, here are a few reasons why it is better to have one in place:
+CNC is just messy. While it is quite possible to operate the Shapeoko without a dust collection system and just clean-up manually once the job is finished, here are a few reasons why it is better to have one:
 
-* cutting MDF: unlike in wood, the cutter will not produce nice thick/heavy chips, but a very fine dust that will float and soon cover everything around the machine, and is dangerous if inhaled.
-* visibility: vaccuuming chips from the cut allows to see what the tool is doing, how the cut looks like so far, which is important to detect if something is not going right. Manual vaccuuming during the cut gets old very quickly...
-* clearing the path for the tool: if chips accumulate e.g. in a deep slot, they will end up being in the way between the tool and the material, they will be re-cut and reduce chip evacuation inside the flutes, all of which are not good for the quality of the cut.
+* cutting MDF: unlike in wood, the cutter will not produce nice thick/heavy chips, but a very fine dust that will float and soon cover everything around the machine, and is dangerous if inhaled repeatedly.
+* visibility: vaccuuming chips from the cut allows seeing what the tool is doing, how the cut looks like so far, which is important to detect if something is not right. Manual vaccuuming during the cut gets old very quickly...
+* clearing the path for the tool: if chips accumulate e.g. in a deep slot, they will end up being in the way between the tool and the material, they will be re-cut, accumulate and reduce chip evacuation inside the flutes, all of which are not good for the quality of the cut.
 
 ### Dust shoe
 
-&lt;TODO&gt;
+Using a dust shoe attached to the X/Z carriage is the common solution.
+
+* The dust shoe can be attached to the moving part \(router/mount/Z-plate\), but in this case it needs to have long and flexible bristles, to accomodate for Z movements during the job without colliding with the stock.
+* Or it can be attached to the fixed part of the carriage, then adjusted and locked with the bristles against the stock surface \(you still have to watch out for possible collision with clamps, or use low-profile clamps that will slide right under the bristles\)
 
 ![](.gitbook/assets/setup_suckit_dustshoe.png)
 
 {% hint style="info" %}
-when the toolpaths are such that the dust shoe will move past the edges of the stock surface, it is useful to add extra material \(of the same thickness as the stock\) around these edges, to ensure the suction power is optimal throughout the job
+If you buy or make a dust shoe, make sure it has a slot so that it can be inserted/removed without having to raise the tool, unlike mine shown in the picture above. The natural thing to do is to zero without the dust shoe to see what you are doing \(even more see if you are using a touch probe\), and then insert the dust shoe just before running the job. 
 {% endhint %}
 
-### Cyclone & shopvac
+{% hint style="info" %}
+When the toolpaths are such that the dust shoe will move past the edges of the stock surface, it is useful to add extra material \(of the same thickness\) around the stock, to ensure that suction power remains optimal throughout the job.
+{% endhint %}
 
-xxxx
+### Dust separator & shopvac
+
+While it is possible to connect a shopvac directly to the dust shoe, it turns out to be inconvenient, and potentially unsafe: 
+
+* inconvenient because the amount of chips produced when cutting with a CNC can be significant, and you would end up replacing the shopvac paper bag very often.
+* potentially unsafe because cutting some materials \(e.g. MDF\) produce fine dust instead of chips, even with perfect feeds and speeds: the shopvac may not have an adequate filter to cope with this, and even if it does it would require cleaning very often
+
+A common solution is to buy or build a "cyclone" dust separator: 
+
+![](.gitbook/assets/setup_cyclone_separator_principle.png)
+
+* the shopvac is plugged on top, while the hose from the dust shoe is connected on the left
+* the suction from the shopvac and the shape of the cyclone are such that an outer vortex \(blue\) and inner vortex \(teal\) are created, so the chips/dust contained in the incoming air flow are pushed to the walls of the cyclone by centrifugal force, then slide down by gravity to the bottom where they can be collected using any kind of tank
+
+I chose to buy a cheap ~4 gallons/15L ash collector tank at the local hardware store, and bolted the cyclone onto that \(with a little glue around the base for sealing\):
 
 ![](.gitbook/assets/cyclone_and_container.png)
+
+Surprisingly little dust/debris gets past this and into the shop vac, so much so that I hardly ever change the shopvac filter itself now
+
+{% hint style="warning" %}
+BUT if you are cutting a lot of MDF or other nasty material that produce very fine dust, you should still have proper \(HEPA\) filtering in place, the cyclone alone will not be good enough.
+{% endhint %}
 
 ## Enclosures
 
@@ -89,7 +114,7 @@ Mine is a crude version made from MDF parts, it does not look fancy but does the
 
 ## Control pad
 
-TODO
+If you are using a G-code sender that supports keyboard shortcuts, it can be convenient to use a remote keypad \(wireless or wired\) to trig those shortcuts, so that the jogging/probing commands can be used without looking at the computer screen. Mine is wireless and costs about 20$, you can also go crazy and buy a fancy keypad with programmable OLED displays on each key, and dynamically switch between different keymap configurations.
 
 ![](.gitbook/assets/upgrades_jog_pendant.png)
 

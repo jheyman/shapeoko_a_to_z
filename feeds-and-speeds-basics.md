@@ -224,7 +224,8 @@ The wider the stepover, the larger the force on the endmill. Cutting passes with
 
 A common rule of thumb is to use:
 
-* **35% to 50%** stepover for roughing
+* **35% to 50%** stepover for roughing using regular toolpath
+* **10% to 35%** stepover for roughing using adaptive clearing toolpath 
 * **5% to 10%** stepover for finishing
 
 For Ball-end endmills, stepover value influences surface finish quite a lot. Consider the following sketch of a side view showing multiple passes:
