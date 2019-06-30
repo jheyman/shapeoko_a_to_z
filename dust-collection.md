@@ -1,12 +1,12 @@
 # Shapeoko setup
 
-This section is a brief overview of the usual elements of a Shapeoko setup in the workshop, and focuses on the "why" and "what's important" in each element, rather than describing all possible options \(which would be impossible, each user setup is very custom\)
+This section is a brief overview of the usual elements of a Shapeoko setup in the workshop, and focuses on the "why" and "what's important" in each element, rather than describing all possible options \(which would be impossible, user setups vary wildly\)
 
 ## Location
 
-Many users do not have the luxury of having multiple options for where to install their Shapeoko anyway, but when possible a few considerations apply:
+Many users do not have the luxury of having multiple options for where to install their Shapeoko anyway, but when possible:
 
-* A heated/dry area is preferable. The structure and electronics are immune to low/high temps and humidity, but the MDF bed is prone to absorb moisture.
+* A heated/dry area is preferable. The structure and electronics are basically immune to low/high temps and humidity, but the MDF bed is prone to absorb moisture.
 * Spare space around the machine \(especially above the machine\) comes in handy
   * for accessibility during maintenance
   * to accomodate an enclosure, itself larger than the machine by a good margin
@@ -99,8 +99,10 @@ Most people design their own custom enclosure, here are a few things to consider
   * with the dust collection/shopvac, that is commonly placed underneath the enclosure.
 * **clearance at the front** of the machine: 
   * the router can reach beyond the limits of the bed/wasteboard on the front side, and this can turn out to be very useful \(stock overhanging on the front\), so the enclosure should not prevent this
+* **sound-proofing**
+  * covering the side walls with a sound-absorbing material helps to dampen the noise.
 * **lighting**  
-  * you may want to install \(LED\) lighting inside the enclosure.
+  * you will probably want to install \(LED\) lighting inside the enclosure, at 360° if possible to avoid shadows on the work area.
 * **future-proofing**: 
   * provision areas for installing various controls \(see control panel below\), a VFD controller when you upgrade to a spindle, etc...
 

@@ -48,11 +48,11 @@ which requires to have threaded holes available across the work area:
 
 There are many different ways to make a "sea of holes" wasteboard, a popular option is to use the Shapeoko itself to drill the holes into either its own bed or a supplementary wasteboard, and then put threaded inserts in the holes.
 
-{% hint style="info" %}
-Another equally popular option to attach clamps is to use T-tracks inserted at regular intervals between "strips" of wasteboard area.
-{% endhint %}
+Another very popular option to attach clamps is to use **T-tracks** inserted at regular intervals between "strips" of wasteboard area:
 
-The main drawback that the stock area where the clamps are is not accessible for the tool, and one should carefully design toolpaths such that there is no risk of collision between the tool \(or the dust shoe around it\) and the clamps. The usual mitigations are:
+![](.gitbook/assets/setup_t_tracks.png)
+
+The main drawback in both cases is that the area where the clamps are holding the stock is not accessible for the tool, and one should carefully design toolpaths such that there is no risk of collision between the tool \(or the dust shoe around it\) and the clamps. The usual mitigations are:
 
 * using a stock larger than strictly necessary for the workpiece, and machine only the center area of the stock. Easy, but not very efficient in terms of how much material is needed/wasted.
 * using **low-profile clamps**: this addresses the issue of collision with the dust shoe itself, as the clamps can slide under the bristles of the dust shoe. The risk of collision with the tool itself is still to be managed though. 
@@ -71,6 +71,8 @@ One solution is to use **tabs** in the design, most CAM tools support this:
 The tabs will hold the piece during the last passes of the cut, however they will have to be removed/cleaned-up manually afterwards, which can turn out to be time consuming and may leave clean-up marks on the workpiece.
 
 In some materials \(especially soft plastics like HDPE\), an alternative option is to leave a thin **onion skin** at the bottom of the profile cut, by limiting the cutting depth to something slightly less than the stock thickness. The onion skin should be thick enough to keep the piece from moving, but thin enough to be easily cut manually afterwards with e.g. a X-acto blade. The bottoms edges of the cut still need to be cleaned-up manually, but in soft plastics this can be very easy with a deburring tool.
+
+&lt;TODO onion skin picture in HDPE&gt;
 
 ## Double-sided tape
 

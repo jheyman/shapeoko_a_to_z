@@ -15,7 +15,7 @@
 * [Usecases: cutting wood](cutting-wood.md)
 * [Usecases: cutting plastics](cutting-plastics.md)
 * [Usecases: cutting metal](cutting-metal.md)
-* [Maintenance/troubleshooting](maintenance.md)
+* [Troubleshooting & maintenance](maintenance.md)
 * [Upgrades](upgrading-the-machine.md)
 * [Feeds and Speeds usecases](feeds-and-speeds-reference.md)
 

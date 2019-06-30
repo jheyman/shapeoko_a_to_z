@@ -22,7 +22,7 @@ But it gets better: instead of just turning the current on and off completely al
 So overall, there are 200 \* 8 = 1600 microsteps per revolution.
 
 {% hint style="info" %}
-While doing steps requires modulating the current between the two phases, holding a position requires keeping a constant current, so interestingly, stepper motors use more power when doing nothing that when moving.
+While doing steps requires modulating the current between the two phases, holding a position requires keeping a constant current, so interestingly, stepper motors use more power when doing nothing that when moving. This is why they tend to get warm when the machine is on but not moving. This is not a problem in itself, but you might as well turn it off if it is going to stay idle for a long time, if only to save power.
 {% endhint %}
 
 ## Pulleys & Belts
@@ -82,7 +82,7 @@ This is an earlier version of the "CarbideMotion" controller board, the latest o
 
 * **\#6** is the Arduino controller \(ATMega328P\) that runs GRBL, the motion control software
   * Note: there is a small push button right under the Arduino, to RESET the board manually if needed
-* **\#7** is a header with &lt;TODO&gt;
+* **\#7** is a header with GND and +5V available.
 * **\#8** is the stepper driver for Z axis
 * **\#9** is the stepper connector for Z axis
   * from left to right: A1/B1/B2/A2 motor signals

@@ -12,9 +12,7 @@ The standard limit switches are fine, since they have mechanical parts they can 
 
 ![](.gitbook/assets/upgrades_proximity_switch.png)
 
-They can be used as an \(almost\) drop-in replacement for the orignal switches, the only difference is that \(depending on their technology\) they may need an additional lead for power supply, connected to one power pin of the controller board:
-
-&lt;TODO photo/sketch with switch + 5V on controller&gt;
+They can be used as an \(almost\) drop-in replacement for the orignal switches, the only difference is that \(depending on their technology\) they may need an additional lead for power supply, connected to one power pin of the controller board \(typically, the 5V pin on the Arduino ISP header, see [Anatomy of a Shapeoko](anatomy-of-a-shapeoko.md#controller-board) for details\)
 
 ## X/Z axis upgrade
 

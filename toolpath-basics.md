@@ -245,5 +245,15 @@ One way to double-check is to visualize the toolpath from the generated G-code f
 
 ![](.gitbook/assets/toolpaths_camotics_screenshot.png)
 
+## Ordering matters
+
+It's easy to understand that the order in which the toolpaths are run \(usually\) matters, but also quite easy to overlook a wrong ordering when the project involves many toolpaths. On the Shapeoko, toolpaths using different tools will be in different G-code files \(since there is no automatic tool changer\), so the likelyhood of manually executing the files in the wrong order is small. But multiple toolpaths using the same tool will usually be included into a single file, and the ordering will be as declared in the CAM tool, so a user error is more likely.
+
+{% hint style="info" %}
+Toolpath preview, and better yet realtime toolpath simulation \(when available\), is the best mitigation.
+{% endhint %}
+
+
+
 
 
