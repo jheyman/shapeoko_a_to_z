@@ -180,10 +180,10 @@ This example value of 0.05mm \(0.002"\) runout on a Makita router with the stock
 * Watch out for **debris** stuck between the router taper and the collet, they will tilt things and create runout: always make sure the taper and collet are clean.
 * Minimize **tool stickout**: this will minimize the effect of the axial runout.
 * Considering that the final runout results from the relative positioning of the router, collet, and endmill, one can try to "**clock**" these three elements, so that the different runout contributions cancel each other to some extent. There is no easy way to determine runout of each element separately, so this can be a trial & error process, but worth trying:  slightly turn the collet inside the router taper, and/or turn the endmill inside the collet, and this _might_ yield a lower overall runout.
-* Finally, a method that looks scary but gives surprisingly good results is **tapping** \(gently\) on the endmill shaft using a screwdriver and a mallet: 
+* Finally, a method that looks scary but gives surprisingly good results is **tapping** \(gently!\) on the endmill shaft using a screwdriver and a mallet: 
   * first find the orientation of the endmill that gives the maximum readout on a dial indicator placed on the front side.
-  * put a small piece of electrical tape or similar on the tip of the screwdriver, to soften the contact with the endmill
-  * then...hit the back of the screwdriver with a mallet a couple of times, gently.
+  * put a small piece of electrical tape or similar on the tip of the screwdriver, to avoid metal to metal contact
+  * then...lightly tap the back of the screwdriver with a mallet a couple of times.
   * check runout and repeat if necessary. It takes a few tries to find the right amount of force. In this example, the original runout was around 0.002", and tapping the endmill reduced it to around 0.0006". This adjustment should hold, at least until the end of the current job with this endmill.
 
 ![](.gitbook/assets/runout_tapping.png)

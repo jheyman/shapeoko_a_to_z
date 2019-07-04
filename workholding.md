@@ -96,7 +96,7 @@ Apply masking tape on the back side of the stock, using several stripes if neede
 
 ![](.gitbook/assets/tape_and_glue_1.png)
 
-Apply masking tape on the top of the wasteboard where the stock will go, to match the tape under the stock. Again, the roller is useful to make things flat and tight.
+Apply masking tape on the top of the wasteboard where the stock will go, to match the tape under the stock. Again, the roller is useful to make things stick.
 
 ![](.gitbook/assets/tape_and_glue_2.png)
 
@@ -112,15 +112,15 @@ You may want to cut the extra pieces of tape, just to prevent any possible misha
 
 ![](.gitbook/assets/tape_and_glue_5.png)
 
-At this point, the stock should be held tightly: apply lateral force and make sure it does not budge. Push harder if you need to convince yourself that this will hold. If done correctly, the amount of _lateral_ force needed to break the hold is HUGE, way beyond what the machine can produce. Enjoy cutting the piece without any obstruction of the top and sides of the stock ! After getting a taste of this method, you might not want to go back to using clamps.
+At this point, the stock should be held tightly: apply lateral force and make sure it does not budge. Push harder if you need to convince yourself that this will hold. If done correctly, the amount of _lateral_ force needed to break the hold is HUGE, way beyond what the machine can produce. Enjoy cutting the piece without any obstruction of the top and sides of the stock ! After getting a taste of this method, you might not want to go back to ever using clamps again.
 
-Once the cut is done, insert a flat tool under the piece to exert an upward force:
+Once the cut is done, insert a flat tool under the piece to exert an **upward** force:
 
 ![](.gitbook/assets/tape_and_glue_6.png)
 
 It may take a few \(gentle\) tries working on each corner/edge in turn to pry the piece loose, but it usually comes off easily.
 
-The main drawback of this method is that for all cuts that go through the full depth of the stock, during the last passes the tool will cut into the tape and glue sandwich, which is bound to leave gummy residue on the tool. This is very easily removed with a little bit of alcohol/acetone
+The main drawback of this method is that for all cuts that go through the full depth of the stock, during the last passes the tool will cut into the tape and glue sandwich, which is bound to leave gummy residue on the tool. This is very easily removed with a little bit of alcohol/acetone.
 
 {% hint style="warning" %}
 However, this may turn out to be a real problem for jobs that do multiple profile cuts: if the first profile cut leaves tape & glue residue on the tip of the endmill, it could impact the quality of the subsequent cuts. There is no real solution for this, the only partial mitigation is to cut exactly down to stock bottom to avoid cutting into the tape, but that brings back other issues if the stock bottom is not perfectly flat or the machine not perfectly trammed.

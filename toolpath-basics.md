@@ -4,9 +4,9 @@ A **toolpath** is the intended trajectory that the tip of the endmill will follo
 
 For a specific object geometry/feature defined in the CAD tool, the CAM tool will generate toolpaths as sets of lines and curves defined in X/Y/Z space, and the post-processor will then generate the corresponding G-code instructions for the machine.
 
-"2D" toolpaths correspond to cutting a 2D feature in the design, and moving only two axis of the machine at a time \(typically, stepping down along Z only, then moving along X and Y only\). Since X, Y, and Z are moved \(albeit not simultaneously\), this is sometimes called "2.5D".
+"**2D**" toolpaths correspond to cutting a 2D feature in the design, moving only two axis of the machine at a time \(typically, stepping down along Z only, then moving only in the XY plane\). Since X, Y, and Z are moved \(albeit not simultaneously\), this is sometimes called "**2.5D**".
 
-"3D" toolpaths correspond to cutting a 3D feature, and potentially moving the three axis of the machine simultaneously. 
+"**3D**" toolpaths correspond to cutting a 3D feature, and potentially moving the three axis of the machine simultaneously. 
 
 {% hint style="warning" %}
 Not all toolpaths presented below are available in Carbide Create: 3D toolpaths, adaptive toolpaths, REST machining, and the roughing vs. finishing toolpaths feature require to use other CAM programs. If you are just starting you can ignore those, Carbide Create is perfect to learn simple 2D toolpaths before moving on to more complex projects. The intent here is to show what is available in advanced CAM programs, and then everyone can decide whether to invest money \(e.g. VCarve\) or time \(e.g. Fusion360\) to access those features. 
@@ -123,7 +123,7 @@ For the same reason, the DOC can also be increased very significantly, which lea
 ![](.gitbook/assets/toolpaths_regular_vs_hsm.png)
 
 * in regular toolpaths, the DOC per pass is limited \(on a Shapeoko\) to typically less that the endmill diameter, so the same tiny part of the endmill tip is used, pass after pass. This part wears out quickly, while the rest of the flute length remains unused.
-*  in adaptive toolpaths, the DOC can be higher, so most of the flute length can be used, and it wears out evenly  
+*  in adaptive toolpaths, the DOC can be higher, so most of the flute length can be used, and it wears out evenly.  
 
 {% hint style="info" %}
 Adaptive clearing is typically used with a radial width of cut that is \(much\) lower than 50% of the endmill diameter, so chip thinning must be taken into account in the feeds and speeds settings, as described in the [Feeds & speeds](feeds-and-speeds-basics.md#chip-thinning) section

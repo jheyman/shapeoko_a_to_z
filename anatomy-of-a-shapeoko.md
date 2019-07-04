@@ -1,13 +1,17 @@
 # Anatomy of a Shapeoko
 
-This section provides details on _how_ the Shapeoko is working internally. None of this info is required to be able to successfully use the machine, but you may find some of this information useful for troubleshooting, repairing, or upgrading the machine.
+This section provides details on _how_ the Shapeoko is working internally. 
+
+{% hint style="info" %}
+None of this info is required to be able to successfully use the machine, but you may find some of this information useful for troubleshooting, repairing, or upgrading the machine.
+{% endhint %}
 
 ## Mechanical structure
 
-That part is self explanatory, since the Shapeoko is a kit everyone will get acquainted with the \(very simple\) mechanical structure during assembly. The correct geometry of pieces cut on the Shapeoko will depend mainly on:
+That part is self explanatory, since the Shapeoko is a kit everyone will get acquainted with the \(very simple\) mechanical structure during assembly anyway. The correct geometry of pieces cut on the Shapeoko will depend mainly on:
 
-* making sure the mechanical structure is assembled such that all three axis of movements are _actually_ orthogonal to each other. 
-* making sure that there is no slop nor excessive friction anywhere in the moving parts.
+* making sure the mechanical structure is assembled such that all three axis of movement are _actually_ orthogonal to each other \(see [Squaring, surfacing, tramming](squaring.md#squaring-the-machine)\).
+* making sure that there is no slop nor excessive friction anywhere in the moving parts \(which mostly boils down to tightening the V-wheel eccentric nuts correctly\).
 
 ## Stepper motors
 
@@ -45,8 +49,6 @@ And that when the machine needs to move by X mm along one axis, the stepper moto
 Everyone is too lazy to write "microstep" every time, so they just write "step". 99% of the time when discussing steps, you should understand "microstep", because this is what the stepper driver generates. The other 1% is when discussing stepper motor characteristics themselves, which is characterized by their number of "full" steps, because that's an intrinsic property of the motor design \(while the number of microsteps is only driven by the selected stepper driver\). Confused much ?
 {% endhint %}
 
-### Where did my steps go ?
-
 So in theory, telling the motor to do X steps will move the associated axis by X/40 mm. But that's only true if the effort put on the shaft is lower than the torque the motor is able to provide. When the forces exceed the max torque of the motor, commanding one step of rotation will result in...the motor staying in the same position, so effectively "losing" one step, which then causes a discrepancy between where the machine actually is, and where it thinks it is \(as it has no feedback loop to verify if it actually move\), and bad things happen.
 
 Another potential reason for losing steps, is that the pulley may slip on the motor shaft if the **set screw** is not tight, so that should be secured/checked \(using a 1.5mm Allen key\):
@@ -67,7 +69,7 @@ It is the job of the **controller** to send commands to the stepper drivers \(wh
 
 ![](.gitbook/assets/controller_overview.png)
 
-This is an earlier version of the "CarbideMotion" controller board, the latest one may be slightly different, but fundamentals will likely be the same.
+This is an earlier version of the Shapeoko controller board, the latest one may be slightly different, but fundamentals will likely be the same.
 
 * **\#1** is the connector of the **USB link** from the host PC that sends the G-code commands
 * **\#2** is the **main power** connector \(24V from the external power supply\)
@@ -81,7 +83,7 @@ This is an earlier version of the "CarbideMotion" controller board, the latest o
 | LIMIT Z \(= D12 = MISO\) | SPINDLE DIR \(= D13 = SCK\) | RESET |
 
 * **\#6** is the Arduino controller \(ATMega328P\) that runs GRBL, the motion control software
-  * Note: there is a small push button right under the Arduino, to RESET the board manually if needed
+  * Note: there is a small push button right under the Arduino, to RESET the board manually if needed \(which is never the case\)
 * **\#7** is a header with GND and +5V available.
 * **\#8** is the stepper driver for Z axis
 * **\#9** is the stepper connector for Z axis
@@ -114,7 +116,7 @@ This is an earlier version of the "CarbideMotion" controller board, the latest o
     * GND
     * +12V
     * TACH \(fan RPM\)
-* **\#20** has plated hole for these signals:
+* **\#20** has plated holes for these signals:
 
 | Left pin column | Right pin column |
 | :--- | :--- |
@@ -122,7 +124,7 @@ This is an earlier version of the "CarbideMotion" controller board, the latest o
 | PWM | RESET |
 | RESERVED | GND |
 
-* **\#21** has plated holes for these signals. From top to bottom
+* **\#21** has plated holes for the following signals, from top to bottom
   * AUX 24V INPUT
   * AUX 24V INPUT
   * AUX ON/OFF

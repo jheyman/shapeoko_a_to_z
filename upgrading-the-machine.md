@@ -26,6 +26,8 @@ Probably the most popular upgrade is the replacing the stock X/Z carriage with a
 One noticeable difference between a ball screw driven X/Z axis and a belt & springs one, is that when power is removed from the stepper the router/spindle will stay at its current Z \(whereas with it drops naturally with belt & springs\). This is usually a good thing \(no unintended drop\) but sometimes a minor nuisance \(Z cannot easily be moved manually while machine is turned off\) 
 {% endhint %}
 
+&lt;TODO photo of the HDZ&gt;
+
 {% hint style="warning" %}
 Since alternative X/Z solutions have different Z-travel capacity than the stock X/Z carriage, you will need to adjust a few parameters in GRBL accordingly. And if you are using Carbide Motion as a G-code sender, you _may_ need to migrate to another sender that does not make any hardcoded assumptions about the machine geometry
 {% endhint %}
@@ -43,6 +45,10 @@ While the T-tracks bed upgrade \(that comes as an alternative to the "sea of hol
 
 This one is 12mm / ~0.5", the one on Carbide3D's store is 0.5" thick too.
 
+{% hint style="info" %}
+This is still only a "nice to have" and expensive upgrade: the large majority of Shapeoko users have an MDF bed and are happy with it
+{% endhint %}
+
 ## Belts upgrade
 
 This is probably the cheapest upgrade: replacing the original GT2 belts with reinforced ones. The two most popular are **steel-core** belts, and **kevlar** belts.
@@ -59,7 +65,7 @@ Buying several meters of steel-core belts is cheap, will serve as a provision in
 
 Having to manually set RPMs on the router knob at the beginning of each job can get old, and is also error prone. Luckily the Shapeoko controller board happens to have a "PWM" output that GRBL modulates as a function of the RPM values found in the G-code. So it is possible to feed this signal into a dedicated power controller, that will adjust the voltage applied on the router power leads accordingly, resulting in a specific RPM value.
 
-This requires to buy such a power control module, the most popular one is the SuperPID. You need to know what you are doing since installing it requires wiring mains. 
+This requires to buy such a power control module, the most popular one is the **SuperPID**. You need to know what you are doing since installing it requires wiring mains. 
 
 Beyond the automatic RPM control, the added benefit is that this allows the router to operate at a lower RPM value than the minimal knob setting, e.g. to run at 5000 RPM on a Makita that normally mins out at 10.000RPM. 
 

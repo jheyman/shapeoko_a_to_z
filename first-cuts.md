@@ -96,13 +96,16 @@ One problem remains: the X0/Y0 computations depend on \(half the\) diameter of t
 
 This is straightforward, nothing special to be said here so I'll just share my own habits:
 
-* if your G-code sender allows, raise the tool. It is normally not necessary, but depending on your CAM post-processors settings, the G-code may or may not contain an opening statement to do it, so this will give you a \(little bit\) of time to react if things go wrong. 
+* if your G-code sender allows, raise the tool. It is normally not necessary, but depending on your CAM post-processors settings, the G-code may or may not contain an opening statement to do it, so this will give you a \(little bit\) of time to react if something unexpected happens. 
 * double-check that the dust shoe is lowered at stock surface level and won't crash into anything during the job.
 * turn on the dust collection \(and air jet/lubricant mister if applicable\)
 * put on your safety goggles and/or close the enclosure window.
 * turn on the router.
 * hit start...with your hand/mouse over the pause/stop button.
-* At least the first time I run a new project I like to watch & listen, looking for hints of incorrect cutting parameters \(chatter, bad looking chips\), debris build-up, or anything I might have done wrong in the CAD/CAM, or could optimize. 
+
+{% hint style="info" %}
+At least the first time I run a new project, I like to watch & listen throughout the cut, looking for hints of incorrect cutting parameters \(chatter, bad looking chips\), debris build-up, or anything I might have done wrong in the CAD/CAM, or could optimize. 
+{% endhint %}
 
 ## Tool change
 

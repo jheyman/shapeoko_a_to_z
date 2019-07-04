@@ -17,5 +17,4 @@
 * [Usecases: cutting metal](cutting-metal.md)
 * [Troubleshooting & maintenance](maintenance.md)
 * [Upgrades](upgrading-the-machine.md)
-* [Feeds and Speeds usecases](feeds-and-speeds-reference.md)
 

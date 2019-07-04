@@ -13,11 +13,11 @@ It's easy to be overwhelmed at first by the variety of tools and their character
 
 ![](.gitbook/assets/endmill_anatomy.png)
 
-The most common endmills for the Shapeoko have a diameter of 1/4” \(6.35mm\), 1/8” \(3.175mm\), 1/16" \(1.5875mm\), and 1/32" \(~0.8mm\), with some additional metric sizes \(1,2,4, 6 and 8mm\)
+The most common endmills used on the Shapeoko have a diameter of 1/4” \(6.35mm\), 1/8” \(3.175mm\), 1/16" \(1.5875mm\), and 1/32" \(~0.8mm\), and their metric cousins \(1,2,4, 6 and 8mm\)
 
 ## Square endmills
 
-**Square** endmill is ****the most common type
+**Square** endmills are ****the most common type
 
 * **upcut**: the direction of the flute is such that it pulls chips away from the cutting surface, thus is quite efficient at removing chips. I will produce a nice finish at the bottom of pockets, but can produce tear out on the surface for some materials.
 * **downcut**: pushes chips downward when cutting, so not efficient to evacuate them from the cutting area. It tends to do the opposite as an upcut, i.e. leaving produce a clean cut at the surface of the material, but potential tear out at the bottom of pockets.
@@ -35,11 +35,11 @@ Here's an example of a 1/4" endmill with only 2 flutes:
 
 ![](.gitbook/assets/tools_2flute_square_025inch.png)
 
-and here's a 1/4" one with a single flute:
+and here's a 1/4" one with a single flute \(a.k.a. "O-flute"\):
 
 ![](.gitbook/assets/tools_1flute_025inch.png)
 
-**Downcut** endmills have their flute\(s\) oriented the other way, as in this 1/4" 1-flute downcut:
+**Downcut** endmills have their helicoidal flute\(s\) oriented the other way, as in this 1/4" 1-flute downcut:
 
 ![](.gitbook/assets/tools_1flute_downcut_025inch.png)
 
@@ -67,7 +67,7 @@ On the smallest diameter endmills, the cutting length is really short \(otherwis
 
 ## **V-bits**
 
-V-bits come with various angles, they are typically used to carve text or tiny groove \(more on this in the [Toolpath basics](toolpath-basics.md) section\):
+V-bits come with various angles, they are typically used to carve text or tiny grooves \(more on this in the [Toolpath basics](toolpath-basics.md) section\):
 
 ![](.gitbook/assets/tools_vbits.png)
 

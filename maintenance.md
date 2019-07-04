@@ -23,23 +23,31 @@ If you are using another sender, then by all means do turn on soft limits in GRB
 You should actually TEST how far you can go on YOUR machine, not rely on theoretical X/Y/Z travel values for the Shapeoko. There are a variety of factors that can make these values specific to a given machine. For example, on mine the X travel is limited by the arms of the dust shoe.
 {% endhint %}
 
-## Depth issues
+## Cut depth issues
 
-There are several reasons that may lead to a cut having the wrong dimensions compared to the programmed toolpath, the \(standard\) Z axis is most prone to this effect \(just because it is mechanically the weakest, and because plunging is hard on the endmill\) but this can apply to other axis as well.
+When the cut depth is off, assuming the toolpath itself is correct, chances are something is slipping in the Z direction \(that is arguably the weakest axis\). A few potential reasons are listed below, more or less by decresing likelihood:
 
-First, in theory commanding the motor to do N steps will move the associated axis by \(close to\) N/40 mm. But that's only true if the effort put on the shaft is lower than the torque the motor is able to provide. When the forces exceed the max torque of the motor, commanding one step of rotation will result in...the motor staying in the same position, effectively "losing" one step, which then causes a discrepancy between where the machine actually is, and where it thinks it is \(as it has no feedback loop to verify if it actually move\), and subsequent cuts will be off by the number of skipped steps.
-
-Another \(more\) likely reason for skipping is that the pulley may slip on the motor shaft if the **set screw** is not tight, so that should be checked/secured \(using a 1.5mm Allen key\):
+* Under load, the pulley may be slipping on the motor shaft if the **set screws** are not tight, so that should be checked/secured first \(using a 1.5mm Allen key\):
 
 ![](.gitbook/assets/pulley_setscrew.png)
 
-Also, the belts must be **tensioned** correctly, to avoid any slop that could lead to the belt jumping the pulley teeth when a large force is put on that axis. This is a goldilocks situation where the belt needs to be tight enough to avoid this problem, but not too tight to avoid bending the motor shaft.
+{% hint style="info" %}
+The original set screws work just fine for most users, but some use beefier/larger set screws, or replace them with cap screws
+{% endhint %}
+
+* The belts must be **tensioned** correctly, to avoid any slop that could lead to the belt jumping the pulley teeth when a large load is put on that axis. This is a goldilocks situation where the belt needs to be tight enough to avoid this problem, but not too tight to avoid bending the motor shaft.
 
 {% hint style="info" %}
 The usual words to characterize an adequate belt tension are "guitar-string tight". For the Y belts, a good indication of proper tension is that when the gantry is at one end of the rail, it should be possible to lift the belt a bit, but it should not be possible to slide a pinky finger under the middle of the belt.
 {% endhint %}
 
-Finally, if you are using a touch probe to set Z zero only, make sure it does not sit on its recessed part, which is used for X/Y/Z probing : installing it one a corner and probing Z would result in a Z zero that is off by the height of the probe step.
+* The endmill could be slipping in the collet, if it is not tight enough \("monkey tight, not gorilla tight"\), or worse if the wrong collet size was used \(e.g 6mm endmill in a 6.35mm collet\)
+* Also, and this applies to all axis, in theory commanding the motor to do N steps will move the associated axis by \(close to\) N/40 mm. But that's only true if the effort put on the shaft is lower than the torque the motor is able to provide. When the forces exceed the max torque of the motor, commanding one step of rotation will result in...the motor staying in the same position, effectively "losing" one step, which then causes a discrepancy between where the machine actually is, and where it thinks it is \(as it has no feedback loop to verify if it actually move\), and subsequent cuts will be off by the number of skipped steps.
+* Finally, if you are using a touch probe to zero Z axis only, make sure it does not sit on its recessed part, which is used for XYZ probing : installing it on a corner and probing Z would result in a Z0 that is off by the height of the probe step.
+
+{% hint style="info" %}
+If nothing is slipping and the depth error is small, it _might_ just be that the Z steps per mm value \($102 parameter in GRBL\) is not right, refer to the [Dimensional accuracy](x-y-z-calibration.md#x-y-z-calibration) section for more.
+{% endhint %}
 
 ## Crashing the mashine
 
@@ -137,9 +145,9 @@ If your endmills wear out very quickly, it is likely that you are using proper f
 
 ![](.gitbook/assets/maintenance_clean_vwheels.png)
 
-
-
-&lt;TODO mention wheels covers&gt;
+{% hint style="info" %}
+You could also use custom **wheels covers:** check out David Johnson's DIY engineering site to buy some, he also made them available on Thingiverse so if you have a 3D printer you could print them yourself.
+{% endhint %}
 
 ## Tightening belts & wheels 
 
@@ -147,6 +155,6 @@ From time to time, it is worth checking whether the belts are still guitar-strin
 
 * Belts can stretch/loosen a bit, and this will not be readily apparent. Do the pinky finger test maybe.
 * With the machine off
-  * slide the gantry and X/Z carriage manually and that all wheels are turning: if one of them is not moving, the eccentric nut is not tight enough, or it is all worn out
-  * Grab the X/Z carriage and try to twist it front/back and left/right: there should not be any slop.
+  * slide the gantry and X/Z carriage manually and check that all wheels are turning: if one of them is not moving, the eccentric nut is not tight enough, or it is worn out.
+  * Grab the X/Z carriage and \(gently\) try to twist it front/back and left/right: there should not be any slop.
 

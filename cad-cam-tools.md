@@ -6,15 +6,15 @@ This section provides a brief overview of the popular software for doing CAD, CA
 
 Most users obviously start with **Carbide Create,** which really is a great solution to get started with CNC, because it has _just_ the right amount of features to not overwhelm newbies with tons of parameters but still allow them to experience the full design workflow: stock setup, creating a 2D design, creating basic toolpaths based on these design elements, previsualizing these toolpaths and the final workpiece, and finally generate G-code to run on the machine.
 
-&lt;TODO screenshot&gt;
+![](.gitbook/assets/cadcam_carbidecreate.png)
 
 If/once you outgrow it, Vectric **V-Carve** is a very popular \(albeit somewhat pricey\) upgrade path. The name is slightly confusing, as it is not only specialized in V-carving but is a complete generic CAD/CAM tool. The workflow is quite similar to Carbide Create's, which makes the transition easy. It has more CAD features \(layers is what I like most\), intermediate-level CAM features \(built-in support for roughing and finishing strategy is great\), and it is just a very polished and robust software. You can also go crazy and buy the top of the line **Aspire** software from Vectric, if you need the advanced/pro features it offers.
 
-&lt;TODO screenshot&gt;
+![](.gitbook/assets/cadcam_vcarve.png)
 
-And then there is **Fusion360**, the almighty 3D CAD/CAM tool from Autodesk. Its CAM module has all the bells and whistles and a truckload of settings, which is also why it has an admittedly steep learning curve that can repel many casual CNC users. But if you get past those first few weeks of figuring out its workflow and main settings, it opens up a fascinating range of possibilities, and not only for CNC. Now there is a small catch: while it has an offline mode, this is primarily an online/cloud-oriented tool, it's from Autodesk, and it's free for students and hobbyist...for now. Not everyone feels comfortable with investing a lot of time into learning how to use a tool that might become unusable locally if the servers are shutdown, or could become costly. Also, it does not do Vcarving. 
+And then there is **Fusion360**, the almighty 3D CAD/CAM tool from Autodesk. Its CAM module has all the bells and whistles and a truckload of settings, which is also why it has an admittedly steep learning curve that can repel many casual CNC users. But if you get past those first few weeks of figuring out its workflow and main settings, it opens up a fascinating range of possibilities, and not only for CNC. There is a small catch though: while it has an offline mode, this is primarily an online/cloud-oriented tool, it's from Autodesk, and it's free for students and hobbyist...for now. Not everyone feels comfortable with investing a lot of time into learning how to use a tool that might become unusable locally if the servers are shutdown, or could become costly. Also, it does not do \(proper\) Vcarving. 
 
-&lt;TODO screenshot Fusion360&gt;
+![](.gitbook/assets/cadcam_fusion360.png)
 
 I happen to use all three, depending on the project at hand. I will use Carbide Create when I need a simple 2.5D piece done quickly and get cutting. V-Carve is my go-to solution for the 2.5D projects that are more complex and/or involve Vcarving, 2-sided work, or require a roughing+finishing toolpath strategy. And then I will use Fusion360 for all things 3D, for metal work \(mainly because of the adaptive clearing feature\), and whenever I feel like I need to make the design parametric so as to be able to adjust dimensions without having to redesign everything.
 
@@ -26,7 +26,7 @@ While the post-processor to generate G-code is built in Carbide Create, with VCa
 
 ## G-code primer
 
-So the CAD/CAM tool generated a G-code file. One can perfectly use the Shapeoko without any understanding of the G-code syntax or ever opening a generated G-code file. Still, having at least a superficial understanding of what the most common G-code instructions do goes a long way for  troubleshooting why the machine behaves the way it does.
+So the CAD/CAM tool generates a G-code file. One can perfectly use the Shapeoko without any understanding of the G-code syntax or ever opening a generated G-code file. Still, having at least a superficial understanding of what the most common G-code instructions do goes a long way for  troubleshooting why the machine behaves the way it does.
 
 G-code is a \(somewhat\) standard language to define instructions to be fed to a multi-axis machine, CNC and 3D printers being prime examples.
 
@@ -109,15 +109,28 @@ But here are a few reasons why other senders can be considered too:
 * **G-code Macros**. Small snippets of G-code with associated buttons/shortcuts in the UI can be very useful to streamline the workflow. It can be as simple as just going to X0/Y0, or be a complex custom automated probing routine
 * **Machine limits customization**. While Carbide Motion is setup for a stock Shapeoko, and while it does provide access to modify the various GRBL parameters, some aspects are hardcoded \(e.g. the probe dimensions, that match Carbide3D's probe, or the Z limits that match a stock Z-axis\). If you start modding your machine, you _may_ come to a point where you need from customization than Carbide Motion allows.
 
-There are many alternative G-code senders in various states of maturity/activity, I will just focus on the two that I know and seem to be most popular on the Shapeoko forum.
+There are many alternative G-code senders in various states of maturity/activity, I will just focus on the two that I have used, and seem to be most popular on the Shapeoko forum:
 
-**Universal G-code Sender** is xxx
+**Universal G-code Sender** is a cross-platform desktop application based on Java \(which in other words means you will be able to use it with any operating system\). Its UI looks a bit dated but it is simple and efficient. Here's a few highlights of why I like it:
 
+* The G-code preview pane is particularly helpful: not only does it display the toolpaths in the currently loaded file with the associated max dimensions \(I check those every single time I load a file, as a double check\), it also shows where the tool is in realtime \(I like this feature when I need to check how many more depth passes are left until a pocket is finished, or where the tool will go next\):
 
+![](.gitbook/assets/cadcam_ugs.png)
 
-**CNCjs** is xxx
+* It has a very simple editor for GRBL parameters: just type in the value, hit save, and the new parameter is stored in the controller:
 
-TODO raspberry pi usecase
+![](.gitbook/assets/ugs_grbl_settings_menu.png)
 
+* It has configurable keyboard shortcuts for most of the actions, which makes it conveniet to use a custom keypad \(see [Shapeoko setup](dust-collection.md#control-pad)\). Finally, I use the ability to define Macros, for simple but useful things like "goto X0Y0"
+* It supports G-code filters, which can turn out to be convenient to ignore e.g. generated tool change commands. 
 
+**CNCjs** is another sender, it has all the features of UGS and more, an arguably better-looking UI, and powerful macro capabilities. It comes either in a standalone desktop application:
+
+![](.gitbook/assets/cncjs_screenshot.png)
+
+or as a backend accessed via a web interface from any browser. This latter configuration makes it interesting for installation on a Raspberry pi \(or any other cheap computer that can be dedicated to being a G-code sender\):
+
+![](.gitbook/assets/cncjs_rpi_browser.png)
+
+In this configuration, a G-code file can be loaded directly from a web browser on any device \(PC, Mac, tablet, smartphone...\), and CNCjs running on the Raspberry Pi takes care of feeding the G-code to the Shapeoko via the Raspberry's USB port. The device running the web browser can be turned off, or used for some other tasks, without impacting the ongoing job.
 
