@@ -1,10 +1,10 @@
 # Usecases: cutting plastics
 
-Plastics are relatively easy to mill, but they are much less forgiving than wood if feeds and speeds are not set to adequate values. The reason is that plastic melts easily when heated, and since cutting forces produce heat...the name of the game is to evacuate heat as efficiently as possible.
+Plastics are relatively easy to mill, but they are less forgiving than wood if feeds and speeds are not set to adequate values. The reason is that plastic melts easily when heated, and since cutting forces produce heat...the name of the game is to evacuate heat as efficiently as possible.
 
 This boils down to two things:
 
-1\) ****Make **thick chips:**
+1\) ****Watch **the minimum chipload:**
 
  i.e. use a high chipload. Larger chips carry away more heat than smaller ones. To get a large chipload, one must use low RPM and high feedrates. As discussed in the [Feeds & speeds](feeds-and-speeds-basics.md) section, a good target chipload for plastics for a 1/4" endmill, is above 0.004" / 0.1mm. Such chiploads are hard to reach with 3-flute endmills. For example on the Dewalt router at its minimum RPM of 16.000, and at the highest possible feedrate \(196.85"/ 5000mm per min\), the chipload maxes out at 196 / \(3x16.000\) = 0.004".
 
@@ -42,7 +42,7 @@ This string of plastic is an indication that rather than cutting, the endmill is
 ![](.gitbook/assets/broken_bit_1_5mm.png)
 
 {% hint style="info" %}
-In the [Feeds & speeds](feeds-and-speeds-basics.md) section, the recommandation for **plunge rate** was "_25% to 50% of the feedrate for wood and plastics_". You want to be on the high end of this range for plastics : plunging too slowly will result in a little melted plastic on the endmill at the beginning of the cut, just like on the pictures above. And then even if the feedrate is correct for the rest of the cut, if you accumulate these strings of material at the top of the endmill each time the tool plunges, you may end up in a situation where this is enough to get in the way of the cut, and then bad things happen.  
+In the [Feeds & speeds](feeds-and-speeds-basics.md) section, the guideline for **plunge rate** is "_40% to 50% of the feedrate for plastics_". You want to be on the high end of this range: plunging too slowly will result in a little melted plastic on the endmill at the beginning of the cut, just like on the pictures above. And then even if the feedrate is correct for the rest of the cut, if you accumulate these strings of material at the top of the endmill each time the tool plunges, you may end up in a situation where this is enough to get in the way of the cut, and then bad things happen.  
 {% endhint %}
 
 ## HDPE

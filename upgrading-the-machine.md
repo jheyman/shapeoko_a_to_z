@@ -79,11 +79,31 @@ The Shapeoko uses a trim router by default for cost/convenience reasons, but all
 * there is no need to change bushing, basically no maintenance.
 * it usually supports "ER" collets, which come in much more varied sizes than trim router collets.
 
-They come in two types: air-cooled and water-cooled \(you then need to add a water tank & pump in the setup\), and at various power ratings, the most popular being 1.5kW and 2.2kW.
+They come in two types: air-cooled and water-cooled \(you then need to add a water tank & pump in the setup\), and at various power ratings, the most popular being 1.5kW and 2.2kW. 
 
-They are significantly heavier than a router, so this upgrade is often associated to a ball screw Z axis upgrade. 
+They are significantly heavier than a router, so this upgrade is often associated to a ball screw Z axis upgrade. A 800kW spindle can therefore be a very interesting option too, to get most of the benefits without the need to adapt the Z-axis to cope with the extra weight, and it's cheaper too.
 
 Installation will require to wire the PWM signal from the Shapeoko controller board to the spindle controller. The wiring/configuration of the spindle controller itself may not be a piece of cake, depending on the available documentation \(spoiler alert: chances are you will buy your spindle kit in China, documentation will be sub-par, but the community is here to sort it out\)
 
+## Laser upgrade
 
+This goes beyond the topic of CNC but for folks who are considering getting a laser cutter, the opportunity to use the Shapeoko instead of buying/building a standalone machine is right there, it boils down to:
+
+* attaching a laser module to the Z-plate
+* wiring the PWM signal from the controller board to the laser module, to allow modulation of the laser from G-code
+*  using a specific software to generate G-code for the laser job
+
+{% hint style="danger" %}
+BUT, and I can't stress this enough, whatever you do put safety considerations at the very top of your priority list. Eye safety is priceless, so if you are going this way, you need to have SEVERAL layers of safety measures in place. And the fire hazard is obvious.
+{% endhint %}
+
+It seems to me that the mininum one should do to use a laser module safely is:
+
+* have laser **power interlocked** with the presence of whatever physical protection/cover you are using: it must be impossible for power to get to the laser \(voluntarily or by accident\) if the protection is not present
+* wear proper **laser goggles** at all time as soon as the thing is POTENTIALLY turned on \(that includes moments when the power if off, but under the control of the machine i.e. the G-code/controller\). Never, ever trust software or alone to keep you safe. 
+* **Stay by the machine** while it is running. Seriously, don't burn down your house for a laser cut gone wrong.
+
+On top of that, you should also have proper ventilation in the room, and possibly a fume extraction system,  which will result in much better laser cuts anyway !
+
+&lt;TODO sketch laser modulation from PWM, air flow, protections layers&gt;
 
