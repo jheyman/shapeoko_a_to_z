@@ -47,6 +47,8 @@ There are many ways to learn and use the Shapeoko, but the typical experience go
 
 Comments/corrections are most welcome, you can contact me on the Shapeoko community forum \([**https://community.carbide3d.com/**](https://community.carbide3d.com/)\) as **@Julien**.
 
+&lt;TODO Shoutout to...&gt; 
+
 Special thanks to **@snaterst** \(on the forum\) for providing the vise setup picture, and to **@Dusty.Tools** \(on Instagram\) for the T-tracks setup picture.
 
 This is e-book released under the Creative Commons CC BY-NC-SA license \(in plain english: do whatever you want with it except a commercial use, and if you modify & redistribute, credit and keep the same license\)

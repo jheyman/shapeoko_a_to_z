@@ -25,7 +25,7 @@ While there is definitely a good amount of experience \(and experimentation\) in
 * to be in a position to understand how to **tune** the cutting parameters to achieve the desired result.
 
 {% hint style="info" %}
-This section includes a little math \(nothing too fancy\), but not to worry: while it is important to understand the _dependencies_ between the cutting parameters, calculators will take care of computations for you.
+This section includes a little math \(nothing too fancy\), but not to worry: while it is important to understand the _dependencies_ between the cutting parameters, calculators will take care of all those computations for you.
 {% endhint %}
 
 Before diving into the relation between feedrate, RPM, and the other parameters, let's check how the tool cuts into the material.
@@ -44,7 +44,7 @@ It starts out very thin, and gradually increases in thickness. The maximum thick
 
 ![](.gitbook/assets/chipcut_climb.png)
 
-## Chipload vs. Feeds and Speeds
+## Chiploads
 
 So why does chipload matter so much ? 
 
@@ -158,26 +158,23 @@ The following is an \(arguable\) table I am using as a personal reference, which
 
 ## Stepover/WOC/RDOC
 
-"**Stepover**" refers to the offset distance between one cutting pass and the next one, which also translates into how much new material is being removed by the endmill, or how much radial engagement is put on the endmill. It's also called Width of Cut \(**WOC**\) or sometimes Radial Depth of Cut \(**RDOC**\)
+"**Stepover**" refers to the offset distance between one cutting pass and the next one, which also translates into how much new material is being removed by the endmill, or how much radial engagement is put on the endmill. It's also called Width of Cut \(**WOC**\) or Radial Depth of Cut \(**RDOC**\)
 
 In the example below, the stepover S if 50% of the endmill diameter:
 
 ![](.gitbook/assets/stepover.png)
 
-The larger the stepover, the larger the force on the endmill. Cutting passes with a small stepover are better for surface finish quality, while passes with large stepover obviously reduce overall cutting time since less passes are required to cut a given amount of material.
+The larger the stepover, the larger the force on the endmill. Cutting passes with a small stepover are better for surface finish quality, while passes with large stepover obviously reduce overall cutting time since less passes are required to cut a given amount of material. And then **depth** of cut will also come in the picture \(more on this later below\).
 
-For Ball-end endmills, stepover value influences surface finish quite a lot. Consider the following sketch of a side view showing multiple passes:
+As a side note, for ball endmills, stepover value influences surface finish quite a lot. Consider the following sketch of a side view showing multiple passes:
 
 ![](.gitbook/assets/stepover_ballend_scallop.png)
 
-Due to the geometry of the endmill tip, scallops of residual material will be left at regular interval on the bottom surface. These will be more or less visible depending on how well the material can hold small details. 
-
-* a 20% to 33% stepover should be small enough for wood.
-* a 10 to 20% stepover should work for metal.
+Due to the geometry of the endmill tip, scallops of residual material will be left at regular interval on the bottom surface. These will be more or less visible depending on how well the material can hold small details \(a 20% to 33% stepover should be small enough for wood, while it could need to be lowered down to 10% stepover for metal\)
 
 ## Chip thinning
 
-The chipload values discussed above assume that the cutter circumference is engaged deep enough into the stock, that each flute gets to cut material from the moment it starts biting \(at the bottom of the blue circle\) to the moment it completes the 90° rotation of its useful activity for that revolution. This happens when the stepover is at least 50% of the endmill diameter:
+The chipload values discussed earlier assumed that the stepover is at least 50% of the endmill diameter:
 
 ![](.gitbook/assets/chip_thinning1.png)
 
@@ -185,13 +182,15 @@ Now consider what happens if the stepover is lower than 50% of the diameter, say
 
 ![](.gitbook/assets/chip_thinning2.png)
 
-For the same RPM and feedrate, the _actual_ size of each chip is smaller, because the flute exits the material early and the rest of its 90° of useful action is not used. The effective thickness of the chip is lower than expected, which also means that less heat is removed, so this is not optimal.
+For the same RPM and feedrate, the _actual_ chip is smaller than expected, its maximum thickness is lower than targeted, so there is again a risk of rubbing, or at least of sub-optimal heat removal.
 
-The solution is to compensate this effect by **increasing the feedrate** \(all other parameters staying the same\), such that the size of the chip is increased to approximately the same amount of material that _would_ have been removed if the cutter was engaged at 50% of its diameter:
+The solution is to artificially target a higher chipload value \(all other parameters staying the same\), such that the actual size of the chip is increased to approximately what it _would_ have been removed if the cutter was engaged at 50%:
 
 ![](.gitbook/assets/chip_thinning3.png)
 
-The size of the adjusted target chipload is determined by:
+
+
+The formula to determine this higher, adjusted target chipload is:
 
 $$
 Chipload(adjusted) = \frac{Diameter}{2 * \sqrt{(Diameter * Stepover) - Stepover^2}}* Chipload
@@ -218,7 +217,7 @@ In practice, for most of the materials cut on a Shapeoko, there is a wide range 
 * Low RPMs are quieter \(significantly so with a router\), but induce higher forces on the cutter \(more on this later\)
 * High RPMs induce lower cutting forces and generally provide better finish quality, but will also require faster associated feedrates to maintain a correct chipload: feeding faster can be a little scary at first, and leaves less time to react should anything go wrong.
 
-A rule of thumb is therefore to set RPM to "**the maximum value you can tolerate and be confortable operating at**", and determine the associated feedrate to get the target chipload.
+A rule of thumb is therefore to set RPM to "**the maximum value you can tolerate and feel comfortable using**", and determine the associated feedrate to get the target chipload.
 
 Example:
 
@@ -243,7 +242,7 @@ $$
 
 * If going 144ipm still _feels_ a little fast, it possible to obtain the same chipload at lower RPM and lower feedrate, e.g. 12.000RPM and 108ipm, at the expense of higher cutting forces \(which or may not be a problem, see power analysis section later below\)
 * Alternatively it is also possible to lower the feedrate by targetting a smaller chipload while ensuring it is still at least at the minimum recommanded of 0.001", and assuming you are using a sharp enough cutter: 
-  * To get a 0.001" effective target chipload, the adjusted target chipload would become 0.002"
+  * To get a 0.001" effective target chipload, the adjusted target chipload would become 0.0015"
   * the feedrate would then be 0.0015 \* 3 \* 16.000 = 72ipm 
 
 {% hint style="info" %}
@@ -252,68 +251,91 @@ Some usecases call for the use a O-flute endmills: this will probably mean reduc
 
 ## Choosing DOC & WOC
 
-**Depth of Cut** \(DOC\) a.k.a. Axial Depth of Cut \(ADOC\) a.k.a. Depth Per Pass, is how deep into the material the endmill will be, along the Z axis. For a given feedrate and RPM, the deeper it is the larger the forces on the endmill.
+**Depth of Cut** \(DOC\) a.k.a. Axial Depth of Cut \(ADOC\) a.k.a. Depth Per Pass, is how deep into the material the endmill will cut, along the Z axis. For a given feedrate and RPM, the deeper it is the larger the forces on the endmill.
 
-Multiple cutting passes at depth of cut d will be required to cut down to a total pocket depth of D:
+Multiple cutting passes at depth of cut _d_ will be required to cut down to a total pocket depth of _D_:
 
 ![](.gitbook/assets/depth_of_cut.png)
 
-DOC is just as important as feeds & speeds to achieve a good cut, yet surprisingly there is much less information about how to determine its value, compared to the abundance of feeds and speeds chart.
+DOC is just as important as feeds & speeds to achieve a good cut, yet surprisingly there is much less information about how to determine its value, compared to the abundance of feeds and speeds charts.
 
 The reason is probably that while there are mathematical recipes to choose feedrate and RPM for a given endmill geometry, the achievable DOC is much more tightly linked to the specific machine you are using, and specifically its rigidity and power.
 
 The Shapeoko is not as rigid nor as powerful as pro CNC machines, so DOC recommandations for these machines need to be dialed back, even when using perfect feeds and speeds.
 
-A good rule of thumb is to _start_ with a DOC that is ****around: 
+There is a strong dependency between DOC and WOC: since cutting forces increase with both DOC and WOC, you cannot cut very deep while using a very large stepover, that would put too much effort on the endmill. So the two choices are:
 
-* **5% to 10%** of the diameter of the endmill for metals e.g. **aluminium**
-* **10% to 50%** of the diameter of the endmill for **softer materials**
+* Large WOC but small DOC
+* Small WOC but high DOC
 
-If it cuts fine, then increase DOC gradually to find the limit for your machine/endmill/material.
+These two situations are illustrated below:
+
+![](.gitbook/assets/toolpaths_regular_vs_hsm.png)
+
+The "_**small WOC, high DOC**_" approach is much preferable, as it spreads the heat and tool wear much more evenly along the length of the endmill. However, it requires specific toolpath strategies \(e.g. to initially clear material down to the required depth, to allow small WOC to be used for the rest of the cut\), this is covered in the [Toolpaths](toolpath-basics.md) section. This is a very popular approach when cutting metals on the Shapeoko, but its benefits apply to other materials too.
+
+The "_**large WOC, small DOC**_" approach only ever uses the tip of the endmill, so that part will wear out quickly while the rest of the endmill length of cut remains unused. But it is still a very common approach for pocketing and profile cuts on the Shapeoko, and it has simplicity for it.
+
+Unlike chiploads that NEED to be in a specific range to get good cuts, the situation is easier for DOC and WOC: you can just start with small, conservative values and then increase them to find the limit for your machine/endmill/material combination.
+
+For the "wide and shallow" cut scenario \(large WOC, small DOC\), I like to start in this ballpark:
+
+For DOC:
+
+* **5% to 10%** of the endmill diameter for metals e.g. **aluminium**
+* **10% to 50%** of the endmill diameter for **softer materials**
+
+For WOC:
+
+* **40% to 100%** of the diameter of the endmill for roughing
+* **5% to 10%** for finishing passes
 
 {% hint style="info" %}
-There are two direct implications of having to limit the DOC to relatively small values:
-
-* cutting deep into the material will require many passes, hence of lot of time.
-* during each cutting pass, only the tip of the endmill is used, so this part will wear out over time, while the rest of the length of cut is never used.
-
-Check out the **adaptive clearing** strategy in the [Toolpaths](toolpath-basics.md) section, for how to address this. With adaptive clearing, depth of cut of several times the endmill diameter are reachable.
+Don't go below 5% DOC, or you may get rubbing just like when chipload is too low
 {% endhint %}
 
-TODO WOC
+For the "narrow and deep" cut scenario \(small WOC, large DOC\), I like to use these guidelines:
 
+For DOC:
 
+* **100% to 300%** of the endmill diameter
 
-A common rule of thumb is to use:
+For WOC:
 
-* **35% to 50%** stepover for roughing using regular toolpath
-* **10% to 35%** stepover for roughing using adaptive clearing toolpath 
-* **5% to 10%** stepover for finishing
+* **10% to 25%** stepover for roughing 
+* **5% to 10%** for finishing passes
+
+{% hint style="info" %}
+If you go for narrow and deep \(and you should!\), given the small WOC values you will definitely need to take chip thinning into account.  Also, check out **adaptive clearing** in the [Toolpaths](toolpath-basics.md) section, that goes hand in hand with high DOC and small WOC.
+{% endhint %}
+
+The figures above provide a ballpark for DOC and WOC, taking into account two specific cases: slotting, and corners. 
 
 ## Slotting
 
 Depending on the stepover, the portion ****of the endmill that will be engaged in the material, a.k.a. the Tool Engagement Angle \(**TEA**\), will be different:
 
-* for a 50% stepover, the TEA will be 90°:
+For a 50% stepover, the TEA will be 90°:
 
 ![](.gitbook/assets/tea_90.png)
 
-* for a smaller stepover, say 25%, the TEA will be reduced to 60°:
+For a smaller stepover, say 25%, the TEA will be reduced \(in this case to 60°\):
 
 ![](.gitbook/assets/tea_60.png)
 
-**Slotting** is a different story: both sides of the endmill are engaged at all times, so the TEA is 180°:
+**Slotting** is a different story: half of the endmill is engaged at all times, so the TEA is 180°:
 
 ![](.gitbook/assets/tea_180.png)
 
-The force on the endmill will be twice as much as when cutting at 90° TEA, so the max achievable chipload/DOC combination for a given machine/endmill/material is lower. The recommanded chipload/DOC values above include some margin to take this effect into account to some extent.
+The force on the endmill will be much higher than when cutting at 90° TEA, so the max achievable chipload/DOC combination for a given machine/endmill/material is lower. The recommanded chipload/DOC values mentioned above include some margin to take this effect into account to some extent.
 
-The other side effect of slotting is that chip evacuation is not as good: the flutes are in the air only 50% of the time, so the chips that form inside the flutes have less time/opportunities to fly away.  Deep slotting is notorious for causing issues when chips cannot be evacuated quickly enough.
+The other side effect of slotting is that chip evacuation is not as good: the flutes are in the air only 50% of the time, so the chips that form inside them have less time/opportunities to fly away.  Deep slotting is notorious for causing issues when chips cannot be evacuated quickly enough.
 
 Bottomline: slotting is hard on the machine, so you may have to:
 
-* limit DOC to a smaller value
+* limit DOC to the low end of the range of values
 * limit feedrate \(chipload...\)
+* optimize chip evacuation by using endmill with a lower number of flutes, and/or a good dust shoe or blast of air 
 
 {% hint style="info" %}
 Or, you can take a different approach and _avoid_ slotting altogether, by using smarter toolpaths. See adaptive clearing and pocketing in the [Toolpaths](toolpath-basics.md#adaptive-clearing-toolpaths) section!
@@ -337,10 +359,10 @@ But _while_ cutting the corner, the TEA momentarily goes up to 180°:
 
 ![](.gitbook/assets/tea_during_corner.png)
 
-before going down to 90° again. So the machine sees a "spike" in the cutting resistance at each corner. Similarly to slotting, the cure is to dial back feedrate and DOC. 
+before going down to 90° again. So the machine sees a "spike" in the cutting resistance at each corner. Just like for slotting, this means that the feedrate and DOC cannot be as high as one would like, since they need to be dialed back a bit to manage corners.   
 
 {% hint style="info" %}
-But that boils down to optimizing the cut parameters used throughout the job specifically for these very short times when the corners are being cut, which is not very efficient. The alternatives include avoiding straight corners in the design if possible \(e.g. round the corners...\) or use **adaptive clearing toolpath** that will take a lot of very shallow bites at the corners instead of a deep one.
+This boils down to optimizing the cut parameters used throughout the job specifically for these very short times when the corners are being cut, which is not very efficient. The alternatives include avoiding straight corners in the design if possible \(e.g. round the corners...\) or use **adaptive clearing toolpath** that will take a lot of very shallow bites at the corners instead of a deep one.
 {% endhint %}
 
 ## Plunge rate
@@ -348,11 +370,11 @@ But that boils down to optimizing the cut parameters used throughout the job spe
 All of the info above only focused on the feeds and speeds for the radial part of the cut, but when the endmill is plunging \(straight down/vertically\), things are quite different:
 
 * \(obviously\) the cutting edges on the circumference of the endmill are not cutting anything anymore, the cutting happens at the tip of the endmill only, like a drillbit.
-* But endmills are really not optimized for drilling, so their ability to plunge efficiently through material is quite limited
+* BUT endmills are really not optimized for drilling, so their ability to plunge efficiently through material is quite limited.
 
 One could compute specific plunge rate and RPM based on the specific geometry of the tip of the endmill, but in practice it's easier to just:
 
-* use the same RPM as for radial cuts. This is a given when using a router where there is no dynamic control on the RPM anyway, so the same value is used throughout the cut. It would not make much sense either on a spindle to accelerate/decelerate the RPM
+* use the same RPM as for radial cuts. This is a given when using a router where there is no dynamic control on the RPM anyway, so the same value is used throughout the cut. 
 * use a plungerate that is experimentally chosen, following the rule of thumb 
   * **10% to 20%** of the feedrate for metals
   * **30% to 40%** of the feedrate for woods 
@@ -362,13 +384,13 @@ One could compute specific plunge rate and RPM based on the specific geometry of
 These numbers are for plunging straight down. If the toolpath uses some ramping at an angle into the material, they can be increased quite a bit.
 {% endhint %}
 
-## Deflection
+## Tool deflection
 
-The previous paragraphs should have highlighted that MANY factors influence the selection of adequate feeds & speeds & DOC settings. But wait, there are more. For example, **tool deflection** needs to be taken into account. Here is a grossly exagerated sketch of an endmill being subject to the cutting force:
+Endmills are not infinitely rigid, they tend to bend \(deflect\) when submitted to the cutting forces, and that  deflection needs to be taken into account in the feeds and speeds. Here is a grossly exagerated sketch of an endmill being subject to the cutting force:
 
 ![](.gitbook/assets/tool_deflection.png)
 
-The amount of deflection depends on the endmill material \(carbide is more rigid than HSS\), diameter \(larger is stiffer\), stickout length, and of course the cutting forces that the endmill is subjected to, that depend on the chipload and DOC and materia being cut.
+The amount of deflection depends on the endmill material \(carbide is more rigid than HSS\), diameter \(larger is stiffer\), stickout length, and of course the cutting forces that the endmill is subjected to, that depend on the chipload, DOC, WOC, and material.
 
 When using conventional milling, the force tends to be parallel to the stock:
 
@@ -383,56 +405,13 @@ Either way, too much deflection is bad:
 * moderate deflection will affect accuracy \(pieces will cut slightly larger or smaller than expected\)
 * excessive deflection will cause tool wear or even tool breakage
 
-So this is yet another parameter to take into account in the feeds and speeds and DOC values, especially when using small diameter endmills.
+So this is yet another parameter to watch out for when selecting feeds and speeds and DOC/WOC values, especially when using small diameter endmills.
 
 {% hint style="info" %}
-Check out the "roughing  and finishing" topic in the[Toolpath basics](toolpath-basics.md) section for ways to mitigate deflection
+Check out the "roughing  and finishing" topic in the  [Toolpaths](toolpath-basics.md#roughing-vs-finishing-toolpaths) section for ways to mitigate deflection
 {% endhint %}
 
-## Wrapping up: suggested process
-
-A proposed workflow to determine a _reasonable starting point_ for feeds and speeds and DOCs on the Shapeoko for a given project that uses a specific **material** and **endmill,** is:
-
-* look-up the **desired minimum chipload** for this material+endmill combination:
-  * see guideline table
-* choose a **radial depth of cut / stepover:**
-  * It is **100%** \(by definition\) when slotting
-  * **35% to 50%** stepover for roughing using a regular toolpath
-  * **10% to 35%** stepover for roughing using an adaptive clearing toolpath 
-  * **5% to 10%** stepover for a finishing toolpath
-* if stepover is less than 50%, **adjust target chipload for chip thinning** 
-* select **target RPM** 
-  * somewhat arbitrarily within your router RPM range:
-    * slower is quieter \(and better for plastics\)
-    * higher is better to reduce cutting forces
-* determine the specific **required feedrate** for this RPM to achieve the adjusted target chipload
-  * Feedrate = adjusted target chipload \* Nb\_Endmill\_Flutes __\*  RPM
-  * if computed feedrate exceeds the Shapeoko limit, choose a lower RPM value and recompute feedrate.
-* determine **plungerate:**
-  * **10 to 50%** of feedrate depending on material hardness
-* determine **depth of cut:**
-  * **5% to 10%** of the diameter of the endmill for regular toolpath in metals e.g. **aluminium**
-  * **10% to 50%** of the diameter of the endmill for regular toolpath in **softer materials**
-  * Basically **up to the full length of cut** of the endmill for adaptive toolpaths or finishing passes, but more likely **200%** of the endmill diameter
-* if possible, check **deflection** to make sure there is no risk to break the tool
-
-Then **experiment**: run a cut with those parameters, and incrementally increase chipload \(i.e. feedrate, if keeping RPM constant\) and/or DOC, until chatter or poor finish quality occurs, then dial back feedrate and DOC by 10% and you should be in the sweet spot!
-
-## Telltale signs of wrong F&S
-
-The most common signs of inadequate feeds and speeds are:
-
-* sound, and specifically **chatter**: when feeds and speeds are not right for a given material/endmill/DOC, the tool tends to vibrate, and this vibration can get worse if there is resonance with another source of periodic variation elsewhere in the system \(most often: the router and its RPM\). This results in an ugly sound, a poor finish with marks/dents/ripples on the surface, and a reduced tool life.
-* **finish quality**: even without chatter, a poor surface finish can indicate that the final cutting pass was too agressive \(high chipload\)
-* **melted material**: especially in plastics and soft metals like aluminium, if the feedrate is too low for the selected RPM, the friction will cause the material to melt rather than shear, the tool flutes will start filling with melting material, and this usually ends up with tool breakage.
-* **endmill temperature**: the endmill just not be more than slightly warm at the end of a cut: if it gets hot to the touch, the feeds and speeds are likely not correct. In extreme cases, the endmill color itself may change to a dark shade.
-* making **dust**, instead of clearly formed chips \(MDF is an exception, you just cannot get chips anyway with this material\)
-
-## Productivity-oriented optimization
-
-{% hint style="warning" %}
- If you "just" want a good cut, everything described previously should be enough to determine a good set of cutting parameters, so you can then ignore the following, it's complex enough as it is!
-{% endhint %}
+## MRR, Power, Torque, Force
 
 If you need to optimize **cutting time** for a given piece,  you will also need to take a look at the **material removal rate** \(MRR\):
 
@@ -440,15 +419,15 @@ $$
 MRR = WOC * DOC * Feedrate
 $$
 
-This yields a value in cubic inches \(or cubic millimeters\) of material removed by minute, and therefore illustrates how fast you can complete a job. There is always a compromise to be found between going faster but with a lower tool engagement \(low DOC and/or low WOC\), or going slower but with a higher tool engagement \(higher DOC or high WOC\), while staying within the bounds of what the machine can do. The interesting thing about the MRR figure is that it allows to **compare** those different combinations, and figure out which one is the most efficient \(time-wise\).
+This yields a value in cubic inches \(or cubic millimeters\) of material removed by minute, and therefore relates to how fast you can complete a job. There is always a compromise to be found between going faster but with a lower tool engagement \(low DOC and/or low WOC\), or going slower but with a higher tool engagement \(higher DOC or high WOC\), while staying within the bounds of what the machine can do. The interesting thing about the MRR figure is that it allows to **compare** different combinations, and figure out which one is the most efficient \(time-wise\).
 
 Now if you want to figure out how close you are to the absolute/physical **limits** of the Shapeoko, \(yet\) another formula comes in the picture, to characterize the required power at the endmill level to achieve this MRR:
 
 $$
-Cutter\ power\ (in\ HP\ unit)= \frac{MRR}{Material\ K\ factor}
+Cutting \ power\ (in\ HP\ unit)= \frac{MRR}{K\_factor} = MRR * Unit\ Power
 $$
 
-the "K" factor is a constant that depends on the material's hardness, and corresponds to how many cubic inches per minute \(or cubic millimeters per minute\) of material can be removed using 1 horsepower.
+the "K" factor \(or its inverse value the Unit Power\) is a constant that depends on the material's hardness, and corresponds to how many cubic inches per minute \(or cubic millimeters per minute\) of material can be removed using 1 horsepower.
 
 For example, 
 
@@ -456,11 +435,13 @@ For example,
 * it's about 10 in3/min for hard woods ahd hard plastics
 * and up to 30 in3/min for soft woods, MDF, ...
 
-Once you get this power value, you can compare it to your router's maximum power, which is rated at a max of 1.25HP \(932Watts\), but that is power input, and the power efficiency of a router is not very good \(~50%\) so the max actual power at the cutter is more likely around 450W.
+Once you get this power value, you can compare it to your router's maximum output power. The Makita and DeWalt routers are rated at a max of 1.25HP \(932Watts\), but that is _input_ power, and the power efficiency of a router is not very good \(~50%\), so the max actual power at the cutter is more likely around 450W.
 
-And finally, even if the cutting power is within the range of your router, there is still the matter of the **cutting force** that the Shapeoko has to put on the X/Y/Z mechanical axis to move the endmill through the material: 
+And finally, even if the cutting power is within the range of your router, there is still the matter of the **cutting force** that the Shapeoko has to put on the endmill to move it through the material: 
 
-&lt;TODO sketch force around a circular movement&gt;
+![](.gitbook/assets/torque.png)
+
+In metric units, the torque is the force \(in Newton\) times the distance  in meters \(in this case the radius of the endmill\), and power in Watts is torque times the angular velocity w, in radians per second. Since the cutter does RPM revolutions per minute and each of them is 2\*pi radians:
 
 $$
 Cutting\ torque (in\ N.m)= \frac{Cutter Power (Watts) }{2\pi *RPM/\ 60}
@@ -478,13 +459,49 @@ $$
 Cutting\ force= \frac{Cutting\ torque}{endmill\ radius}
 $$
 
-which can be compared with the Shapeoko's limit estimated around **20 lbf** \(9Kg\)
+So all of this can be derived from the feedrate, WOC, DOC, endmill size, and material. And this cutting force can then be compared with the Shapeoko's limit estimated \(experimentally\) to be around **20 lbf** \(9Kg\)
+
+## Wrapping up: suggested process
+
+A proposed workflow to determine a _reasonable starting point_ for feeds and speeds and DOCs on the Shapeoko for a given project that uses a specific **material** and **endmill,** is:
+
+* look-up the **recommanded chipload** **range** for this material+endmill combination:
+  * see guideline table. Aim for the low end of the range, to reduce cutting force.
+* determine **depth of cut** and **width of cut** based on the machining style \(large WOC and small DOC, or large DOC and small WOC\)
+* choose a **radial depth of cut / stepover** based on the associated recommandations
+* if stepover is less than 50%, **adjust target chipload for chip thinning** 
+* select **target RPM** as the maximum value you can tolerate and feel comfortable using
+* determine the specific **required feedrate** for this RPM to achieve the adjusted target chipload
+  * if computed feedrate exceeds the Shapeoko limit, choose a lower RPM value and recompute feedrate.
+* determine **plungerate** depending on the material
+* check **deflection** value to make sure there is no risk to break the tool, and to optimize dimensional accuracy and/or finish quality
+* check that cutting **power** is within the machine's limits
+* check that cutting **force** is within the machine's limits
+* use **MRR** to compare the efficiency of various cutting parameters
+
+Then experiment**.** The realtime **feedrate override** available in most G-code senders is a great way to tune the chipload value and find the sweet spot for a particular job.
 
 ## Calculators
 
-This section should have highlighted that MANY factors influence the selection of adequate feeds & speeds & DOC settings. 
+This section should have highlighted that MANY factors influence the selection of adequate feeds & speeds & DOC & WOC settings. 
 
-So at some point, it becomes impossible to produce feeds & speeds charts for every possible combination of factors, and also very difficult to compute everything manually. A number of calculators have been implemented to address this, ranging from free excel spreadsheets that basically implement the equations mentioned above, to full-fledged commercial software that embbed material/tool databases, the most famous one probably being **G-Wizard.**
+While predefined recommandations for common endmills and materials are very useful, at some point it becomes impossible to produce feeds & speeds charts for every possible combination of factors, and also very tedious to compute everything manually. A number of calculators have been implemented to address this, ranging from free excel spreadsheets that basically implement the equations mentioned above, to full-fledged commercial software that embed material/tool databases, the most famous one probably being **G-Wizard.**
 
-Whether or not you _need_ a feeds & speeds calculator is debatable: most people use a limited number of combinations of material/endmill sizes anyway, in which case relying on a few good feeds & speeds & DOC recipes for your machine is enough. The real value of calculators is in **optimizing** the feeds & speeds to achieve a better material removal rate or finish quality \(by keeping deflection under control\) or tool life, etc...if this is your thing.
+Whether or not you _need_ a feeds & speeds calculator is debatable: most people use a limited number of combinations of material/endmill sizes anyway, in which case relying on a few good recipes for your machine is enough. The real value of calculators is in **optimizing** the feeds & speeds for a particular situation, and see the effects of any parameter change on the rest of them.
+
+A pretty neat feeds and speeds worksheet has been put together by @gmack on the Shapeoko forum \(which he derived from an original worksheet from NYCCNC website\) 
+
+![](.gitbook/assets/gmack_worksheet.png)
+
+&lt;TODO explain&gt;
+
+## Telltale signs of wrong F&S
+
+The most common signs of inadequate feeds and speeds are:
+
+* sound, and specifically **chatter**: when feeds and speeds are not right for a given material/endmill/DOC, the tool tends to vibrate, and this vibration can get worse if there is resonance with another source of periodic variation elsewhere in the system \(most often: the router and its RPM\). This results in an ugly sound, a poor finish with marks/dents/ripples on the surface, and a reduced tool life.
+* **finish quality**: even without chatter, a poor surface finish can indicate that the final cutting pass was too agressive \(high chipload\)
+* **melted material**: especially in plastics and soft metals like aluminium, if the feedrate is too low for the selected RPM, the friction will cause the material to melt rather than shear, the tool flutes will start filling with melting material, and this usually ends up with tool breakage.
+* **endmill temperature**: the endmill just not be more than slightly warm at the end of a cut: if it gets hot to the touch, the feeds and speeds are likely not correct. In extreme cases, the endmill color itself may change to a dark shade.
+* making **dust**, instead of clearly formed chips \(MDF is an exception, you just cannot get chips anyway with this material\)
 
