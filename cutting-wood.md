@@ -20,7 +20,7 @@ So I first created a roughing toolpath using a large \(6mm\) endmill, to do most
 
 * an **upcut** endmill is used, to have good chip evacuation and since there will be a finishing pass afterwards anyway to clean the rough top edges of the pockets
 * Using the **target chipload guideline** \(see [Feeds & speeds](feeds-and-speeds-basics.md#shapeoko-chiploads-guideline)\), and considering bamboo is somewhat easier to cut than "hard wood", I picked a target chipload value of 0.002"/ 0.055mm, just a bit higher than the base value for hard wood.
-* While regular pocketing toolpaths would have worked fine, I chose to use an **adaptive clearing** toolpath, and with a stepover/radial width of cut/optimal load of 0.00315" / 0.8mm \(13% of endmill diameter, a conservative value for wood\)
+* While regular pocketing toolpaths would have worked fine, I chose to use an **adaptive clearing** toolpath, and with a stepover/radial width of cut/optimal load of 0.00315" / 0.8mm \(13% of endmill diameter, a very conservative value for wood\)
 * After taking **chip thinning** into account for a 13% stepover, the corrected target chipload is 0.0327" / 0.083mm
 
 $$

@@ -26,7 +26,9 @@ Probably the most popular upgrade is the replacing the stock X/Z carriage with a
 One noticeable difference between a ball screw driven X/Z axis and a belt & springs one, is that when power is removed from the stepper the router/spindle will stay at its current Z \(whereas with it drops naturally with belt & springs\). This is usually a good thing \(no unintended drop\) but sometimes a minor nuisance \(Z cannot easily be moved manually while machine is turned off\) 
 {% endhint %}
 
-&lt;TODO photo of the HDZ&gt;
+Here's an example of the Heavy Duty Z upgrade:
+
+![](.gitbook/assets/hdz.png)
 
 {% hint style="warning" %}
 Since alternative X/Z solutions have different Z-travel capacity than the stock X/Z carriage, you will need to adjust a few parameters in GRBL accordingly. And if you are using Carbide Motion as a G-code sender, you _may_ need to migrate to another sender that does not make any hardcoded assumptions about the machine geometry
@@ -104,6 +106,4 @@ It seems to me that the mininum one should do to use a laser module safely is:
 * **Stay by the machine** while it is running. Seriously, don't burn down your house for a laser cut gone wrong.
 
 On top of that, you should also have proper ventilation in the room, and possibly a fume extraction system,  which will result in much better laser cuts anyway !
-
-&lt;TODO sketch laser modulation from PWM, air flow, protections layers&gt;
 

@@ -376,7 +376,7 @@ One could compute specific plunge rate and RPM based on the specific geometry of
 
 * use the same RPM as for radial cuts. This is a given when using a router where there is no dynamic control on the RPM anyway, so the same value is used throughout the cut. 
 * use a plungerate that is experimentally chosen, following the rule of thumb 
-  * **10% to 20%** of the feedrate for metals
+  * **10% to 30%** of the feedrate for metals
   * **30% to 40%** of the feedrate for woods 
   * **40% to 50%** of the feedrate for plastics \(plunging fast is required to avoid melting\)
 
@@ -493,15 +493,26 @@ A pretty neat feeds and speeds worksheet has been put together by @gmack on the 
 
 ![](.gitbook/assets/gmack_worksheet.png)
 
-&lt;TODO explain&gt;
+1. Fill-in the specs of your router or spindle.
+2. Fill-in the specs of the endmill, and your target chipload value \(chip thinning will be taken into account automatically from WOC value\)
+3. Look-up the K-factor for the material being cut \(there's a list in a separate tab of the worksheet\)
+4. Select target RPM value \(or alternatively SFM, then RPM will be derived from it\). The associated required feedrate is automatically computed
+5. Select WOC and DOC \(depending on your machining style\) 
+6. Check status for deflection, cutting force, and power in the lower part of the worksheet.
+
+Then play with the input values to compare various cutting scenarios while staying within the machine's hard limits \(max RPM, max feedrate, max power, and max cutting force\)
+
+{% hint style="info" %}
+Once you determine good feeds and speeds and confirm that it is cutting correctly, it is useful to capture a snapshot of the worksheet for that particular usecase for future reference \(just duplicate the tab in the worksheet\)
+{% endhint %}
 
 ## Telltale signs of wrong F&S
 
 The most common signs of inadequate feeds and speeds are:
 
-* sound, and specifically **chatter**: when feeds and speeds are not right for a given material/endmill/DOC, the tool tends to vibrate, and this vibration can get worse if there is resonance with another source of periodic variation elsewhere in the system \(most often: the router and its RPM\). This results in an ugly sound, a poor finish with marks/dents/ripples on the surface, and a reduced tool life.
-* **finish quality**: even without chatter, a poor surface finish can indicate that the final cutting pass was too agressive \(high chipload\)
-* **melted material**: especially in plastics and soft metals like aluminium, if the feedrate is too low for the selected RPM, the friction will cause the material to melt rather than shear, the tool flutes will start filling with melting material, and this usually ends up with tool breakage.
-* **endmill temperature**: the endmill just not be more than slightly warm at the end of a cut: if it gets hot to the touch, the feeds and speeds are likely not correct. In extreme cases, the endmill color itself may change to a dark shade.
-* making **dust**, instead of clearly formed chips \(MDF is an exception, you just cannot get chips anyway with this material\)
+* sound, and specifically **chatter**: when feeds and speeds are not right for a given material/endmill/DOC/WOC, the tool tends to vibrate, and this vibration can get worse if there is resonance with another source of periodic variation elsewhere in the system \(most often: the router and its RPM\). This results in an ugly sound, a poor finish with marks/dents/ripples on the surface, and a reduced tool life. 
+* **finish quality**: even without chatter, a poor surface finish can indicate that the final cutting pass was too agressive \(too much chipload or too much deflection\). Increasing RPMs may help, but the best approach is to use a finish pass with very low WOC.
+* **melted material**: especially in plastics and soft metals like aluminium, if the feedrate is too low for the selected RPM, the friction will cause the material to melt rather than shear, the tool flutes will start filling with melting material, and this usually ends up with tool breakage. You will need to feed faster, and/or use an endmill with a lower flute count.
+* **endmill temperature**: the endmill should not be more than slightly warm at the end of a cut: if it gets hot to the touch \(careful!\), the feeds and speeds are likely incorrect \(too low or too high chipload\), or the tool is dull and is rubbing rather than cutting. In extreme cases, the endmill color itself may change to a dark shade.
+* making **dust**, instead of clearly formed chips is an indication that chipload is probably too low \(MDF is an exception, you just cannot get chips anyway with this material\)
 
