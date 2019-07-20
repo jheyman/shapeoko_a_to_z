@@ -1,6 +1,6 @@
 # Squaring, surfacing, tramming
 
-## Squaring the machine
+## Squaring threcoe machine
 
 Squaring the axis of the machine is covered in the installation instructions, this section just adds a few notes on how to check how square the machine actually is, and a few tips.
 
@@ -42,7 +42,7 @@ Here's an MDF wasteboard surfacing operation in progress:
 ![](.gitbook/assets/resurfacing.png)
 
 {% hint style="info" %}
-For MDF wasteboards, it is recommanded to seal the surface after surfacing with a few coats of whatever you have on hand \(shellac, polyurethane, varnish, lacquer...\), this will reduce the likelyhood of the MDF absorbing a lot of humidity, as well as make the surface harder/less likely to tear off, especially when using the tape & glue workholding method.
+For MDF wasteboards, it is recommended to seal the surface after surfacing with a few coats of whatever you have on hand \(shellac, polyurethane, varnish, lacquer...\), this will reduce the likelyhood of the MDF absorbing a lot of humidity, as well as make the surface harder/less likely to tear off, especially when using the tape & glue workholding method.
 {% endhint %}
 
 While surfacing ensures that the surface of the wasteboard is true to the X/Y axis of the rails, it does not do anything about any potential tilt of the router itself around the X or Y axis: hence the need for tramming the router.

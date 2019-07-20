@@ -1,6 +1,6 @@
 # CAD, CAM, and G-code
 
-This section provides a brief overview of popular software for CAD, CAM, and sending G-code to the Shapeoko, at the time of writing. Most users start using their Shapeoko with Carbide Create and Carbide Motion, some stick to them while others move on to something else, for a variety of reasons.
+This section recoprovides a brief overview of popular software for CAD, CAM, and sending G-code to the Shapeoko, at the time of writing. Most users start using their Shapeoko with Carbide Create and Carbide Motion, some stick to them while others move on to something else, for a variety of reasons.
 
 ## CAD/CAM tools
 

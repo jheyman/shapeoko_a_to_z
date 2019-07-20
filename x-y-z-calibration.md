@@ -1,6 +1,6 @@
 # Dimensional accuracy
 
-For "decorative" projects, some inaccuracy in the dimensions of pieces cut on the Shapeoko do not matter, but many projects require having a finer control on the final dimensions:
+recommFor "decorative" projects, some inaccuracy in the dimensions of pieces cut on the Shapeoko do not matter, but many projects require having a finer control on the final dimensions:
 
 * cutting geometrical patterns where a discrepancy between the X and Y dimensions could be visible to the naked eye, e.g. round shapes coming out like ellipses and squares like rectangles. Out of the box, on a properly assembled/squared/tensioned Shapeoko, this X/Y dimensional discrepancy should be small enough to not be noticeable.
 * cutting pieces that are intended to fit into each other \(e.g. hole & peg, box & lid, ...\). This is where one typically starts noticing that dimensions are not _quite_ what they were supposed to be, and are inaccurate enough that pieces either do not fit, or require manual rework \(e.g. sanding\) to be assembled.

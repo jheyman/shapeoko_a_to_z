@@ -1,6 +1,6 @@
 # Usecases: cutting wood
 
-This usecase is intended to illustrate how the information from the [Feeds & speeds](feeds-and-speeds-basics.md) section can be used to determine adequate cutting parameters, for a project that uses wood as the stock material. Wood is quite forgiving, in the sense that the range of acceptable feeds and speeds is much larger than with e.g. plastics or metal. So this is by no means a recommandation about specific values to use for wood, but rather an example about how to make informed decisions about the feeds and speeds and toolpaths, which could be useful once you start cutting more difficult materials \(plastics & metal\) where feeds and speeds need to be just right.
+This usecase is intended to illustrate how the information from the [Feeds & speeds](feeds-and-speeds-basics.md) section can be used to determine adequate cutting parameters, for a project that uses wood as the stock material. Wood is quite forgiving, in the sense that the range of acceptable feeds and speeds is much larger than with e.g. plastics or metal. So this is by no means a recommendation about specific values to use for wood, but rather an example about how to make informed decisions about the feeds and speeds and toolpaths, which could be useful once you start cutting more difficult materials \(plastics & metal\) where feeds and speeds need to be just right.
 
 ## Bamboo tool holder
 

@@ -1,6 +1,6 @@
 # Introduction
 
-Version 1.0.0 / July 2019
+July 2019
 
 The intent of this guide is to help new users of the Shapeoko learn enough about both the big picture and the underlying technical details, to feel at ease with the machine, the workflow, and the CNC lingo in general.
 
@@ -37,7 +37,7 @@ There are many ways to learn and use the Shapeoko, but the typical experience fo
 * Realize that:
   * CNC is messy, and now is a good time to look into dust collection and possibly an enclosure, this is covered in the [Shapeoko setup](dust-collection.md) section.
   * The geometry of cut pieces or finish quality is not quite right, and that it may be necessary to look into [Squaring, surfacing, tramming](squaring.md) the machine, and possibly [Dimensional accuracy](x-y-z-calibration.md).
-* Get confused about required feeds and speeds for that particular case you want to use but for which no recommandation exists: hopefully re-reading the [Feeds & speeds](feeds-and-speeds-basics.md) section should help.
+* Get confused about required feeds and speeds for that particular case you want to use but for which no recommendation exists: hopefully re-reading the [Feeds & speeds](feeds-and-speeds-basics.md) section should help.
 * Try cutting plastics or metal \(see [Usecases: cutting plastics](cutting-plastics.md) , [Usecases: cutting metal](cutting-metal.md)\)
 * At some point, witness the machine misbehave, blame the hardware or the software, start investigating, and \(often\) end up concluding that you messed up somewhere in the workflow. The [Troubleshooting & maintenance](maintenance.md) section has a few pointers, after that the user community and Carbide3D's support are your best bet.
 * Somewhere along this path, outgrow Carbide Create and Carbide Motion and consider moving to more advanced [CAD, CAM, G-code](cad-cam-tools.md) tools.

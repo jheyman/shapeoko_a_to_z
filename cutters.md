@@ -119,7 +119,7 @@ The main constraint with router collets is that the range of available sizes is 
 
 ![](.gitbook/assets/er_collets.png)
 
-Using a **collet adapter/reducer** is generally not recommanded as it tends to increase **runout**, but for most jobs it will still work fine.
+Using a **collet adapter/reducer** is generally not recommended as it tends to increase **runout**, but for most jobs it will still work fine.
 
 Below is a short overview of what runout is, but overall this is not something new users have to worry about.
 
@@ -161,16 +161,16 @@ A common question when buying the Shapeoko is "which endmills and collets should
 * A surfacing bit is useful to reduce the time for surfacing your wasteboard, but honestly not required in the starter set, a 1/4" endmill will do fine.
 * the other types are very specific, so unless you know you will need them for sure, they can wait. 
 
-So my recommandation for a starter pack would be something like:
+So my recommendation for a **starter pack** would be something like:
 
-* 2 x 1/4" square endmills \(2 or 3 flutes\) to complement the one that comes with the machine
+* 2 x 1/4" square endmills \(2 or 3 flutes\) to complement the one that ships with the machine
 * 1 x 1/8" collet for your router \(or at least a collet adapter to fit 1/8" in the 1/4" collet\)
 * 2 x 1/8" square endmills \(2 flutes\)
 * 1 x 60° V-bit 
 * 1 x 90° V-bit
-* \(optionnally for 3D\) 2 x 1/4" ballnose endmills
-* \(optionnally for Plastics\) 1 x O-flute 1/4" square endmill + 1 x O-flute 1/8" square endmill
-* \(optionnally for Aluminium\) a set of ZrN-coated 1/4" and 1/8" endmills
+* \(optionnally for 3D work\) 2 x 1/4" ballnose endmills
+* \(optionnally for plastics\) 1 x O-flute 1/4" square endmill + 1 x O-flute 1/8" square endmill
+* \(optionnally for aluminium\) a set of ZrN-coated 1/4" and 1/8" endmills
 
 
 
