@@ -149,16 +149,16 @@ Refer to the runout section in [Dimensional accuracy](x-y-z-calibration.md#manag
 
 A common question when buying the Shapeoko is "which endmills and collets should I get?" 
 
-* The answer of course is "it depends" \(on the nature of your projects\)
-* The Shapeoko ships with a 1/4" square endmill \(\#201 from Carbide3D store\), and the routers ships with a 1/4" collet: this is enough to get started and make a lot of beginner projects actually.
-* Getting a couple of spare 1/4" square endmills is a good idea: sooner or later, the original \#201 will wear out \(or chip, or even break in case of a really big mistake\)
-* The usual next step is to realize that 1/4" is too large to cut small features: getting a couple of 1/8" square endmills will not go to waste anyway.
+* the answer of course is "it depends" \(on the nature of your projects\)
+* the Shapeoko ships with a 1/4" square endmill \(\#201 from Carbide3D store\), and the routers ships with a 1/4" collet: this is enough to get started and make a lot of beginner projects actually.
+* getting a couple of spare 1/4" square endmills is a good idea: sooner or later, the original \#201 will wear out \(or chip, or even break in case of a really big mistake\)
+* the usual next step is to realize that 1/4" is too large to cut small features: getting a couple of 1/8" square endmills will not go to waste anyway.
   * this comes with the need to get a 1/8" collet, or at least a collet adapter. 
-* If you intend to use 3D toolpaths and curvy surfaces, get a ballnose endmill \(1/4" or 1/8" or smaller depending on the size/precision of your target projects\)
-* Get one V-bit: V-carving is quite easy and satisfying, you will probably want to try it, and it's a very common way to engrave text. They come in different shapes \(angles\), the most common ones are 60 degrees and 90 degrees. Make sure you invest in a good quality V-bit, it makes a big difference \(while it is easier to get away with using cheap square endmills\) 
-* If you intend to cut mostly plastics, do get an O-flute square endmill.
-* If you intend to cut mostly aluminium, ZrN-coated endmills will help.
-* A surfacing bit is useful to reduce the time for surfacing your wasteboard, but honestly not required in the starter set, a 1/4" endmill will do fine.
+* if you intend to use 3D toolpaths and curvy surfaces, get a ballnose endmill \(1/4" or 1/8" or smaller depending on the size/precision of your target projects\)
+* get one V-bit: V-carving is quite easy and satisfying, you will probably want to try it, and it's a very common way to engrave text. They come in different shapes \(angles\), the most common ones are 60 degrees and 90 degrees. Make sure you invest in a good quality V-bit, it makes a big difference \(while it is easier to get away with using cheap square endmills\) 
+* if you intend to cut mostly plastics, do get an O-flute square endmill.
+* if you intend to cut mostly aluminium, ZrN-coated endmills will help.
+* a surfacing bit is useful to reduce the time for surfacing your wasteboard, but honestly not required in the starter set, a 1/4" endmill will do fine.
 * the other types are very specific, so unless you know you will need them for sure, they can wait. 
 
 So my recommendation for a **starter pack** would be something like:

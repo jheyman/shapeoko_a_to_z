@@ -16,5 +16,5 @@
 * [Usecases: cutting plastics](cutting-plastics.md)
 * [Usecases: cutting metal](cutting-metal.md)
 * [Troubleshooting & maintenance](maintenance.md)
-* [Upgrades](upgrading-the-machine.md)
+* [HW upgrades](upgrading-the-machine.md)
 

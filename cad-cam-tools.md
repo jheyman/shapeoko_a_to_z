@@ -1,6 +1,6 @@
 # CAD, CAM, and G-code
 
-This section recoprovides a brief overview of popular software for CAD, CAM, and sending G-code to the Shapeoko, at the time of writing. Most users start using their Shapeoko with Carbide Create and Carbide Motion, some stick to them while others move on to something else, for a variety of reasons.
+This section provides a brief overview of popular software for CAD, CAM, and sending G-code to the Shapeoko, at the time of writing. Most users start using their Shapeoko with Carbide Create and Carbide Motion, some stick to them while others move on to something else, for a variety of reasons.
 
 ## CAD/CAM tools
 
@@ -72,14 +72,14 @@ M30
 Let's break this down:
 
 * the **%** line just means "start of program". Well it actually means "Tape start", from the days where CNCs used tape readers. Anyway, this sign is optional, you will find some CAM tools add it, others don't.
-* Everything between parenthesis is a **comment**, and is ignored by GRBL. This is just there for readability of the G-code file.
+* everything between parenthesis is a **comment**, and is ignored by GRBL. This is just there for readability of the G-code file.
 * **G21** is the command to set **units** to mm \(G20 being the command to set units to inches\)
 * **G90** is the command to go to **absolute positioning** mode, i.e. all subsequent move commands will interpret X/Y/Z values as coordinates relative to the ZERO point currently defined. By contrast, G91 would activate relative positioning mode, and the X/Y/Z instructions would be interpreted as offsets from the current position.
 * **G0** is the **Rapid Move** command, it takes X and/or Y and/or Z and/or Feedrate values as parameters, and is intended to reposition the tool to a different location while not cutting anything on the way.
 * **M6 T112** corresponds to a **Tool Change** command, requesting tool number 112 in this example. On a Shapeoko, since there is no automatic tool changer, this is ignored by the machine \(but used by Carbide Motion to trig a user prompt\) 
 * **M3 S10000** instructs the controller to turn the **Spingle on**, at 10.000RPM in this example.
 * **G1** is the **Linear move** command, similar to G0 but intended to be used for actual cutting moves, that typically happen slower than the G0 rapid moves. The feedrate for these moves can be specified on the line, that's the **Fxxx**" part an the xxx is the feedrate value in units \(inch or mm\) per minute.
-* Standalone coordinates like **Y0.000, X0.000, Y150.000** are in fact implicit/short versions of G1 move commands: as long as the movement mode does not need to be changed, the latest G commands applies and in this example the "G1" can be omitted from these lines.
+* standalone coordinates like **Y0.000, X0.000, Y150.000** are in fact implicit/short versions of G1 move commands: as long as the movement mode does not need to be changed, the latest G commands applies and in this example the "G1" can be omitted from these lines.
 * **M5** is used to turn the **Spindle off** 
 * **M30** means "End of program" in GRBL.
 
@@ -105,24 +105,24 @@ Again, most users will initially use **Carbide Motion** to send G-code to the Sh
 
 But here are a few reasons why other senders can be considered too:
 
-* **Live toolpath simulation**. It is quite convenient to be able to visualize the toolpaths contained in the G-code file that was loaded, if only to double-check that it looks right before running it, and then to monitor the cut and be able see what move is coming next in the toolpath.
+* **live toolpath simulation**. It is quite convenient to be able to visualize the toolpaths contained in the G-code file that was loaded, if only to double-check that it looks right before running it, and then to monitor the cut and be able see what move is coming next in the toolpath.
 * **G-code Macros**. Small snippets of G-code with associated buttons/shortcuts in the UI can be very useful to streamline the workflow. It can be as simple as just going to X0/Y0, or be a complex custom automated probing routine.
-* **Machine limits customization**. While Carbide Motion is setup for a stock Shapeoko, and while it does provide access to modify the various GRBL parameters, some aspects are hardcoded \(e.g. the probe dimensions, that match Carbide3D's probe, or the Z limits that match a stock Z-axis\). If you start modding your machine, you _may_ come to a point where you need more customization than Carbide Motion allows.
+* **machine limits customization**. While Carbide Motion is setup for a stock Shapeoko, and while it does provide access to modify the various GRBL parameters, some aspects are hardcoded \(e.g. the probe dimensions, that match Carbide3D's probe, or the Z limits that match a stock Z-axis\). If you start modding your machine, you _may_ come to a point where you need more customization than Carbide Motion allows.
 
 There are many alternative G-code senders in various states of maturity/activity, I will just focus on the two that I have used, and seem to be most popular on the Shapeoko forum:
 
 **Universal G-code Sender** is a cross-platform desktop application based on Java \(which in other words means you will be able to use it on any operating system\). Its UI looks a bit dated but it is simple and efficient. Here's a few highlights of why I like it:
 
-* The G-code preview pane is particularly helpful: not only does it display the toolpaths in the currently loaded file with the associated max dimensions \(I check those every single time I load a file, as a double check\), it also shows where the tool is in realtime \(I like this feature when I need to check how many more depth passes are left until a pocket is finished, or where the tool will go next\):
+* the G-code preview pane is particularly helpful: not only does it display the toolpaths in the currently loaded file with the associated max dimensions \(I check those every single time I load a file, as a double check\), it also shows where the tool is in realtime \(I like this feature when I need to check how many more depth passes are left until a pocket is finished, or where the tool will go next\):
 
 ![](.gitbook/assets/cadcam_ugs.png)
 
-* It has a very simple editor for GRBL parameters: just type in the value, hit save, and the new parameter is stored in the controller:
+* it has a very simple editor for GRBL parameters: just type in the value, hit save, and the new parameter is stored in the controller:
 
 ![](.gitbook/assets/ugs_grbl_settings_menu.png)
 
-* It has configurable keyboard shortcuts for most of the actions, which makes it convenient to use a custom keypad \(see [Shapeoko setup](dust-collection.md#control-pad)\). Finally, I use the ability to define Macros, for simple but useful things like "goto X0Y0"
-* It supports G-code filters, which can turn out to be convenient to ignore e.g. generated tool change commands. 
+* it has configurable keyboard shortcuts for most of the actions, which makes it convenient to use a custom keypad \(see [Shapeoko setup](dust-collection.md#control-pad)\). Finally, I use the ability to define Macros, for simple but useful things like "goto X0Y0"
+* it supports G-code filters, which can turn out to be convenient to ignore e.g. generated tool change commands. 
 
 **CNCjs** is another popular sender, it has all the features of UGS and more, an arguably better-looking UI, and powerful macro capabilities. It comes either in a standalone desktop application:
 

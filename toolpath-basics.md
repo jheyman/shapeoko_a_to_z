@@ -43,8 +43,8 @@ On the following snapshot, a few circles of the same diameter as the endmill wer
 
 ![](.gitbook/assets/toolpaths_stepover_and_corners.png)
 
-* The **stepover \(**a.k.a. ****width of cut a.k.a. radial width of cut\) ****parameter of the toolpath controls how close to each other successive loops of the toolpaths are, in this case the stepover was chosen to be 50% of the endmill diameter for simplicity. Check out the [Feeds & speeds](feeds-and-speeds-basics.md) section for recommended stepover values, and how this affects chip thinning and ultimately the optimal feeds and speeds.
-* In **corners** two things happen:
+* the **stepover \(**a.k.a. ****width of cut a.k.a. radial width of cut\) ****parameter of the toolpath controls how close to each other successive loops of the toolpaths are, in this case the stepover was chosen to be 50% of the endmill diameter for simplicity. Check out the [Feeds & speeds](feeds-and-speeds-basics.md) section for recommended stepover values, and how this affects chip thinning and ultimately the optimal feeds and speeds.
+* in **corners** two things happen:
   * the cutter engagement temporarily increases \(see tool engagement in the [Feeds & speeds](feeds-and-speeds-basics.md#corners) section\). Nothing to be concerned about in many cases, but this limits the feeds and speeds to being more conservative than they could be. This is where advanced toolpaths help, e.g. adaptive clearing, more on this later.
   * obviously, the round endmill cannot reach all the way into the corners, so some material is left and all corners end up rounded to the diameter of the endmill. One way to mitigate this is to use a smaller endmill, but cutting a large pocket using a very small endmill would take forever, so a better alternative is first cut the pocket normally with a large endmill, then run a second toolpath will a smaller endmill, that will only work locally in the corners. In advanced CAM tools, this is easy using the "rest machining" option described later below, where the CAM is smart enough to figure out how much material is left and where and to produce a second toolpath with a smaller tool that will only cut there. At the time of writing Carbide Create does not support rest machining, but you could fake it by manually creating additional geometry. In the example below, a 4.5x4.5mm square was added in one corner, with an associated pocket toolpath using a 1/16" endmill. The corner will still not be perfectly square, but its radius will be 4 times smaller, so it will look much closer to square.
 
@@ -84,15 +84,15 @@ In Carbide Create, you could emulate this by creating two toolpaths:
 
 Contour \(a.k.a. Profile\) toolpaths just follow the...contour of a shape, with the option to have the endmill positioned either on the outside or on the inside of the shape, or right on it:
 
-* **Outside contours** are usually associated to cutting the shape out of the stock material: 
+* **outside contours** are usually associated to cutting the shape out of the stock material: 
 
 ![](.gitbook/assets/toolpaths_contour_outside.png)
 
-* **Inside contours** are usually associated to creating a &lt;shape&gt;d-hole in a piece:
+* **inside contours** are usually associated to creating a &lt;shape&gt;d-hole in a piece:
 
 ![](.gitbook/assets/toolpaths_contour_inside.png)
 
-* **No-offset contours** can be used for example for engraving the shape on the surface of the piece with a pointy bit.
+* **no-offset contours** can be used for example for engraving the shape on the surface of the piece with a pointy bit.
 
 ![](.gitbook/assets/toolpaths_contour_nooffset.png)
 
@@ -247,7 +247,7 @@ Many of the concepts of 2D toolpaths apply, but the notion of roughing + finishi
 
 For drilling a hole, a first option is to use an endmill smaller than the hole, and use a circular pocket toolpath. It works fine, but turns out to be inconvenient:
 
-* If a job that could otherwise be done completely with e.g. a 1/4" endmill needs 1/4" holes, a 1/8" endmill will be required just to mill the hole pockets.
+* if a job that could otherwise be done completely with e.g. a 1/4" endmill needs 1/4" holes, a 1/8" endmill will be required just to mill the hole pockets.
 * small endmills usually have a short length of cut and shank, so cutting a deep 1/8" hole with a 1/16" endmill could turn out to be impossible.
 
 A useful alternative is to use specific drilling toolpaths, that just plunge the endmill vertically, so it becomes possible to do a 1/4" hole with a 1/4" endmill. However, an endmill is very bad at drilling, it is just not designed for this, so the plunge rate should be limited, and the "**peck-drilling**" option used: the tool will cut a small DOC, retract to clear out the chips, and then plunge again, repeatedly until the full depth has been cut.

@@ -192,10 +192,10 @@ What GRBL does is listen to incoming commands on the USB interface, and act upon
 
 ![](.gitbook/assets/grbl_internals.png)
 
-* First there is a **reception buffer**, and that's a critical point because while the arduino microcontroller can execute code with very deterministic timings, that's not the case of the host PC at the other end of the USB cable, which executes e.g. Carbide Motion on Windows. And as everyone experienced, from time to time Windows can decide to go and do something else for a little while, and this could break the flow of G-code commands into the controller. With this buffer, the control software can send a few additional G-code commands in advance of the current one, to ensure that the controller will never starve waiting for the next command from USB.
-* The **G-code commands** are parsed and processed by a dedicated piece of code that generates the appropriate signals to drive the stepper driver to produce the desired motion
-* The **'$' commands** are interpreted to update various internal variables
-* The **realtime commands** consist of a single character, that has an immediate effect as soon as it is received, having priority over anything else GRBL is currently doing. For example ,  sending '!' will trig a Feed Hold.
+* first there is a **reception buffer**, and that's a critical point because while the arduino microcontroller can execute code with very deterministic timings, that's not the case of the host PC at the other end of the USB cable, which executes e.g. Carbide Motion on Windows. And as everyone experienced, from time to time Windows can decide to go and do something else for a little while, and this could break the flow of G-code commands into the controller. With this buffer, the control software can send a few additional G-code commands in advance of the current one, to ensure that the controller will never starve waiting for the next command from USB.
+* the **G-code commands** are parsed and processed by a dedicated piece of code that generates the appropriate signals to drive the stepper driver to produce the desired motion
+* the **'$' commands** are interpreted to update various internal variables
+* the **realtime commands** consist of a single character, that has an immediate effect as soon as it is received, having priority over anything else GRBL is currently doing. For example ,  sending '!' will trig a Feed Hold.
 * GRBL also uses hardware input signals from the **limit switches** and potentially from a **probe**, and commands an output "**PWM**" spindle signal to potentially drive the RPM of a spindle  
 
 {% hint style="info" %}
@@ -242,7 +242,7 @@ The most significant difference between the DeWalt and the Makita is the RPM ran
 
 If you know you will need to be using lower RPMs, the Makita may be a better choice. Other than that, both routers have been used successfully for all kinds of jobs on the Shapeoko.
 
-Pro CNC's usually have a **spindle**, not a router, and that is a possible \(and popular\) upgrade path for the Shapeoko, check out the [Upgrades](upgrading-the-machine.md#spindle-upgrade) section for more.
+Pro CNC's usually have a **spindle**, not a router, and that is a possible \(and popular\) upgrade path for the Shapeoko, check out the [HW upgrades](upgrading-the-machine.md#spindle-upgrade) section for more.
 
 
 

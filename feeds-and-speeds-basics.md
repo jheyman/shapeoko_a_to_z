@@ -265,8 +265,8 @@ The Shapeoko is not as rigid nor as powerful as pro CNC machines, so DOC recomme
 
 There is a strong dependency between DOC and WOC: since cutting forces increase with both DOC and WOC, you cannot cut very deep while using a very large stepover, that would put too much effort on the endmill. So the two choices are:
 
-* Large WOC but small DOC
-* Small WOC but high DOC
+* large WOC but small DOC
+* small WOC but high DOC
 
 These two situations are illustrated below:
 
@@ -411,11 +411,11 @@ So this is yet another parameter to watch out for when selecting feeds and speed
 
 The direction of the cut \(climb versus conventional milling\) pertains to the toolpaths generation options and not directly to the feeds and speeds, but while we are on this topic: since tool deflection is mainly perpendicular to the cut when using climb milling, it would seem like it is better to use conventional milling, to keep deflection parallel the cut and therefore minimize dimensional errors on the final piece. However there are other factors at play:
 
-* In conventional milling, the chip is cut from thin-to-thick, so by definition when the flute first comes in contact with the material, it is rubbing the surface a little before it starts actually cutting into the material. This temporary rubbing amounts to heat, so on the long run a conventional cut produces more heat, leading to faster tool wear. Climb milling, since it cuts chips from thick-to-thin, does not have this problem.
-* For the same "thick-to-thin" reason, climb milling is a little more tolerant of less-than-perfectly-sharp endmills.
-* In conventional milling, the cutter flutes move against the direction of the feedrate, so chips are more likely to be pushed to the front of the cut, leading to chip recutting which is bad for finish quality. In climb milling, the chips tend to be pushed to the back of the endmill / behind the cut, so they are much less prone to recutting.
-* In climb milling, the router torque pushes in the same direction as the feedrate, while in conventional it fights again the feedrate, so the forces on the stepper motors are higher.
-* Climb milling used to have a bad rep for being dangerous to use on machines with a lot of backlash. While this was perfectly true on older manual mills, the point is moot on CNCs in general and the Shapeoko in particular.
+* in conventional milling, the chip is cut from thin-to-thick, so by definition when the flute first comes in contact with the material, it is rubbing the surface a little before it starts actually cutting into the material. This temporary rubbing amounts to heat, so on the long run a conventional cut produces more heat, leading to faster tool wear. Climb milling, since it cuts chips from thick-to-thin, does not have this problem.
+* for the same "thick-to-thin" reason, climb milling is a little more tolerant of less-than-perfectly-sharp endmills.
+* in conventional milling, the cutter flutes move against the direction of the feedrate, so chips are more likely to be pushed to the front of the cut, leading to chip recutting which is bad for finish quality. In climb milling, the chips tend to be pushed to the back of the endmill / behind the cut, so they are much less prone to recutting.
+* in climb milling, the router torque pushes in the same direction as the feedrate, while in conventional it fights again the feedrate, so the forces on the stepper motors are higher.
+* climb milling used to have a bad rep for being dangerous to use on machines with a lot of backlash. While this was perfectly true on older manual mills, the point is moot on CNCs in general and the Shapeoko in particular.
 
 So when all is said and done, climb milling wins on almost every aspect except deflection. The [Toolpaths](toolpath-basics.md#roughing-vs-finishing-toolpaths) section will cover the notion of "roughing" versus "finishing" toolpaths, and that will then open the way for the best approach: using **climb for roughing, then conventional for finishing**. 
 
@@ -506,12 +506,12 @@ A pretty neat feeds and speeds worksheet has been put together by @gmack on the 
 
 ![](.gitbook/assets/gmack_worksheet.png)
 
-1. Fill-in the specs of your router or spindle.
-2. Fill-in the specs of the endmill, and your target chipload value \(chip thinning will be taken into account automatically from WOC value\)
-3. Look-up the K-factor for the material being cut \(there's a list in a separate tab of the worksheet\)
-4. Select target RPM value \(or alternatively SFM, then RPM will be derived from it\). The associated required feedrate is automatically computed
-5. Select WOC and DOC \(depending on your machining style\) 
-6. Check status for deflection, cutting force, and power in the lower part of the worksheet.
+1. fill-in the specs of your router or spindle.
+2. fill-in the specs of the endmill, and your target chipload value \(chip thinning will be taken into account automatically from WOC value\)
+3. look-up the K-factor for the material being cut \(there's a list in a separate tab of the worksheet\)
+4. select target RPM value \(or alternatively SFM, then RPM will be derived from it\). The associated required feedrate is automatically computed
+5. select WOC and DOC \(depending on your machining style\) 
+6. check status for deflection, cutting force, and power in the lower part of the worksheet.
 
 Then play with the input values to compare various cutting scenarios while staying within the machine's hard limits \(max RPM, max feedrate, max power, and max cutting force\)
 

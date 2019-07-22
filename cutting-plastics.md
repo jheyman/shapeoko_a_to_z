@@ -10,7 +10,7 @@ To ensure heat removal, you should either cut lots of thin chips very quickly \(
 
 If you are going for the high RPM option, a sharp cutter and a chipload of 0.002" should do the trick for most of the situations.
 
-If you are going for low RPMs, then you shoul aim for the high-end of the recommended chipload range. As discussed in the [Feeds & speeds](feeds-and-speeds-basics.md) section, for a 1/4" endmill in plastics, this is between 0.005"/ 0.13mm and 0.01" / 0.25mm. Such chiploads are hard to reach with 3-flute endmills. For example on the Dewalt router at its minimum RPM of 16.000, and at the highest possible feedrate \(196.85"/ 5000mm per min\), the chipload maxes out at 196 / \(3x16.000\) = 0.004".
+If you are going for low RPMs, then you should aim for the high-end of the recommended chipload range. As discussed in the [Feeds & speeds](feeds-and-speeds-basics.md) section, for a 1/4" endmill in plastics, this is between 0.005"/ 0.13mm and 0.01" / 0.25mm. Such chiploads are hard to reach with 3-flute endmills. For example on the Dewalt router at its minimum RPM of 16.000, and at the highest possible feedrate \(196.85"/ 5000mm per min\), the chipload maxes out at ~197 / \(3x16.000\) = 0.004".
 
 A usual solution is to use a single-flute \(O-flute\) endmill, this will allow to reach a higher chipload at a comfortably slow feed rate. Recommended chiploads for smaller tools \(1/8" and below\) are easier to reach, even with two flute endmills. Another solution is to use even lower RPMs \(below 10k\), but that is only possible for spindle owners, not for Makita/Dewalt routers.
 
@@ -18,12 +18,12 @@ A usual solution is to use a single-flute \(O-flute\) endmill, this will allow t
 
 Even at the correct chipload, if chips get in the way of the cut, melting may happen. It is important to ensure that chips are evacuated efficiently, with one or several of the following solutions:
 
-* a good dust shoe \(or manual vaccuuming\)
-* air blast directed at the cut
-* avoiding deep & narrow pockets/slots when possible
-* using an O-flute endmill \(beyond the chipload vs. RPM/feedrate advantage, it also leaves much more room for chips to get away from the cut, compared to 2 or 3 flute endmills\)
+* a good dust shoe \(or manual vaccuuming\).
+* an air blast directed at the cut.
+* avoiding deep & narrow pockets/slots when possible.
+* using an O-flute endmill \(beyond the chipload vs. RPM/feedrate advantage, it also leaves much more room for chips to get away from the cut, compared to 2 or 3 flute endmills\).
 
-Two very common types of plastic are hard plastics like acrylic \(cast or extruded\), and soft plastics like HDPE \(High Density PolyEthylene\), example cuts for both are provided below.
+Two very common types of plastic are hard plastics like acrylic \(cast or extruded\) and soft plastics like HDPE \(High Density PolyEthylene\), example cuts for both are provided below.
 
 ## Acrylic
 
@@ -64,18 +64,18 @@ and a clean cut:
 
 ## HDPE
 
-For HDPE, if cutting at low RPM/feedrate the chipload value needs to be pushed even further, as this is a soft plastic that melts easily.
+For HDPE and if cutting at low RPM/feedrate, the chipload value needs to be pushed even further as this is a soft plastic that melts easily.
 
-To get the nice clean chips below, I used a 1/8" O-flute at 10.000RPM and 1200mm/min \(47"/min\), granting a chipload of 0.12mm \(0.005"\), which is the high end of the recommended range. For this pocketing operation the depth of cut was 50% of the endmill diameter, i.e. 0.0625"/1.5875mm, and stepover was 0.056"/1.4mm \(44%\)
+To get the nice clean chips below, I used a 1/8" O-flute at 10.000RPM and 1200mm/min \(47ipm\), granting a chipload of 0.12mm \(0.005"\), which is the high end of the recommended starting range. For this pocketing operation the depth of cut was 50% of the endmill diameter, i.e. 0.0625"/1.5875mm, and stepover was 0.056"/1.4mm \(44%\)
 
 ![](.gitbook/assets/hdpe_chips.png)
 
 To test the other approach to cut thinner chips but at much higher RPM/feedrate, I used a 2-flute 1/4" endmill:
 
-* I went for 25.000 RPM \(nearly maxed out\)
+* I went for 25.000 RPM again \(nearly maxed out\)
 * I chose to try a chipload of 0.002" \(the min recommended value for 1/4" in soft plastics\)
-* The associated required feedrate is therefore 0.002" x 2 flutes x 25.000 RPM = 100ipm
-* DOC happened to be 0.1" in this test
+* the associated required feedrate is therefore 0.002" x 2 flutes x 25.000 RPM = 100ipm
+* DOC happened to be 0.1" in this test.
 
 This got me an equally good cut, with nice chips and no sign of melting:
 
