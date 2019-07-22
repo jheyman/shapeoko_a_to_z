@@ -10,7 +10,7 @@ To ensure heat removal, you should either cut lots of thin chips very quickly \(
 
 If you are going for the high RPM option, a sharp cutter and a chipload of 0.002" should do the trick for most of the situations.
 
-If you are going for low RPMs, then you should aim for the high-end of the recommended chipload range. As discussed in the [Feeds & speeds](feeds-and-speeds-basics.md) section, for a 1/4" endmill in plastics, this is between 0.005"/ 0.13mm and 0.01" / 0.25mm. Such chiploads are hard to reach with 3-flute endmills. For example on the Dewalt router at its minimum RPM of 16.000, and at the highest possible feedrate \(196.85"/ 5000mm per min\), the chipload maxes out at ~197 / \(3x16.000\) = 0.004".
+If you are going for low RPMs, then you should aim for the high-end of the recommended chipload range. As discussed in the [Feeds & speeds](feeds-and-speeds-basics.md#shapeoko-chiploads-guideline) section, for a 1/4" endmill in plastics, this is between 0.005"/ 0.13mm and 0.01" / 0.25mm. Such chiploads are hard to reach with 3-flute endmills. For example on the Dewalt router at its minimum RPM of 16.000, and at the highest possible feedrate \(196.85"/ 5000mm per min\), the chipload maxes out at ~197 / \(3x16.000\) = 0.004".
 
 A usual solution is to use a single-flute \(O-flute\) endmill, this will allow to reach a higher chipload at a comfortably slow feed rate. Recommended chiploads for smaller tools \(1/8" and below\) are easier to reach, even with two flute endmills. Another solution is to use even lower RPMs \(below 10k\), but that is only possible for spindle owners, not for Makita/Dewalt routers.
 
@@ -46,7 +46,7 @@ This string of plastic is an indication that rather than cutting, the endmill is
 ![](.gitbook/assets/broken_bit_1_5mm.png)
 
 {% hint style="info" %}
-In the [Feeds & speeds](feeds-and-speeds-basics.md) section, the guideline for **plunge rate** is "_40% to 50% of the feedrate for plastics_". You want to be on the high end of this range: plunging too slowly will result in a little melted plastic string on the endmill at the beginning of the cut, just like in the pictures above. And then even if the feedrate is correct for the rest of the cut, if you accumulate these strings of plastic on the upper part of the endmill each time the tool plunges, you may end up in a situation where this is enough to get in the way of the cut, and then bad things happen.  
+In the [Feeds & speeds](feeds-and-speeds-basics.md#plunge-rate) section, the guideline for **plunge rate** is "_40% to 50% of the feedrate for plastics_". You want to be on the high end of this range: plunging too slowly will result in a little melted plastic string on the endmill at the beginning of the cut, just like in the pictures above. And then even if the feedrate is correct for the rest of the cut, if you accumulate these strings of plastic on the upper part of the endmill each time the tool plunges, you may end up in a situation where this is enough to get in the way of the cut, and then bad things happen.  
 {% endhint %}
 
 Using the "high RPM" approach works fine too as long as chipload is in the right range. In the second test illustrated below, I used a 2-flute 1/4" endmill for a pocketing operation in acrylic:

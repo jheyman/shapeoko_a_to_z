@@ -39,7 +39,7 @@ A pulley is installed on the motor shaft, and drives a "**GT2**" belt \(the "2" 
 
 The pulleys used on the Shapeoko3 happen to have 20 teeth, with \(obviously\) the same 2mm spacing as the belt: so when the shaft does one full revolution, the belt moves by 20 teeth, i.e. 40mm.
 
-This full revolution requires 1600 microsteps, which means that it requires 1600/40 = 40 steps to move by 1mm. And this is where the "**40 steps/mm**" setting in the Shapeoko controller comes from \(more on this in the [X/Y/Z calibration](x-y-z-calibration.md) section\)
+This full revolution requires 1600 microsteps, which means that it requires 1600/40 = 40 steps to move by 1mm. And this is where the "**40 steps/mm**" setting in the Shapeoko controller comes from \(more on this in the [Dimensional accuracy](x-y-z-calibration.md#x-y-z-calibration) section\)
 
 Which means that the minimal movement that the Shapeoko can theoretically do in any axis is 1/40th of a mm, that's 0.025mm or 0.001". Quite precise, right?
 
