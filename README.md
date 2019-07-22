@@ -1,6 +1,6 @@
 # Introduction
 
-July 2019
+July 2019 EDITED
 
 The intent of this guide is to help new users of the Shapeoko CNC learn enough about both the big picture and the underlying technical details, to feel at ease with the machine, the workflow, and the CNC lingo in general.
 
