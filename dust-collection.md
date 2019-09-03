@@ -14,7 +14,7 @@ Many users do not have the luxury of having multiple options for where to instal
   * to have room to fit a dust collection system underneath/next to the machine
   * to support tiling \(feeding long pieces from the front or back of the machine, through to the other side\).
 * height: having the machine installed at arm/desk level is best. Kneeling to change endmill on a machine installed on the floor or in a low cabinet will get old very quickly.
-* keep in mind that CNC is noisy \(router + sound of the cut itself + dust collection system\), though an enclosure will help a lot.
+* keep in mind that CNC is noisy \(router and sound of the cut itself and dust collection system\), though an enclosure will help a lot.
 * the Shapeoko should rest on a rigid and level surface. A custom-made bench with a torsion box is a popular choice, but mine is just installed on a sturdy Ikea kitchen table bolted to the wall.
 
 ## Feet or no feet?
@@ -35,6 +35,7 @@ CNC is just messy. While it is quite possible to operate the Shapeoko without a 
 * cutting MDF: unlike in wood, the cutter will not produce nice thick/heavy chips, but a very fine dust that will float and soon cover everything around the machine, and is dangerous if inhaled repeatedly.
 * visibility: vaccuuming chips during the cut allows seeing what the tool is doing, and how the cut looks like so far, which is important to detect if something is not right. And manual vaccuuming during the cut gets old very quickly.
 * clearing the path for the tool: if chips accumulate e.g. in a deep slot, they will end up being in the way between the tool and the material, they will accumulate and reduce chip evacuation inside the flutes, all of which are not good for the quality of the cut.
+* some folks have caused cuts to fail by dust induced static when vacuuming by hand.
 
 ### Dust shoe
 
@@ -53,25 +54,25 @@ If you buy or make a dust shoe, make sure it has a slot so that it can be insert
 When the toolpaths are such that the dust shoe will move past the edges of the stock surface, it is useful to add extra material \(of the same thickness\) around the stock, to ensure that suction power remains optimal throughout the job.
 {% endhint %}
 
-### Dust separator & shopvac
+### Dust separator & shop vacuum
 
-While it is possible to connect a shopvac directly to the dust shoe, it turns out to be inconvenient, and potentially unsafe: 
+While it is possible to connect a shop vacuum directly to the dust shoe, it turns out to be inconvenient, and potentially unsafe: 
 
-* inconvenient because the amount of chips produced when cutting with a CNC can be significant, and you would end up replacing the shopvac paper bag very often.
-* potentially unsafe because cutting some materials \(e.g. MDF\) produce fine dust instead of chips, even with perfect feeds and speeds: the shopvac may not have an adequate filter to cope with this, and even if it does it would require cleaning very often.
+* inconvenient because the amount of chips produced when cutting with a CNC can be significant, and you would end up replacing the shop vacuum paper bag very often.
+* potentially unsafe because cutting some materials \(e.g. MDF\) produce fine dust instead of chips. Even with perfect feeds and speeds, the shop vacuum may not have an adequate filter to cope with this, and even if it does it would require cleaning very often.
 
 A common solution is to buy or build a "cyclone" dust separator: 
 
 ![](.gitbook/assets/setup_cyclone_separator_principle.png)
 
-* the shopvac is plugged on top, while the hose from the dust shoe is connected on the left.
-* the suction from the shopvac and the shape of the cyclone dust separator are such that an outer vortex \(blue\) and inner vortex \(teal\) are created, so the chips/dust contained in the incoming air flow are pushed against the walls of the cyclone by centrifugal force, and then slide down under the effect of gravity to the bottom where they can be collected using any kind of tank.
+* the shop vacuum is plugged on top, while the hose from the dust shoe is connected on the left.
+* the suction from the shop vacuum and the shape of the cyclone dust separator are such that an outer vortex \(blue\) and inner vortex \(teal\) are created, so the chips/dust contained in the incoming air flow are pushed against the walls of the cyclone by centrifugal force, and then slide down under the effect of gravity to the bottom where they can be collected using any kind of tank.
 
 I chose to buy a cheap ~4 gallons/15L ash collector tank at my local hardware store, and bolted the cyclone onto that \(with a little glue around the base for sealing\):
 
 ![](.gitbook/assets/cyclone_and_container.png)
 
-Surprisingly little dust/debris gets past this and into the shop vac, so much so that I hardly ever change the shopvac filter itself now
+Surprisingly little dust/debris gets past this and into the shop vac, so much so that I hardly ever change the shop vacuum filter itself now
 
 {% hint style="warning" %}
 BUT if you are cutting a lot of MDF or other nasty material that produce very fine dust, you should still have proper \(HEPA\) filtering in place, the cyclone alone will not be good enough.
@@ -85,20 +86,20 @@ Putting the Shapeoko inside an enclosure has many benefits:
   * the enclosure walls alone will reduce noise, or at least filter out the most irritating high frequencies of the router.
   * the inside walls can be padded with a sound-damping material.
 * dust/chips containment
-  * while most of the job will be done by the dust collection system, _some_ chips/dust will still find their way around the machine, and the enclosure helps keeping that from spreading to the rest of the workshop.
+  * while most of the job will be done by the dust collection system, _some_ chips/dust will still find their way around the machine, and the enclosure helps in keeping that from spreading to the rest of the workshop.
 * additional safety
   * the front window of an enclosure is an excellent protection against flying debris, or the occasional broken endmill.
 
-Most people design their own custom enclosure, here are a few things to consider:
+Most people design their own custom enclosure. Here are a few things to consider:
 
 * **height**: 
-  * it should be high enough to accomodate the Shapeoko itself AND still have comfortable margin on top on that. The dust collection hose should be able to move freely when the gantry moves to any position on the work area.
+  * it should be high enough to accommodate the Shapeoko itself _and_ still have a comfortable margin on top on that. The dust collection hose should be able to move freely when the gantry moves to any position on the work area.
 * **accessibility** 
-  * a front window that can be removed or opened is standard. For maintenance actions the ability to remove/raise the top of the enclosure out of the way is handy. 
+  * a front window that can be removed or opened is standard. For maintenance reasons the ability to remove/raise the top of the enclosure out of the way is handy. 
 * **visibility**
   * the front side should be a window, you will want to be able to check what is going on at all times.
 * **integration**
-  * with the dust collection/shopvac, which is commonly placed underneath the enclosure.
+  * with the dust collection/shop vacuum, which is commonly placed underneath the enclosure.
 * **clearance** at the front of the machine: 
   * the router can reach beyond the limits of the bed/wasteboard on the front side, and this can turn out to be very useful \(stock overhanging on the front\), so the enclosure should not prevent this.
 * **sound-proofing**
@@ -110,7 +111,7 @@ Most people design their own custom enclosure, here are a few things to consider
 
 ## Control panel / E-stop
 
-While you are designing your enclosure, why not plan to add a custom power control panel at the same time ? It makes for a simple and useful project, especially if you include a killswitch/emergency stop button. When things go wrong, you do not want to have to reach for the various power switches \(router and machine, at least\), so having a big red button located right within arm's reach could save you \(or the machine\) someday. 
+While you are designing your enclosure, why not plan to add a custom power control panel at the same time? It makes for a simple and useful project, especially if you include a kill switch/emergency stop button. When things go wrong, you do not want to have to reach for the various power switches \(router and machine, at least\), so having a big red button located right within arm's reach could save you \(or the machine\) someday. 
 
 Mine is a crude version made from MDF parts, it does not look fancy but does the job perfectly. Beyond implementing the emergency stop button, having all power switches in a single place and with a visual cue as to what is currently turned on is very convenient:
 
@@ -118,7 +119,7 @@ Mine is a crude version made from MDF parts, it does not look fancy but does the
 
 ## Control pad
 
-If you are using a G-code sender that supports keyboard shortcuts, it can be convenient to use a remote keypad \(wireless or wired\) to trig those shortcuts, so that the jogging/probing commands can be used without looking at the computer screen. Mine is wireless and costs about 20$, I printed custom labels for the actions I use most, and then mapped the underlying keys to the associated actions in my G-code sender.
+If you are using a G-code sender that supports keyboard shortcuts, it can be convenient to use a remote keypad \(wireless or wired\) for those shortcuts, so that the jogging/probing commands can be used without looking at the computer screen. Mine is wireless and costs about 20$, I printed custom labels for the actions I use most, and then mapped the underlying keys to the associated actions in my G-code sender.
 
 ![](.gitbook/assets/upgrades_jog_pendant.png)
 
@@ -136,7 +137,7 @@ However this means that metal chips will be flying all over the work area, so it
 
 Some kind of **filter** on top of the router: the picture below shows a quick and dirty hack that protects the router air inlets from flying chips, while still letting the air enter freely. Some just put a sock on the top part of the router. Whatever works for you, but do protect it somehow, metal chips going into the router's air intake will not end well.
 
-A **chip guard** can be installed to prevent chips from flying upwards and getting stuck in the Z-axis or router, while still allowing the locline/air jet to be aimed at the cut:
+A **chip guard** can be installed to prevent chips from flying upwards and getting stuck in the Z-axis or router, while still allowing the air jet to be aimed at the cut:
 
 ![](.gitbook/assets/setup_chipguard.png)
 

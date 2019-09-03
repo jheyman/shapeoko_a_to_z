@@ -1,6 +1,6 @@
 # Usecases: cutting plastics
 
-Plastics are relatively easy to mill, but they are less forgiving than wood if feeds and speeds are not set to adequate values. The reason is that plastic melts easily when heated, and since cutting forces produce heat...the name of the game is to evacuate heat as efficiently as possible.
+Plastics are relatively easy to mill, but they are less forgiving than wood if feeds and speeds are not set to appropriate values. The reason is that plastic melts easily when heated, and since cutting forces produce heat...the name of the game is to evacuate heat as efficiently as possible.
 
 This boils down to two things:
 
@@ -12,13 +12,13 @@ If you are going for the high RPM option, a sharp cutter and a chipload of 0.002
 
 If you are going for low RPMs, then you should aim for the high-end of the recommended chipload range. As discussed in the [Feeds & speeds](feeds-and-speeds-basics.md#shapeoko-chiploads-guideline) section, for a 1/4" endmill in plastics, this is between 0.005"/ 0.13mm and 0.01" / 0.25mm. Such chiploads are hard to reach with 3-flute endmills. For example on the Dewalt router at its minimum RPM of 16.000, and at the highest possible feedrate \(196.85"/ 5000mm per min\), the chipload maxes out at ~197 / \(3x16.000\) = 0.004".
 
-A usual solution is to use a single-flute \(O-flute\) endmill, this will allow to reach a higher chipload at a comfortably slow feed rate. Recommended chiploads for smaller tools \(1/8" and below\) are easier to reach, even with two flute endmills. Another solution is to use even lower RPMs \(below 10k\), but that is only possible for spindle owners, not for Makita/Dewalt routers.
+A usual solution is to use a single-flute \(**O-flute**\) endmill, this will allow a higher chipload at a comfortably slow feed rate. Recommended chiploads for smaller tools \(1/8" and below\) are easier to reach, even with two flute endmills. Another solution is to use even lower RPMs \(below 10k\), but that is only possible for spindle owners, not for Makita/Dewalt routers.
 
 2\) Make sure **chip evacuation** will not be a problem:
 
 Even at the correct chipload, if chips get in the way of the cut, melting may happen. It is important to ensure that chips are evacuated efficiently, with one or several of the following solutions:
 
-* a good dust shoe \(or manual vaccuuming\).
+* a good dust shoe \(or manual vacuuming\).
 * an air blast directed at the cut.
 * avoiding deep & narrow pockets/slots when possible.
 * using an O-flute endmill \(beyond the chipload vs. RPM/feedrate advantage, it also leaves much more room for chips to get away from the cut, compared to 2 or 3 flute endmills\).

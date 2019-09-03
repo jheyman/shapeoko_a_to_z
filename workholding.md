@@ -2,8 +2,8 @@
 
 Workholding can be confusing at first because there are many \(many\) ways to do it, and everyone seems to have their own tricks. The goals are:
 
-* obviously, that the stock material will not come off during the cut, which would both ruin the piece AND be dangerous \(flying objects, machine damage, fire...\)
-* to provide good rigidity of the machine+stock setup. If the stock or workholding bends/shifts slightly under cutting forces, cut quality will be poor, and dimensions will be off.
+* obviously, that the stock material will not come off during the cut, which would both ruin the piece _and_ be dangerous \(flying objects, machine damage, fire...\)
+* to provide good rigidity of the machine and stock setup. If the stock or workholding bends/shifts slightly under cutting forces, cut quality will be poor, and dimensions will be off.
 * to maximise clearance/access to the faces of the stock to be machined.
 * that it is easy/convenient/quick enough to install and remove the material.
 
@@ -11,27 +11,29 @@ This section does not intend to cover them all, but to present the most popular 
 
 ## Wasteboard
 
-Many projects require to cut all the way through the stock material, e.g. to cut the outer profile of the workpiece. Having a wasteboard placed under the stock material is very common for at least the following reasons:
+Many projects require cutting all the way through the stock material, e.g. to cut the outer profile of the workpiece. Having a wasteboard placed under the stock material is very common for at least the following reasons:
 
 * even on a properly calibrated machine, it is not easy to cut _exactly_ down to stock bottom.
 * it is often not desirable anyway: the quality of the cut on the bottom of the piece can be poor if not overcutting \(e.g. small variations in depth/flatness would leave material here and there\).
 * mistakes in the CAM design/G-code, or mechanical issues, might cause the endmill to cut deeper than expected, it would be too bad to damage the machine bed.
 * the stock must lay on a surface that is flat and square to the machine's Z axis, and the simplest way to achieve this is to use the machine itself to surface its own base \(see [Squaring, surfacing, tramming](squaring.md)\), so it should be a replaceable part.
 
-It is _possible_ to use the Shapeoko's MDF bed itself as a wasteboard, but who wants to be replacing the bed of their machine? \(considering it would mean disassembling it, reassembling with a fresh bed, and then squaring everything again\). It is much more convenient to use a supplementary wasteboard bolted onto the bed.
+It is _possible_ to use the Shapeoko's MDF bed itself as a wasteboard, but who wants to be replacing the bed of their machine? \(considering it would mean disassembling it, reassembling with a fresh bed, and then squaring everything again\). It is much more convenient to use a **supplementary** wasteboard bolted onto the bed.
+
+{% hint style="info" %}
+What I call the "bed" is the piece of MDF that ships with the machine and is bolted onto the steel plates. This is sometimes referred to as the "baseboard" or the "wasteboard" in the assembly instructions, but I find it slightly confusing since it is not really replaceable. My naming convention here is therefore to call it the "bed", and call the _supplementary_ wasteboard the "wasteboard". 
+{% endhint %}
 
 The \(only?\) downside to using a supplementary wasteboard is that it reduces the maximum Z travel \(i.e. the maximum possible height for a workpiece\)
 
-{% hint style="info" %}
-The exception is using a vice to hold the stock, in which case a wasteboard is irrelevant.
-{% endhint %}
+Wasteboard material is very often MDF \(cheap & easy to procure\), HDPE or PVC is another option \(much more expensive, but it does not wear off / tear out as easily, and is immune to humidity variations\).
 
-Wasteboard material is very often MDF \(cheap & easy to procure\), HDPE is another option \(much more expensive, but it does not wear off / tear out as easily, and is immune to humidity variations\)
-
-The wasteboard needs to be held onto the machine's bed, in such a way that it can easily be removed, the usual way is to bolt it onto the bed one way or another.
+The wasteboard needs to be held onto the machine's bed, in such a way that it can easily be removed, the usual way is to bolt it onto the bed one way or other.
 
 {% hint style="info" %}
-Make sure the wasteboard X/Y dimensions are such that the router will be able to reach the whole area, with some margin: this will be important for surfacing the wasteboard.  The max dimensions vary depending on the machine \(and accessories\) setup, so actually moving the router in the four corner positions, measuring where the endmill ends up being, and making the wasteboard area slightly smaller than that, is an easy way to get this right.
+Make sure the wasteboard X/Y dimensions are such that the router will be able to reach the whole area, with some margin: this will be important for surfacing the wasteboard. The max dimensions vary depending on the machine \(and accessories\) setup, so actually moving the router in the four corner positions, measuring where the endmill ends up being, and making the wasteboard area slightly smaller than that, is an easy way to get this right.
+
+Note that the wasteboard dimensions cannot match the advertised cutting area of your Shapeoko model, since some of that cutting area is the overhang at the front of the machine.
 
 For the thickness of the wasteboard, make sure to include margin for the recessed bolt heads and enough material on top of that to allow for a few future resurfacing operations.
 {% endhint %}
@@ -46,7 +48,7 @@ which requires to have threaded holes available in various places across the wor
 
 ![](.gitbook/assets/fresh_wasteboard.png)
 
-There are many different ways to make a "sea of holes" wasteboard, a popular option is to use the Shapeoko itself to drill the holes into either its own bed or the supplementary wasteboard, and then manually install **threaded inserts** in the holes.
+There are many different ways to make a "sea of holes" wasteboard. A popular option is to use the Shapeoko itself to drill the holes into either its own bed or the supplementary wasteboard, and then manually install **threaded inserts** in the holes.
 
 Another very popular option to attach clamps is to use **T-tracks** inserted at regular intervals between "strips" of wasteboard area:
 
@@ -86,7 +88,7 @@ Double-sided tape can be useful in combination with other methods: for example, 
 
 ## Tape & glue
 
-Another very popular workholding method is surprisingly simple, and surprisingly efficient. It uses painter's masking tape, and CA glue:
+Another very popular workholding method is surprisingly simple, and surprisingly efficient. It uses painter's masking tape, and cyanoacrylate \(CA\) glue:
 
 ![](.gitbook/assets/tape_and_glue_0.png)
 
@@ -124,7 +126,7 @@ The main drawback of this method is that for all cuts that go through the full d
 However, this may turn out to be a real problem for jobs that do multiple profile cuts: if the first profile cut leaves some tape & glue residue on the tip of the endmill, it could impact the quality of the subsequent cuts. There is no real solution for this, the only partial mitigation is to cut exactly down to stock bottom to avoid cutting into the tape, but that brings back other issues if the stock bottom is not perfectly flat or the machine not perfectly trammed.
 {% endhint %}
 
-There is at least one case where this method not adequate: cutting thin sheets of soft material \(e.g brass, copper\), because the force required to pry the piece free of the wasteboard would likely bend/damage it. 
+If cutting thin sheets of soft material \(e.g brass, copper\) the force required to pry the piece free of the wasteboard would likely bend/damage it, so it may be necessary to apply heat to soften the adhesives. 
 
 ## Vise
 

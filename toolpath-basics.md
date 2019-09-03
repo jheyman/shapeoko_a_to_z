@@ -4,9 +4,9 @@ A **toolpath** is the intended trajectory that the tip of the endmill will follo
 
 For a specific object geometry/feature defined in the CAD tool, the CAM tool will generate toolpaths as sets of lines and curves defined in X/Y/Z space, and the post-processor will then generate the corresponding G-code instructions for the selected machine.
 
-"**2D**" toolpaths correspond to cutting a 2D feature in the design, moving only two axis of the machine at a time \(typically, stepping down along Z only, then moving only in the XY plane, before proceeding with a deeper Z\). Since X, Y, and Z are moved \(albeit not simultaneously\), this is sometimes called "**2.5D**".
+"**2D**" toolpaths correspond to cutting a 2D feature in the design, moving only two axes of the machine at a time \(typically, stepping down along Z only, then moving only in the XY plane, before proceeding with a deeper Z\). Since X, Y, and Z are moved \(albeit not simultaneously\), this is sometimes called "**2.5D**".
 
-"**3D**" toolpaths correspond to cutting a 3D feature, and potentially moving the three axis of the machine simultaneously. 
+"**3D**" toolpaths correspond to cutting a 3D feature, and potentially moving the three axes of the machine simultaneously. 
 
 {% hint style="warning" %}
 Not all toolpaths presented below are available in the standard version of Carbide Create: 3D toolpaths, adaptive toolpaths, REST machining, and the roughing vs. finishing toolpaths feature require to use other CAM programs. If you are just starting you can ignore those, Carbide Create is perfect to learn simple 2D toolpaths before moving on to more complex projects. The intent here is to show what is available in various CAM programs, and then everyone can decide whether to invest money \(e.g. VCarve, Carbide Create Pro\) or time \(e.g. Fusion360\) to access those features. 
@@ -43,7 +43,7 @@ On the following snapshot, a few circles of the same diameter as the endmill wer
 
 ![](.gitbook/assets/toolpaths_stepover_and_corners.png)
 
-* the **stepover \(**a.k.a. ****width of cut a.k.a. radial width of cut\) ****parameter of the toolpath controls how close to each other successive loops of the toolpaths are, in this case the stepover was chosen to be 50% of the endmill diameter for simplicity. Check out the [Feeds & speeds](feeds-and-speeds-basics.md) section for recommended stepover values, and how this affects chip thinning and ultimately the optimal feeds and speeds.
+* the **stepover \(**a.k.a. ****width of cut, a.k.a. radial width of cut\) ****parameter of the toolpath controls how close to each other successive loops of the toolpaths are, in this case the stepover was chosen to be 50% of the endmill diameter for simplicity. Check out the [Feeds & speeds](feeds-and-speeds-basics.md) section for recommended stepover values, and how this affects chip thinning and ultimately the optimal feeds and speeds.
 * in **corners** two things happen:
   * the cutter engagement temporarily increases \(see tool engagement in the [Feeds & speeds](feeds-and-speeds-basics.md#corners) section\). Nothing to be concerned about in many cases, but this limits the feeds and speeds to being more conservative than they could be. This is where advanced toolpaths help, e.g. adaptive clearing, more on this later.
   * obviously, the round endmill cannot reach all the way into the corners, so some material is left and all corners end up rounded to the diameter of the endmill. One way to mitigate this is to use a smaller endmill, but cutting a large pocket using a very small endmill would take forever, so a better alternative is first cut the pocket normally with a large endmill, then run a second toolpath will a smaller endmill, that will only work locally in the corners. In advanced CAM tools, this is easy using the "rest machining" option described later below, where the CAM is smart enough to figure out how much material is left and where and to produce a second toolpath with a smaller tool that will only cut there. At the time of writing Carbide Create does not support rest machining, but you could fake it by manually creating additional geometry. In the example below, a 4.5x4.5mm square was added in one corner, with an associated pocket toolpath using a 1/16" endmill. The corner will still not be perfectly square, but its radius will be 4 times smaller, so it will look much closer to square.
@@ -66,7 +66,7 @@ If your CAM tool allows, you can just use the option of helical ramping down to 
 
 ![](.gitbook/assets/toolpaths_pocketing_highdoc_f360_helixentry%20%281%29.png)
 
-This allows to reach full depth without ever engaging the tool completely, and then the pocket toolpath at full DOC and low WOC \(20% of tool diameter in the example below\) can proceed:
+This allows reaching full depth without ever engaging the tool completely, and then the pocket toolpath at full DOC and low WOC \(20% of tool diameter in the example below\) can proceed:
 
 ![](.gitbook/assets/toolpaths_pocketing_highdoc_f360_lowwoc.png)
 
@@ -84,7 +84,7 @@ In Carbide Create, you could emulate this by creating two toolpaths:
 
 Contour \(a.k.a. Profile\) toolpaths just follow the...contour of a shape, with the option to have the endmill positioned either on the outside or on the inside of the shape, or right on it:
 
-* **outside contours** are usually associated to cutting the shape out of the stock material: 
+* **outside contours** are usually associated with cutting the shape out of the stock material: 
 
 ![](.gitbook/assets/toolpaths_contour_outside.png)
 
@@ -140,7 +140,7 @@ After it plunges to the depth of cut \(possibly using helical ramping\), the end
 
 Since the cutter engagement is low, one can use much more agressive feeds and speeds \(but of course, it takes longer to do all these spiral movements rather than going in a straight vertical line, so whether or not this results in a longer or shorter job time depends on the situation\)
 
-For the same reason, the DOC can also be increased very significantly, ie. adopting the "high DOC, low WOC" approach.  
+For the same reason, the DOC can also be increased very significantly _i.e._,  adopting the "high DOC, low WOC" approach.  
 
 {% hint style="info" %}
 Since adaptive clearing is typically used with a small WOC \(much lower than 50% of the endmill diameter\), chip thinning must be taken into account in the feeds and speeds, as described in the [Feeds & speeds](feeds-and-speeds-basics.md#chip-thinning) section
@@ -181,7 +181,7 @@ a V-bit is very inefficient at removing large amounts of material, and even wors
 
 ## Roughing vs. finishing toolpaths
 
-For every toolpath there are two conflicting needs: minimizing the total runtime, and getting the best finish quality and dimensional accuracy of the workpiece. Instead of settling for a middle ground that accomodates both constraints, a very common approach is to create two different toolpaths:
+For every toolpath there are two conflicting needs: minimizing the total runtime, and getting the best finish quality and dimensional accuracy of the workpiece. Instead of settling for a middle ground that accommodates both constraints, a very common approach is to create two different toolpaths:
 
 * the first \(roughing\) toolpath will be optimized to go fast, maximising material removal rate, but will be programmed to leave a little bit of material around the selected geometry. Even of the tool deflects, vibrates, or more generally produces a poor surface finish, this will be taken care of by the next toolpath.
 * the second \(finishing\) toolpath will be optimized for getting a good surface finish and accuracy: it can be set to go slower, but even if it isn't, the simple fact that it will have very little material left to cut will reduce the efforts on the tool, and produce a cleaner result.

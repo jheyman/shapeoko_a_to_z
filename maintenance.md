@@ -4,20 +4,20 @@ This section touches on a few of the most common mishaps that can happen when wo
 
 ## Hitting the limits
 
-On one end of each axis, the homing switches will interrupt the toolpath if triggered, this is the easy case since GRBL knows something is wrong and stops everything.
+On one end of each axis, the homing switches will interrupt the toolpath if triggered _and_ if **hard limits** are enabled in GRBL, which by default they are not.
 
 On the other end of each axis, since there is no way for the machine to know if it went too far, there are two cases:
 
 * either the **soft limits** in GRBL have been activated and configured to the correct value for your machine, and the job will stop.
 * or the soft limits are turned off, and you can get a mechanical crash.
 
-CarbideMotion uses its own hardcoded soft limits, so if you are using this sender you are better off leaving soft limits turned off in GRBL \(first that would be redundant, and second the values set in GRBL may not be consistent with the ones in CM\).
+Carbide Motion uses its own hard-coded soft limits, so if you are using this sender you are better off leaving soft limits turned off in GRBL \(first that would be redundant, and second the values set in GRBL may not be consistent with the ones in CM\).
 
 If you are using another sender, then by all means do turn on soft limits in GRBL, it's easy:
 
 * $20 parameter controls whether soft limits are enabled \(1\) or not \(0\). Start with soft limits disabled, to be able to jog freely.
 * $130, $131, and $132 parameters respectively control X, Y and Z maximum travel : \(carefully\) jog to the limit of each axis, leaving a small margin you are confortable with, write the current axis value in millimeters, drop the minus sign, and set it in the corresponding parameter \(e.g. type in $130=&lt;positive value in mm&gt; in the GRBL console\). 
-* once you are done, activate soft limits, and check that when trying to jog past them, the sender produces an error and stop the movement.
+* once you are done, activate soft limits, and check that when trying to jog past them, the sender produces an error and stops the movement.
 
 {% hint style="info" %}
 You should actually TEST how far you can go on YOUR machine, not rely on theoretical X/Y/Z travel values for the Shapeoko. There are a variety of factors that can make these values specific to a given machine. For example, on mine the X travel is limited by the arms of the dust shoe.
@@ -27,7 +27,7 @@ You should actually TEST how far you can go on YOUR machine, not rely on theoret
 
 When the cut depth is off, assuming the toolpath itself is correct, chances are something is slipping in the Z direction \(that is arguably the weakest axis on a stock Shapeoko\). A few potential reasons are listed below, more or less by decreasing likelihood:
 
-* under load, the pulley may be slipping on the motor shaft if the **set screws** are not tight, so that should be checked/secured first \(using a 1.5mm Allen key\):
+* under load, the pulley may be slipping on the motor shaft if the **set screws** are not tight, so that should be checked/secured first \(using a 1.5mm hex key\):
 
 ![](.gitbook/assets/pulley_setscrew.png)
 
@@ -51,11 +51,11 @@ If nothing is slipping and the depth error is small, it _might_ just be that the
 
 ## Crashing the mashine
 
-This will happen sooner or later, and it will very likely be a user error somewhere in the workflow. First, in most cases it's not that big a deal: the steppers have limited power and will stall, and the belts will skip. You should still rush to the emergency stop button but chances are that the machine will not be permanently damaged, reports from people who actually broke the machine beyond trivial repairs are \(very\) rare.
+This will happen sooner or later, and it will very likely be a user error somewhere in the workflow. First, in most cases it's not that big a deal: the steppers have limited power and will stall, or the belts will skip. You should still rush to the emergency stop button but chances are that the machine will not be permanently damaged. Reports from people who actually broke the machine beyond trivial repairs are \(very\) rare.
 
 Here's a checklist of things to double-check after a crash, while the machine is turned off:
 
-* move the different axis manually, and check for slop or any unusual noise/friction.
+* move each axis manually, and check for slop or any unusual noise/friction.
 * check V-wheels are still tight. They are probably the parts that are most likely to have been  damaged. It's a good idea to have a spare set available.
 * check the belts: if the pulleys skipped hard enough, belt teeth _may_ have been damaged \(but they are more likely to just break : having a spare roll of GT2 belt is cheap and can come in handy\). Pay specific attention to the Z-belt tensioning: a Z-related crash may have loosened the tensioning screw.
 * optionally check whether the machine is still square and trammed.
@@ -83,13 +83,14 @@ To isolate the source of disconnects, it can be useful to do "air cuts" with the
 
 ## Double-checking the toolpaths
 
-If the cut is not going as expected and there does not seem to be any mechanical issues, chances are the mistake lies in the toolpaths themselves. Going back over the toolpath parameters is a first step, then visualizing the toolpath details in the CAM tool is often helpful. This is one area where Fusion360 shines, the toolpath simulation feature is excellent, one can play it in slow motion, and it detects tool collision automatically \(assuming the selected tool and tool holder's geometry are modeled correctly\)
+If the cut is not going as expected and there do not seem to be any mechanical issues, chances are the mistake lies in the toolpaths themselves. Going back over the toolpath parameters is a first step, then visualizing the toolpath details in the CAM tool is often helpful. This is one area where Fusion360 shines, the toolpath simulation feature is excellent, one can play it in slow motion, and it detects tool collision automatically \(assuming the selected tool and tool holder's geometry are modeled correctly\)
 
 Typical mistakes include:
 
 * typing the feeds and speeds values incorrectly \(or just using incorrect feeds and speeds\)
 * inconsistency between where the zero point is declared in the CAM setup, and where you zeroed physically on the stock.
 * wrong depth of cut setting \(which may not be immediately visible on the toolpath preview\).
+* setting retract/safety height to an excessively large value resulting in the carriage lifting, bottoming out on the stops, then thinking it is much higher than it actually is, plunging deeply into the stock.
 * wrong ordering of toolpaths.
 * inconsistency between the toolpath and the selected tool capabilities, e.g. cutting deeper than the endmill flute length allows.
 
@@ -99,7 +100,7 @@ While it is very unlikely that the generated G-code is incorrect if the toolpath
 
 * CAMotics is a good option for a standalone G-code viewer, there are many others, some of them online. 
   * I often use [https://nraynaud.github.io/webgcode/](https://nraynaud.github.io/webgcode/) and just copy/paste some G-code in there as a quick check.
-* many G-code senders \(e.g. CNCjs, Universal G-code Sender, etc...\) include a G-code preview pane, and systematically checking that everythink looks as it should there \(e.g. dimensions/depth, location of the toolpath versus zero point, ...\) before running a job will probably prevent a few silly mistakes, like not running the right file.
+* many G-code senders \(e.g. CNCjs, Universal G-code Sender, etc...\) include a G-code preview pane, and systematically checking that everything looks as it should there \(e.g. dimensions/depth, location of the toolpath versus zero point, ...\) before running a job will probably prevent a few silly mistakes, like not running the right file.
 
 ## Resurfacing the wasteboard
 
@@ -119,7 +120,7 @@ It takes a while to admit that endmills really are consumables \(no matter how e
 
 ![](.gitbook/assets/sharp_tool.jpg)
 
-Notice the narrow part that runs along the edge \(a.k.a. "primary radial relief"\), and the much larger surface \("secondary radial relief"\). By comparison, here is how my ancient \#201 endmill looks like after being abused for months:
+Notice the narrow part that runs along the edge \(a.k.a. "primary radial relief"\), and the much larger surface \("secondary radial relief"\). By comparison, here is how my ancient \#201 endmill looks after being abused for months:
 
 ![](.gitbook/assets/worn_tool.jpg)
 
@@ -138,10 +139,11 @@ And then again, the level of wear that is acceptable really depends on the mater
 If your endmills wear out very quickly, it is likely that you are not using proper feeds and speeds, and/or you have too much runout.
 {% endhint %}
 
-## Cleaning the belts & wheels
+## Cleaning the belts, wheels, V-rails
 
 * a quick vacuuming along the belts length will remove the chips that may have landed there during the cut. It takes 10 seconds, and will prevent the V-wheels rolling over debris or chips getting into the pulleys/idlers.
-* cleaning the V-wheels \(ALL of them\) once in a while helps keeping a clean contact with the rail. I use a Q-tip placed between the wheel and the rail, and slide the machine manually:
+* it is good practice to wipe off the V rails if crud accumulates.
+* cleaning the V-wheels \(ALL of them\) once in a while helps keeping a clean contact with the rail too. I use a cotton swab placed between the wheel and the rail, and slide the machine manually:
 
 ![](.gitbook/assets/maintenance_clean_vwheels.png)
 

@@ -8,7 +8,15 @@ Most users obviously start with **Carbide Create,** which really is a great solu
 
 ![](.gitbook/assets/cadcam_carbidecreate.png)
 
-If/once you outgrow it, Vectric **V-Carve** is a very popular \(albeit somewhat pricey\) upgrade path. The name is slightly confusing, as it is not only specialized in V-carving but is a complete generic CAD/CAM tool. The workflow is quite similar to Carbide Create's, which makes the transition easy. It has more CAD features \(layers, support for 2-sided machining,...\), intermediate-level CAM features \(built-in support for roughing and finishing strategy is great\), and it is just a very polished and robust software. You can also go crazy and buy the top of the line **Aspire** software from Vectric, if you need the advanced/pro features it offers.
+As a side note, the X-Carve CNC \(competitor product sharing some DNA with the Shapeoko\) comes with a similar entry level CAD/CAM program called **Easel**:
+
+![](.gitbook/assets/easel.png)
+
+Even though it is mostly intended to be used with the X-Carve, some folks use the CAD part of Easel \(an admittedly nice and simple albeit web-based UI\) to generate G-code files that can then be used in any G-code sender for the Shapeoko.
+
+If/once you outgrow Carbide Create, you can obviously look into upgrading to **Carbide Create Pro** and its advanced features.
+
+Vectric **V-Carve** is another very popular \(albeit somewhat pricey\) upgrade path. The name is slightly confusing, as it is not only specialized in V-carving but is a complete generic CAD/CAM tool. The workflow is quite similar to Carbide Create's, which makes the transition easy. It has more CAD features \(layers, support for 2-sided machining,...\), intermediate-level CAM features \(built-in support for roughing and finishing strategy is great\), and it is just a very polished and robust software. You can also go crazy and buy the top of the line **Aspire** software from Vectric, if you need the advanced/pro features it offers.
 
 ![](.gitbook/assets/cadcam_vcarve.png)
 
@@ -18,12 +26,12 @@ There is a small catch though: while it has an offline mode, this is primarily a
 
 ![](.gitbook/assets/cadcam_fusion360.png)
 
-I happen to use all three, depending on the project at hand. I will use Carbide Create when I need a simple 2.5D piece done quickly and get cutting. V-Carve is my go-to solution for the 2.5D projects that are more complex \(need more structuring\) and/or involve Vcarving, 2-sided work, or require a roughing+finishing toolpath strategy. And then I will use Fusion360 for all things 3D, for metal work \(mainly because of the adaptive clearing feature\), and whenever I feel like I need to make the design parametric so as to be able to adjust dimensions without having to redesign everything.
+I use CC or VCarve or Fusion360 depending on the project at hand. I will use Carbide Create when I need a simple 2.5D piece done quickly. V-Carve is my go-to solution for the 2.5D projects that are more complex \(require more structuring\) and/or involve Vcarving, 2-sided work, or require a roughing+finishing toolpath strategy. And then I will use Fusion360 for all things 3D, for metal work \(mainly because of the adaptive clearing feature\), and whenever I feel like I need to make the design parametric so as to be able to adjust dimensions without having to redesign everything.
 
 Of course, there are many other CAD/CAM tools out there, those are the ones that are most popular at the time of writing in the Shapeoko community.
 
 {% hint style="info" %}
-While the post-processor to generate G-code is built in Carbide Create, for VCarve and Fusion360 you need to initially configure it \(easy enough\) but then you get to tune it to your liking, which is very convenient.
+While the post-processor to generate G-code is built in to Carbide Create, for VCarve and Fusion360 you need to initially configure it \(easy enough\) but then you get to tune it to your liking, which is very convenient.
 {% endhint %}
 
 ## G-code primer
@@ -71,21 +79,21 @@ M30
 
 Let's break this down:
 
-* the **%** line just means "start of program". Well it actually means "Tape start", from the days where CNCs used tape readers. Anyway, this sign is optional, you will find some CAM tools add it, others don't.
-* everything between parenthesis is a **comment**, and is ignored by GRBL. This is just there for readability of the G-code file.
+* the **%** line just means "start of program". Well it actually means "Tape start", from the days when CNCs used tape readers. Anyway, this sign is optional, you will find some CAM tools add it, others don't.
+* everything between parentheses is a **comment**, and is ignored by GRBL. This is just there for readability of the G-code file.
 * **G21** is the command to set **units** to mm \(G20 being the command to set units to inches\)
 * **G90** is the command to go to **absolute positioning** mode, i.e. all subsequent move commands will interpret X/Y/Z values as coordinates relative to the ZERO point currently defined. By contrast, G91 would activate relative positioning mode, and the X/Y/Z instructions would be interpreted as offsets from the current position.
 * **G0** is the **Rapid Move** command, it takes X and/or Y and/or Z and/or Feedrate values as parameters, and is intended to reposition the tool to a different location while not cutting anything on the way.
-* **M6 T112** corresponds to a **Tool Change** command, requesting tool number 112 in this example. On a Shapeoko, since there is no automatic tool changer, this is ignored by the machine \(but used by Carbide Motion to trig a user prompt\) 
+* **M6 T112** corresponds to a **Tool Change** command, requesting tool number 112 in this example. On a Shapeoko, since there is no automatic tool changer, this is ignored by the machine \(but used by Carbide Motion to trigger a user prompt\) 
 * **M3 S10000** instructs the controller to turn the **Spingle on**, at 10.000RPM in this example.
-* **G1** is the **Linear move** command, similar to G0 but intended to be used for actual cutting moves, that typically happen slower than the G0 rapid moves. The feedrate for these moves can be specified on the line, that's the **Fxxx**" part an the xxx is the feedrate value in units \(inch or mm\) per minute.
+* **G1** is the **Linear move** command, similar to G0 but intended to be used for actual cutting moves, that typically happen slower than the G0 rapid moves. The feedrate for these moves can be specified on the line, that's the "**Fxxx**" part and the xxx is the feedrate value in units \(inch or mm\) per minute.
 * standalone coordinates like **Y0.000, X0.000, Y150.000** are in fact implicit/short versions of G1 move commands: as long as the movement mode does not need to be changed, the latest G commands applies and in this example the "G1" can be omitted from these lines.
 * **M5** is used to turn the **Spindle off** 
 * **M30** means "End of program" in GRBL.
 
 {% hint style="info" %}
 * On a stock Shapeoko with a trim router, there is no automatic control of the router activation nor RPM, so the Spindle commands have no visible effect, but it does modify the output of the PWM signal on the controller board, which is used if you have a spindle
-* The Shapeoko does not have an automatic tool changer, so M6 commands are ignored by the controller, but Carbide Motion uses the M6 tool change command to trig a user prompt.
+* The Shapeoko does not have an automatic tool changer, so M6 commands are ignored by the controller, but Carbide Motion uses the M6 tool change command to trigger a user prompt.
 * Spaces inside a line are ignored
 {% endhint %}
 
@@ -97,7 +105,7 @@ Beyond this basic example, a few more common commands are:
 * **M8/M9** is Coolant on/off. Not applicable/ignored on the Shapeoko, but may be present depending on the post-processor used.
 * **G54** is the command to select "coordinate system \#1", a.k.a. the coordinate system that is based on the Zero point you set. This command is optional since G54 is the default at GRBL startup anyway.
 
-There are many, many more G-code commands, but basically the commands above will cover 99% of the need on a Shapeoko.
+There are many, many more G-code commands, but basically the commands above will cover 99% of the needs on a Shapeoko.
 
 ## G-code senders
 
@@ -122,6 +130,11 @@ There are many alternative G-code senders in various states of maturity/activity
 ![](.gitbook/assets/ugs_grbl_settings_menu.png)
 
 * it has configurable keyboard shortcuts for most of the actions, which makes it convenient to use a custom keypad \(see [Shapeoko setup](dust-collection.md#control-pad)\). Finally, I use the ability to define Macros, for simple but useful things like "goto X0Y0"
+
+{% hint style="info" %}
+Carbide Motion also has convenient shortcuts for use with a keypad, see: [https://community.carbide3d.com/uploads/default/original/3X/1/1/11767141a1e1d62246952219ec915572aae4c699.pdf](https://community.carbide3d.com/uploads/default/original/3X/1/1/11767141a1e1d62246952219ec915572aae4c699.pdf)
+{% endhint %}
+
 * it supports G-code filters, which can turn out to be convenient to ignore e.g. generated tool change commands. 
 
 **CNCjs** is another popular sender, it has all the features of UGS and more, an arguably better-looking UI, and powerful macro capabilities. It comes either in a standalone desktop application:

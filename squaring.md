@@ -2,7 +2,7 @@
 
 ## Squaring the machine
 
-Squaring the machine is covered in the Shapeoko installation instructions, this section just adds a few notes on why this matters, and a few tips.
+Squaring the machine is covered in the Shapeoko assembly instructions, this section just adds a few notes on why this matters, and a few tips.
 
 In the best case scenario, bringing the gantry to the front side, tightening the front screws, sliding the gantry to the back, and tightening the back screws is enough to make the gantry square to the Y rails. Here's a view from the top with the gantry pushed all the way back or all the way to the front steel plates, ideally the side plates should make contact simultaneously, leaving no gap one either side:
 
@@ -39,7 +39,7 @@ Running a surfacing toolpath on the top of the wasteboard will make it parallel 
 * PCB engraving is the extreme case, since by definition it cuts a very, very shallow trace onto the \(supposedly\) flat surface of a copper clad board: any minute difference in depth will ruin the quality of the PCB traces.
 
 {% hint style="info" %}
-For PCB engraving, another technique to compensate for depth variations is to use bed leveling, i.e. use a probe to map the height of the PCB surface in various points, and compensate for it at the G-code instructions level
+For PCB engraving, another technique to compensate for depth variations is to use bed leveling, i.e. use a probe to map the height of the PCB surface in various points, and compensate for it at the G-code instruction level
 {% endhint %}
 
 * but even regular jobs are impacted: in the example illustrated above, a pocket cut on the left side of the stock would end up being shallower than expected, and the same pocket cut on the right side would be deeper than expected. And both would have a sloped bottom.

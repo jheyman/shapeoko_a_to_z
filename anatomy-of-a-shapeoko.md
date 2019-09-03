@@ -10,28 +10,48 @@ None of this info is required to be able to successfully use the machine, but yo
 
 That part is self explanatory, since the Shapeoko is a kit everyone will get acquainted with the \(very simple\) mechanical structure during assembly anyway. The correct geometry of pieces cut on the Shapeoko will depend mainly on:
 
-* making sure the mechanical structure is assembled such that all three axis of movement are _actually_ orthogonal to each other \(see [Squaring, surfacing, tramming](squaring.md#squaring-the-machine)\).
+* making sure the mechanical structure is assembled such that all three axes of movement are _actually_ orthogonal to each other \(see [Squaring, surfacing, tramming](squaring.md#squaring-the-machine)\).
 * making sure that there is no slop or excessive friction anywhere in the moving parts \(which mostly boils down to tightening the V-wheel eccentric nuts correctly\).
+
+## Work area
+
+The Shapeoko3 has a cutting area of 16 x 16", the XL has 16 x 33" and the XXL has 33 x 33". One thing to consider is that the cutting area is not centered, it extends beyond the front plates of the machine: 
+
+![](.gitbook/assets/work_area.png)
+
+Some implications may not be immediately apparent:
+
+* a \(small\) part of the cutting area is lost unless the stock material is overhanging the front of the machine.
+* however this is also a great opportunity to use this front area to mill a workpiece clamped **vertically** to the front of the machine _e.g._, to cut finger joints.
+* when designing an enclosure you may want to take this into account: the router \(and potentially the dust shoe\) will protude by a significant amount when the full area is used.
+
+{% hint style="info" %}
+Some folks have _swapped_ the Y plates on their machine, this allows them to shift the usable cutting area towards the back _i.e._, getting larger cutting area inside the machine at the expense of losing the overhang capability.
+{% endhint %}
 
 ## Stepper motors
 
-As the name implies, stepper motors are designed to be able to rotate by a small angle increments, rather than rotating continuously as conventional motors do when they are powered. Stepper motors are ubiquitous in CNC, for a good reason: they provide the capability to move by a precise amount \(i.e. a given number of steps\), without the need for a position feedback mechanism.
+As the name implies, stepper motors are designed to rotate by small angle increments, rather than rotating continuously as conventional motors do when they are powered. Stepper motors are ubiquitous in hobby CNCs, for a good reason: they provide the capability to move by a precise amount \(i.e. a given number of steps\), without the need for a position feedback mechanism.
 
 The stepper motors on the Shapeoko3 are **NEMA23** \(just a fancy way to say that their front/back face size is 2.3" square\), are of the "**bipolar**" type \(which means that they are controlled by two pairs of wires, the "A" phase and the "B" phase, and that one step is made by sending current in A and turning off B, or the other way around\), and are internally designed so that each step rotates the shaft by exactly 1.8°, which translates to 360°/1.8° = **200 steps to perform a full revolution**. 
 
 It's the job of the **stepper driver** to generate current alternatively in the A and B phases, when instructed to move by one or more steps.
 
-But it gets better: instead of just turning the current on and off completely alternatively on phases A and B to move one step at a time,  if the stepper driver sends a carefully chosen variable amount of current in A and B simultaneously, then it is possible to reach \(and hold\) intermediate positions between two steps: these are called "**microsteps**", and the drivers used in the Shapeoko are capable of controlling **8 microsteps for each step**.
+{% hint style="info" %}
+The stepper drivers use a trick to optimize the torque: instead of generating a constant voltage \(and therefore current\) in a phase, they generate a higher voltage and chop it at a high frequency so that it produces the desired value on average. It's just an implementation detail, but it explains the \(normal\) humming sound that the motors emit when the machine is idle.
+{% endhint %}
+
+But it gets better: instead of just turning the current on and off completely alternatively on phases A and B to move one step at a time, if the stepper driver sends a carefully chosen variable amount of current in A and B simultaneously, then it is possible to reach \(and hold\) intermediate positions between two steps: these are called "**microsteps**", and the drivers used in the Shapeoko are capable of controlling **8 microsteps for each step**.
 
 So overall, the motors can be controlled with a precision of 200 \* 8 = 1600 microsteps per revolution.
 
 {% hint style="info" %}
-While moving from one step to the next requires modulating the current between the two phases, **holding** a position requires keeping a constant current, so interestingly, stepper motors use more power when doing nothing that when moving. This is why they tend to get warm when the machine is on but not moving. This is not a problem in itself, but you might as well turn the machine off if it is going to stay idle for a long time, if only to save power.
+Interestingly, stepper motors use more power when doing nothing \(_i.e._, holding a position\) than when moving. This is why they tend to get warm when the machine is on but idle. This is not a problem in itself, the motors are designed to support high temperatures but you might as well turn the machine off if it is going to stay idle for a long time, if only to save power.
 {% endhint %}
 
 ## Pulleys & belts
 
-A pulley is installed on the motor shaft, and drives a "**GT2**" belt \(the "2" corresponds to the distance in mm between two teeth of the belt\)
+A pulley is installed on the motor shaft, and drives a "**GT2**" belt that has a 2mm pitch, _i.e._  distance in mm between two teeth\).
 
 
 
@@ -55,7 +75,7 @@ Another potential reason for "losing" steps, is that the pulley may slip on the 
 
 ![](.gitbook/assets/pulley_setscrew.png)
 
-Finally, the belts must be **tensioned** correctly, to avoid any slop that could lead to the belt jumping the pulley teeth when a large force is applied on that axis. This is a goldilocks situation where the belt needs to be tight enough to avoid this problem, but not too tight to avoid bending the motor shaft. 
+Finally, the belts must be **tensioned** correctly, to avoid any slop that could lead to the belt jumping the pulley teeth when a large force is applied on that axis. This is a Goldilocks situation where the belt needs to be tight enough to avoid this problem, but not too tight to avoid bending the motor shaft. 
 
 {% hint style="info" %}
 The usual words to characterize an adequate belt tension are "guitar-string tight". For the Y belts, a good indication of proper tension is that when the gantry is at one end of the rails, it should be possible to lift the belt a bit, but it should not be possible to slide a full pinky finger under the middle of the belt.
@@ -83,14 +103,14 @@ The brain of the Shapeoko is the controller board. There have been several revis
 | LIMIT Z \(= D12 = MISO\) | SPINDLE DIR \(= D13 = SCK\) | RESET |
 
 * **\#6** is the Arduino microcontroller \(ATMega328P\) that runs the motion control software
-  * Note: there is a small push button right under the Arduino, to RESET the board manually if needed \(which is never the case\)
+  * Note: there is a small push button right under the Arduino, to RESET the board manually if needed…never the case in normal usage.
 * **\#7** is a header with GND and +5V available.
 * **\#8** is the stepper driver for Z axis
 * **\#9** is the stepper connector for Z axis
   * from left to right pins: A1/B1/B2/A2 motor signals
 * **\#10** is the stepper driver for Y axis motor \#1
 * **\#11** is the stepper connector for Y axis motor \#1
-* * from left to right pins: A1/B1/B2/A2 motor signals
+  * from left to right pins: A1/B1/B2/A2 motor signals
 * **\#12** is the stepper driver for Y axis motor \#2
 * **\#13** is the stepper connector for Y axis motor \#2
   * from left to right pins: A1/B1/B2/A2 motor signals
@@ -111,11 +131,7 @@ The brain of the Shapeoko is the controller board. There have been several revis
   * PWM
   * 5V
   * D13
-* **\#19** is a \(now unused\) Fan connector. 
-  * Signals from top to bottom
-    * GND
-    * +12V
-    * TACH \(fan RPM\)
+* **\#19** is a "RESERVED" connector, that happens to be used for the Carbide3D probe now. 
 * **\#20** has plated holes for these signals:
 
 | Left pin column | Right pin column |
@@ -132,7 +148,7 @@ The brain of the Shapeoko is the controller board. There have been several revis
 
 ## GRBL Motion control software
 
-On the Shapeoko, the piece of embedded software that runs in the Arduino microcontroller is **GRBL** \("Gerbil"\), and open-source CNC motion control software \(available here: [https://github.com/gnea/grbl](https://github.com/gnea/grbl)\)
+On the Shapeoko, the piece of embedded software that runs in the Arduino microcontroller is **GRBL** \("Gerbil"\), an open-source CNC motion control software \(available here: [https://github.com/gnea/grbl](https://github.com/gnea/grbl)\)
 
 Carbide3D contributes to the development of GRBL, which is why it comes with a Shapeoko-specific set of settings already built-in the code \(so if you're into software and ever need to figure out why GRBL behaves the way it does, you can go and check the source code, which is neat!\)
 
@@ -192,10 +208,10 @@ What GRBL does is listen to incoming commands on the USB interface, and act upon
 
 ![](.gitbook/assets/grbl_internals.png)
 
-* first there is a **reception buffer**, and that's a critical point because while the arduino microcontroller can execute code with very deterministic timings, that's not the case of the host PC at the other end of the USB cable, which executes e.g. Carbide Motion on Windows. And as everyone experienced, from time to time Windows can decide to go and do something else for a little while, and this could break the flow of G-code commands into the controller. With this buffer, the control software can send a few additional G-code commands in advance of the current one, to ensure that the controller will never starve waiting for the next command from USB.
+* first there is a **reception buffer**, and that's a critical point because while the Arduino microcontroller can execute code with very deterministic timings, that's not the case of the host PC at the other end of the USB cable, which executes e.g. Carbide Motion on Windows. And as everyone has experienced, from time to time Windows or MAC OS can decide to go and do something else for a little while, and this could break the flow of G-code commands into the controller. With this buffer, the control software can send a few additional G-code commands in advance of the current one, to ensure that the controller will never starve waiting for the next command from USB.
 * the **G-code commands** are parsed and processed by a dedicated piece of code that generates the appropriate signals to drive the stepper driver to produce the desired motion
 * the **'$' commands** are interpreted to update various internal variables
-* the **realtime commands** consist of a single character, that has an immediate effect as soon as it is received, having priority over anything else GRBL is currently doing. For example ,  sending '!' will trig a Feed Hold.
+* the **realtime commands** consist of a single character, that has an immediate effect as soon as it is received, having priority over anything else GRBL is currently doing. For example ,  sending '!' will trigger a Feed Hold.
 * GRBL also uses hardware input signals from the **limit switches** and potentially from a **probe**, and commands an output "**PWM**" spindle signal to potentially drive the RPM of a spindle  
 
 {% hint style="info" %}
@@ -214,8 +230,8 @@ These commands can be typed from the G-code **console**, all G-code senders have
 
 All of the above of course serves a single purpose: moving a router and its cutter in three dimensions. The very concept of the Shapeoko is to be able to use an inexpensive consumer-grade compact **router**. The most popular ones \(if only because they are supported out of the box by the Shapeoko mechanical kit\) are:
 
-* the DeWalt DWP611 in the US, or its european counterpart the D26200
-* the Makita RTC0701 in the US, or its european counterpart the RTC0700C
+* the DeWalt DWP611 in the US, or its European counterpart the D26200
+* the Makita RTC0701 in the US, or its European counterpart the RTC0700
 * Carbide3D's "Carbide compact router", for the US only, which is a very close sibling of the Makita.
 
 but in theory any other hand router could be fitted on the Shapeoko, with the right mount adapter.
@@ -225,7 +241,7 @@ The most significant difference between the DeWalt and the Makita is the RPM ran
 | Dial position \(Makita\) | RPM |
 | :--- | :--- |
 | 1 | ~10,000 |
-| 2 |  ~12,000 |
+| 2 | ~12,000 |
 | 3 | ~17,000 |
 | 4 | ~22,000 |
 | 5 | ~27,000 |
@@ -242,7 +258,7 @@ The most significant difference between the DeWalt and the Makita is the RPM ran
 
 If you know you will need to be using lower RPMs, the Makita may be a better choice. Other than that, both routers have been used successfully for all kinds of jobs on the Shapeoko.
 
-Pro CNC's usually have a **spindle**, not a router, and that is a possible \(and popular\) upgrade path for the Shapeoko, check out the [HW upgrades](upgrading-the-machine.md#spindle-upgrade) section for more.
+Pro CNCs usually have a **spindle**, not a router, and that is a possible \(and popular\) upgrade path for the Shapeoko, check out the [HW upgrades](upgrading-the-machine.md#spindle-upgrade) section for more.
 
 
 

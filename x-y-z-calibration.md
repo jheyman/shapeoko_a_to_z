@@ -1,6 +1,6 @@
 # Dimensional accuracy
 
-For "decorative" projects, some inaccuracy in the dimensions of pieces cut on the Shapeoko do not matter, but many projects require having a finer control on the final dimensions:
+For "decorative" projects, some inaccuracy in the dimensions of pieces cut on the Shapeoko does not matter, but many projects require having a finer control of the final dimensions:
 
 * cutting geometrical patterns where a discrepancy between the X and Y dimensions could be visible to the naked eye, e.g. round shapes coming out like ellipses and squares like rectangles. Out of the box, on a properly assembled/squared/tensioned Shapeoko, this X/Y dimensional discrepancy should be small enough to not be noticeable.
 * cutting pieces that are intended to fit into each other \(e.g. hole & peg, box & lid, ...\). This is where one typically starts noticing that dimensions are not _quite_ what they were supposed to be, and are inaccurate enough that pieces either do not fit, or require manual rework \(e.g. sanding\) to be assembled.
@@ -130,7 +130,7 @@ Runout is bad anyway for tool life, chatter, and surface finish.
 
 ### **Measuring runout**
 
-The simplest way to measure runout is to do a test cut of a slot, measure the actual width of the resulting slot, then subtract the actual endmill diameter: the difference is the runout value. Unfortunately, it is not straightforward to determine precisely the actual diameter of a given endmill: they are manufactured within given tolerances, and are never quite the diameter they are sold to be. A 1/4" endmill could typically have an actual diameter anywhere between 0.245" and 0.255". Measuring precisely the actual diameter is not easy, as the measurement must be made on the flutes, and without proper tooling that can be difficult especially for endmill with an odd number of flutes.
+The simplest way to measure runout is to do a test cut of a slot, measure the actual width of the resulting slot, then subtract the actual endmill diameter: the difference is the runout value. Unfortunately, it is not straightforward to determine precisely the actual diameter of a given endmill: they are manufactured within given tolerances, and are never quite the diameter they are sold to be. A 1/4" endmill could typically have an actual diameter anywhere between 0.245" and 0.255". Measuring precisely the actual diameter is not easy, as the measurement must be made on the flutes, and without proper tooling that can be difficult especially for endmill with an odd number of flutes. There is also a real risk of damaging \(chipping\) the flutes during this measurement.
 
 Another way to measure runout is to use a **test indicator**, capturing the minimum and maximum values read over a 360° revolution of the endmill. Ideally, the runout should be measured at the tip of the endmill, where the cutting action is, but that means measuring on the flutes themselves. Alternatively, the dial indicator can be positioned on the shaft, as close as possible to the flutes, this will give a continuous readout of the runout over a 360° revolution, but could under-estimate the actual runout a bit.
 
@@ -182,12 +182,12 @@ This example value of 0.05mm \(0.002"\) runout on a Makita router with the stock
   * **Spindles** usually have lower runout than routers, so upgrading to a spindle can be another approach \(runout alone may not be a good enough reason to upgrade though\)
 * using **precision collets** is a simple way to help minimizing runout, and is one of the cheapest "upgrades" to the stock Shapeoko setup.
 * using quality endmills helps, but the endmill is probably not the main source of runout anyway.
-* watch out for **debris** stuck between the router taper and the collet, they will tilt things and create runout: always make sure the taper and collet are clean when inserting a new tool.
+* anything which comes between the bore and the collet will prevent correct alignment and cause/increase runout: always make sure the taper and collet are **clean** when inserting a new tool.
 * minimize **tool stickout**: this will minimize the effect of the axial runout.
 * considering that the final runout results from the relative positioning of the router, collet, and endmill, one can try to "**clock**" these three elements, so that the different runout contributions cancel each other to some extent. There is no easy way to determine runout of each element separately, so this can be a trial & error process, but worth trying:  slightly turn the collet inside the router taper, and/or turn the endmill inside the collet, and this _might_ yield a lower overall runout.
-* finally, a method that looks scary but gives surprisingly good results is **tapping** \(gently!\) on the endmill shaft using a screwdriver and a mallet: 
+* finally, a method that looks scary but gives surprisingly good results is **tapping** \(gently!\) on the endmill shaft using a screwdriver \(or ideally a brass drift punch\) and a mallet: 
   * first find the orientation of the endmill that gives the maximum readout on a dial indicator placed on the front side.
-  * put a small piece of electrical tape or similar on the tip of the screwdriver, to avoid metal to metal contact/
+  * if using a screwdriver put a small piece of electrical tape on its tip, to avoid metal to metal contact.
   * then..._lightly_ tap the back of the screwdriver with a mallet a couple of times.
   * check runout and repeat if necessary. It takes a few tries to find the right amount of force. In this example, the original runout was around 0.002", and tapping the endmill reduced it to around 0.0006". This adjustment should hold, at least until the end of the current job with this endmill.
 
@@ -197,5 +197,5 @@ This example value of 0.05mm \(0.002"\) runout on a Makita router with the stock
 
 Even if it can be minimized to some extent, some runout will always exist. A simple way to deal with it is to make the CAM tool believe that you are using a slightly larger endmill, corresponding to the actual endmill diameter + runout, measure this **effective cutting diameter** on a scrap piece of material, and then use that effective diameter in the CAM tool instead of the theoretical diameter.
 
-This won't do anything about the negative aspects of runout like possible vibrations/chatter/poor surface finish, but at least it should give more accurate dimensions.
+This won't do anything about the negative aspects of runout such as possible vibrations/chatter/poor surface finish, but at least it should give more accurate dimensions.
 

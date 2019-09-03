@@ -22,7 +22,7 @@ A few things to watch out for when installing a tool in the collet :
 
 ## Moving manually
 
-Whenever the machine is turned off, it is possible to move it manually, with just one contraint: do it slowly. When the machine is turned off and moved manually, the stepper motors behave as alternators, they generate current, enough current in fact to back-power the electronics \(you might see the LED on the controller board come to life...\). Moving slowly ensures that the generated current stays low enough to not damage the stepper electronics. 
+Whenever the machine is turned off, it is possible to move it manually, with just one constraint: do it slowly. When the machine is turned off and moved manually, the stepper motors behave as alternators, they generate current, enough current in fact to back-power the electronics \(you might see the LED on the controller board come to life...\). Moving slowly ensures that the generated current stays low enough to not damage the stepper electronics. 
 
 ## Homing
 
@@ -32,7 +32,7 @@ That "clonk" sound when the machine is turned on is just the stepper motors lock
 
 The reason for homing was introduced in the [CNC workflow](workflow.md) section: the only way the Shapeoko can tell for sure where it is, is when it contacts the three limit switches. Without homing, each time the machine is power cycled it would be unable to go back to any specific coordinates with precision.
 
-You could argue that homing is useless since you are going to manually jog to the Zero point and set it to be the reference anyway. For a job that can be done in a single run / with a single tool, that could work. But the power of homing is that it will allow to return with great precision to Zero point defined last \(which happens to be stored in the non-volatile memory of the controller by the GRBL software\). 
+You could argue that homing is useless since you are going to manually jog to the Zero point and set it to be the reference anyway. For a job that can be done in a single run / with a single tool, that could work. But the power of homing is that it will allow returning with great precision to Zero point defined last \(which happens to be stored in the non-volatile memory of the controller by the GRBL software\). 
 
 If you turn off the machine to change tools, this will be needed. But even if you don't, you may still want to home between runs: if for some reason the steppers or belts skipped a few steps during the previous run, returning to Zero without homing first _may_ bring the machine to a subtly different point, a few steps away.
 
@@ -46,7 +46,7 @@ Unless you have installed a spindle or a PID controller \(see [HW upgrades](upgr
 
 ![](.gitbook/assets/rpm_knob.png)
 
-But it's not easy to interpolate between knob settings to use intermediate RPM values, so I found it much easier to buy a laser tachymeter \(about 20$\), turn the router on, and adjust the knob to get the desired value:
+But it's not easy to interpolate between knob settings to use intermediate RPM values, so I found it much easier to buy a laser tachometer \(about 20$\), turn the router on, and adjust the knob to get the desired value:
 
 ![](.gitbook/assets/tachometer_measurement.png)
 
@@ -56,7 +56,7 @@ All it takes is a small patch of white/reflective tape on the collet nut:
 
 ## Zeroing \(manually\)
 
-After jogging to the vertical of the intended X/Y zero point on the stock surface, lower Z gradually then use fine steps to touch off on e.g. a piece of paper placed between the tool and the stock, stopping as soon as the paper cannot be moved freely under the tool anymore, and then tell the G-code sender to reset X0/Y0/Z0. Yes, it does mean that you will zero a tiny bit above the real stock surface, but the average thickness of a piece of paper is around 0.004" / 0.1mm, and chances are that you are already compressing the paper since it cannot move anymore, so you will actually be very, very close to stock surface.
+After jogging to the vertical of the intended X/Y zero point on the stock surface, lower Z gradually then use fine steps to touch off on e.g. a piece of paper placed between the tool and the stock, stopping as soon as the paper cannot be moved freely under the tool anymore, and then tell the G-code sender to reset X0/Y0/Z0. Yes, it does mean that you will zero a tiny bit above the real stock surface, but the average thickness of a piece of paper is around 0.004" / 0.1mm, and chances are that you are already compressing the paper since it cannot move anymore, so you will actually be very, very close to the stock surface.
 
 Miscellaneous tips:
 
@@ -68,16 +68,16 @@ The main limitation of manual zeroing is that you need to eyeball the X/Y locati
 
 ## Zeroing \(with a Probe\)
 
-Enter the touch probe, to automate the zeroing process. The Shapeoko controller has a dedicated "Probe" input, that works like the other limit switches, it detects whether there is continuity between the two pins:
+Enter the touch probe, to automate the zeroing process. The Shapeoko controller has a dedicated "Probe" input, that works like the other limit switches. It detects whether there is continuity between the two pins:
 
 ![](.gitbook/assets/job_probing_principle.png)
 
-For zeroing Z only, a probe can boil down to a piece of \(conductive\) metal sheet \(of known thickness\), for zeroing X, Y and Z, it needs to be a 3-dimensional but the principle is the same. X/Y/Z probes typically have a recessed face on the bottom side, so that they can be placed on a corner of the stock top surface:
+For zeroing Z only, a probe can boil down to a piece of \(conductive\) metal sheet \(of known thickness\), for zeroing X, Y and Z, it needs to be 3-dimensional but the principle is the same. X/Y/Z probes typically have a recessed face on the bottom side, so that they can be placed on a corner of the stock top surface:
 
 ![](.gitbook/assets/job_3dprobe_dimensions.png)
 
 {% hint style="info" %}
-Probes come in two types: passive and active. Passive is just what was described above, i.e. a glorified metal cube. Active probes have internal electronics to support features like an embedded test LED that lights up when contact is made, which is useful for checking that the probe chain is working fine before initiating the probing cycle
+Probes come in two types: passive and active. Passive is just what was described above, i.e. a glorified metal cube. Active probes have internal electronics to support features such as an embedded test LED that lights up when contact is made, which is useful for checking that the probe chain is working fine before initiating the probing cycle
 {% endhint %}
 
 The probing goes like this:
@@ -86,7 +86,7 @@ The probing goes like this:
 
 * the probing cycle starts with the tool raised above the probe. It could be anywhere above, but there is usually a target area above which to \(coarsely\) position the tool, to facilitate the rest of the sequence.
 * the tool is lowered along Z, until it makes contact. When it does, the software can just read the current Z and subtract the thickness of the probe \(PZ in the sketch above\) to get Z0. This Z touch off sequence can be repeated to average out values and improve precision
-* if the probing cycle is configured to also probe X and Y,  it retracts the tool and proceeds to move to the left side, past the edge of the probe, lowers the tool and then comes back towards the left side of the probe until it detects contact: it can then determine X0 by reading the current X value, add PX, and also add half the \(preconfigured\) diameter D of the tool itself. Probing Y is similar.
+* if the probing cycle is configured to also probe X and Y, it retracts the tool and proceeds to move away from probe, lowers the tool and then comes back towards it until it detects contact, then repeats that operation for the other side. It can then determine X0 and Y0 by reading the X or Y values at contact, add PX or PY, and add half the \(preconfigured\) diameter D of the tool itself. 
 
 ![](.gitbook/assets/job_probe_on_corner.png)
 
@@ -104,7 +104,7 @@ _@neilferreri_ on the forum came up with a wonderful probing macro for CNCjs, th
 
 This is straightforward, nothing special to be said here so I'll just share my own habits:
 
-* if your G-code sender allows, raise the tool after zeroing. It is normally not necessary, but depending on your CAM post-processors settings, the G-code may or may not contain an opening statement to do it, so this will give you a \(little bit\) of time to react if something unexpected happens. It is also required anyway in case your dust shoe model cannot be installed if the tool is lowered \(and since zeroing with the dust shoe in place is not fun\)
+* if your G-code sender allows, raise the tool after zeroing. It is normally not necessary, but depending on your CAM post-processor's settings, the G-code may or may not contain an opening statement to do it, so this will give you a \(little bit\) of time to react if something unexpected happens. It is also required anyway in case your dust shoe model cannot be installed if the tool is lowered \(and since zeroing with the dust shoe in place is not fun\)
 * double-check that the dust shoe is lowered at stock surface level and won't crash into anything during the job.
 * turn on the dust collection \(and air jet/lubricant mister if applicable\)
 * put on your safety goggles and/or close the enclosure window.
@@ -124,6 +124,11 @@ At least the first time I run a new project, I like to watch & listen throughout
   * it feels a bit weird to me to tighten the collet nut with the steppers locked.
 * **safety**: if you are using a router or spindle that is externally controlled, I would recommend actually cutting its power source \(wherever this is done in the chain\). Do you really trust your PID/VFD that much? If you are manually turning the router on and off, this is less of a risk but I choose to be extra cautious \(paranoid?\), and also kill the router power source \(in my case, flipping a switch on a control panel\) 
 * remove the tool and collet and make sure the collet taper is free from any debris/dust that could create runout for the next tool
+
+{% hint style="info" %}
+If the collet is stuck in the taper, you may try moving the endmill gently left and right in the collet to get it out.
+{% endhint %}
+
 * install new tool, monkey-tight nut, etc...
 * re-zero Z
   * yes, this is obvious, but if you are anything like me, one day you will be in a rush and forget to do it.
