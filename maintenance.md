@@ -49,7 +49,7 @@ The usual words to characterize an adequate belt tension are "guitar-string tigh
 If nothing is slipping and the depth error is small, it _might_ just be that the Z steps per mm value \($102 parameter in GRBL\) is not right, refer to the [Dimensional accuracy](x-y-z-calibration.md#x-y-z-calibration) section for more.
 {% endhint %}
 
-## Crashing the mashine
+## Crashing the machine
 
 This will happen sooner or later, and it will very likely be a user error somewhere in the workflow. First, in most cases it's not that big a deal: the steppers have limited power and will stall, or the belts will skip. You should still rush to the emergency stop button but chances are that the machine will not be permanently damaged. Reports from people who actually broke the machine beyond trivial repairs are \(very\) rare.
 
