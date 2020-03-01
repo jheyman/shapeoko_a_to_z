@@ -74,6 +74,7 @@ A variety of solutions apply, the most commonly cited are:
 * grounding the dust collection hose, and/or use an anti-static hose.
 * if the air is very dry, spray a little water on the stock, or use a humidifier in the room.
 * using a high-quality shielded USB cable, and/or a USB isolator or powered USB hub, or just using a different USB port on the PC running the G-code sender.
+* make sure your computer does not put the USB ports to sleep mode after a while. On a laptop, this can happen if running on battery: make sure it runs on power instead, or adjust power management options.
 * using a voltage regulator/surge protector between mains and the machine.
 * checking if router brushes are not worn out, and replacing them if needed.
 
