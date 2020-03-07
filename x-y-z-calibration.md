@@ -46,7 +46,7 @@ The basic principle is to:
 * adjust the $100, $101, and $102 values accordingly:
 
 $$
-new\ parameter\ value =  \frac{expected\ dimension}{actual\ dimension}* old\ parameter\ value
+new\ parameter\ value =  \frac{expected\ dimension}{actual\ dimension}× old\ parameter\ value
 $$
 
 * reset GRBL \(or just power cycle the machine\)

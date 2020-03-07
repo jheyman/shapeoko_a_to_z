@@ -10,7 +10,7 @@ To ensure heat removal, you should either cut lots of thin chips very quickly \(
 
 If you are going for the high RPM option, a sharp cutter and a chipload of 0.002" should do the trick for most of the situations.
 
-If you are going for low RPMs, then you should aim for the high-end of the recommended chipload range. As discussed in the [Feeds & speeds](feeds-and-speeds-basics.md#shapeoko-chiploads-guideline) section, for a 1/4" endmill in plastics, this is between 0.005"/ 0.13mm and 0.01" / 0.25mm. Such chiploads are hard to reach with 3-flute endmills. For example on the Dewalt router at its minimum RPM of 16.000, and at the highest possible feedrate \(196.85"/ 5000mm per min\), the chipload maxes out at ~197 / \(3x16.000\) = 0.004".
+If you are going for low RPMs, then you should aim for the high-end of the recommended chipload range. As discussed in the [Feeds & speeds](feeds-and-speeds-basics.md#shapeoko-chiploads-guideline) section, for a 1/4" endmill in plastics, this is between 0.005"/ 0.13mm and 0.01" / 0.25mm. Such chiploads are hard to reach with 3-flute endmills. For example on the Dewalt router at its minimum RPM of 16.000, and at the highest possible feedrate \(196.85"/ 5000mm per min\), the chipload maxes out at ~197 / \(3×16.000\) = 0.004".
 
 A usual solution is to use a single-flute \(**O-flute**\) endmill, this will allow a higher chipload at a comfortably slow feed rate. Recommended chiploads for smaller tools \(1/8" and below\) are easier to reach, even with two flute endmills. Another solution is to use even lower RPMs \(below 10k\), but that is only possible for spindle owners, not for Makita/Dewalt routers.
 
@@ -27,7 +27,7 @@ Two very common types of plastic are hard plastics like acrylic \(cast or extrud
 
 ## Acrylic
 
-For the first example below I went with the "low RPMs" approach and used a 2-flute 1/8" endmill, 10.000 RPM, and a feedrate of 1200mm/min \(47"/min\), to get a chipload of 1200 / \(2x10.000\) = 0.06mm = 0.0023", which is the high end of the range recommended in the [Feeds & speeds](feeds-and-speeds-basics.md) section for acrylic for this endmill size. The depth of cut was 50% of the endmill diameter i.e. 0.0625"/1.5875mm, and stepover was 0.056"/1.4mm.
+For the first example below I went with the "low RPMs" approach and used a 2-flute 1/8" endmill, 10.000 RPM, and a feedrate of 1200mm/min \(47"/min\), to get a chipload of 1200 / \(2×10.000\) = 0.06mm = 0.0023", which is the high end of the range recommended in the [Feeds & speeds](feeds-and-speeds-basics.md) section for acrylic for this endmill size. The depth of cut was 50% of the endmill diameter i.e. 0.0625"/1.5875mm, and stepover was 0.056"/1.4mm.
 
 You should be making well-formed snowy chips :
 
@@ -52,7 +52,7 @@ In the [Feeds & speeds](feeds-and-speeds-basics.md#plunge-rate) section, the gui
 Using the "high RPM" approach works fine too as long as chipload is in the right range. In the second test illustrated below, I used a 2-flute 1/4" endmill for a pocketing operation in acrylic:
 
 * At 25.000 RPM \(near the max of the Makita router RPM range\)
-* for a 1/4" endmill in acrylic, the recommended chipload range is 0.001"-0.005", I went for 0.002" to have a little margin above the 0.001" minimum. The associated required feedrate was therefore 0.002" x 2 flutes x 25.000 RPM = 100ipm
+* for a 1/4" endmill in acrylic, the recommended chipload range is 0.001"-0.005", I went for 0.002" to have a little margin above the 0.001" minimum. The associated required feedrate was therefore 0.002" × 2 flutes × 25.000 RPM = 100ipm
 
 The cut produced equally good chips,
 
@@ -74,7 +74,7 @@ To test the other approach to cut thinner chips but at much higher RPM/feedrate,
 
 * I went for 25.000 RPM again \(nearly maxed out\)
 * I chose to try a chipload of 0.002" \(the min recommended value for 1/4" in soft plastics\)
-* the associated required feedrate is therefore 0.002" x 2 flutes x 25.000 RPM = 100ipm
+* the associated required feedrate is therefore 0.002" × 2 flutes × 25.000 RPM = 100ipm
 * DOC happened to be 0.1" in this test.
 
 This got me an equally good cut, with nice chips and no sign of melting:

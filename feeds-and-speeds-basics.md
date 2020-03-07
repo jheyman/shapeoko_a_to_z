@@ -40,7 +40,7 @@ It starts out very thin, and gradually increases in thickness. The maximum thick
 
 ## Climb milling
 
-"Climb" milling is when the direction of the endmill movement is such that the cutting edges bite from the outside to the inside of the material. In that situation, a cutting edge first bites a large chunk of material \(blue position\), and as the endmill rotates and moves to the right at feedrate F, the cut gets thinner, until the tooth has nothing left to cut \(purple position\). The resulting chip \(in green\) has a similar shape than in conventional milling, and again the max thickness of the chip is the chipload.
+"Climb" milling is when the direction of the endmill movement is such that the cutting edges bite from the outside to the inside of the material. In that situation, a cutting edge first bites a large chunk of material \(blue position\), and as the endmill rotates and moves to the right at feedrate F, the cut gets thinner, until the tooth has nothing left to cut \(purple position\). The resulting chip \(in green\) has a similar shape to that in conventional milling, and again the max thickness of the chip is the chipload.
 
 ![](.gitbook/assets/chipcut_climb.png)
 
@@ -58,10 +58,10 @@ Each flute contributes in turn to removing material during one revolution of an 
 
 ![](.gitbook/assets/chipload_per_revolution800.png)
 
-If the endmill has N flutes, one revolution will cut N chips, i.e. a length of N x chipload of material. Since the endmill revolves at RPM turns per minute, in one minute a length of N x chipload x RPM will have been cut. And the distance being cut per minute is exactly the definition of feedrate, therefore Feedrate = N x RPM x Chipload, which also means:
+If the endmill has _N_ flutes, one revolution will cut _N_ chips, i.e. a length of _N_ × _chipload_ of material. Since the endmill revolves at _RPM_ turns per minute, in one minute a length of _N_ × _chipload_ × _RPM_ will have been cut. And the distance being cut per minute is exactly the definition of feedrate, therefore _Feedrate_ = _N_ × _RPM_ × _Chipload_, which also means:
 
 $$
-Chipload = \frac{Feedrate}{Nb\_Flutes * RPM}
+Chipload = \frac{Feedrate}{Nb\_Flutes × RPM}
 $$
 
 This relation is quite intuitive:
@@ -73,11 +73,11 @@ This relation is quite intuitive:
 The important takeway here, is that there are many possible combinations of feedrate, endmill type, and RPM to reach a given chipload. Say you are using a feedrate of 1000mm/min \(39ipm\), and a 3-flute endmill at 10.000RPM. Given the formula, you may just as well use a 2-flute endmill at 15.000RPM, or keep the 3-flute endmill but spin it at 20.000RPM while increasing feedrate to 2000mm/min \(79ipm\), the chipload thickness would be the same:
 
 $$
-\frac{1000}{3 * 10.000} =  \frac{1000}{2 * 15.000} =  \frac{2000}{3 *20.000} =0.033mm
+\frac{1000}{3 × 10.000} =  \frac{1000}{2 × 15.000} =  \frac{2000}{3 × 20.000} =0.033mm
 $$
 
 {% hint style="info" %}
-This also means that if your CAM tool comes up with feedrates or RPMs that are not in the range of your machine's abilities \(_e.g._, recommanded RPM lower than the minimum RPM of your router\), you can just scale both RPM **and** feedrate values by any factor, and it will still provide the same chipload. 
+This also means that if your CAM tool comes up with feedrates or RPMs that are not in the range of your machine's abilities \(_e.g._, recommended RPM lower than the minimum RPM of your router\), you can just scale both RPM **and** feedrate values by any factor, and it will still provide the same chipload. 
 {% endhint %}
 
 For a given chipload, some combinations are still better than other mathematically-equivalent ones though \(more on this below\). Since the feedrate/RPM combination is derived from the desired chipload value, let's first have a look at what the range of acceptable chipload values is for the Shapeoko.
@@ -96,7 +96,7 @@ The **maximum** reachable chipload depends on a lot of things, but mostly:
 * the **type and diameter of the endmill** \(smaller teeth need to take smaller bites: the maximum chipload for a given endmill scales linearly with its diameter\)
 * the **toolpath** used \(how wide/deep the cutter is engaged\) and the **rigidity of the machine**: it is quite easy to forget that the Shapeoko is not as rigid as industrial CNCs, so endmill manufacturers recommendations may not be directly suitable for the Shapeoko. Any mechanical mod of the machine also impacts the max chipload capability.
 
-The Shapeoko's limits must also be accounted for: the absolute maximum theoretical chipload on a stock Shapeoko would be reached when using a single-flute endmill at the lowest RPM \(10.000RPM on the Makita router\) and at the fastest feedrate of 200 inch per minute, and that would be 200/\(1x10.000\) = 0.02" = 0.5mm
+The Shapeoko's limits must also be accounted for: the absolute maximum theoretical chipload on a stock Shapeoko would be reached when using a single-flute endmill at the lowest RPM \(10.000RPM on the Makita router\) and at the fastest feedrate of 200 inch per minute, and that would be 200/\(1×10.000\) = 0.02" = 0.5mm
 
 So all chiploads should be somewhere between 0.001" and 0.02".
 
@@ -203,11 +203,15 @@ The solution is to artificially target a higher chipload value \(all other param
 The formula to determine this higher, adjusted target chipload is:
 
 $$
-Chipload(adjusted) = \frac{Diameter}{2 * \sqrt{(Diameter * Stepover) - Stepover^2}}* Chipload
+Chipload(adjusted) = \frac{Diameter}{2 × \sqrt{(Diameter × Stepover) - Stepover^2}}× Chipload
 $$
 
 {% hint style="info" %}
 For basic toolpaths, the stepover is often in the 40% to 50% range, and then you can just ignore chip thinning altogether. Where chip thinning really matters is for adaptive clearing toolpaths, that typically use small stepovers \(more on this in the [Toolpaths](toolpath-basics.md#adaptive-clearing-toolpaths) section\)
+{% endhint %}
+
+{% hint style="info" %}
+If we wanted to be pedantic, the term "_chipload_" should be used for the case where there is no chip thinning, while the term "_chip thickness_" should be used to name the adjusted/effective chipload after chip thinning is taken into account.
 {% endhint %}
 
 ## Choosing RPM and Feedrate
@@ -216,10 +220,10 @@ At this stage, the material is known, the endmill geometry is known, chip thinni
 
 In theory, there are two options: selecting a feedrate value and solving for the associated required RPM value, or selecting an RPM value and solving for the associated feedrate.
 
-In practice, the latter is done. The main reason is that the traditional way to determine feeds and speeds \(especially when cutting metal\) is to start from the required **SFM** \(Surface Feet Per Minute\): this is the linear speed of the edge of the cutter, and it should within a certain range depending on the material and the endmill. And to achieve a given SFM for a given endmill diameter, only the RPM needs to be determined:
+In practice, the latter is done. The main reason is that the traditional way to determine feeds and speeds \(especially when cutting metal\) is to start from the required **SFM** \(Surface Feet Per Minute\): this is the linear speed of the edge of the cutter, and it should be within a certain range depending on the material and the endmill. And to achieve a given SFM for a given endmill diameter, only the RPM needs to be determined:
 
 $$
-RPM = \frac{SFM(in \ feet\ per\ min)}{0.262 * endmill\_diameter(in\ inches)}
+RPM = \frac{SFM(in \ feet\ per\ min)}{0.262 × endmill\_diameter(in\ inches)}
 $$
 
 In practice, for most of the materials cut on a Shapeoko, there is a wide range of acceptable SFMs, so RPM could initially be chosen pretty much anywhere within the router's RPM limits \(10k to 30k for the Makita/Carbide router, 16k to 27k for the Dewalt router, and typically a few hundred to several tens of kRPM for spindles\)
@@ -235,28 +239,28 @@ Example:
 * Say we use a 25% radial depth of cut / stepover, i.e. 25% of 50% of 1/4" = 0.03125'', so adjusted chipload is: 
 
 $$
-\frac{0.25}{2 * \sqrt{(0.25* 0.03125) - 0.03125^2}}* 0.0014 \approx 1.5*0.002 = 0.003"
+\frac{0.25}{2 × \sqrt{(0.25 × 0.03125) - 0.03125^2}}× 0.0014 \approx 1.5×0.002 = 0.003"
 $$
 
 * The ideal setting would be to max out the RPM, say 24.000 \(to take an example that is reachable on the Makita, DeWalt, and common spindles\). The required feedrate would then be :
 
 $$
-Feedrate = Chipload*Nb\_Flutes * RPM= 0.003 * 3 * 24000 = 216\ ipm
+Feedrate = Chipload×Nb\_Flutes × RPM= 0.003 × 3 × 24000 = 216\ ipm
 $$
 
-* That is above the capability of the Shapeoko \(200ipm\), it would be scaringly fast for cutting hard wood, and 24.000 RPM may sound too loud to your taste anyway. Let's say we decided to go for 16.000 RPM instead,  the required feedrate would become:
+* That is above the capability of the Shapeoko \(200ipm\), it would be scarily fast for cutting hard wood, and 24.000 RPM may sound too loud to your taste anyway. Let's say we decided to go for 16.000 RPM instead,  the required feedrate would become:
 
 $$
-0.003 * 3 * 16000 = 144\ ipm
+0.003 × 3 × 16000 = 144\ ipm
 $$
 
 * If going 144ipm still _feels_ a little fast, it possible to obtain the same chipload at lower RPM and lower feedrate, e.g. 12.000RPM and 108ipm, at the expense of higher cutting forces \(which or may not be a problem, see power analysis section later below\)
-* Alternatively it is also possible to lower the feedrate by targetting a smaller chipload while ensuring it is still at least at the minimum recommended value of 0.001", and assuming you are using a sharp enough cutter: 
+* Alternately it is also possible to lower the feedrate by targetting a smaller chipload while ensuring it is still at least at the minimum recommended value of 0.001", and assuming you are using a sharp enough cutter: 
   * To get a 0.001" effective target chipload, the adjusted target chipload would become 0.0015"
-  * the feedrate would then be 0.0015 \* 3 \* 16.000 = 72ipm 
+  * the feedrate would then be 0.0015 × 3 × 16.000 = 72ipm 
 
 {% hint style="info" %}
-Some usecases call for the use a O-flute endmills: this will probably mean reducing the feedrate and/or increasing the RPM to maintain a proper chipload.
+Some usecases call for the use of an O-flute endmills: this will probably mean reducing the feedrate and/or increasing the RPM to maintain a proper chipload.
 {% endhint %}
 
 ## Choosing DOC & WOC
@@ -284,7 +288,7 @@ These two situations are illustrated below:
 
 The "_**small WOC, high DOC**_" approach is much preferable, as it spreads the heat and tool wear much more evenly along the length of the endmill. However, it requires specific toolpath strategies \(e.g. to initially clear material down to the required depth, to allow small WOC to be used for the rest of the cut\), this is covered in the [Toolpaths](toolpath-basics.md) section. This is a very popular approach when cutting metals on the Shapeoko, but its benefits apply to other materials too.
 
-The "_**large WOC, small DOC**_" approach only ever uses the tip of the endmill, so that part will wear out quickly while the rest of the endmill length of cut remains unused. But it is still a very common approach for pocketing and profile cuts on the Shapeoko, and it has simplicity for it.
+The "_**large WOC, small DOC**_" approach only ever uses the tip of the endmill, so that part will wear out quickly while the rest of the endmill length of cut remains unused. But it is still a very common approach for pocketing and profile cuts on the Shapeoko, and it has simplicity going for it.
 
 Unlike chiploads that NEED to be in a specific range to get good cuts, the situation is easier for DOC and WOC: you can just start with small, conservative values and then increase them to find the limit for your machine/endmill/material combination.
 
@@ -346,7 +350,7 @@ Bottomline: slotting is hard on the machine, so you may have to:
 
 * limit DOC to the low end of the range of values
 * limit feedrate \(chipload...\)
-* optimize chip evacuation by using endmill with a lower number of flutes, and/or a good dust shoe or blast of air 
+* optimize chip evacuation by using an endmill with a lower number of flutes, and/or a good dust shoe or blast of air 
 
 {% hint style="info" %}
 Or, you can take a different approach and _avoid_ slotting altogether, by using smarter toolpaths. See adaptive clearing and pocketing in the [Toolpaths](toolpath-basics.md#adaptive-clearing-toolpaths) section!
@@ -355,7 +359,7 @@ Or, you can take a different approach and _avoid_ slotting altogether, by using 
 Not that you will ever need to use it, but for the math-inclined among you, here's the equation to compute TEA from stepover value:
 
 $$
-TEA = \cos ^{ - 1}(1 - \frac{stepover}{0.5*endmill\_diameter})
+TEA = \cos ^{ - 1}(1 - \frac{stepover}{0.5×endmill\_diameter})
 $$
 
 ## Corners
@@ -397,7 +401,7 @@ These numbers are for plunging straight down. If the toolpath uses some ramping 
 
 ## Tool deflection
 
-Endmills are not infinitely rigid, they tend to bend \(deflect\) when submitted to the cutting forces, and that  deflection needs to be taken into account in the feeds and speeds. Here is a grossly exaggerated sketch of an endmill being subject to the cutting force:
+Endmills are not infinitely rigid, they tend to bend \(deflect\) when submitted to the cutting forces, and that deflection needs to be taken into account in the feeds and speeds. Here is a grossly exaggerated sketch of an endmill being subject to the cutting force:
 
 ![](.gitbook/assets/tool_deflection.png)
 
@@ -420,13 +424,13 @@ So this is yet another parameter to watch out for when selecting feeds and speed
 
 ## Climb or conventional ?
 
-The direction of the cut \(climb versus conventional milling\) pertains to the toolpath's generation options and not directly to the feeds and speeds, but while we are on this topic: since tool deflection is mainly perpendicular to the cut when using climb milling, it would seem like it is better to use conventional milling, to keep deflection parallel the cut and therefore minimize dimensional errors on the final piece. However there are other factors at play:
+The direction of the cut \(climb versus conventional milling\) pertains to the toolpath's generation options and not directly to the feeds and speeds, but while we are on this topic: since tool deflection is mainly perpendicular to the cut when using climb milling, it would seem like it is better to use conventional milling, to keep deflection parallel to the cut and therefore minimize dimensional errors on the final piece. However there are other factors at play:
 
-* in conventional milling, the chip is cut from thin-to-thick, so by definition when the flute first comes in contact with the material, it is rubbing the surface a little before it starts actually cutting into the material. This temporary rubbing amounts to heat, so on the long run a conventional cut produces more heat, leading to faster tool wear. Climb milling, since it cuts chips from thick-to-thin, does not have this problem.
+* in conventional milling, the chip is cut from thin-to-thick, so by definition when the flute first comes in contact with the material, it is rubbing the surface a little before it starts actually cutting into the material. This temporary rubbing amounts to heat, so in the long run a conventional cut produces more heat, leading to faster tool wear. Climb milling, since it cuts chips from thick-to-thin, does not have this problem.
 * for the same "thick-to-thin" reason, climb milling is a little more tolerant of less-than-perfectly-sharp endmills.
 * in conventional milling, the cutter flutes move against the direction of the feedrate, so chips are more likely to be pushed to the front of the cut, leading to chip recutting which is bad for finish quality. In climb milling, the chips tend to be pushed to the back of the endmill / behind the cut, so they are much less prone to recutting.
-* in climb milling, the router torque pushes in the same direction as the feedrate, while in conventional it fights again the feedrate, so the forces on the stepper motors are higher.
-* climb milling used to have a bad rep for being dangerous to use on machines with a lot of backlash. While this was perfectly true on older manual mills, the point is moot on CNCs in general and the Shapeoko in particular.
+* in climb milling, the router torque pushes in the same direction as the feedrate, while in conventional it fights against the feedrate, so the forces on the stepper motors are higher.
+* climb milling used to have a bad reputation for being dangerous to use on machines with a lot of backlash. While this was perfectly true on older manual mills, the point is moot on CNCs in general and the Shapeoko in particular.
 
 So when all is said and done, climb milling wins on almost every aspect except deflection. The [Toolpaths](toolpath-basics.md#roughing-vs-finishing-toolpaths) section will cover the notion of "roughing" versus "finishing" toolpaths, and that will then open the way for the best approach: using **climb for roughing, then conventional for finishing**. 
 
@@ -441,7 +445,7 @@ This being said, your CAM tool may or may not give you the option to select the 
 If you need to optimize **cutting time** for a given piece,  you will also need to take a look at the **material removal rate** \(MRR\):
 
 $$
-MRR = WOC * DOC * Feedrate
+MRR = WOC × DOC × Feedrate
 $$
 
 This yields a value in cubic inches \(or cubic millimeters\) of material removed per minute, and therefore relates to how fast you can complete a job. There is always a compromise to be found between going faster but with a lower tool engagement \(low DOC and/or low WOC\), or going slower but with a higher tool engagement \(higher DOC or high WOC\), while staying within the bounds of what the machine can do. The interesting thing about the MRR figure is that it allows one to **compare** different combinations, and figure out which one is the most efficient \(time-wise\).
@@ -449,7 +453,7 @@ This yields a value in cubic inches \(or cubic millimeters\) of material removed
 Now if you want to figure out how close you are to the absolute/physical **limits** of the Shapeoko, \(yet\) another formula comes in the picture, to characterize the required power at the endmill level to achieve this MRR:
 
 $$
-Cutting \ power\ (in\ HP\ unit)= \frac{MRR}{K\_factor} = MRR * Unit\ Power
+Cutting \ power\ (in\ HP\ unit)= \frac{MRR}{K\_factor} = MRR × Unit\ Power
 $$
 
 the "K" factor \(or its inverse value the Unit Power\) is a constant that depends on the material's hardness, and corresponds to how many cubic inches per minute \(or cubic millimeters per minute\) of material can be removed using 1 horsepower.
@@ -457,7 +461,7 @@ the "K" factor \(or its inverse value the Unit Power\) is a constant that depend
 For example, 
 
 * 6061 T6 aluminium has a K of 3.34 cubic inches per minute
-* it's about 10 in³/min for hard woods ahd hard plastics
+* it's about 10 in³/min for hard woods and hard plastics
 * and up to 30 in³/min for soft woods, MDF, ...
 
 Once you get this power value, you can compare it to your router's maximum output power. The Makita and DeWalt routers are rated at a max of 1.25HP \(932Watts\), but that is _input_ power, and the power efficiency of a router is not very good \(~50%\), so the max actual power at the cutter is more likely around 450W.
@@ -466,16 +470,16 @@ And finally, even if the cutting power is within the range of your router, there
 
 ![](.gitbook/assets/torque.png)
 
-In metric units, the torque is the force \(in Newton\) times the distance  in meters \(in this case the radius of the endmill\), and power in Watts is torque times the angular velocity w, in radians per second. Since the cutter does RPM revolutions per minute and each of them is 2\*pi radians:
+In metric units, the torque is the force \(in Newton\) times the distance in meters \(in this case the radius of the endmill\), and power in Watts is torque times the angular velocity w, in radians per second. Since the cutter does RPM revolutions per minute and each of them is 2×Pi radians:
 
 $$
-Cutting\ torque (in\ N.m)= \frac{Cutter Power (Watts) }{2\pi *RPM/\ 60}
+Cutting\ torque (in\ N.m)= \frac{Cutter Power (Watts) }{2\pi×RPM/\ 60}
 $$
 
-or in the Imperial units converting N.m to lbf-in \(x8.85 factor\) , since \(60 \* 8.85\) / \(2 \* 3.14159\) = 84.5:
+or in the Imperial units converting N.m to lbf-in \(x8.85 factor\) , since \(60 × 8.85\) / \(2 × 3.14159\) = 84.5:
 
 $$
-Cutting\ torque (lbf\_in)= \frac{Cutter Power (Watts) * 84.5}{RPM}
+Cutting\ torque (lbf\_in)= \frac{Cutter Power (Watts) × 84.5}{RPM}
 $$
 
 and finally cutting force is:
@@ -513,7 +517,7 @@ While predefined recommendations for common endmills and materials are very usef
 
 Whether or not you _need_ a feeds & speeds calculator is debatable: most people use a limited number of combinations of material/endmill sizes anyway, in which case relying on a few good recipes for your machine is enough. The real value of calculators is in **optimizing** the feeds & speeds for a particular situation, and to see the effects of any parameter change on the rest of them.
 
-A pretty neat feeds and speeds worksheet has been put together by @gmack on the Shapeoko forum \(which he derived from an original worksheet from NYCCNC website\). I have attached a version here for convenience, but you may want to check if a more recent version is available on the forum.
+A pretty neat feeds and speeds worksheet has been put together by @gmack on the Shapeoko forum \(which he derived from an original worksheet from the NYCCNC website\). I have attached a version here for convenience, but you may want to check if a more recent version is available on the forum.
 
 ![](.gitbook/assets/gmack_worksheet.png)
 
@@ -524,10 +528,14 @@ A pretty neat feeds and speeds worksheet has been put together by @gmack on the 
 3. if you care about power/force analysis, look-up the **K-factor** for the material being cut \(there's a list in a separate tab of the worksheet\) and update it here.
 4. select **target RPM** value \(or alternatively SFM, then RPM will be derived from it\). 
 5. select **WOC and DOC** \(depending on your machining style\) 
-6. The **required feedrate** to reach the target chipload will be computed. You can alternatively choose to override it with a given feedrate value \(and see what this does to chipload displayed below\), OR to forget about chipload and use a given cutting force as the ultimate target. Either way, the feedrate to be used will be displayed at the right end of this line.
+6. The **required feedrate** to reach the target chipload will be computed. You can alternatively choose to override it with a given feedrate value \(and see what this does to chipload displayed below\), _or_ to forget about chipload and use a given cutting force as the ultimate target. Either way, the feedrate to be used will be displayed at the right end of this line.
 7. You can then check the analysis of **deflection, cutting force, and power** in the lower part of the worksheet.
 
 Then play with the input values to compare various cutting scenarios while staying within the machine's hard limits \(max RPM, max feedrate, max power, and max cutting force\)
+
+{% hint style="info" %}
+The latest version of **@gmack**'s worksheet is available in the forum here: [https://community.carbide3d.com/t/speeds-feeds-power-and-force-sfpf-calculator/16237](https://community.carbide3d.com/t/speeds-feeds-power-and-force-sfpf-calculator/16237)
+{% endhint %}
 
 {% hint style="info" %}
 Once you determine good feeds and speeds and confirm that it is cutting correctly, it is useful to capture a snapshot of the worksheet for that particular usecase for future reference \(just duplicate the tab in the worksheet\)
@@ -555,4 +563,27 @@ The most common signs of inadequate feeds and speeds are:
 * **melted material**: especially in plastics and soft metals like aluminium, if the feedrate is too low for the selected RPM, the friction will cause the material to melt rather than shear, the tool flutes will start filling with melting material, and this usually ends up with tool breakage. You will need to feed faster, and/or use an endmill with a lower flute count.
 * **endmill temperature**: the endmill should not be more than slightly warm at the end of a cut: if it gets hot to the touch \(careful!\), the feeds and speeds are likely incorrect \(too low or too high chipload\), or the tool is dull and is rubbing rather than cutting. In extreme cases, the endmill color itself may change to a dark shade.
 * making **dust**, instead of clearly formed chips is an indication that chipload is probably too low \(MDF is an exception, you just cannot get chips anyway with this material\)
+
+## What about V-bits?
+
+Notice how I carefully avoided the case of V-bits throughout this section ? That's because V-bits are special, due to their geometry and the nature of their associated toolpaths:
+
+* The cutting speed varies along the edge of a V-bit, from its largest section \("top" of the V-bit\) to its point \(the surface speed is zero at the tip\).
+* The effective cutting diameter varies depending on how deep the V-bit goes.
+* The V-carving toolpaths tend to generate sloped trajectories and a lot of plunges and retracts, so the cutter engagement is constantly changing.
+
+So it does not quite make sense to be using a target chipload value for a V-bit. Experimentation is king in V-carving, but a common starting point for using V-bits in wood is as follows:
+
+* RPM in the 16k-20k range
+* Feedrate in the 30-60 ipm range \(lower for hard wood, faster for soft wood\)
+* Depth per pass in the 0.1-0.2" range
+* Plunge rate in the 10-20 ipm range 
+
+{% hint style="info" %}
+If your CAM software supports it, you may want to use a roughing pass and a finishing pass \(with more aggressive settings for the roughing pass to spare time, and more conservative settings for the finishing pass\)
+{% endhint %}
+
+{% hint style="info" %}
+Sometimes when using V-bits, running the g-code twice can lead to a cleaner finish.
+{% endhint %}
 

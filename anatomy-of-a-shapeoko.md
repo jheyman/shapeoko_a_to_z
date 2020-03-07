@@ -15,14 +15,21 @@ That part is self explanatory, since the Shapeoko is a kit everyone will get acq
 
 ## Work area
 
-The Shapeoko3 has a cutting area of 16 x 16", the XL has 16 x 33" and the XXL has 33 x 33". One thing to consider is that the cutting area is not centered, it extends beyond the front plates of the machine: 
+The Shapeoko3 has a cutting area of 16 × 16", the XL has 16 × 33" and the XXL has 33 × 33". One thing to consider is that the cutting area is not centered, it extends beyond the front plates of the machine: 
 
 ![](.gitbook/assets/work_area.png)
 
 Some implications may not be immediately apparent:
 
 * a \(small\) part of the cutting area is lost unless the stock material is overhanging the front of the machine.
-* however this is also a great opportunity to use this front area to mill a workpiece clamped **vertically** to the front of the machine _e.g._, to cut finger joints.
+* however this is also a great opportunity to use this front area to mill a workpiece clamped **vertically** to the front of the machine _e.g._, to cut finger joints:
+
+![](.gitbook/assets/willadams_vertical_fixture.jpg)
+
+{% hint style="info" %}
+Plans to build this vertical fixture are available at [https://cutrocket.com/p/5cb25f3380844/](https://cutrocket.com/p/5cb25f3380844/)
+{% endhint %}
+
 * when designing an enclosure you may want to take this into account: the router \(and potentially the dust shoe\) will protude by a significant amount when the full area is used.
 
 {% hint style="info" %}
@@ -43,7 +50,7 @@ The stepper drivers use a trick to optimize the torque: instead of generating a 
 
 But it gets better: instead of just turning the current on and off completely alternatively on phases A and B to move one step at a time, if the stepper driver sends a carefully chosen variable amount of current in A and B simultaneously, then it is possible to reach \(and hold\) intermediate positions between two steps: these are called "**microsteps**", and the drivers used in the Shapeoko are capable of controlling **8 microsteps for each step**.
 
-So overall, the motors can be controlled with a precision of 200 \* 8 = 1600 microsteps per revolution.
+So overall, the motors can be controlled with a precision of 200 × 8 = 1600 microsteps per revolution.
 
 {% hint style="info" %}
 Interestingly, stepper motors use more power when doing nothing \(_i.e._, holding a position\) than when moving. This is why they tend to get warm when the machine is on but idle. This is not a problem in itself, the motors are designed to support high temperatures but you might as well turn the machine off if it is going to stay idle for a long time, if only to save power.
@@ -63,7 +70,7 @@ This full revolution requires 1600 microsteps, which means that it requires 1600
 
 Which means that the minimal movement that the Shapeoko can theoretically do in any axis is 1/40th of a mm, that's 0.025mm or 0.001". Quite precise, right?
 
-And that when the machine needs to move by X mm along one axis, the stepper motor must be told 40\*x times to do one \(micro\)step.
+And that when the machine needs to move by X mm along one axis, the stepper motor must be told 40 × X times to do one \(micro\)step.
 
 {% hint style="warning" %}
 Everyone is too lazy to write "microstep" every time, so they just write "step". 99% of the time when discussing steps, you should understand "microstep", because this is what the stepper driver generates. The other 1% is when discussing stepper motor characteristics themselves, which are characterized by their number of "full" steps, because that's an intrinsic property of the motor design \(while the number of microsteps is only driven by the selected stepper driver\).
@@ -131,7 +138,7 @@ The brain of the Shapeoko is the controller board. There have been several revis
   * PWM
   * 5V
   * D13
-* **\#19** is a "RESERVED" connector, that happens to be used for the Carbide3D probe now. 
+* **\#19** is a "RESERVED" connector, that happens to be used for the Carbide 3D probe now. 
 * **\#20** has plated holes for these signals:
 
 | Left pin column | Right pin column |
@@ -150,7 +157,7 @@ The brain of the Shapeoko is the controller board. There have been several revis
 
 On the Shapeoko, the piece of embedded software that runs in the Arduino microcontroller is **GRBL** \("Gerbil"\), an open-source CNC motion control software \(available here: [https://github.com/gnea/grbl](https://github.com/gnea/grbl)\)
 
-Carbide3D contributes to the development of GRBL, which is why it comes with a Shapeoko-specific set of settings already built-in the code \(so if you're into software and ever need to figure out why GRBL behaves the way it does, you can go and check the source code, which is neat!\)
+Carbide 3D contributes to the development of GRBL, which is why it comes with a Shapeoko-specific set of settings already built-in the code \(so if you're into software and ever need to figure out why GRBL behaves the way it does, you can go and check the source code, which is neat!\)
 
 For example, here's a copy of the Shapeoko3 settings in GRBL1.1:
 
@@ -224,19 +231,19 @@ Below are the three most useful GRBL commands when using the Shapeoko:
 * **$&lt;x&gt;=&lt;val&gt;** writes value _val_ in setting _x_
 * **$H** homes the machines
 
-These commands can be typed from the G-code **console**, all G-code senders have one. 
+These commands can be typed from the G-code **console**, all G-code senders have one \(the one in Carbide Motion is called "MDI" for "Manual Data Input"\).
 
 ## Trim Router
 
 All of the above of course serves a single purpose: moving a router and its cutter in three dimensions. The very concept of the Shapeoko is to be able to use an inexpensive consumer-grade compact **router**. The most popular ones \(if only because they are supported out of the box by the Shapeoko mechanical kit\) are:
 
 * the DeWalt DWP611 in the US, or its European counterpart the D26200
-* the Makita RTC0701 in the US, or its European counterpart the RTC0700
-* Carbide3D's "Carbide compact router", for the US only, which is a very close sibling of the Makita.
+* the Makita RT0701 in the US, or its European counterpart the RT0700
+* Carbide 3D's "Carbide compact router" \(CCR\), for the US only, which is a close sibling of the Makita.
 
 but in theory any other hand router could be fitted on the Shapeoko, with the right mount adapter.
 
-The most significant difference between the DeWalt and the Makita is the RPM range: the Makita can be set from 10.000 RPM to 30.000RPM, while the DeWalt is limited to 16.000 to 27.000RPM.
+The most significant difference between the DeWalt and the Makita/CCR is the RPM range: the Makita can be set from 10.000 RPM to 30.000RPM, the CCR from 11.000 RPM to 31.000 RPM, while the DeWalt is limited to 16.000 to 27.000RPM.
 
 | Dial position \(Makita\) | RPM |
 | :--- | :--- |
@@ -256,7 +263,16 @@ The most significant difference between the DeWalt and the Makita is the RPM ran
 | 5 | ~24,200 |
 | 6 | ~27,000 |
 
-If you know you will need to be using lower RPMs, the Makita may be a better choice. Other than that, both routers have been used successfully for all kinds of jobs on the Shapeoko.
+| Dial position \(CCR\) | RPM |
+| :--- | :--- |
+| 1 | ~11000 |
+| 2 | ~13600 |
+| 3 | ~18250 |
+| 4 | ~25000 |
+| 5 | ~29000 |
+| 6 | ~31000 |
+
+If you know you will need to be using lower RPMs, the Makita or CCR will be a better choice. Other than that, all three routers \(and more\) have been used successfully for all kinds of jobs on the Shapeoko.
 
 Pro CNCs usually have a **spindle**, not a router, and that is a possible \(and popular\) upgrade path for the Shapeoko, check out the [HW upgrades](upgrading-the-machine.md#spindle-upgrade) section for more.
 

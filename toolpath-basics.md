@@ -9,7 +9,7 @@ For a specific object geometry/feature defined in the CAD tool, the CAM tool wil
 "**3D**" toolpaths correspond to cutting a 3D feature, and potentially moving the three axes of the machine simultaneously. 
 
 {% hint style="warning" %}
-Not all toolpaths presented below are available in the standard version of Carbide Create: 3D toolpaths, adaptive toolpaths, REST machining, and the roughing vs. finishing toolpaths feature require to use other CAM programs. If you are just starting you can ignore those, Carbide Create is perfect to learn simple 2D toolpaths before moving on to more complex projects. The intent here is to show what is available in various CAM programs, and then everyone can decide whether to invest money \(e.g. VCarve, Carbide Create Pro\) or time \(e.g. Fusion360\) to access those features. 
+Not all toolpaths presented below are available in the standard version of Carbide Create: 3D toolpaths, adaptive toolpaths, REST machining, and the roughing vs. finishing toolpaths feature require the use of other CAM programs. If you are just starting you can ignore those, Carbide Create is perfect to learn simple 2D toolpaths before moving on to more complex projects. The intent here is to show what is available in various CAM programs, and then everyone can decide whether to invest money \(e.g. VCarve, Carbide Create Pro\) or time \(e.g. Fusion 360\) to access those features. 
 {% endhint %}
 
 Let's take the simplest example of a 50x50mm square shape in a CAD tool, placed in the center of a 100x100x10mm stock material, with the zero point defined in the lower-left corner, and using a 6mm endmill \(~1/4"\) :
@@ -100,7 +100,7 @@ So, contour toolpaths are extremely simple, but there is a small catch: they pro
 
 ![](.gitbook/assets/toolpaths_contour_slotting.png)
 
-In this situation, half of the endmill circumference is engaged in the material at all times, refer to the slotting paragraph in [Feeds & speeds](feeds-and-speeds-basics.md#slotting) section for details. The bottomline is that since this is a worst case scenario for the cutter, the feeds & speeds and DOC need to be dialed back quite a bit to avoid chatter or  excessive tool deflection. 
+In this situation, half of the endmill circumference is engaged in the material at all times, refer to the slotting paragraph in [Feeds & speeds](feeds-and-speeds-basics.md#slotting) section for details. The bottom line is that since this is a worst case scenario for the cutter, the feeds & speeds and DOC need to be dialed back quite a bit to avoid chatter or  excessive tool deflection. 
 
 Sometimes this is no big deal and you can just proceed with the reduced DOC and be fine. In other situations \(e.g. cutting plastics or metal\), deep slotting can be difficult and a solution can be to avoid it altogether when possible, for example by cutting the profile as a pocket instead of a slot. This usually requires creating additional geometry around the piece, and creating a pocket toolpath to cut material in-between the original shape and the added geometry:
 
@@ -183,12 +183,14 @@ a V-bit is very inefficient at removing large amounts of material, and even wors
 
 For every toolpath there are two conflicting needs: minimizing the total runtime, and getting the best finish quality and dimensional accuracy of the workpiece. Instead of settling for a middle ground that accommodates both constraints, a very common approach is to create two different toolpaths:
 
-* the first \(roughing\) toolpath will be optimized to go fast, maximising material removal rate, but will be programmed to leave a little bit of material around the selected geometry. Even of the tool deflects, vibrates, or more generally produces a poor surface finish, this will be taken care of by the next toolpath.
+* the first \(roughing\) toolpath will be optimized to go fast, maximising material removal rate, but will be programmed to leave a little bit of material around the selected geometry. Even if the tool deflects, vibrates, or more generally produces a poor surface finish, this will be taken care of by the next toolpath.
 * the second \(finishing\) toolpath will be optimized for getting a good surface finish and accuracy: it can be set to go slower, but even if it isn't, the simple fact that it will have very little material left to cut will reduce the efforts on the tool, and produce a cleaner result.
 
-How roughing/finishing is setup depends on the CAD/CAM tool being used:
+How roughing/finishing is set up depends on the CAD/CAM tool being used:
 
-* Carbide Create does not support \(at the time of writing\) any roughing/finishing option explicitly, but one can still manually create additional geometry in the design to do it, as explained above in the alternatives to slotting.
+* Carbide Create does not support \(at the time of writing\) any roughing/finishing option explicitly, but:
+  * one can manually create additional geometry in the design to do it, as explained above in the alternatives to slotting.
+  * or one can define a "fake" roughing tool and declare it to be slightly larger than the tool actually is, and use that tool in the toolpath: this will generate a toolpath that when cut with the real \(slightly smaller\) tool, will leave a thin layer of material around the shapes. Then, generate toolpaths based on the same geometry, but this time using a tool that is declared to have the true size, and run that: it will act as a finishing toolpath and shave off the excess material from the "roughing" pass.
 * Vectric V-Carve has explicit options in its toolpath parameters to create an "allowance offset", basically a margin that will be kept when cutting. One can therefore select a geometry and:
   * create a first toolpath with an allowance offset \(of say 0.01"\)
   * create a second toolpath with an allowance offset of 0.
@@ -252,7 +254,7 @@ For drilling a hole, a first option is to use an endmill smaller than the hole, 
 
 A useful alternative is to use specific drilling toolpaths, that just plunge the endmill vertically, so it becomes possible to do a 1/4" hole with a 1/4" endmill. However, an endmill is very bad at drilling, it is just not designed for this, so the plunge rate should be limited, and the "**peck-drilling**" option used: the tool will cut a small DOC, retract to clear out the chips, and then plunge again, repeatedly until the full depth has been cut.
 
-A more efficient alternative is of course to use an actual drill bit instead of an endmill, but...it implies an additional tool change. 
+A more efficient alternative is of course to use an actual drill bit instead of an endmill, but...it implies an additional tool change. Also, it's important \(for safety\) to check that the drill bits are rated for the speed the spindle will spin them at.
 
 ## Previewing toolpaths from G-code
 

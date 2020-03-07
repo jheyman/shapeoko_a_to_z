@@ -26,8 +26,8 @@ It's easy to be overwhelmed at first by the variety of cutters and their charact
   * **high speed steel** \(HSS\) is cheaper and tougher, but more limited in speeds.
 * its **coating**, if any:
   * Generally, no coating is necessary for cutting wood and plastics.
-  * **ZrN** \(Zirconium Nitride\) coating is good for non-ferrous metals _e.g._, aluminum, brass, copper, titanium.
-  * **AlTiN** \(Aluminum Titanium Nitride\) coating is good for steel/ferrous-metals.
+  * **ZrN** \(Zirconium Nitride\) coating is good for non-ferrous metals _e.g._, aluminium, brass, copper, titanium.
+  * **AlTiN** \(Aluminium Titanium Nitride\) coating is good for steel/ferrous-metals.
 * whether it is **center cutting** or not:
   * most are, it means they have the ability to plunge into the material \(vertically\), like a drill bit does.
   * non-center cutting tools are more commonly used on manual power tools, think router bits. It is _possible_ to use them on a Shapeoko, but it requires a very careful CAM design.
@@ -40,13 +40,13 @@ It's easy to be overwhelmed at first by the variety of cutters and their charact
 
 ## Square endmills
 
-**Square** endmills are ****the workhorses if CNC milling. They come is several variants:
+**Square** endmills are ****the workhorses if CNC milling. They come in several variants:
 
 * **upcut**: the direction of the flute spiral is such that it pulls chips away from the cutting surface, thus is quite efficient at evacuating chips. It will produce a nice finish at the bottom of pockets, but can produce tear out on the top edges in some materials.
 * **downcut**: it pushes chips downward when cutting, so is not efficient to evacuate them from the cutting area. It tends to do the opposite as an upcut, i.e. leaving produce a clean cut at the top edges of the cuts, but potential tear out at the bottom of pockets.
 * **compression**: the flute geometry is such that it combines an upcut section at the bottom of the tool, and a downcut section at the other end of the cutting part, so for certain pocket depths it can give a nice finish both at the bottom and top of pockets.
 
-Here's an example for a 3-flute, 1/4", upcut square endmill \(codename "\#201" on Carbide3D store\)
+Here's an example for a 3-flute, 1/4", upcut square endmill \(codename "\#201" on Carbide 3D store\)
 
 ![](.gitbook/assets/tools_3flute_025inch.png)
 
@@ -77,6 +77,14 @@ And then there are the funny looking **compression** endmills, that start with a
 and a smaller 1/8", 1-flute compression endmill:
 
 ![](.gitbook/assets/tools_1flute_compression_0125inch.png)
+
+## Corner radius endmills
+
+Square endmills have a weak point, and that's the sharp tip of each of their flutes. In demanding materials \(like metal\) this is likely to chip, so one can use **corner radius** \(a.k.a. "bullnose"\) endmills instead: they behave very similarly to square endmills, but are much less prone to chip at the tip, hence can be used at more aggressive settings. Notice in the two pics below, the rounded corners \(top: TiCN-coated, bottom: ceramic-coated\)
+
+![](.gitbook/assets/bullnose_closeup.jpeg)
+
+![](.gitbook/assets/bullnose_closeup2.jpeg)
 
 ## Ballnose endmills
 
@@ -150,7 +158,7 @@ Using a **collet adapter/reducer** is generally not recommended as it tends to i
 
 Below is a short overview of what runout is, but overall this is not something new users have to worry about.
 
-## Runout / TIR
+## Runout
 
 Ideally, the rotation axis of the router shaft \(in black\), the axis of the collet \(in blue\), and the axis of the endmill \(in green\) are perfectly aligned:
 
@@ -170,15 +178,15 @@ The expected width of the slot is the endmill diameter, but the actual width of 
 
 ![](.gitbook/assets/runout_measurement_sketch.png)
 
-Refer to the runout section in [Dimensional accuracy](x-y-z-calibration.md#managing-runout) for details on how to measure unrout, and correct it \(or at least take it into account\).
+Refer to the runout section in [Dimensional accuracy](x-y-z-calibration.md#managing-runout) for details on how to measure runout, and correct it \(or at least take it into account\).
 
 ## Endmills & collets starter set
 
 A common question when buying the Shapeoko is "which endmills and collets should I get?" 
 
 * the answer of course is "it depends" \(on the nature of your projects\)
-* the Shapeoko ships with a 1/4" square endmill \(\#201 from Carbide3D store\), and the router ships with a 1/4" collet: this is enough to get started and make a lot of beginner projects actually.
-* getting a couple of spare 1/4" square endmills is a good idea: sooner or later, the original \#201 will wear out \(or chip, or even break in case of a really big mistake\)
+* the Shapeoko ships with a 1/4" square endmill \(\#201 from Carbide 3D store\), and the router ships with a 1/4" collet: this is enough to get started and make a lot of beginner projects actually.
+* getting a couple of spare 1/4" square endmills is a good idea: sooner or later, the original \#201 will wear out \(or chip, or even break in the event of a really big mistake\)
 * the usual next step is to realize that 1/4" is too large to cut small features: getting a couple of 1/8" square endmills will not go to waste anyway.
   * this comes with the need to get a 1/8" collet, or at least a collet adapter. 
 * if you intend to use 3D toolpaths and curvy surfaces, get a ballnose endmill \(1/4" or 1/8" or smaller depending on the size/precision of your target projects\)
@@ -196,7 +204,7 @@ So my recommendation for a **starter pack** would be something like:
 * 1 × 60° V-bit 
 * 1 × 90° V-bit
 * \(optionally for 3D work\) 2 × 1/4" ballnose endmills
-* \(optionally for plastics\) 1 × O-flute 1/4" square endmill + 1 x O-flute 1/8" square endmill
+* \(optionally for plastics\) 1 × O-flute 1/4" square endmill + 1 × O-flute 1/8" square endmill
 * \(optionally for aluminium\) a set of ZrN-coated 1/4" and 1/8" endmills
 
 

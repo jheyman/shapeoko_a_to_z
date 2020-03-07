@@ -13,7 +13,7 @@ Many users do not have the luxury of having multiple options for where to instal
   * as a provision for upgrades \(e.g. higher Z-axis upgrade\)
   * to have room to fit a dust collection system underneath/next to the machine
   * to support tiling \(feeding long pieces from the front or back of the machine, through to the other side\).
-* height: having the machine installed at arm/desk level is best. Kneeling to change endmill on a machine installed on the floor or in a low cabinet will get old very quickly.
+* height: having the machine installed at arm/desk level is best. Kneeling to change the endmills on a machine installed on the floor or in a low cabinet will get old very quickly.
 * keep in mind that CNC is noisy \(router and sound of the cut itself and dust collection system\), though an enclosure will help a lot.
 * the Shapeoko should rest on a rigid and level surface. A custom-made bench with a torsion box is a popular choice, but mine is just installed on a sturdy Ikea kitchen table bolted to the wall.
 
@@ -39,15 +39,26 @@ CNC is just messy. While it is quite possible to operate the Shapeoko without a 
 
 ### Dust shoe
 
-Using a dust shoe attached to the X/Z carriage is the common solution.
+Using a dust shoe attached to the X/Z carriage is the common solution. They come in two main types:
 
-* the dust shoe can be attached to the moving part \(router/mount/Z-plate\), but in this case it needs to have long and flexible bristles, to accomodate for Z movements during the job without colliding with the stock.
-* or it can be attached to the fixed part of the carriage, then adjusted and locked with the bristles against the stock surface \(you still have to watch out for possible collision with clamps, or use low-profile clamps that will slide right under the bristles\)
+* the dust shoe can be attached to the router \(or elsewhere on the moving part of the Z-plate\). In this case, since it will move up and down with Z movements during the cut, one needs to take that into account, by leaving enough clearance under the dust shoe and ideally having long and flexible bristles, so that when the router will be cutting at maximum depth, the dust shoe won't collide with the surface of the stock. Here's a picture of Carbide3D's "Sweepy" dust shoe:
+
+![](.gitbook/assets/sweepy.jpeg)
+
+{% hint style="info" %}
+The main benefit of a router-mounted dust shoe is that it can be quite compact, and it will not reduce the X travel. The main drawback is that it does not work well when cutting deep jobs, as  the required clearance under the bristles will make the suction efficiency drop significantly
+{% endhint %}
+
+* or the dust shoe can be attached to the fixed part of the carriage, and then adjusted and locked with the bristles against the stock surface \(you will still have to watch out for possible collision with clamps, or use low-profile clamps that will slide right under the bristles\). They are called "Z-independent" dust shoes, here's a picture of such a dust shoe installed on my machine:
 
 ![](.gitbook/assets/setup_suckit_dustshoe.png)
 
 {% hint style="info" %}
-If you buy or make a dust shoe, make sure it has a slot so that it can be inserted/removed without having to raise the tool, unlike mine shown in the picture above. The natural thing to do is to zero without the dust shoe to see what you are doing \(even more so if you are using a touch probe\), and then insert the dust shoe just before running the job. 
+The main benefit of a Z-independent dust shoe is that suction is optimal \(since the bristles can be adjusted to be flush against the stock surface\), and there is no need to worry about cutting depths. The main drawback is that the side arms holding it usually reduce the X travel slightly, and the dust shoe is generally a bit bulky, with risks of collision with clamps.
+{% endhint %}
+
+{% hint style="info" %}
+If you buy or make a dust shoe, make sure it has a slot in the back so that it can be inserted/removed without having to raise the tool, unlike mine shown in the picture above. The natural thing to do is to zero without the dust shoe to see what you are doing \(even more so if you are using a touch probe\), and then slide the dust shoe in place just before running the job. 
 {% endhint %}
 
 {% hint style="info" %}
@@ -147,7 +158,7 @@ Protection walls can be installed on the sides/back of the machine, to at least 
 
 ![](.gitbook/assets/setup_protectionwalls.jpeg)
 
-Mine are just made from 0.1" thick hard foam strips glued to aluminum corner guards, bolted onto the bed. 
+Mine are just made from 0.1" thick hard foam strips glued to aluminium corner guards, bolted onto the bed. 
 
 {% hint style="info" %}
 With an MDF bed, another idea is to cut slots on the sides, making it very easy to insert/remove the walls.
@@ -157,5 +168,30 @@ They do a good job of containing the chips \(but if you look closely enough at t
 
 ![](.gitbook/assets/setup_protectionwalls_messy.jpeg)
 
+## GRBL settings
 
+The Shapeoko's default configuration procedure in Carbide Motion programs a set of specific GRBL parameters in the controller. Depending on the version of CM used, these settings were meant to be conservative, they are ideal while learning how to use the machine, but they can then be tuned to more aggressive values to improve jogging and homing speed.
+
+I tuned mine based on a great [suggestion ](https://community.carbide3d.com/t/testing-more-aggressive-grbl-settings/19280/8)from **@wmoy** on the forum, and captured them here for reference:
+
+```text
+$25=2000.000 (Homing search seek rate, mm/min)
+$27=1.000 (Homing switch pull-off distance, millimeters)
+$110=10000.000 (X-axis maximum rate, mm/min)
+$111=10000.000 (Y-axis maximum rate, mm/min)
+$112=1400.000 (Z-axis maximum rate for HDZ, mm/min, 1000 for stock Z axis)
+$120=500.000 (X-axis acceleration, mm/sec^2)
+$121=500.000 (Y-axis acceleration, mm/sec^2)
+$122=200.000 (Z-axis acceleration, mm/sec^2)
+```
+
+These values can be tuned from the MDI menu in Carbide Motion, or from the G-code command shell in any other G-code sender.
+
+{% hint style="info" %}
+Those GRBL settings are now the standard values in Carbide Motion, starting from version 505
+{% endhint %}
+
+{% hint style="warning" %}
+Note that those increased MAX speeds are fine for rapid moves outside the material, but it will still be your responsibility to program adequate cutting feedrates in the toolpaths, which are usually much lower than those limits. That 10.000 mm/min rate on X and Y corresponds to 393ipm, while cutting feedrates are typically always \(well\) below 200ipm.
+{% endhint %}
 
