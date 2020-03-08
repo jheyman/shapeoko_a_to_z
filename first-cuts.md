@@ -10,7 +10,7 @@ The ordering of these steps can vary based on personal preference and software b
 
 A few things to watch out for when installing a tool in the collet :
 
-* make sure the collet matches the endmill diameter. This may sound silly, but once you start having a collection of various imperial and metric tools and collets, inadvertently using a 6mm endmill in a 1/4" \(6.35mm\) collet is a \(remote\) possibility, and not paying attention to this will result in serious trouble during the cut. 
+* make sure the collet matches the endmill diameter. This may sound silly, but once you start having a collection of various imperial and metric tools and collets, inadvertently using a 6mm endmill in a 1/4'' \(6.35mm\) collet is a \(remote\) possibility, and not paying attention to this will result in serious trouble during the cut. 
 * the collet and collet taper must be **clean** of any debris/dust. Those might introduce runout. 
 * **stickout**: it should be 
   * as low as possible to minimize tool deflection
@@ -104,11 +104,11 @@ In summary,
 
 ## Zeroing \(manually\)
 
-After jogging to the vertical of the intended X/Y zero point, lower Z gradually then use fine steps to touch off on e.g. a piece of paper placed between the tool and the stock, stopping as soon as the paper cannot be moved freely under the tool anymore, and then tell the G-code sender to reset X0/Y0/Z0. Yes, it does mean that you will zero a tiny bit above the real stock surface, but the average thickness of a piece of paper is around 0.004" / 0.1mm, and chances are that you are already compressing the paper since it cannot move anymore, so you will actually be very, very close to the stock surface.
+After jogging to the vertical of the intended X/Y zero point, lower Z gradually then use fine steps to touch off on e.g. a piece of paper placed between the tool and the stock, stopping as soon as the paper cannot be moved freely under the tool anymore, and then tell the G-code sender to reset X0/Y0/Z0. Yes, it does mean that you will zero a tiny bit above the real stock surface, but the average thickness of a piece of paper is around 0.004'' / 0.1mm, and chances are that you are already compressing the paper since it cannot move anymore, so you will actually be very, very close to the stock surface.
 
 Miscellaneous tips:
 
-* double-check your Z jog step before doing the final steps to touch off. It is very easy to hit the "down" arrow one time too many by mistake, and if the step is still say 0.1", this might bury your tool into the stock, or more likely break it if it is a small endmill.
+* double-check your Z jog step before doing the final steps to touch off. It is very easy to hit the "down" arrow one time too many by mistake, and if the step is still say 0.1'', this might bury your tool into the stock, or more likely break it if it is a small endmill.
 * touching off with a very pointy V-bit can be tricky, it's easy to go too far down without noticing, so you should use even finer jog steps and/or extra caution.
 * for jobs involving multiple tools, consider the fact that you will have to re-zero after tool change: it is more convenient to zero on a part of the surface that will...still be there after the first tool has done its job.
 

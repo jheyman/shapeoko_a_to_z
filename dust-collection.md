@@ -158,7 +158,7 @@ Protection walls can be installed on the sides/back of the machine, to at least 
 
 ![](.gitbook/assets/setup_protectionwalls.jpeg)
 
-Mine are just made from 0.1" thick hard foam strips glued to aluminium corner guards, bolted onto the bed. 
+Mine are just made from 0.1'' thick hard foam strips glued to aluminium corner guards, bolted onto the bed. 
 
 {% hint style="info" %}
 With an MDF bed, another idea is to cut slots on the sides, making it very easy to insert/remove the walls.

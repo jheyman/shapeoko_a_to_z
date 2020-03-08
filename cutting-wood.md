@@ -4,7 +4,7 @@ These usecases are intended to illustrate how the information from the [Feeds & 
 
 ## Bamboo tool holder
 
-Ok, technically bamboo is not wood, but close enough. In this example, I wanted to make a holder for my endmills from a cheap \(Ikea\) 11" × 18" bamboo cutting board. I used the tape & glue method to secure it to the wasteboard.
+Ok, technically bamboo is not wood, but close enough. In this example, I wanted to make a holder for my endmills from a cheap \(Ikea\) 11'' × 18'' bamboo cutting board. I used the tape & glue method to secure it to the wasteboard.
 
 {% hint style="info" %}
 I added extra pieces of similar thickness on the sides and front, this allows the dust shoe to not lose suction when it moves past the edge of the stock during the toolpath.
@@ -12,23 +12,23 @@ I added extra pieces of similar thickness on the sides and front, this allows th
 
 ![](.gitbook/assets/bamboo_holder_stock.png)
 
-The design is very straightforward but has a lot of deep pockets, with tight corners that a 1/4" endmill could not cut. And cutting of all this with a 1/8" endmill would take forever:
+The design is very straightforward but has a lot of deep pockets, with tight corners that a 1/4'' endmill could not cut. And cutting of all this with a 1/8'' endmill would take forever:
 
 ![](.gitbook/assets/fs_usecases_toolholder_design.png)
 
 So I first created a roughing toolpath using a large \(6mm\) endmill, to do most of the clearing. 
 
 * an **upcut** endmill is used, to have good chip evacuation and since there will be a finishing pass afterwards anyway to clean the rough top edges of the pockets.
-* Using the **target chipload guideline** \(see [Feeds & speeds](feeds-and-speeds-basics.md#shapeoko-chiploads-guideline)\), and considering bamboo is somewhat easier to cut than "hard wood", I picked a target chipload value of 0.002"/ 0.055mm in the high-end of the range.
-* While regular pocketing toolpaths would have worked fine, I chose to use an **adaptive clearing** toolpath, and with a stepover/radial width of cut/optimal load of 0.0315" / 0.8mm \(13% of endmill diameter, a very conservative value for wood\)
-* After taking **chip thinning** into account for a 13% stepover, the corrected target chipload is 0.0327" / 0.083mm
+* Using the **target chipload guideline** \(see [Feeds & speeds](feeds-and-speeds-basics.md#shapeoko-chiploads-guideline)\), and considering bamboo is somewhat easier to cut than "hard wood", I picked a target chipload value of 0.002''/ 0.055mm in the high-end of the range.
+* While regular pocketing toolpaths would have worked fine, I chose to use an **adaptive clearing** toolpath, and with a stepover/radial width of cut/optimal load of 0.0315'' / 0.8mm \(13% of endmill diameter, a very conservative value for wood\)
+* After taking **chip thinning** into account for a 13% stepover, the corrected target chipload is 0.0327'' / 0.083mm
 
 $$
-Chipload(adjusted) = \frac{6}{2 × \sqrt{(6 × 0.8) - (0.8)^2}}× 0.055 = 0.081mm = 0.00319"
+Chipload(adjusted) = \frac{6}{2 × \sqrt{(6 × 0.8) - (0.8)^2}}× 0.055 = 0.081mm = 0.00319''
 $$
 
 * Since my endmill has 2 flutes, and selecting 12.000 RPM as my speed, the required **feedrate** to reach that chipload value is 0.00319 × 2 × 12000 = 76.6ipm = 1945 mm/min
-* Since the stepover is very low and the adaptive toolpath enabled it, I went for cutting the **full pocket depth** \(0.5" = 12.7mm = 200% endmill diameter\) in one pass.
+* Since the stepover is very low and the adaptive toolpath enabled it, I went for cutting the **full pocket depth** \(0.5'' = 12.7mm = 200% endmill diameter\) in one pass.
 * I chose 400 mm/min for **plunge rate**, which is very conservative for wood especially considering I also used helical ramping into the material.
 * I left 0.5mm radial **stock to leave**, that the finishing pass would take care of.
 
@@ -40,13 +40,13 @@ and the cut proceeded uneventfully, taking about 40 minutes. Notice the fuzzies 
 
 ![](.gitbook/assets/bamboo_holder_roughing.png)
 
-I then created a finishing pass that would do two things: take care of cutting the corners to their final radius using a smaller \(1/8"\) endmill, and remove the 0.5mm remaining stock from the pocket walls.
+I then created a finishing pass that would do two things: take care of cutting the corners to their final radius using a smaller \(1/8''\) endmill, and remove the 0.5mm remaining stock from the pocket walls.
 
 * I used a **downcut** endmill, to get clean top edges. The poor chip evacuation is not an issue here since there is very little material to remove and it happens inside a large pocket with lots of space around the endmill.
-* I picked a radial width of cut of 0.02" / 0.55mm, i.e. just a bit more than the stock to leave from the previous pass, so that it will only take one pass on the walls \(and just a few passes in the corners\). That is only 17% of the endmill diameter anyway.
+* I picked a radial width of cut of 0.02'' / 0.55mm, i.e. just a bit more than the stock to leave from the previous pass, so that it will only take one pass on the walls \(and just a few passes in the corners\). That is only 17% of the endmill diameter anyway.
 * Then to both cut the corners and remove the stock left from the previous pass, I selected the same geometry but used the **rest machining** option: the CAM tool is aware of the material already cut during the first pass, and will generate a toolpath that cuts the rest.
-* The target chipload from the guideline for an 1/8" endmill in hard wood is up to 0.001"/0.025mm, and since bamboo is somewhat softer and that I would only be cutting a thin layer of material, I aimed at a value a little higher, 0.0014" / 0.035mm.
-* Adjusted for chip thinning with 0.02"/0.55mm stepover, that's a 0.0019"/0.046mm chipload/
+* The target chipload from the guideline for an 1/8'' endmill in hard wood is up to 0.001''/0.025mm, and since bamboo is somewhat softer and that I would only be cutting a thin layer of material, I aimed at a value a little higher, 0.0014'' / 0.035mm.
+* Adjusted for chip thinning with 0.02''/0.55mm stepover, that's a 0.0019''/0.046mm chipload/
 * Considering the 2 flutes on this endmill and 12.000RPM, that requires a feedrate of 43ipm = 1100mm/min
 * Still using a full pocket depth cut.
 * Still using a plunge rate of 400mm/min.
@@ -73,7 +73,7 @@ To leverage this peculiar geometry, the endmill is intended to be used for cutti
 
 The downcut section of the flute will tend to push down on the stock material top surface, while the upcut section will tend to push up on the bottom surface \(hence the name "compression"\). The expected result is that both the top and the bottom surfaces should have no tearout.
 
-Here is the result of trying the 1/8" O-flute compression endmill shown above, for profile cuts in 0.2" plywood. Feeds and speeds where set to 20.000RPM, 40ipm feedrate \(20ipm plunge rate\), 0.2" depth of cut:
+Here is the result of trying the 1/8'' O-flute compression endmill shown above, for profile cuts in 0.2'' plywood. Feeds and speeds where set to 20.000RPM, 40ipm feedrate \(20ipm plunge rate\), 0.2'' depth of cut:
 
 ![](.gitbook/assets/usescases_plywood_cutresult.JPG)
 
@@ -121,7 +121,7 @@ I chose the inlay to be 3mm thick, and added a 0.6mm glue gap, so the V-carve to
 
 ![](.gitbook/assets/project_step2.png)
 
-I ran that toolpath \(using a 60° V-bit at 24.000RPM, 60ipm feedrate, 14ipm plunge rate, 0.1" pass depth, 0.06" stepover\) and got this:
+I ran that toolpath \(using a 60° V-bit at 24.000RPM, 60ipm feedrate, 14ipm plunge rate, 0.1'' pass depth, 0.06'' stepover\) and got this:
 
 ![](.gitbook/assets/bottomvcarve.jpeg)
 
@@ -185,7 +185,7 @@ Community member **@i3oilermaker** used the same concept to make a beautiful ser
 
 ![](.gitbook/assets/inlay_pockets.jpeg)
 
-* Then running a clearance pass for the walnut inlay part, using a 1/8" square endmill:
+* Then running a clearance pass for the walnut inlay part, using a 1/8'' square endmill:
 
 ![](.gitbook/assets/inlay_clearance_pass.jpeg)
 

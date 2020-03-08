@@ -91,7 +91,7 @@ Let's break this down:
 * **M6 T112** corresponds to a **Tool Change** command, requesting tool number 112 in this example. On a Shapeoko, since there is no automatic tool changer, this is ignored by the machine \(but used by Carbide Motion to trigger a user prompt\) 
 * **M3 S10000** instructs the controller to turn the **Spingle on**, at 10.000RPM in this example.
 * **G1** is the **Linear move** command, similar to G0 but intended to be used for actual cutting moves, that typically happen slower than the G0 rapid moves. The feedrate for these moves can be specified on the line, that's the "**Fxxx**" part and the xxx is the feedrate value in units \(inch or mm\) per minute.
-* standalone coordinates like **Y0.000, X0.000, Y150.000** are in fact implicit/short versions of G1 move commands: as long as the movement mode does not need to be changed, the latest G commands applies and in this example the "G1" can be omitted from these lines.
+* standalone coordinates such as **Y0.000, X0.000, Y150.000** are in fact implicit/short versions of G1 move commands: as long as the movement mode does not need to be changed, the latest G commands applies and in this example the "G1" can be omitted from these lines.
 * **M5** is used to turn the **Spindle off** 
 * **M30** means "End of program" in GRBL.
 
@@ -121,7 +121,7 @@ But here are a few reasons why other senders can be considered too:
 * **G-code Macros**. Small snippets of G-code with associated buttons/shortcuts in the UI can be very useful to streamline the workflow. It can be as simple as just going to X0/Y0, or be a complex custom automated probing routine.
 * **machine limits customization**. While Carbide Motion is setup for a stock Shapeoko, and while it does provide access to modify the various GRBL parameters, some aspects are hardcoded \(e.g. the probe dimensions, that match Carbide 3D's probe, or the Z limits that match a stock Z-axis\). If you start modding your machine, you _may_ come to a point where you need more customization than Carbide Motion allows.
 
-There are many alternative G-code senders in various states of maturity/activity, I will just focus on the two that I have used, and seem to be most popular on the Shapeoko forum:
+There are many alternative G-code senders in various states of maturity/activity, I will just focus on the two that I have used, and which seem to be most popular on the Shapeoko forum:
 
 **Universal G-code Sender** is a cross-platform desktop application based on Java \(which in other words means you will be able to use it on any operating system\). Its UI looks a bit dated but it is simple and efficient. Here's a few highlights of why I like it:
 

@@ -84,10 +84,10 @@ For a given chipload, some combinations are still better than other mathematical
 
 ## Shapeoko chiploads guideline
 
-For the **minimum** chipload value to avoid rubbing, there is a large consensus in the CNC community that a value of **0.001"** \(0.0254mm\) is a good absolute lower limit guideline, at least for 1/4" endmills and larger. It may need to be lowered to 0.0005" for 1/8" and smaller endmills.
+For the **minimum** chipload value to avoid rubbing, there is a large consensus in the CNC community that a value of **0.001''** \(0.0254mm\) is a good absolute lower limit guideline, at least for 1/4'' endmills and larger. It may need to be lowered to 0.0005'' for 1/8'' and smaller endmills.
 
 {% hint style="info" %}
-This is assuming you are using a **sharp** cutter. You should never use a dull cutter anyway, if you do you may end up rubbing even at this 0.001" chipload.
+This is assuming you are using a **sharp** cutter. You should never use a dull cutter anyway, if you do you may end up rubbing even at this 0.001'' chipload.
 {% endhint %}
 
 The **maximum** reachable chipload depends on a lot of things, but mostly:
@@ -96,11 +96,11 @@ The **maximum** reachable chipload depends on a lot of things, but mostly:
 * the **type and diameter of the endmill** \(smaller teeth need to take smaller bites: the maximum chipload for a given endmill scales linearly with its diameter\)
 * the **toolpath** used \(how wide/deep the cutter is engaged\) and the **rigidity of the machine**: it is quite easy to forget that the Shapeoko is not as rigid as industrial CNCs, so endmill manufacturers recommendations may not be directly suitable for the Shapeoko. Any mechanical mod of the machine also impacts the max chipload capability.
 
-The Shapeoko's limits must also be accounted for: the absolute maximum theoretical chipload on a stock Shapeoko would be reached when using a single-flute endmill at the lowest RPM \(10.000RPM on the Makita router\) and at the fastest feedrate of 200 inch per minute, and that would be 200/\(1×10.000\) = 0.02" = 0.5mm
+The Shapeoko's limits must also be accounted for: the absolute maximum theoretical chipload on a stock Shapeoko would be reached when using a single-flute endmill at the lowest RPM \(10.000RPM on the Makita router\) and at the fastest feedrate of 200 inch per minute, and that would be 200/\(1×10.000\) = 0.02'' = 0.5mm
 
-So all chiploads should be somewhere between 0.001" and 0.02".
+So all chiploads should be somewhere between 0.001'' and 0.02''.
 
-The following is an \(arguable\) table I am using as a personal reference, which I derived from analysis of a large number of feeds and speeds settings shared in the Shapeoko community, as well as my own experimentations. Do not take it for granted, start above 0.001" and increase it incrementally \(by keeping RPM constant and increasing feedrate\) to find the limits for your machine and for a given material. Higher chiploads are definitely possible \(but may not be desirable\)
+The following is an \(arguable\) table I am using as a personal reference, which I derived from analysis of a large number of feeds and speeds settings shared in the Shapeoko community, as well as my own experimentations. Do not take it for granted, start above 0.001'' and increase it incrementally \(by keeping RPM constant and increasing feedrate\) to find the limits for your machine and for a given material. Higher chiploads are definitely possible \(but may not be desirable\)
 
 <table>
   <thead>
@@ -113,47 +113,47 @@ The following is an \(arguable\) table I am using as a personal reference, which
   </thead>
   <tbody>
     <tr>
-      <td style="text-align:left">1/16&quot;</td>
+      <td style="text-align:left">1/16&apos;&apos;</td>
       <td style="text-align:left">
-        <p>0.002&quot;&#x2013;0.003&quot;/</p>
+        <p>0.002&apos;&apos;&#x2013;0.003&apos;&apos;/</p>
         <p>0.05mm&#x2013;0.075mm</p>
       </td>
       <td style="text-align:left">
-        <p>0.001&quot;&#x2013;0.0015&quot; /</p>
+        <p>0.001&apos;&apos;&#x2013;0.0015&apos;&apos; /</p>
         <p>0.025mm&#x2013;0.04mm</p>
       </td>
       <td style="text-align:left">
-        <p>0.0005&apos;&apos;&#x2013;0.001&quot;/</p>
+        <p>0.0005&apos;&apos;&#x2013;0.001&apos;&apos;/</p>
         <p>0.013mm&#x2013;0.025mm</p>
       </td>
     </tr>
     <tr>
-      <td style="text-align:left">1/8&quot;</td>
+      <td style="text-align:left">1/8&apos;&apos;</td>
       <td style="text-align:left">
-        <p>0.002&quot;&#x2013;0.005&quot; /</p>
+        <p>0.002&apos;&apos;&#x2013;0.005&apos;&apos; /</p>
         <p>0.05mm&#x2013;0.13mm</p>
       </td>
       <td style="text-align:left">
-        <p>0.001&quot;&#x2013;0.0025&quot; /</p>
+        <p>0.001&apos;&apos;&#x2013;0.0025&apos;&apos; /</p>
         <p>0.025mm&#x2013;0.063mm</p>
       </td>
       <td style="text-align:left">
-        <p>0.0005&quot;&#x2013;0.001&quot;/</p>
+        <p>0.0005&apos;&apos;&#x2013;0.001&apos;&apos;/</p>
         <p>0.013mm&#x2013;0.025mm</p>
       </td>
     </tr>
     <tr>
-      <td style="text-align:left">1/4&quot;</td>
+      <td style="text-align:left">1/4&apos;&apos;</td>
       <td style="text-align:left">
-        <p>0.004&quot;&#x2013;0.01&quot; /</p>
+        <p>0.004&apos;&apos;&#x2013;0.01&apos;&apos; /</p>
         <p>0.1mm&#x2013;0.254mm</p>
       </td>
       <td style="text-align:left">
-        <p>0.001&quot;&#x2013;0.005&quot; /</p>
+        <p>0.001&apos;&apos;&#x2013;0.005&apos;&apos; /</p>
         <p>0.025mm&#x2013;0.127 mm</p>
       </td>
       <td style="text-align:left">
-        <p>0.001&quot;&#x2013;0.002&quot;/</p>
+        <p>0.001&apos;&apos;&#x2013;0.002&apos;&apos;/</p>
         <p>0.025mm&#x2013;0.05mm</p>
       </td>
     </tr>
@@ -235,11 +235,11 @@ A rule of thumb is therefore to set RPM to "**the maximum value you can tolerate
 
 Example:
 
-* Material is hard wood and endmill is a 3-flute 1/4" =&gt; the chipload table recommends up to 0.002"
-* Say we use a 25% radial depth of cut / stepover, i.e. 25% of 50% of 1/4" = 0.03125'', so adjusted chipload is: 
+* Material is hard wood and endmill is a 3-flute 1/4'' =&gt; the chipload table recommends up to 0.002''
+* Say we use a 25% radial depth of cut / stepover, i.e. 25% of 50% of 1/4'' = 0.03125'', so adjusted chipload is: 
 
 $$
-\frac{0.25}{2 × \sqrt{(0.25 × 0.03125) - 0.03125^2}}× 0.0014 \approx 1.5×0.002 = 0.003"
+\frac{0.25}{2 × \sqrt{(0.25 × 0.03125) - 0.03125^2}}× 0.0014 \approx 1.5×0.002 = 0.003''
 $$
 
 * The ideal setting would be to max out the RPM, say 24.000 \(to take an example that is reachable on the Makita, DeWalt, and common spindles\). The required feedrate would then be :
@@ -255,8 +255,8 @@ $$
 $$
 
 * If going 144ipm still _feels_ a little fast, it possible to obtain the same chipload at lower RPM and lower feedrate, e.g. 12.000RPM and 108ipm, at the expense of higher cutting forces \(which or may not be a problem, see power analysis section later below\)
-* Alternately it is also possible to lower the feedrate by targetting a smaller chipload while ensuring it is still at least at the minimum recommended value of 0.001", and assuming you are using a sharp enough cutter: 
-  * To get a 0.001" effective target chipload, the adjusted target chipload would become 0.0015"
+* Alternately it is also possible to lower the feedrate by targetting a smaller chipload while ensuring it is still at least at the minimum recommended value of 0.001'', and assuming you are using a sharp enough cutter: 
+  * To get a 0.001'' effective target chipload, the adjusted target chipload would become 0.0015''
   * the feedrate would then be 0.0015 × 3 × 16.000 = 72ipm 
 
 {% hint style="info" %}
@@ -576,7 +576,7 @@ So it does not quite make sense to be using a target chipload value for a V-bit.
 
 * RPM in the 16k-20k range
 * Feedrate in the 30-60 ipm range \(lower for hard wood, faster for soft wood\)
-* Depth per pass in the 0.1-0.2" range
+* Depth per pass in the 0.1-0.2'' range
 * Plunge rate in the 10-20 ipm range 
 
 {% hint style="info" %}

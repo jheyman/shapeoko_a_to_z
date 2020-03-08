@@ -25,7 +25,7 @@ If the Shapeoko forum is any indication, many people \(including myself\) have g
 Yet, I still think it is important \(or at least interesting\) to know about sources of inaccuracy to decide what to do \(or not to do\) about each of them. This section will only scratch the surface on this topic, but hopefully provide useful insights on the matter.
 
 {% hint style="info" %}
-The accuracy that is possible to achieve on a Shapeoko with the proper mix of calibration and CAD & CAM iterations, seems to be typically around 0.002" / 0.05mm, with some achieving down to 0.0002" / 0.005mm
+The accuracy that is possible to achieve on a Shapeoko with the proper mix of calibration and CAD & CAM iterations, seems to be typically around 0.002'' / 0.05mm, with some achieving down to 0.0002'' / 0.005mm
 {% endhint %}
 
 ## X/Y/Z calibration
@@ -124,13 +124,13 @@ HSS endmills are more flexible than carbide endmills, so they will withstand a g
 
 Runout was defined in the [Cutters & collets](cutters.md#runout-tir) section. Since the toolpaths in the CAM tool are based on the endmill diameter, and since runout artificially increases the effective cutting diameter, the parts will have a dimensional error of \(at least\) the runout value.
 
-Runout matters a lot for projects using small endmills, i.e. anything smaller than 1/8". The reason is that the endmill will see +/- 1 runout of variation on the chipload. Since runout can be of the same order of magnitude as the target chipload, a small endmill seeing a chipload twice as high as the optimal target value can easily break.
+Runout matters a lot for projects using small endmills, i.e. anything smaller than 1/8''. The reason is that the endmill will see +/- 1 runout of variation on the chipload. Since runout can be of the same order of magnitude as the target chipload, a small endmill seeing a chipload twice as high as the optimal target value can easily break.
 
 Runout is bad anyway for tool life, chatter, and surface finish.
 
 ### **Measuring runout**
 
-The simplest way to measure runout is to do a test cut of a slot, measure the actual width of the resulting slot, then subtract the actual endmill diameter: the difference is the runout value. Unfortunately, it is not straightforward to determine precisely the actual diameter of a given endmill: they are manufactured within given tolerances, and are never quite the diameter they are sold to be. A 1/4" endmill could typically have an actual diameter anywhere between 0.245" and 0.255". Measuring precisely the actual diameter is not easy, as the measurement must be made on the flutes, and without proper tooling that can be difficult especially for endmill with an odd number of flutes. There is also a real risk of damaging \(chipping\) the flutes during this measurement.
+The simplest way to measure runout is to do a test cut of a slot, measure the actual width of the resulting slot, then subtract the actual endmill diameter: the difference is the runout value. Unfortunately, it is not straightforward to determine precisely the actual diameter of a given endmill: they are manufactured within given tolerances, and are never quite the diameter they are sold to be. A 1/4'' endmill could typically have an actual diameter anywhere between 0.245'' and 0.255''. Measuring precisely the actual diameter is not easy, as the measurement must be made on the flutes, and without proper tooling that can be difficult especially for endmill with an odd number of flutes. There is also a real risk of damaging \(chipping\) the flutes during this measurement.
 
 Another way to measure runout is to use a **test indicator**, capturing the minimum and maximum values read over a 360° revolution of the endmill. Ideally, the runout should be measured at the tip of the endmill, where the cutting action is, but that means measuring on the flutes themselves. Alternatively, the dial indicator can be positioned on the shaft, as close as possible to the flutes, this will give a continuous readout of the runout over a 360° revolution, but could under-estimate the actual runout a bit.
 
@@ -144,9 +144,9 @@ Router runout itself can be measured by positioning the test indicator inside th
 
 ![](.gitbook/assets/runout_router.png)
 
-In this case, the measured taper runout was approximately 0.02mm \(0.0008"\). 
+In this case, the measured taper runout was approximately 0.02mm \(0.0008''\). 
 
-But what really matters is total runout at the tip of the endmill. Below is an illustration of measuring runout at the tip of a 3-flute 1/4" square endmill. First, the test indicator is positioned at a point where no flutes touch it, and zero is set there:
+But what really matters is total runout at the tip of the endmill. Below is an illustration of measuring runout at the tip of a 3-flute 1/4'' square endmill. First, the test indicator is positioned at a point where no flutes touch it, and zero is set there:
 
 ![](.gitbook/assets/runout_flute0.png)
 
@@ -174,7 +174,7 @@ gave a max value of about 0.045mm:
 
 Not too far from the 0.05mm measured on the flutes, and easier to measure there.
 
-This example value of 0.05mm \(0.002"\) runout on a Makita router with the stock Makita collet and a 1/4" endmill is not great, but not really a concern in day to day use. It will vary significantly depending on which collet and endmill are used and how they were fastened. Another combination of collet/endmill on this same router granted a runout of only 0.02mm \(~0.0008"\).
+This example value of 0.05mm \(0.002''\) runout on a Makita router with the stock Makita collet and a 1/4'' endmill is not great, but not really a concern in day to day use. It will vary significantly depending on which collet and endmill are used and how they were fastened. Another combination of collet/endmill on this same router granted a runout of only 0.02mm \(~0.0008''\).
 
 ### Reducing runout
 
@@ -189,7 +189,7 @@ This example value of 0.05mm \(0.002"\) runout on a Makita router with the stock
   * first find the orientation of the endmill that gives the maximum readout on a dial indicator placed on the front side.
   * if using a screwdriver put a small piece of electrical tape on its tip, to avoid metal to metal contact.
   * then..._lightly_ tap the back of the screwdriver with a mallet a couple of times.
-  * check runout and repeat if necessary. It takes a few tries to find the right amount of force. In this example, the original runout was around 0.002", and tapping the endmill reduced it to around 0.0006". This adjustment should hold, at least until the end of the current job with this endmill.
+  * check runout and repeat if necessary. It takes a few tries to find the right amount of force. In this example, the original runout was around 0.002'', and tapping the endmill reduced it to around 0.0006''. This adjustment should hold, at least until the end of the current job with this endmill.
 
 ![](.gitbook/assets/runout_tapping.png)
 

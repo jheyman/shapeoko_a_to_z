@@ -15,7 +15,7 @@ That part is self explanatory, since the Shapeoko is a kit everyone will get acq
 
 ## Work area
 
-The Shapeoko3 has a cutting area of 16 × 16", the XL has 16 × 33" and the XXL has 33 × 33". One thing to consider is that the cutting area is not centered, it extends beyond the front plates of the machine: 
+The Shapeoko3 has a cutting area of 16 × 16'', the XL has 16 × 33'' and the XXL has 33 × 33''. One thing to consider is that the cutting area is not centered, it extends beyond the front plates of the machine: 
 
 ![](.gitbook/assets/work_area.png)
 
@@ -40,7 +40,7 @@ Some folks have _swapped_ the Y plates on their machine, this allows them to shi
 
 As the name implies, stepper motors are designed to rotate by small angle increments, rather than rotating continuously as conventional motors do when they are powered. Stepper motors are ubiquitous in hobby CNCs, for a good reason: they provide the capability to move by a precise amount \(i.e. a given number of steps\), without the need for a position feedback mechanism.
 
-The stepper motors on the Shapeoko3 are **NEMA23** \(just a fancy way to say that their front/back face size is 2.3" square\), are of the "**bipolar**" type \(which means that they are controlled by two pairs of wires, the "A" phase and the "B" phase, and that one step is made by sending current in A and turning off B, or the other way around\), and are internally designed so that each step rotates the shaft by exactly 1.8°, which translates to 360°/1.8° = **200 steps to perform a full revolution**. 
+The stepper motors on the Shapeoko3 are **NEMA23** \(just a fancy way to say that their front/back face size is 2.3'' square\), are of the "**bipolar**" type \(which means that they are controlled by two pairs of wires, the "A" phase and the "B" phase, and that one step is made by sending current in A and turning off B, or the other way around\), and are internally designed so that each step rotates the shaft by exactly 1.8°, which translates to 360°/1.8° = **200 steps to perform a full revolution**. 
 
 It's the job of the **stepper driver** to generate current alternatively in the A and B phases, when instructed to move by one or more steps.
 
@@ -68,7 +68,7 @@ The pulleys used on the Shapeoko3 happen to have 20 teeth, with \(obviously\) th
 
 This full revolution requires 1600 microsteps, which means that it requires 1600/40 = 40 steps to move by 1mm. And this is where the "**40 steps/mm**" setting in the Shapeoko controller comes from \(more on this in the [Dimensional accuracy](x-y-z-calibration.md#x-y-z-calibration) section\)
 
-Which means that the minimal movement that the Shapeoko can theoretically do in any axis is 1/40th of a mm, that's 0.025mm or 0.001". Quite precise, right?
+Which means that the minimal movement that the Shapeoko can theoretically do in any axis is 1/40th of a mm, that's 0.025mm or 0.001''. Quite precise, right?
 
 And that when the machine needs to move by X mm along one axis, the stepper motor must be told 40 × X times to do one \(micro\)step.
 
@@ -206,7 +206,7 @@ For example, here's a copy of the Shapeoko3 settings in GRBL1.1:
 ```
 
 {% hint style="info" %}
-Note the \(defaut\) maximum feedrate of 5000mm/min, i.e. a bit less than 200"/min
+Note the \(defaut\) maximum feedrate of 5000mm/min, i.e. a bit less than 200''/min
 {% endhint %}
 
 The first six settings should be clear from the whole steps/microsteps section above, the rest are default values for settings that can be reconfigured anyway.

@@ -79,7 +79,7 @@ While the T-tracks bed upgrade \(that comes as an alternative to the "sea of hol
 
 ![](.gitbook/assets/upgrades_aluminum_bed.png)
 
-This one is 12mm / ~0.5", the one on Carbide 3D's store is 0.5" thick too.
+This one is 12mm / ~0.5'', the one on Carbide 3D's store is 0.5'' thick too.
 
 {% hint style="info" %}
 This is still only a "nice to have" and expensive upgrade: the large majority of Shapeoko users have an MDF bed and are happy with it
