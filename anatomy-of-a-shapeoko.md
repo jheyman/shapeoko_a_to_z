@@ -206,7 +206,7 @@ For example, here's a copy of the Shapeoko3 settings in GRBL1.1:
 ```
 
 {% hint style="info" %}
-Note the \(defaut\) maximum feedrate of 5000mm/min, i.e. a bit less than 200''/min
+Note the defaut maximum feedrate of 5000mm/min, i.e. a bit less than 200''/min. Carbide Motion 505 and later will override this setting during the initial machine configuration, to a maximum of 10000mm/min \(394ipm\), to allow for fast rapid movements \(outside the material\)
 {% endhint %}
 
 The first six settings should be clear from the whole steps/microsteps section above, the rest are default values for settings that can be reconfigured anyway.

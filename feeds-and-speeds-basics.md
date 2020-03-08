@@ -100,6 +100,10 @@ The Shapeoko's limits must also be accounted for: the absolute maximum theoretic
 
 So all chiploads should be somewhere between 0.001'' and 0.02''.
 
+{% hint style="info" %}
+Technically, the feedrate can go beyond 200ipm, if the associated GRBL limits parameters are set to a higher limit. In practice, feedrates above 200ipm are used for rapids only, there are very little usecases where actually cutting at higher than 200ipm would be useful. 
+{% endhint %}
+
 The following is an \(arguable\) table I am using as a personal reference, which I derived from analysis of a large number of feeds and speeds settings shared in the Shapeoko community, as well as my own experimentations. Do not take it for granted, start above 0.001'' and increase it incrementally \(by keeping RPM constant and increasing feedrate\) to find the limits for your machine and for a given material. Higher chiploads are definitely possible \(but may not be desirable\)
 
 <table>
