@@ -252,7 +252,7 @@ $$
 Feedrate = Chipload×Nb\_Flutes × RPM= 0.003 × 3 × 24000 = 216\ ipm
 $$
 
-* That is above the capability of the Shapeoko \(200ipm\), it would be scarily fast for cutting hard wood, and 24.000 RPM may sound too loud to your taste anyway. Let's say we decided to go for 16.000 RPM instead,  the required feedrate would become:
+* That is above the default capability of the Shapeoko \(200ipm\), it would be scarily fast for cutting hard wood, and 24.000 RPM may sound too loud to your taste anyway. Let's say we decided to go for 16.000 RPM instead,  the required feedrate would become:
 
 $$
 0.003 × 3 × 16000 = 144\ ipm
