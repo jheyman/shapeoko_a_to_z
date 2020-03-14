@@ -11,10 +11,10 @@ This section does not intend to cover them all, but to present the most popular 
 
 ## Wasteboard
 
-Many projects require cutting all the way through the stock material, e.g. to cut the outer profile of the workpiece. Having a wasteboard placed under the stock material is very common for at least the following reasons:
+Many projects require cutting all the way through the stock material, _e.g._ to cut the outer profile of the workpiece. Having a wasteboard placed under the stock material is very common for at least the following reasons:
 
 * even on a properly calibrated machine, it is not easy to cut _exactly_ down to stock bottom.
-* it is often not desirable anyway: the quality of the cut on the bottom of the piece can be poor if not overcutting \(e.g. small variations in depth/flatness would leave material here and there\).
+* it is often not desirable anyway: the quality of the cut on the bottom of the piece can be poor if not overcutting \(_e.g._ small variations in depth/flatness would leave material here and there\).
 * mistakes in the CAM design/G-code, or mechanical issues, might cause the endmill to cut deeper than expected, it would be too bad to damage the machine bed.
 * the stock must lay on a surface that is flat and square to the machine's Z axis, and the simplest way to achieve this is to use the machine itself to surface its own base \(see [Squaring, surfacing, tramming](squaring.md)\), so it should be a replaceable part.
 
@@ -72,7 +72,7 @@ One solution is to use **tabs** in the design, most CAM tools support this:
 
 The tabs will hold the piece during the last passes of the cut, however they will have to be removed/cleaned-up manually afterwards, which can turn out to be time consuming and may leave clean-up marks on the workpiece.
 
-In some materials \(especially soft plastics like HDPE\), an alternative option is to leave a thin **onion skin** at the bottom of the profile cut, by limiting the cutting depth to something slightly less than the stock thickness. The onion skin should be thick enough to keep the piece from moving, but thin enough to be easily cut manually afterwards with e.g. a X-acto blade. The bottoms edges of the cut still need to be cleaned-up manually, but in soft plastics this can be very easily done with a deburring tool.
+In some materials \(especially soft plastics like HDPE\), an alternative option is to leave a thin **onion skin** at the bottom of the profile cut, by limiting the cutting depth to something slightly less than the stock thickness. The onion skin should be thick enough to keep the piece from moving, but thin enough to be easily cut manually afterwards with _e.g._ a X-acto blade. The bottoms edges of the cut still need to be cleaned-up manually, but in soft plastics this can be very easily done with a deburring tool.
 
 ## Double-sided tape
 
@@ -130,7 +130,7 @@ If cutting thin sheets of soft material \(e.g brass, copper\) the force required
 
 ## Vise
 
-A vise is typically used when cutting high-precision metal parts, since it provides excellent rigidity. It's also interesting when productivity and/or repeatability over multiple runs of the same job matter: the vise provides a good reference point to align the stock consistently, and installation/removal is very quick. Or more simply, whenever there is a need to hold a piece that cannot sit flat on the wasteboard \(e.g. anything round\)
+A vise is typically used when cutting high-precision metal parts, since it provides excellent rigidity. It's also interesting when productivity and/or repeatability over multiple runs of the same job matter: the vise provides a good reference point to align the stock consistently, and installation/removal is very quick. Or more simply, whenever there is a need to hold a piece that cannot sit flat on the wasteboard \(_e.g._ anything round\)
 
 The max width of the vise jaw is the main limitation, and its height may be a concern, especially on a machine like the Shapeoko that has a somewhat limited Z travel. A low-profile vise, that can be installed and removed from the machine depending on the job at hand, is a good option to have:
 

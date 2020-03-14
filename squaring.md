@@ -14,7 +14,7 @@ But you may and likely will get a small gap on one side, and a similar gap on th
 
 This can be due to a number of reasons \(X extrusion sides not being perfectly square, tolerances in the side plate / V-wheel /washers assembly, etc...\), and common solutions to fix this are:
 
-* to insert **shims** between the X extrusion and the side plates on both ends \(but on opposite sides of the rail, e.g. where the red arrows are on the sketch\). Of course, should the skew be in the other direction, the shim location should be reversed. One shimming technique is to just fold a piece of aluminium foil a few times over, and insert it there. Or use a feeler gauge.
+* to insert **shims** between the X extrusion and the side plates on both ends \(but on opposite sides of the rail, _e.g._ where the red arrows are on the sketch\). Of course, should the skew be in the other direction, the shim location should be reversed. One shimming technique is to just fold a piece of aluminium foil a few times over, and insert it there. Or use a feeler gauge.
 * to use **washers** carefully selected to have slightly different thicknesses, and use them on the front and back V-wheels on each side plate, to achieve the same effect \(in the sketch above, one would install slightly thicker washers on the back wheels on the left side, and on the front wheels on the right side\)
 
 {% hint style="info" %}

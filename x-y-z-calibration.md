@@ -2,10 +2,10 @@
 
 For "decorative" projects, some inaccuracy in the dimensions of pieces cut on the Shapeoko does not matter, but many projects require having a finer control of the final dimensions:
 
-* cutting geometrical patterns where a discrepancy between the X and Y dimensions could be visible to the naked eye, e.g. round shapes coming out like ellipses and squares like rectangles. Out of the box, on a properly assembled/squared/tensioned Shapeoko, this X/Y dimensional discrepancy should be small enough to not be noticeable.
-* cutting pieces that are intended to fit into each other \(e.g. hole & peg, box & lid, ...\). This is where one typically starts noticing that dimensions are not _quite_ what they were supposed to be, and are inaccurate enough that pieces either do not fit, or require manual rework \(e.g. sanding\) to be assembled.
+* cutting geometrical patterns where a discrepancy between the X and Y dimensions could be visible to the naked eye, _e.g._ round shapes coming out like ellipses and squares like rectangles. Out of the box, on a properly assembled/squared/tensioned Shapeoko, this X/Y dimensional discrepancy should be small enough to not be noticeable.
+* cutting pieces that are intended to fit into each other \(_e.g._ hole & peg, box & lid, ...\). This is where one typically starts noticing that dimensions are not _quite_ what they were supposed to be, and are inaccurate enough that pieces either do not fit, or require manual rework \(_e.g._ sanding\) to be assembled.
 * cutting pieces that are supposed to fit, from a hard material \(hard plastics and metals\). This is where the accuracy problem becomes obvious, as there is no elasticity in the material to compensate for small inacurracies.
-* and then obviously, projects where the whole point is to cut pieces of specific dimensions within a controlled tolerance \(e.g. mechanical parts\)
+* and then obviously, projects where the whole point is to cut pieces of specific dimensions within a controlled tolerance \(_e.g._ mechanical parts\)
 
 Many factors are involved in getting good dimensional accuracy:
 
@@ -49,7 +49,6 @@ $$
 new\ parameter\ value =  \frac{expected\ dimension}{actual\ dimension}× old\ parameter\ value
 $$
 
-* reset GRBL \(or just power cycle the machine\)
 * cut the piece again: it should now be very close to the expected dimensions
 
 In theory, cutting a cube would be ideal to support the XYZ measurements. In practice, the Z measurement is much easier to do inside a pocket, while for the X and Y dimensions there is a catch: they include at least two sources of errors that are actually not coming from the machine:
@@ -74,7 +73,7 @@ Another popular method is to rather measure the gantry movements themselves, ins
 
 * a **dial indicator**
   * attached to the bed of the machine and oriented along X then Y axis, to measure how much the gantry moves versus what was commanded.
-  * attached e.g. to the router and oriented along the Z axis, to measure how much the Z plate moves versus what was commanded.
+  * attached _e.g._ to the router and oriented along the Z axis, to measure how much the Z plate moves versus what was commanded.
 
 ![](.gitbook/assets/xyzcalibration_dialindicator.png)
 
@@ -96,7 +95,7 @@ As mentioned earlier, another approach to dimensional accuracy is simply to do t
 I chose a middle ground: calibrate X/Y/Z to be in the right ballpark on the first try \(which is enough for many projects\), and then do a second round after compensating the error in the design/toolpaths when this is required for a given project. 
 
 {% hint style="info" %}
-The "stock to leave" option in Fusion360 is a great way to deal with this: you can initially use a positive stock to leave value to have margin, run the job and measure, then adjust stock to leave accordingly, relaunch the cut, and measure again. You can even specify negative stock to leave values, to cut beyond the profiles defined in the design \(e.g. to cut a hole slightly larger than it was designed to be\). All of this assuming of course that you will not cutout/remove the piece from the stock before you are done with these iterative cuts.
+The "stock to leave" option in Fusion360 is a great way to deal with this: you can initially use a positive stock to leave value to have margin, run the job and measure, then adjust stock to leave accordingly, relaunch the cut, and measure again. You can even specify negative stock to leave values, to cut beyond the profiles defined in the design \(_e.g._ to cut a hole slightly larger than it was designed to be\). All of this assuming of course that you will not cutout/remove the piece from the stock before you are done with these iterative cuts.
 {% endhint %}
 
 ## Managing tool deflection
@@ -108,7 +107,7 @@ Beyond being bad for tool life \(and quality of the cut in general\), tool defle
 * use an endmill with a long shank and short cutting part, if depth of cut allows.
 * minimize tool stickout \(when possible\)
 * use conventional milling cut direction
-* minimize lateral forces on the tool, and that usually means taking a lighter cut \(e.g. small DOC and or WOC.
+* minimize lateral forces on the tool, which usually means taking a lighter cut \(_e.g._ small DOC and or WOC\).
 
 This last point is best adressed by the "**roughing + finishing**" toolpath strategy: the roughing toolpath can take aggressive cuts, leaving enough margin \(stock to leave\) that deflection effects will be included in this margin. And then the finishing toolpath will only have to shave off a thin layer of material, which takes very little force and therefore causes very little deflection.
 
@@ -162,7 +161,7 @@ ditto for the last flute, which read 0.42mm in this setup:
 
 ![](.gitbook/assets/runout_flute3.png)
 
-So the max difference is 0.42 -0.37 = **0.05mm runout**
+So the max difference is 0.42 - 0.37 = **0.05mm runout**
 
 As a comparison, measuring runout on the shaft after setting the indicator zero to the point giving the minimal readout,
 

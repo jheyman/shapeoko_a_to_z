@@ -72,7 +72,7 @@ Note that different Z axes have different travel and width, so they require tuni
 
 There are two main reasons to replace the original MDF bed:
 
-* to match a specific workholding solution \(e.g. T-tracks\)
+* to match a specific workholding solution \(_e.g._ T-tracks\)
 * to make the Shapeoko more rigid.
 
 While the T-tracks bed upgrade \(that comes as an alternative to the "sea of holes" wasteboard\) typically still uses MDF strips, upgrading to an aluminium bed is a good albeit expensive way to improve machine rigidity as well as have a more "weather-insensitive" machine \(MDF tends to absorb humidity, which _may_ lead to some warping/swelling over time\)
@@ -93,7 +93,7 @@ Here's a section view of steel-core belts showing the embedded steel wires:
 
 ![](.gitbook/assets/upgrades_steel_core_belt.png)
 
-Buying several meters of steel-core belts is cheap, will serve as a provision in case the original belts snap, and replacing the belts is very easy \(since it does not involve disassembling anything else that the belt tensioners\) so that upgrade is a no brainer if you feel you can benefit from the increased robustness, and possibly from the ability to push the max speed and acceleration beyond the default settings:
+Buying several meters of steel-core belts is cheap, will serve as a provision in case the original belts snap, and replacing the belts is very easy \(since it does not involve disassembling anything else other than the belt tensioners\) so that upgrade is a no brainer if you feel you can benefit from the increased robustness, and possibly from the ability to push the max speed and acceleration beyond the default settings:
 
 ![](.gitbook/assets/upgrades_steel_core_belt_mounted.png)
 
@@ -109,7 +109,7 @@ Having to manually set RPMs on the router knob at the beginning of each job can 
 
 This requires buying such a power control module, the most popular one is the **SuperPID**. You need to know what you are doing since installing it requires wiring mains. 
 
-Beyond the automatic RPM control, the added benefit is that this allows the router to operate at a lower RPM value than the minimal knob setting, e.g. to run at 5000 RPM on a Makita that normally mins out at 10.000RPM. 
+Beyond the automatic RPM control, the added benefit is that this allows the router to operate at a lower RPM value than the minimal knob setting, _e.g._ to run at 5000 RPM on a Makita that normally mins out at 10,000RPM. 
 
 ## Spindle upgrade
 
@@ -131,7 +131,7 @@ For reference, here's the relative size of a 2.2kW spindle, next to the Makita t
 
 ![](.gitbook/assets/spindle_size_comparison.jpeg)
 
-**2\)** The router mount diameter: chances are, the stock router mount diameter will not match the diameter of the selected spindle. Spindle kits often include a mount, but it's usually very bad quality and not easily adaptable to the Shapeoko's Z axis. You are probably better of buying a spindle mount from Carbide3D's store. Here's a view of a 80mm one for reference:
+**2\)** The router mount diameter: chances are, the stock router mount diameter will not match the diameter of the selected spindle. Spindle kits often include a mount, but it's usually very bad quality and not easily adaptable to the Shapeoko's Z axis. You are probably better off buying a spindle mount from Carbide3D's store. Here's a view of a 80mm one for reference:
 
 ![](.gitbook/assets/spindle_mount.jpeg)
 
@@ -241,7 +241,7 @@ It's tempting to leverage the X/Y capability of the Shapeoko, to move a laser mo
 One might think that since the laser is always pointing down towards the material, this is inherently safe. But dangerous reflections are a thing, especially when engraving metals.
 {% endhint %}
 
-Here's how my 4.8W laser setup looks like:
+Here's what my 4.8W laser setup looks like:
 
 ![](.gitbook/assets/laser_setup.jpeg)
 

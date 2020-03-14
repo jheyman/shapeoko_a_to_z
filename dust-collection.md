@@ -10,7 +10,7 @@ Many users do not have the luxury of having multiple options for where to instal
 * spare space around the machine \(especially above the machine\) comes in handy
   * for accessibility during maintenance
   * to accomodate an enclosure, itself larger than the machine by a good margin
-  * as a provision for upgrades \(e.g. higher Z-axis upgrade\)
+  * as a provision for upgrades \(_e.g._ higher Z-axis upgrade\)
   * to have room to fit a dust collection system underneath/next to the machine
   * to support tiling \(feeding long pieces from the front or back of the machine, through to the other side\).
 * height: having the machine installed at arm/desk level is best. Kneeling to change the endmills on a machine installed on the floor or in a low cabinet will get old very quickly.
@@ -22,7 +22,7 @@ Many users do not have the luxury of having multiple options for where to instal
 The regular setup with the four leveling feet works fine, but is susceptible to a couple of issues:
 
 * the MDF bed can sag in the middle, especially on larger models \(XL and XXL\). Usually not by much, but enough to be a nuisance. Just adding a custom support point in the middle underneath the bed/rail addresses this weakness, easy enough.
-* the other point that made me consider removing the feet is that I am using the tape & glue workholding method a lot, it involves pushing the stock firmly onto the wasteboard for a few seconds, and it did not feel right to be pushing in the middle of the bed, exactly where the natural sag already happens. As many others have done, I removed the four feet. My solution was to install the Shapeoko on top of a thick piece of MDF \(with holes to accomodate the protruding welded nuts under the steel plates\), with a narrower and thinner piece of MDF inserted between the plates on top of that, plus a thin sheet of roofing felt to provide a little damping. As long as the bench underneath is reasonably level, getting rid of the feet is not a problem, and this will provide a lot of additional rigidity: I can now push on the bed as hard as I need to. 
+* the other point that made me consider removing the feet is that I am using the tape & glue workholding method a lot, it involves pushing the stock firmly onto the wasteboard for a few seconds, and it did not feel right to be pushing in the middle of the bed, exactly where the natural sag already happens. As many others have done, I removed the four feet. My solution was to install the Shapeoko on top of a thick piece of MDF \(with holes to accommodate the protruding nuts under the steel plates\), with a narrower and thinner piece of MDF inserted between the plates on top of that, plus a thin sheet of roofing felt to provide a little damping. As long as the bench underneath is reasonably level, getting rid of the feet is not a problem, and this will provide a lot of additional rigidity: I can now push on the bed as hard as I need to. 
 
 ![](.gitbook/assets/setup_thick_bed.jpeg)
 
@@ -34,7 +34,7 @@ CNC is just messy. While it is quite possible to operate the Shapeoko without a 
 
 * cutting MDF: unlike in wood, the cutter will not produce nice thick/heavy chips, but a very fine dust that will float and soon cover everything around the machine, and is dangerous if inhaled repeatedly.
 * visibility: vaccuuming chips during the cut allows seeing what the tool is doing, and how the cut looks like so far, which is important to detect if something is not right. And manual vaccuuming during the cut gets old very quickly.
-* clearing the path for the tool: if chips accumulate e.g. in a deep slot, they will end up being in the way between the tool and the material, they will accumulate and reduce chip evacuation inside the flutes, all of which are not good for the quality of the cut.
+* clearing the path for the tool: if chips accumulate _e.g._ in a deep slot, they will end up being in the way between the tool and the material, they will accumulate and reduce chip evacuation inside the flutes, all of which are not good for the quality of the cut.
 * some folks have caused cuts to fail by dust induced static when vacuuming by hand.
 
 ### Dust shoe
@@ -70,7 +70,7 @@ When the toolpaths are such that the dust shoe will move past the edges of the s
 While it is possible to connect a shop vacuum directly to the dust shoe, it turns out to be inconvenient, and potentially unsafe: 
 
 * inconvenient because the amount of chips produced when cutting with a CNC can be significant, and you would end up replacing the shop vacuum paper bag very often.
-* potentially unsafe because cutting some materials \(e.g. MDF\) produce fine dust instead of chips. Even with perfect feeds and speeds, the shop vacuum may not have an adequate filter to cope with this, and even if it does it would require cleaning very often.
+* potentially unsafe because cutting some materials \(_e.g._ MDF\) produce fine dust instead of chips. Even with perfect feeds and speeds, the shop vacuum may not have an adequate filter to cope with this, and even if it does it would require cleaning very often.
 
 A common solution is to buy or build a "cyclone" dust separator: 
 
@@ -192,6 +192,6 @@ Those GRBL settings are now the standard values in Carbide Motion, starting from
 {% endhint %}
 
 {% hint style="warning" %}
-Note that those increased MAX speeds are fine for rapid moves outside the material, but it will still be your responsibility to program adequate cutting feedrates in the toolpaths, which are usually much lower than those limits. That 10.000 mm/min rate on X and Y corresponds to 393ipm, while cutting feedrates are typically always \(well\) below 200ipm.
+Note that those increased MAX speeds are fine for rapid moves outside the material, but it will still be your responsibility to program adequate cutting feedrates in the toolpaths, which are usually much lower than those limits. That 10,000 mm/min rate on X and Y corresponds to 393ipm, while cutting feedrates are typically always \(well\) below 200ipm.
 {% endhint %}
 

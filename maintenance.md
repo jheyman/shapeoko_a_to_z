@@ -2,6 +2,10 @@
 
 This section touches on a few of the most common mishaps that can happen when working with the Shapeoko, as well as basic maintenance tips.
 
+## Basic checks
+
+First, it's always advisable to go back and check the machine operating checklist, it's available at: [https://docs.carbide3d.com/general-faq/machine-operating-checklist](https://docs.carbide3d.com/general-faq/machine-operating-checklist)
+
 ## Hitting the limits
 
 On one end of each axis, the homing switches will interrupt the toolpath if triggered _and_ if **hard limits** are enabled in GRBL, which by default they are not.
@@ -11,12 +15,12 @@ On the other end of each axis, since there is no way for the machine to know if 
 * either the **soft limits** in GRBL have been activated and configured to the correct value for your machine, and the job will stop.
 * or the soft limits are turned off, and you can get a mechanical crash.
 
-Carbide Motion uses its own hard-coded soft limits, so if you are using this sender you are better off leaving soft limits turned off in GRBL \(first that would be redundant, and second the values set in GRBL may not be consistent with the ones in CM\).
+Carbide Motion uses its own hard-coded soft limits during jogging, so if you are using this sender you are better off leaving soft limits turned off in GRBL \(first that would be redundant, and second the values set in GRBL may not be consistent with the ones in CM\).
 
 If you are using another sender, then by all means do turn on soft limits in GRBL, it's easy:
 
 * $20 parameter controls whether soft limits are enabled \(1\) or not \(0\). Start with soft limits disabled, to be able to jog freely.
-* $130, $131, and $132 parameters respectively control X, Y and Z maximum travel : \(carefully\) jog to the limit of each axis, leaving a small margin you are confortable with, write the current axis value in millimeters, drop the minus sign, and set it in the corresponding parameter \(e.g. type in $130=&lt;positive value in mm&gt; in the GRBL console\). 
+* $130, $131, and $132 parameters respectively control X, Y and Z maximum travel : \(carefully\) jog to the limit of each axis, leaving a small margin you are confortable with, write the current axis value in millimeters, drop the minus sign, and set it in the corresponding parameter \(_e.g._ type in $130=&lt;positive value in mm&gt; in the GRBL console\). 
 * once you are done, activate soft limits, and check that when trying to jog past them, the sender produces an error and stops the movement.
 
 {% hint style="info" %}
@@ -69,7 +73,7 @@ If a job stops suddenly for no apparent reason, and commands from the G-code sen
 A variety of solutions apply, the most commonly cited are:
 
 * try different wall sockets if possible, for the machine, the router, and the shop vac.
-* grounding the router body/mount \(e.g. wrapping a copper wire around the router mount and connecting it to a known-good grounding point, on the machine itself or nearby\).
+* grounding the router body/mount \(_e.g._ wrapping a copper wire around the router mount and connecting it to a known-good grounding point, on the machine itself or nearby\).
 * earthing the machine frame.
 * grounding the dust collection hose, and/or use an anti-static hose.
 * if the air is very dry, spray a little water on the stock, or use a humidifier in the room.
@@ -93,7 +97,7 @@ Typical mistakes include:
 * wrong depth of cut setting \(which may not be immediately visible on the toolpath preview\).
 * setting retract/safety height to an excessively large value resulting in the carriage lifting, bottoming out on the stops, then thinking it is much higher than it actually is, plunging deeply into the stock.
 * wrong ordering of toolpaths.
-* inconsistency between the toolpath and the selected tool capabilities, e.g. cutting deeper than the endmill flute length allows.
+* inconsistency between the toolpath and the selected tool capabilities, _e.g._ cutting deeper than the endmill flute length allows.
 
 ## Double-checking the G-code
 
@@ -101,7 +105,7 @@ While it is very unlikely that the generated G-code is incorrect if the toolpath
 
 * CAMotics is a good option for a standalone G-code viewer, there are many others, some of them online. 
   * I often use [https://nraynaud.github.io/webgcode/](https://nraynaud.github.io/webgcode/) and just copy/paste some G-code in there as a quick check.
-* many G-code senders \(e.g. CNCjs, Universal G-code Sender, etc...\) include a G-code preview pane, and systematically checking that everything looks as it should there \(e.g. dimensions/depth, location of the toolpath versus zero point, ...\) before running a job will probably prevent a few silly mistakes, like not running the right file.
+* many G-code senders \(_e.g._ CNCjs, Universal G-code Sender, etc...\) include a G-code preview pane, and systematically checking that everything looks as it should there \(_e.g._ dimensions/depth, location of the toolpath versus zero point, ...\) before running a job will probably prevent a few silly mistakes, like not running the right file.
 
 ## Resurfacing the wasteboard
 

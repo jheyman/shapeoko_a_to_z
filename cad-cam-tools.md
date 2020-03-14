@@ -30,7 +30,7 @@ There is a small catch though: while it has an offline mode, this is primarily a
 
 ![](.gitbook/assets/cadcam_fusion360.png)
 
-I use CC or VCarve or Fusion360 depending on the project at hand. I will use Carbide Create when I need a simple 2.5D piece done quickly. V-Carve is my go-to solution for the 2.5D projects that are more complex \(require more structuring\) and/or involve Vcarving, 2-sided work, or require a roughing+finishing toolpath strategy. And then I will use Fusion360 for all things 3D, for metal work \(mainly because of the adaptive clearing feature\), and whenever I feel like I need to make the design parametric so as to be able to adjust dimensions without having to redesign everything.
+I use CC or VCarve or Fusion360 depending on the project at hand. I will use Carbide Create when I need a simple 2.5D piece done quickly. VCarve is my go-to solution for the 2.5D projects that are more complex \(require more structuring\) and/or involve Vcarving, 2-sided work, or require a roughing+finishing toolpath strategy. And then I will use Fusion360 for all things 3D, for metal work \(mainly because of the adaptive clearing feature\), and whenever I feel like I need to make the design parametric so as to be able to adjust dimensions without having to redesign everything.
 
 Of course, there are many other CAD/CAM tools out there, those are the ones that are most popular at the time of writing in the Shapeoko community.
 
@@ -46,7 +46,7 @@ G-code is a \(somewhat\) standard language to define instructions to be fed to m
 
 A G-code file is usually a **plain text** file \(that can be opened with any text editor\), containing a sequence of G-code "blocks", i.e. lines of instructions. Each block \(line\) can contain several G-code instructions, but it often has a single command and its parameters, for better readability.
 
-These instructions are being sent \(by e.g. Carbide Motion\) to the machine, that executes them **in order**.
+These instructions are being sent \(by _e.g._ Carbide Motion\) to the machine, that executes them **in order**.
 
 {% hint style="info" %}
 G-code standard does define loop/jump instructions \(GOTO\), but they are not supported by GRBL anyway, so on a Shapeoko the G-code is guaranteed to execute from the top to the bottom of the file sequentially.
@@ -119,7 +119,7 @@ But here are a few reasons why other senders can be considered too:
 
 * **live toolpath simulation**. It is quite convenient to be able to visualize the toolpaths contained in the G-code file that was loaded, if only to double-check that it looks right before running it, and then to monitor the cut and be able see what move is coming next in the toolpath.
 * **G-code Macros**. Small snippets of G-code with associated buttons/shortcuts in the UI can be very useful to streamline the workflow. It can be as simple as just going to X0/Y0, or be a complex custom automated probing routine.
-* **machine limits customization**. While Carbide Motion is setup for a stock Shapeoko, and while it does provide access to modify the various GRBL parameters, some aspects are hardcoded \(e.g. the probe dimensions, that match Carbide 3D's probe, or the Z limits that match a stock Z-axis\). If you start modding your machine, you _may_ come to a point where you need more customization than Carbide Motion allows.
+* **machine limits customization**. While Carbide Motion is setup for a stock Shapeoko, and while it does provide access to modify the various GRBL parameters, some aspects are hardcoded \(_e.g._ the probe dimensions, that match Carbide 3D's probe, or the Z limits that match a stock Z-axis\). If you start modding your machine, you _may_ come to a point where you need more customization than Carbide Motion allows.
 
 There are many alternative G-code senders in various states of maturity/activity, I will just focus on the two that I have used, and which seem to be most popular on the Shapeoko forum:
 
@@ -139,7 +139,7 @@ There are many alternative G-code senders in various states of maturity/activity
 Carbide Motion also has convenient shortcuts for use with a keypad, see: [https://community.carbide3d.com/t/keyboard-cheat-sheet-for-carbide-create-and-motion/7839](https://community.carbide3d.com/t/keyboard-cheat-sheet-for-carbide-create-and-motion/7839)
 {% endhint %}
 
-* it supports G-code filters, which can turn out to be convenient to ignore e.g. generated tool change commands. 
+* it supports G-code filters, which can turn out to be convenient to ignore _e.g._ generated tool change commands. 
 
 **CNCjs** is another popular sender, it has all the features of UGS and more, an arguably better-looking UI, and powerful macro capabilities. It comes either in a standalone desktop application:
 

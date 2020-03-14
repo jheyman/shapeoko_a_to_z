@@ -6,7 +6,7 @@ The whole "feeds & speeds" topic is arguably the most daunting part of learning 
 
 "**Speeds**" is the rotation speed of the endmill, i.e. RPM value.
 
-"Feeds" and "Speeds" go hand in hand, what really matters is the _combination_ of feedrate and RPM values for a given situation. Actually, they are also somewhat coupled with a number of other parameters \(e.g. depth and width of cut\), so "feeds and speeds" is often short for "all the cutting parameters". 
+"Feeds" and "Speeds" go hand in hand, what really matters is the _combination_ of feedrate and RPM values for a given situation. Actually, they are also somewhat coupled with a number of other parameters \(_e.g._ depth and width of cut\), so "feeds and speeds" is often short for "all the cutting parameters". 
 
 When first starting CNC, selecting adequate cutting parameters feels a little bit like this:
 
@@ -14,10 +14,10 @@ When first starting CNC, selecting adequate cutting parameters feels a little bi
 
 Using proper feeds and speeds and depth/width of cut values is important to :
 
-* get a good quality of the cut \(e.g. surface finish, dimensional accuracy\)
+* get a good quality of the cut \(_e.g._ surface finish, dimensional accuracy\)
 * increase tool life \(i.e. keep tool wear to a minimum\), or at least avoid tool breakage.
 * avoid/minimize chatter \(the horrendous sound heard when the endmill/machine vibrates while cutting through the material\)
-* optimize material removal rate \(e.g. how long it takes to complete the cut\)
+* optimize material removal rate \(_e.g._ how long it takes to complete the cut\)
 
 While there is definitely a good amount of experience \(and experimentation\) involved in finding the perfect feeds and speeds for any given situation, there are a few underlying principles that are worth understanding for two reasons:
 
@@ -70,10 +70,10 @@ This relation is quite intuitive:
 * for a given feedrate and RPM, an endmill with more flutes will cut thinner chips.
 * for a given feedrate and endmill, the faster the endmill rotates the thinner each chip will be. 
 
-The important takeway here, is that there are many possible combinations of feedrate, endmill type, and RPM to reach a given chipload. Say you are using a feedrate of 1000mm/min \(39ipm\), and a 3-flute endmill at 10.000RPM. Given the formula, you may just as well use a 2-flute endmill at 15.000RPM, or keep the 3-flute endmill but spin it at 20.000RPM while increasing feedrate to 2000mm/min \(79ipm\), the chipload thickness would be the same:
+The important takeway here, is that there are many possible combinations of feedrate, endmill type, and RPM to reach a given chipload. Say you are using a feedrate of 1000mm/min \(39ipm\), and a 3-flute endmill at 10,000RPM. Given the formula, you may just as well use a 2-flute endmill at 15,000RPM, or keep the 3-flute endmill but spin it at 20,000RPM while increasing feedrate to 2000mm/min \(79ipm\), the chipload thickness would be the same:
 
 $$
-\frac{1000}{3 × 10.000} =  \frac{1000}{2 × 15.000} =  \frac{2000}{3 × 20.000} =0.033mm
+\frac{1000}{3 × 10,000} =  \frac{1000}{2 × 15,000} =  \frac{2000}{3 × 20,000} =0.033mm
 $$
 
 {% hint style="info" %}
@@ -96,7 +96,7 @@ The **maximum** reachable chipload depends on a lot of things, but mostly:
 * the **type and diameter of the endmill** \(smaller teeth need to take smaller bites: the maximum chipload for a given endmill scales linearly with its diameter\)
 * the **toolpath** used \(how wide/deep the cutter is engaged\) and the **rigidity of the machine**: it is quite easy to forget that the Shapeoko is not as rigid as industrial CNCs, so endmill manufacturers recommendations may not be directly suitable for the Shapeoko. Any mechanical mod of the machine also impacts the max chipload capability.
 
-The Shapeoko's limits must also be accounted for: the absolute maximum theoretical chipload on a stock Shapeoko would be reached when using a single-flute endmill at the lowest RPM \(10.000RPM on the Makita router\) and at the fastest feedrate of 200 inch per minute, and that would be 200/\(1×10.000\) = 0.02'' = 0.5mm
+The Shapeoko's limits must also be accounted for: the absolute maximum theoretical chipload on a stock Shapeoko would be reached when using a single-flute endmill at the lowest RPM \(10,000RPM on the Makita router\) and at the fastest feedrate of 200 inch per minute, and that would be 200/\(1×10,000\) = 0.02'' = 0.5mm
 
 So all chiploads should be somewhere between 0.001'' and 0.02''.
 
@@ -174,7 +174,7 @@ Now we have to take a little detour and talk about stepover, because it impacts 
 
 "**Stepover**" refers to the offset distance of the endmill axis between one cutting pass and the next one, which also translates into how much new material is being removed by the endmill, or how much radial engagement is put on the endmill. It's also called Width of Cut \(**WOC**\) or Radial Depth of Cut \(**RDOC**\)
 
-In the example below, the stepover S if 50% of the endmill diameter:
+In the example below, the stepover S is 50% of the endmill diameter:
 
 ![](.gitbook/assets/stepover.png)
 
@@ -246,22 +246,22 @@ $$
 \frac{0.25}{2 × \sqrt{(0.25 × 0.03125) - 0.03125^2}}× 0.0014 \approx 1.5×0.002 = 0.003''
 $$
 
-* The ideal setting would be to max out the RPM, say 24.000 \(to take an example that is reachable on the Makita, DeWalt, and common spindles\). The required feedrate would then be :
+* The ideal setting would be to max out the RPM, say 24,000 \(to take an example that is reachable on the Makita, DeWalt, and common spindles\). The required feedrate would then be :
 
 $$
 Feedrate = Chipload×Nb\_Flutes × RPM= 0.003 × 3 × 24000 = 216\ ipm
 $$
 
-* That is above the default capability of the Shapeoko \(200ipm\), it would be scarily fast for cutting hard wood, and 24.000 RPM may sound too loud to your taste anyway. Let's say we decided to go for 16.000 RPM instead,  the required feedrate would become:
+* That is above the default capability of the Shapeoko \(200ipm\), it would be scarily fast for cutting hard wood, and 24,000 RPM may sound too loud to your taste anyway. Let's say we decided to go for 16,000 RPM instead,  the required feedrate would become:
 
 $$
 0.003 × 3 × 16000 = 144\ ipm
 $$
 
-* If going 144ipm still _feels_ a little fast, it possible to obtain the same chipload at lower RPM and lower feedrate, e.g. 12.000RPM and 108ipm, at the expense of higher cutting forces \(which or may not be a problem, see power analysis section later below\)
+* If going 144ipm still _feels_ a little fast, it possible to obtain the same chipload at lower RPM and lower feedrate, _e.g._ 12,000RPM and 108ipm, at the expense of higher cutting forces \(which or may not be a problem, see power analysis section later below\)
 * Alternately it is also possible to lower the feedrate by targetting a smaller chipload while ensuring it is still at least at the minimum recommended value of 0.001'', and assuming you are using a sharp enough cutter: 
   * To get a 0.001'' effective target chipload, the adjusted target chipload would become 0.0015''
-  * the feedrate would then be 0.0015 × 3 × 16.000 = 72ipm 
+  * the feedrate would then be 0.0015 × 3 × 16,000 = 72ipm 
 
 {% hint style="info" %}
 Some usecases call for the use of an O-flute endmills: this will probably mean reducing the feedrate and/or increasing the RPM to maintain a proper chipload.
@@ -290,7 +290,7 @@ These two situations are illustrated below:
 
 ![](.gitbook/assets/toolpaths_regular_vs_hsm.png)
 
-The "_**small WOC, high DOC**_" approach is much preferable, as it spreads the heat and tool wear much more evenly along the length of the endmill. However, it requires specific toolpath strategies \(e.g. to initially clear material down to the required depth, to allow small WOC to be used for the rest of the cut\), this is covered in the [Toolpaths](toolpath-basics.md) section. This is a very popular approach when cutting metals on the Shapeoko, but its benefits apply to other materials too.
+The "_**small WOC, high DOC**_" approach is much preferable, as it spreads the heat and tool wear much more evenly along the length of the endmill. However, it requires specific toolpath strategies \(_e.g._ to initially clear material down to the required depth, to allow small WOC to be used for the rest of the cut\), this is covered in the [Toolpaths](toolpath-basics.md) section. This is a very popular approach when cutting metals on the Shapeoko, but its benefits apply to other materials too.
 
 The "_**large WOC, small DOC**_" approach only ever uses the tip of the endmill, so that part will wear out quickly while the rest of the endmill length of cut remains unused. But it is still a very common approach for pocketing and profile cuts on the Shapeoko, and it has simplicity going for it.
 
@@ -300,7 +300,7 @@ For the "wide and shallow" cut scenario \(large WOC, small DOC\), I like to star
 
 For DOC:
 
-* **5% to 10%** of the endmill diameter for metals e.g. **aluminium**
+* **5% to 10%** of the endmill diameter for metals _e.g._ **aluminium**
 * **10% to 50%** of the endmill diameter for **softer materials**
 
 For WOC:
@@ -381,7 +381,7 @@ But _while_ cutting the corner, the TEA momentarily goes up to 180°:
 before going down to 90° again. So the machine sees a "spike" in the cutting resistance at each corner. Just like for slotting, this means that the feedrate and DOC cannot be as high as one would like, since they need to be dialed back a bit to manage corners.   
 
 {% hint style="info" %}
-This boils down to optimizing the cut parameters used throughout the job specifically for these very short times when the corners are being cut, which is not very efficient. The alternatives include avoiding straight corners in the design if possible \(e.g. round the corners...\) or use an **adaptive clearing toolpath** that will take a lot of very shallow bites at the corners instead of a deep one.
+This boils down to optimizing the cut parameters used throughout the job specifically for these very short times when the corners are being cut, which is not very efficient. The alternatives include avoiding straight corners in the design if possible \(_e.g._ round the corners...\) or use an **adaptive clearing toolpath** that will take a lot of very shallow bites at the corners instead of a deep one.
 {% endhint %}
 
 ## Plunge rate
@@ -477,13 +477,13 @@ And finally, even if the cutting power is within the range of your router, there
 In metric units, the torque is the force \(in Newton\) times the distance in meters \(in this case the radius of the endmill\), and power in Watts is torque times the angular velocity w, in radians per second. Since the cutter does RPM revolutions per minute and each of them is 2×Pi radians:
 
 $$
-Cutting\ torque (in\ N.m)= \frac{Cutter Power (Watts) }{2\pi×RPM/\ 60}
+Cutting\ torque\_N⋅m= \frac{Cutter Power (Watts) }{2\pi×RPM/\ 60}
 $$
 
-or in the Imperial units converting N.m to lbf-in \(x8.85 factor\) , since \(60 × 8.85\) / \(2 × 3.14159\) = 84.5:
+or in the Imperial units converting N⋅m to lbf⋅in \(×8.85 factor\) , since \(60 × 8.85\) / \(2 × 3.14159\) = 84.5:
 
 $$
-Cutting\ torque (lbf\_in)= \frac{Cutter Power (Watts) × 84.5}{RPM}
+Cutting\ torque\_lbf⋅in= \frac{Cutter Power (Watts) × 84.5}{RPM}
 $$
 
 and finally cutting force is:
@@ -578,16 +578,16 @@ Notice how I carefully avoided the case of V-bits throughout this section ? That
 
 So it does not quite make sense to be using a target chipload value for a V-bit. Experimentation is king in V-carving, but a common starting point for using V-bits in wood is as follows:
 
-* RPM in the 16k-20k range
-* Feedrate in the 30-60 ipm range \(lower for hard wood, faster for soft wood\)
-* Depth per pass in the 0.1-0.2'' range
-* Plunge rate in the 10-20 ipm range 
+* RPM in the 16k–20k range
+* Feedrate in the 30–60 ipm range \(lower for hard wood, faster for soft wood\)
+* Depth per pass in the 0.1–0.2'' range
+* Plunge rate in the 10–20 ipm range 
 
 {% hint style="info" %}
 If your CAM software supports it, you may want to use a roughing pass and a finishing pass \(with more aggressive settings for the roughing pass to spare time, and more conservative settings for the finishing pass\)
 {% endhint %}
 
 {% hint style="info" %}
-Sometimes when using V-bits, running the g-code twice can lead to a cleaner finish.
+Sometimes when using V-bits, running the G-code twice can lead to a cleaner finish.
 {% endhint %}
 

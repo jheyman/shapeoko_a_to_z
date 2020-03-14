@@ -91,7 +91,7 @@ But sometimes, it is convenient to declare Z0 on the **bottom** of the stock / s
 
 Now there is a catch with zeroing on stock bottom: the CAM software NEEDS to know the stock thickness \(H in the picture above\), such that it can offset Z0 by that, and end up in the same situation as is setting Z0 on top.
 
-The g-code for the SAME pocket toolpath as above, regenerated after declaring Z0 being on stock bottom in the CAM, would look like this:
+The G-code for the SAME pocket toolpath as above, regenerated after declaring Z0 being on stock bottom in the CAM, would look like this:
 
 ![](.gitbook/assets/gcode_view_zero_on_bottom.png)
 
@@ -104,7 +104,7 @@ In summary,
 
 ## Zeroing \(manually\)
 
-After jogging to the vertical of the intended X/Y zero point, lower Z gradually then use fine steps to touch off on e.g. a piece of paper placed between the tool and the stock, stopping as soon as the paper cannot be moved freely under the tool anymore, and then tell the G-code sender to reset X0/Y0/Z0. Yes, it does mean that you will zero a tiny bit above the real stock surface, but the average thickness of a piece of paper is around 0.004'' / 0.1mm, and chances are that you are already compressing the paper since it cannot move anymore, so you will actually be very, very close to the stock surface.
+After jogging to the vertical of the intended X/Y zero point, lower Z gradually then use fine steps to touch off on _e.g._ a piece of paper placed between the tool and the stock, stopping as soon as the paper cannot be moved freely under the tool anymore, and then tell the G-code sender to reset X0/Y0/Z0. Yes, it does mean that you will zero a tiny bit above the real stock surface, but the average thickness of a piece of paper is around 0.004'' / 0.1mm, and chances are that you are already compressing the paper since it cannot move anymore, so you will actually be very, very close to the stock surface.
 
 Miscellaneous tips:
 
@@ -140,7 +140,7 @@ The probing goes like this:
 
 If the stock shape does not have a straight corner, the probe can also sit on top of the stock surface and be used for Z probing only \(the software will know that when Z probing only is selected, it should compensate for the total height of the probe, not just the PZ step\).
 
-One problem remains: the X0/Y0 computations depend on \(half the\) diameter of the tool, so the geometry of the tool must have been configured beforehand, and this manual operation is error prone. Also, the _actual_ precise diameter of the tool is often not quite the advertised value, so this will introduce a _slight_ error in X0/Y0, which will result in a shift between runs with different tools. One more probing trick can be useful: if the probe has a hole, one can lower the tool into the hole and then probe its sides: probe left and memorize current X value, then probe right and memory current X value: the average \(middle\) of these two values is at the X center of the hole. Repeating this operation by probing on the front/back side of the hole will locate the Y center of the hole. Since the location of the center of the hole is at a known distance from the inner corner of the probe, this gives X0 and Y0. Z-probing can then be done normally elsewhere on the top surface. The beauty of this method is that it is independent of the tool diameter ! 
+One problem remains: the X0/Y0 computations depend on \(half the\) diameter of the tool, so the geometry of the tool must have been configured beforehand, and this manual operation is error prone. Also, the _actual_ precise diameter of the tool is often not quite the advertised value, so this will introduce a _slight_ error in X0/Y0, which will result in a shift between runs with different tools. One more probing trick can be useful: if the probe has a hole, one can lower the tool into the hole and then probe its sides: probe left and memorize current X value, then probe right and memory current X value: the average \(middle\) of these two values is at the X center of the hole. Repeating this operation by probing on the front/back side of the hole will locate the Y center of the hole. Since the location of the center of the hole is at a known distance from the inner corner of the probe, this gives X0 and Y0. Z-probing can then be done normally elsewhere on the top surface. The beauty of this method is that it is independent of the tool diameter! 
 
 ![](.gitbook/assets/job_probing_hole.png)
 

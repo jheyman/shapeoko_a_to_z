@@ -23,7 +23,7 @@ This is not \(only\) a legal disclaimer, this is plain old common sense but need
 
 ### Respiratory hazard
 
-* cutting some materials \(e.g. MDF or exotic wood\) produces dust that can be very toxic, and wood dust is just bad for your health in general. 
+* cutting some materials \(_e.g._ MDF or exotic wood\) produces dust that can be very toxic, and wood dust is just bad for your health in general. 
 * a good dust collection and filtering system will take care of this risk. You'll find out soon enough if you don't use one \(and/or an enclosure\) that a thin layer of dust ends up covering everything around the machine, so imagine what it does to your lungs. If you need a good scare, go read about wood dust related health issues, I bet you will invest in dust collection and filtering promptly afterwards.
 
 ### **Fire hazard**

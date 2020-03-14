@@ -9,10 +9,10 @@ For a specific object geometry/feature defined in the CAD tool, the CAM tool wil
 "**3D**" toolpaths correspond to cutting a 3D feature, and potentially moving the three axes of the machine simultaneously. 
 
 {% hint style="warning" %}
-Not all toolpaths presented below are available in the standard version of Carbide Create: 3D toolpaths, adaptive toolpaths, REST machining, and the roughing vs. finishing toolpaths feature require the use of other CAM programs. If you are just starting you can ignore those, Carbide Create is perfect to learn simple 2D toolpaths before moving on to more complex projects. The intent here is to show what is available in various CAM programs, and then everyone can decide whether to invest money \(e.g. VCarve, Carbide Create Pro\) or time \(e.g. Fusion 360\) to access those features. 
+Not all toolpaths presented below are available in the standard version of Carbide Create: 3D toolpaths, adaptive toolpaths, REST machining, and the roughing vs. finishing toolpaths feature require the use of other CAM programs. If you are just starting you can ignore those, Carbide Create is perfect to learn simple 2D toolpaths before moving on to more complex projects. The intent here is to show what is available in various CAM programs, and then everyone can decide whether to invest money \(_e.g._ VCarve, Carbide Create Pro\) or time \(_e.g._ Fusion 360\) to access those features. 
 {% endhint %}
 
-Let's take the simplest example of a 50x50mm square shape in a CAD tool, placed in the center of a 100x100x10mm stock material, with the zero point defined in the lower-left corner, and using a 6mm endmill \(~1/4''\) :
+Let's take the simplest example of a 50×50mm square shape in a CAD tool, placed in the center of a 100×100×10mm stock material, with the zero point defined in the lower-left corner, and using a 6mm endmill \(~1/4''\) :
 
 ![](.gitbook/assets/toolpaths_base_design.png)
 
@@ -45,8 +45,8 @@ On the following snapshot, a few circles of the same diameter as the endmill wer
 
 * the **stepover \(**a.k.a. ****width of cut, a.k.a. radial width of cut\) ****parameter of the toolpath controls how close to each other successive loops of the toolpaths are, in this case the stepover was chosen to be 50% of the endmill diameter for simplicity. Check out the [Feeds & speeds](feeds-and-speeds-basics.md) section for recommended stepover values, and how this affects chip thinning and ultimately the optimal feeds and speeds.
 * in **corners** two things happen:
-  * the cutter engagement temporarily increases \(see tool engagement in the [Feeds & speeds](feeds-and-speeds-basics.md#corners) section\). Nothing to be concerned about in many cases, but this limits the feeds and speeds to being more conservative than they could be. This is where advanced toolpaths help, e.g. adaptive clearing, more on this later.
-  * obviously, the round endmill cannot reach all the way into the corners, so some material is left and all corners end up rounded to the diameter of the endmill. One way to mitigate this is to use a smaller endmill, but cutting a large pocket using a very small endmill would take forever, so a better alternative is first cut the pocket normally with a large endmill, then run a second toolpath will a smaller endmill, that will only work locally in the corners. In advanced CAM tools, this is easy using the "rest machining" option described later below, where the CAM is smart enough to figure out how much material is left and where and to produce a second toolpath with a smaller tool that will only cut there. At the time of writing Carbide Create does not support rest machining, but you could fake it by manually creating additional geometry. In the example below, a 4.5x4.5mm square was added in one corner, with an associated pocket toolpath using a 1/16'' endmill. The corner will still not be perfectly square, but its radius will be 4 times smaller, so it will look much closer to square.
+  * the cutter engagement temporarily increases \(see tool engagement in the [Feeds & speeds](feeds-and-speeds-basics.md#corners) section\). Nothing to be concerned about in many cases, but this limits the feeds and speeds to being more conservative than they could be. This is where advanced toolpaths help, _e.g._ adaptive clearing, more on this later.
+  * obviously, the round endmill cannot reach all the way into the corners, so some material is left and all corners end up rounded to the diameter of the endmill. One way to mitigate this is to use a smaller endmill, but cutting a large pocket using a very small endmill would take forever, so a better alternative is first cut the pocket normally with a large endmill, then run a second toolpath will a smaller endmill, that will only work locally in the corners. In advanced CAM tools, this is easy using the "rest machining" option described later below, where the CAM is smart enough to figure out how much material is left and where and to produce a second toolpath with a smaller tool that will only cut there. At the time of writing Carbide Create does not support rest machining, but you could fake it by manually creating additional geometry. In the example below, a 4.5×4.5mm square was added in one corner, with an associated pocket toolpath using a 1/16'' endmill. The corner will still not be perfectly square, but its radius will be 4 times smaller, so it will look much closer to square.
 
 ![](.gitbook/assets/toolpaths_cc_fake_rest_machining.png)
 
@@ -88,7 +88,7 @@ Contour \(a.k.a. Profile\) toolpaths just follow the...contour of a shape, with 
 
 ![](.gitbook/assets/toolpaths_contour_outside.png)
 
-* **inside contours** are usually associated to creating a &lt;shape&gt;d-hole in a piece:
+* **inside contours** are usually associated to creating a hole in a piece, the size of the shape:
 
 ![](.gitbook/assets/toolpaths_contour_inside.png)
 
@@ -102,7 +102,7 @@ So, contour toolpaths are extremely simple, but there is a small catch: they pro
 
 In this situation, half of the endmill circumference is engaged in the material at all times, refer to the slotting paragraph in [Feeds & speeds](feeds-and-speeds-basics.md#slotting) section for details. The bottom line is that since this is a worst case scenario for the cutter, the feeds & speeds and DOC need to be dialed back quite a bit to avoid chatter or  excessive tool deflection. 
 
-Sometimes this is no big deal and you can just proceed with the reduced DOC and be fine. In other situations \(e.g. cutting plastics or metal\), deep slotting can be difficult and a solution can be to avoid it altogether when possible, for example by cutting the profile as a pocket instead of a slot. This usually requires creating additional geometry around the piece, and creating a pocket toolpath to cut material in-between the original shape and the added geometry:
+Sometimes this is no big deal and you can just proceed with the reduced DOC and be fine. In other situations \(_e.g._ cutting plastics or metal\), deep slotting can be difficult and a solution can be to avoid it altogether when possible, for example by cutting the profile as a pocket instead of a slot. This usually requires creating additional geometry around the piece, and creating a pocket toolpath to cut material in-between the original shape and the added geometry:
 
 ![](.gitbook/assets/toolpaths_contour_pocket_profile.png)
 
@@ -150,7 +150,7 @@ Since adaptive clearing is typically used with a small WOC \(much lower than 50%
 
 V-carving is a specific toolpath strategy dedicated to using V-bits to cut the inside of shapes, resulting in a cut depth that depends on how far apart the sides of the shape are.
 
-Let's take the example of a simple chevron shape, to be cut with a 60degree V-bit:
+Let's take the example of a simple chevron shape, to be cut with a 60 degree V-bit:
 
 ![](.gitbook/assets/toolpaths_vcarve_chevron_design.png)
 
@@ -171,7 +171,7 @@ A typical use is to carve the inside of text characters:
 
 ![](.gitbook/assets/toolpaths_vcarve_text_inside.png)
 
-Carving the outside of characters within a predefined boundary is another popular option, and when combined with the ability of some CAM tools to limit the V-carve depth to a predefined max value, it can produce interesting 3D-like results:
+Carving the outside of characters within a predefined boundary is another popular option, and when combined with the ability of some CAM tools to limit the v-carve depth to a predefined max value, it can produce interesting 3D-like results:
 
 ![](.gitbook/assets/toolpaths_vcarve_text_flatdepth.png)
 
@@ -191,7 +191,7 @@ How roughing/finishing is set up depends on the CAD/CAM tool being used:
 * Carbide Create does not support \(at the time of writing\) any roughing/finishing option explicitly, but:
   * one can manually create additional geometry in the design to do it, as explained above in the alternatives to slotting.
   * or one can define a "fake" roughing tool and declare it to be slightly larger than the tool actually is, and use that tool in the toolpath: this will generate a toolpath that when cut with the real \(slightly smaller\) tool, will leave a thin layer of material around the shapes. Then, generate toolpaths based on the same geometry, but this time using a tool that is declared to have the true size, and run that: it will act as a finishing toolpath and shave off the excess material from the "roughing" pass.
-* Vectric V-Carve has explicit options in its toolpath parameters to create an "allowance offset", basically a margin that will be kept when cutting. One can therefore select a geometry and:
+* Vectric VCarve has explicit options in its toolpath parameters to create an "allowance offset", basically a margin that will be kept when cutting. One can therefore select a geometry and:
   * create a first toolpath with an allowance offset \(of say 0.01''\)
   * create a second toolpath with an allowance offset of 0.
   * for profile toolpaths, this is even simpler: there is a "**Do Separate Last Pass**" option with an allowance offset value, to tell VCarve to use the allowance value for successive passes down the material, but for the last \(deepest\) pass, discard the allowance: this will result in the endmill taking a single full-depth pass all around the geometry at the end, shaving off the material to get to the final dimensions and finish quality.
@@ -249,7 +249,7 @@ Many of the concepts of 2D toolpaths apply, but the notion of roughing + finishi
 
 For drilling a hole, a first option is to use an endmill smaller than the hole, and use a circular pocket toolpath. It works fine, but turns out to be inconvenient:
 
-* if a job that could otherwise be done completely with e.g. a 1/4'' endmill needs 1/4'' holes, a 1/8'' endmill will be required just to mill the hole pockets.
+* if a job that could otherwise be done completely with _e.g._ a 1/4'' endmill needs 1/4'' holes, a 1/8'' endmill will be required just to mill the hole pockets.
 * small endmills usually have a short length of cut and shank, so cutting a deep 1/8'' hole with a 1/16'' endmill could turn out to be impossible.
 
 A useful alternative is to use specific drilling toolpaths, that just plunge the endmill vertically, so it becomes possible to do a 1/4'' hole with a 1/4'' endmill. However, an endmill is very bad at drilling, it is just not designed for this, so the plunge rate should be limited, and the "**peck-drilling**" option used: the tool will cut a small DOC, retract to clear out the chips, and then plunge again, repeatedly until the full depth has been cut.

@@ -206,7 +206,7 @@ For example, here's a copy of the Shapeoko3 settings in GRBL1.1:
 ```
 
 {% hint style="info" %}
-Note the \(defaut\) maximum feedrate of 5000mm/min, i.e. a bit less than 200''/min
+Note the defaut maximum feedrate of 5000mm/min, i.e. a bit less than 200''/min. Carbide Motion 505 and later will override this setting during the initial machine configuration, to a maximum of 10000mm/min \(394ipm\), to allow for fast rapid movements \(outside the material\)
 {% endhint %}
 
 The first six settings should be clear from the whole steps/microsteps section above, the rest are default values for settings that can be reconfigured anyway.
@@ -215,7 +215,7 @@ What GRBL does is listen to incoming commands on the USB interface, and act upon
 
 ![](.gitbook/assets/grbl_internals.png)
 
-* first there is a **reception buffer**, and that's a critical point because while the Arduino microcontroller can execute code with very deterministic timings, that's not the case of the host PC at the other end of the USB cable, which executes e.g. Carbide Motion on Windows. And as everyone has experienced, from time to time Windows or MAC OS can decide to go and do something else for a little while, and this could break the flow of G-code commands into the controller. With this buffer, the control software can send a few additional G-code commands in advance of the current one, to ensure that the controller will never starve waiting for the next command from USB.
+* first there is a **reception buffer**, and that's a critical point because while the Arduino microcontroller can execute code with very deterministic timings, that's not the case of the host PC at the other end of the USB cable, which executes _e.g._ Carbide Motion on Windows. And as everyone has experienced, from time to time Windows or MAC OS can decide to go and do something else for a little while, and this could break the flow of G-code commands into the controller. With this buffer, the control software can send a few additional G-code commands in advance of the current one, to ensure that the controller will never starve waiting for the next command from USB.
 * the **G-code commands** are parsed and processed by a dedicated piece of code that generates the appropriate signals to drive the stepper driver to produce the desired motion
 * the **'$' commands** are interpreted to update various internal variables
 * the **realtime commands** consist of a single character, that has an immediate effect as soon as it is received, having priority over anything else GRBL is currently doing. For example ,  sending '!' will trigger a Feed Hold.
