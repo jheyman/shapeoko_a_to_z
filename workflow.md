@@ -2,7 +2,7 @@
 
 First things first, the **workflow** of a typical CNC job: 
 
-![](.gitbook/assets/workflow2.png)
+![](.gitbook/assets/page_5_800.png)
 
 Everything starts in a **CAD** \(Computer-Aided Design\) program: this is where you will create the 2D or 3D objects to be machined. CAD software packages are usually able to import 2D and 3D features from a variety of file formats, and the most common/useful ones for CNC are "vector" formats. 
 
@@ -50,7 +50,7 @@ The next question is, where is the origin? On a CNC like the Shapeoko, there is 
 
 The **ZERO** point \(X0,Y0,Z0\) is the point in space against which all movements described in a G-code file will be referenced.
 
-![](.gitbook/assets/coordinate_system800.png)
+![](.gitbook/assets/page_8_800_redo.png)
 
 This point is usually referenced somewhere on the stock material \(_e.g._, a corner or the center of the top face\), but it could be set anywhere in the 3D workspace. The G-code for a given job will use this reference, and perform movements **relative** to this local origin.
 

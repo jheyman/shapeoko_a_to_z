@@ -4,13 +4,13 @@
 
 Squaring the machine is covered in the Shapeoko assembly instructions, this section just adds a few notes on why this matters, and a few tips.
 
-In the best case scenario, bringing the gantry to the front side, tightening the front screws, sliding the gantry to the back, and tightening the back screws is enough to make the gantry square to the Y rails. Here's a view from the top with the gantry pushed all the way back or all the way to the front steel plates, ideally the side plates should make contact simultaneously, leaving no gap one either side:
+In the best case scenario, bringing the gantry to the front side, tightening the front screws, sliding the gantry to the back, and tightening the back screws is enough to make the gantry square to the Y rails. Here's a view from the top with the gantry pushed all the way back or all the way to the front steel plates, ideally the side plates should make contact simultaneously, leaving no gap on either side:
 
-![](.gitbook/assets/squaring_gantry_ok.png)
+![](.gitbook/assets/page_189_800.png)
 
 But you may and likely will get a small gap on one side, and a similar gap on the opposite side when pushing the gantry to the other end of the Y rails \(teal arrows on the exaggerated sketch below\):
 
-![](.gitbook/assets/squaring_gantry_ko.png)
+![](.gitbook/assets/page_190_800.png)
 
 This can be due to a number of reasons \(X extrusion sides not being perfectly square, tolerances in the side plate / V-wheel /washers assembly, etc...\), and common solutions to fix this are:
 
@@ -31,7 +31,7 @@ Once X and Y axis are square, the next step is to make the wasteboard as flat an
 
 Either the X/Z rail is not perfectly parallel to the bed \(as shown exaggerated in the sketch below\), or the wasteboard is not perfectly flat to begin with, either way the end result is that after zeroing somewhere on stock surface and moving the endmill elsewhere along the X/Y axis, the tip of the endmill can end up being above or below stock surface: 
 
-![](.gitbook/assets/surfacing_initial_state.png)
+![](.gitbook/assets/page_192_800.png)
 
 Running a surfacing toolpath on the top of the wasteboard will make it parallel to the gantry, therefore providing a known-flat reference to mount the stock onto, which turns out to be important for projects where depth accuracy matters:
 
@@ -46,6 +46,10 @@ For PCB engraving, another technique to compensate for depth variations is to us
 
 Since the surfacing toolpath has to cover a lot of real estate, a fly cutter with a large diameter is useful \(but any large endmill will do, it just takes longer\).
 
+{% hint style="info" %}
+Tip: draw squiggles with a pencil all over the wasteboard before starting: after the surfacing operation you will be able to tell if you missed a low spot \(i.e., did not surface deep enough to make it perfectly flat\)
+{% endhint %}
+
 Here's an MDF wasteboard surfacing operation in progress:
 
 ![](.gitbook/assets/resurfacing.png)
@@ -58,13 +62,13 @@ While surfacing ensures that the surface of the wasteboard is true to the X/Y ax
 
 ## Tramming the router/spindle
 
-In a perfect world, the router axis would be perfectly square to the surface of the wasteboard \(and of the stock material\). For a pocket operation with for example a 25% stepover \(S\), a cross-section of three successive passes of an endmill could look like the sketch below, the bottom of the pocket would be flat, and its width exactly as intended \(in this example, 2.5 times the endmill diameter\):
+In a perfect world, the router axis would be perfectly square to the surface of the wasteboard \(and of the stock material\). For a pocket operation, a cross-section of three successive passes of an endmill could look like the sketch below, the bottom of the pocket would be flat, and its width exactly as intended:
 
-![](.gitbook/assets/tramming_perfect_case.png)
+![](.gitbook/assets/page_194_800%20%281%29.png)
 
 But in reality, the mechanical assembly and tolerances on the router mount are such that the angle between the endmill axis and the stock surface can be slightly different from 90°. Here's a very exaggerated example:
 
-![](.gitbook/assets/tramming_bad_case.png)
+![](.gitbook/assets/page_195_800%20%281%29.png)
 
 Now the pocket ends up being wider than it was programmed to be, AND the bottom of the cut is not perfectly flat, there are small ridges at the overlap between passes.  Here's a real life example:
 
@@ -78,13 +82,13 @@ You should surface the wasteboard **before** tramming. If you don't, you may end
 
 One option is to use a dedicated tramming device mounted in the router and integrating two dial indicators. Any difference between the readout on the indicators is a sign of a tram angle. The arm can be rotated manually to check the angle in any direction:
 
-![](.gitbook/assets/tramming_highend_tramming_system.png)
+![](.gitbook/assets/page_197_800_redo.png)
 
 Very convenient, but pricey \(unless you make your own, but getting enough precision in the parts/assembly is not easy\).
 
 The next best thing if you just have a dial indicator, is to mount a stub/dowel in the router, and attach the indicator at the end of a small arm. Then rotate the arm manually to detect variation, and determine which way the router is tilted from there:
 
-![](.gitbook/assets/tramming_custom_tramming_system.png)
+![](.gitbook/assets/page_198_800.png)
 
 {% hint style="info" %}
 An even cheaper version of this, is replacing the dial indicator with a fixed dowel, and rotate the arm: if the dowel catches the wasteboard on one side but not the other, adjust router tilt to compensate, rinse and repeat.

@@ -20,7 +20,7 @@ This device is connected to the "Probe" input of the controller \(yes, the same 
 
 The probing works something like this:
 
-![](.gitbook/assets/tool_length_offset_probe.png)
+![](.gitbook/assets/page_278_800.png)
 
 * the user initially sets the zeros normally, which sets Z0.
 * the initial probing sequence moves the router over the predefined X/Y position of the tool length probe, then slowly moves the router down until the tip of the endmill pushes the button enough to trigger the probe: at that point, the machine makes a note of the current absolute Z value \(Z1 abs, arbitrarily shown as -100mm in the example above\)
@@ -123,7 +123,7 @@ The Shapeoko uses a trim router by default for cost/convenience reasons, but mos
 
 Here's an overview of the key points to consider for the upgrade:
 
-![](.gitbook/assets/spindle_upgrade_overview.png)
+![](.gitbook/assets/page_287_800.png)
 
 **1\)** The Z axis capability. Spindles can be HEAVY, especially 2.2kW ones. The stock Z axis will not be able to cope with the heavier models, but should be fine for the lighter \(800W\) ones. The HDZ and Z-plus axis, with their ballscrew design, will handle all models.
 
@@ -229,7 +229,7 @@ If you are considering adding a laser to your Shapeoko setup, whatever you do pu
 
 It's tempting to leverage the X/Y capability of the Shapeoko, to move a laser module around and engrave/cut the surface of parts. A typical setup will look something like this:
 
-![](.gitbook/assets/laser_setup%20%281%29.jpeg)
+![](.gitbook/assets/page_297_800_redo.png)
 
 **1\)** The laser module is usually attached somewhere on the router mount, in such a way that it can be installed/removed easily, when switching back and forth between CNC operation and laser operation.
 

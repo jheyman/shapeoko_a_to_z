@@ -198,3 +198,17 @@ Even if it can be minimized to some extent, some runout will always exist. A sim
 
 This won't do anything about the negative aspects of runout such as possible vibrations/chatter/poor surface finish, but at least it should give more accurate dimensions.
 
+## Multi-tool jobs
+
+When running jobs involving tool changes, an additional constraint impacting dimensional accuracy appears: position errors from readjusting the zero reference each time a tool change is required \(usually, resetting Z0 to compensate for the tool length difference\).
+
+There are at least two things you can do to minimize those errors: 
+
+* do not turn-off/re-home the machine between tool changes if you can avoid it. While homing establishes a known absolute position, it comes with a finite repeatability performance; upon returning to zero after homing, you may notice that it is not PERFECTLY in the same location as before.
+
+{% hint style="info" %}
+You might argue that homing provides the benefit of clearing the effect of lost/skipped motor steps. But if you lose steps in the first place, there is no chance that dimensional accuracy will be good, so you should address that first \(using less aggressive settings\)
+{% endhint %}
+
+* use a [tool length probe](upgrading-the-machine.md#tool-length-offset-probe) to automate the adjustment of the Z0 between runs. Sure, a tool length probe comes with its own accuracy/repeatability limitations, but chances are that it will still provide a more repeatable result than manual re-zeroing. And once things are repeatable, it's easy to adjust the CAM design to compensate for residual dimensional errors.
+

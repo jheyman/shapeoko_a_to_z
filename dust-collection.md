@@ -74,7 +74,7 @@ While it is possible to connect a shop vacuum directly to the dust shoe, it turn
 
 A common solution is to buy or build a "cyclone" dust separator: 
 
-![](.gitbook/assets/setup_cyclone_separator_principle.png)
+![](.gitbook/assets/page_160_800.png)
 
 * the shop vacuum is plugged on top, while the hose from the dust shoe is connected on the left.
 * the suction from the shop vacuum and the shape of the cyclone dust separator are such that an outer vortex \(blue\) and inner vortex \(teal\) are created, so the chips/dust contained in the incoming air flow are pushed against the walls of the cyclone by centrifugal force, and then slide down under the effect of gravity to the bottom where they can be collected using any kind of tank.

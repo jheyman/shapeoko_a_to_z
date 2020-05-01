@@ -147,7 +147,7 @@ Carbide Motion also has convenient shortcuts for use with a keypad, see: [https:
 
 or as a backend accessed via a web interface from any browser. This latter configuration makes it interesting for installation on a Raspberry pi \(or any other cheap computer that can be dedicated to being a G-code sender\):
 
-![](.gitbook/assets/cncjs_rpi_browser.png)
+![](.gitbook/assets/page_37_800_fixed.png)
 
 In this configuration, a G-code file can be loaded directly from a web browser running on any device \(PC, Mac, tablet, smartphone...\), and CNCjs running on the Raspberry Pi takes care of feeding the G-code to the Shapeoko via the Raspberry's USB port. The device running the web browser can be turned off, or used for some other tasks, without impacting the ongoing job.
 

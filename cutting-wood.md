@@ -69,7 +69,7 @@ A much simpler example now: doing profile cuts in plywood. Plywood is soft and e
 
 To leverage this peculiar geometry, the endmill is intended to be used for cutting through a stock material which thickness matches the distance between the upcut and downcut parts of the endmill:
 
-![](.gitbook/assets/compression_bit_principle.png)
+![](.gitbook/assets/page_226_800.png)
 
 The downcut section of the flute will tend to push down on the stock material top surface, while the upcut section will tend to push up on the bottom surface \(hence the name "compression"\). The expected result is that both the top and the bottom surfaces should have no tearout.
 
@@ -85,11 +85,11 @@ This is basically my take on explaining v-carved inlays, based on this great vid
 
 Making wood inlays is a very popular technique, that is surprisingly easy once you understand the underlying principles. Like regular V-carving, it allows one to mill features that would otherwise be impossible to do with straight endmills, like stars or other pointy objects. It starts from the basic observation that if one uses a V-bit of a given taper angle, it is possible to cut a cavity AND the associated part filling that cavity, with the same tool, for a perfect match. Here's a basic example with a 60° V-bit:
 
-![](.gitbook/assets/inlay_basics_0.png)
+![](.gitbook/assets/page_228_800.png)
 
 To cut the **base**, one uses a regular v-carve toolpath, based on any 2D shapes \(as a convention these reference shapes constitute the "artwork plane"\). The toolpath only needs to cut down to a depth corresponding to the desired inlay thickness, however it is more practical to carve a bit deeper, to have a little bit of space for the glue that will hold the base and the inlay, and to cope for small depths errors:
 
-![](.gitbook/assets/inlay_basics_1.png)
+![](.gitbook/assets/page_229_800.png)
 
 {% hint style="info" %}
 This is the beauty of v-carved inlays: the slope introduced by the use of a V-bit, the extra depth margin \(glue gap\), and making the inlay a bit thicker than required, will ensure that even if the inlay depth is not a perfect match for the base, it will still fit perfectly, and one will only have to remove the excess material after glueing.
@@ -101,11 +101,11 @@ Now, cutting the **inlay** part itself requires a bit more caution:
 * the second thing is that one needs to cut the inlay to be a bit thicker than strictly required, to allow for thickness errors and to leave some space between the base and the top of the inlay for cutting the excess material after assembly. This corresponds to the extra "**cutout depth**" on the figure below.
 * finally, it is often convenient to add a solid **base underneath the inlay** part\(s\), especially when the artwork is such that many individual inlay pieces will be cut: the base will hold them all together during assembly.  
 
-![](.gitbook/assets/inlay_basics_2.png)
+![](.gitbook/assets/page_230a_800.png)
 
 You should then end up with two pieces that match perfectly \(the V-bit angle does that for you\), and with the inlay sticking out from the final surface by the cutout depth plus the inlay base depth:
 
-![](.gitbook/assets/inlay_basics_3.png)
+![](.gitbook/assets/page_230b_800.png)
 
 Below is an example project of carving a lotus flower inlay using a 60° V-bit. 
 

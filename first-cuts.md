@@ -68,7 +68,7 @@ In Carbide Create, this is selected using the "Top/Bottom" drop-down list
 
 Consider this example where one would want to cut a rectangular pocket on the top of a square piece of stock: 
 
-![](.gitbook/assets/zeroing_top_or_bottom.png)
+![](.gitbook/assets/page_178a_800.png)
 
 In many cases, one will want to zero on the **top** of the stock, just because:
 
@@ -76,7 +76,7 @@ In many cases, one will want to zero on the **top** of the stock, just because:
 * as long as the pocket is not going all the way through the stock, there is no need to know or care about the stock thickness.
 * it is often convenient to use the top left corner as a reference point for not only Z0, but also X0 and Y0, and using a corner probe makes that very easy \(more on this below\).
 
-![](.gitbook/assets/zeroing_on_top.png)
+![](.gitbook/assets/page_178b_800fixed.png)
 
 Previewing the g-code for that pocket toolpath would look something like below, with the tool starting from the upper left corner of the stock, retracting, moving to the pocketing area, and cutting to lower and lower depths:
 
@@ -87,7 +87,7 @@ But sometimes, it is convenient to declare Z0 on the **bottom** of the stock / s
 * when the stock is not quite the desired thickness, and ones wants to surface it, down to a precise final height.
 * when milling a piece that requires multiple tools, and there may not be an flat surface _left_ after the first toolpath has been run \(think of a roughing pass that would mill the top surface away and leave only a curved surface\)
 
-![](.gitbook/assets/zeroing_on_bottom.png)
+![](.gitbook/assets/page_179_800.png)
 
 Now there is a catch with zeroing on stock bottom: the CAM software NEEDS to know the stock thickness \(H in the picture above\), such that it can offset Z0 by that, and end up in the same situation as is setting Z0 on top.
 
@@ -118,11 +118,11 @@ The main limitation of manual zeroing is that you need to eyeball the X/Y locati
 
 Enter the touch probe, to automate the zeroing process. The Shapeoko controller has a dedicated "Probe" input, that works like the other limit switches. It detects whether there is continuity between the two pins:
 
-![](.gitbook/assets/job_probing_principle.png)
+![](.gitbook/assets/page_182a_800_redo.png)
 
 For zeroing Z only, a probe can boil down to a piece of \(conductive\) metal sheet \(of known thickness\), for zeroing X, Y and Z, it needs to be 3-dimensional but the principle is the same. X/Y/Z probes typically have a recessed face on the bottom side, so that they can be placed on a corner of the stock top surface:
 
-![](.gitbook/assets/job_3dprobe_dimensions.png)
+![](.gitbook/assets/page_182b_800.png)
 
 {% hint style="info" %}
 Probes come in two types: passive and active. Passive is just what was described above, i.e. a glorified metal cube. Active probes have internal electronics to support features such as an embedded test LED that lights up when contact is made, which is useful for checking that the probe chain is working fine before initiating the probing cycle
@@ -130,7 +130,7 @@ Probes come in two types: passive and active. Passive is just what was described
 
 The probing goes like this:
 
-![](.gitbook/assets/job_3dprobe_principle.png)
+![](.gitbook/assets/page_183_800.png)
 
 * the probing cycle starts with the tool raised above the probe. It could be anywhere above, but there is usually a target area above which to \(coarsely\) position the tool, to facilitate the rest of the sequence.
 * the tool is lowered along Z, until it makes contact. When it does, the software can just read the current Z and subtract the thickness of the probe \(PZ in the sketch above\) to get Z0. This Z touch off sequence can be repeated to average out values and improve precision
@@ -142,7 +142,7 @@ If the stock shape does not have a straight corner, the probe can also sit on to
 
 One problem remains: the X0/Y0 computations depend on \(half the\) diameter of the tool, so the geometry of the tool must have been configured beforehand, and this manual operation is error prone. Also, the _actual_ precise diameter of the tool is often not quite the advertised value, so this will introduce a _slight_ error in X0/Y0, which will result in a shift between runs with different tools. One more probing trick can be useful: if the probe has a hole, one can lower the tool into the hole and then probe its sides: probe left and memorize current X value, then probe right and memory current X value: the average \(middle\) of these two values is at the X center of the hole. Repeating this operation by probing on the front/back side of the hole will locate the Y center of the hole. Since the location of the center of the hole is at a known distance from the inner corner of the probe, this gives X0 and Y0. Z-probing can then be done normally elsewhere on the top surface. The beauty of this method is that it is independent of the tool diameter! 
 
-![](.gitbook/assets/job_probing_hole.png)
+![](.gitbook/assets/page_185_800.png)
 
 {% hint style="info" %}
 _@neilferreri_ on the forum came up with a wonderful probing macro for CNCjs, that does just this, go check it out: [https://github.com/cncjs/CNCjs-Macros](https://github.com/cncjs/CNCjs-Macros)

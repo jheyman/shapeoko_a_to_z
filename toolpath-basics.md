@@ -35,6 +35,10 @@ Extremely simple, but it already illustrates a few interesting general parameter
 
 ![](.gitbook/assets/toolpaths_helix_ramping.png)
 
+Here's an alternate view of linear ramping into the material:
+
+![](.gitbook/assets/page_134b_800.png)
+
 Since the pocket depth may exceed what be can cut in a single pass by the endmill, it is often necessary to take several passes, removing a given depth of cut \(DOC\) a.k.a. **depth per pass,** until the full pocket depth is reached:
 
 ![](.gitbook/assets/toolpaths_pocket_multi_pass.png)
@@ -157,11 +161,11 @@ Let's take the example of a simple chevron shape, to be cut with a 60 degree V-b
 * the toolpath \(pink\) is where the tip of the V-bit will be
 * if we look at a vertical cross-section where the blue line is, the V-bit will be like this:
 
-![](.gitbook/assets/toolpaths_vcarve_section1.png)
+![](.gitbook/assets/page_125a_800.png)
 
 * while at the level of the green line, the cross-section would look something like this:
 
-![](.gitbook/assets/toolpaths_vcarve_section2.png)
+![](.gitbook/assets/page_125b_800.png)
 
 Here's a preview of this toolpath, the width of the cut is controlled by how deep the V-bit is driven:
 
@@ -227,23 +231,31 @@ The power of REST machining lies in the fact that both toolpaths refer to the sa
 
 Consider the case of a profile cut, where the tool plunges straight down at a point somewhere along the profile. During the plunge, the forces on the endmill are mostly vertical, the tool will not deflect. But once the endmill has reached the DOC and starts moving around the profile, lateral forces on the endmill will cause deflection, and the actual cutting path will deviate from the intended path by a tiny amount \(greatly exaggerated on the sketch below\). The resulting profile cut may then end up having a \(small but\) visible notch at the point where the endmill plunged into the material:
 
-![](.gitbook/assets/toolpaths_nolead_in.png)
+![](.gitbook/assets/page_133_800.png)
 
 One way to avoid this is to use a roughing pass with stock to leave: the deflection effect will still happen, but it will happen away from the contour, and a finishing pass \(with very little deflection\) will then come and shave off this small variation. 
 
 Another way to deal with such problems is to use **lead-in \(**respectively lead-out\) options if the CAM tool supports it: the toolpath with make the endmill plunge away from the profile, and then lead into \(respectively out of\) the profile edge:
 
-![](.gitbook/assets/toolpaths_leadin.png)
+![](.gitbook/assets/page_134a_800.png)
 
 At the time of writing, this feature is not supported in Carbide Create, but one can fallback to manually adding geometry around the piece to achieve similar results.
 
 ## 3D toolpaths
 
-The standard version of Carbide Create does not support them, and the topic is too wide and too specific to be covered here properly, but here is a simple example of milling a donut shape:
+The standard version of Carbide Create does not support them, and the topic is too wide and too specific to be covered here properly, but here is a simple example of milling a donut shape in Fusion360:
 
 ![](.gitbook/assets/toolpaths_3d_example.png)
 
-Many of the concepts of 2D toolpaths apply, but the notion of roughing + finishing will be paramount for 3D, to get both a reasonable job time and a smooth finish.
+Many of the concepts of 2D toolpaths apply, but the notion of roughing + finishing will be paramount for 3D, to get both a reasonable job time and a smooth finish. Typically, a large diameter square endmill will be used for roughing, and a small diameter ballnose will be used for finishing.
+
+**Carbide Create Pro** includes support for creating 3D toolpaths from 2D features or from grayscale heightmaps. Since many 3D models lend themselves well to being projected to a heightmap, this opens up the possibility to do very intricate 3D carvings. Here is a simple example of milling a 3D surface in CC Pro, starting with the 3D roughing pass:
+
+![](.gitbook/assets/ccpro_3droughing.PNG)
+
+And then adding 3D finishing passes:
+
+![](.gitbook/assets/ccpro_3dfinishing.PNG)
 
 ## Drilling toolpaths
 

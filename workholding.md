@@ -15,20 +15,16 @@ Many projects require cutting all the way through the stock material, _e.g._ to 
 
 * even on a properly calibrated machine, it is not easy to cut _exactly_ down to stock bottom.
 * it is often not desirable anyway: the quality of the cut on the bottom of the piece can be poor if not overcutting \(_e.g._ small variations in depth/flatness would leave material here and there\).
-* mistakes in the CAM design/G-code, or mechanical issues, might cause the endmill to cut deeper than expected, it would be too bad to damage the machine bed.
+* mistakes in the CAM design/G-code, or mechanical issues, might cause the endmill to cut deeper than expected, it would be too bad to damage the machine baseboard.
 * the stock must lay on a surface that is flat and square to the machine's Z axis, and the simplest way to achieve this is to use the machine itself to surface its own base \(see [Squaring, surfacing, tramming](squaring.md)\), so it should be a replaceable part.
 
-It is _possible_ to use the Shapeoko's MDF bed itself as a wasteboard, but who wants to be replacing the bed of their machine? \(considering it would mean disassembling it, reassembling with a fresh bed, and then squaring everything again\). It is much more convenient to use a **supplementary** wasteboard bolted onto the bed.
-
-{% hint style="info" %}
-What I call the "bed" is the piece of MDF that ships with the machine and is bolted onto the steel plates. This is sometimes referred to as the "baseboard" or the "wasteboard" in the assembly instructions, but I find it slightly confusing since it is not really replaceable. My naming convention here is therefore to call it the "bed", and call the _supplementary_ wasteboard the "wasteboard". 
-{% endhint %}
+It is _possible_ to use the Shapeoko's MDF baseboard itself as a wasteboard, but who wants to be replacing the baseboard of their machine? \(considering it would mean disassembling it, reassembling with a fresh baseboard, and then squaring everything again\). It is much more convenient to use a **supplementary** wasteboard bolted onto the baseboard.
 
 The \(only?\) downside to using a supplementary wasteboard is that it reduces the maximum Z travel \(i.e. the maximum possible height for a workpiece\)
 
 Wasteboard material is very often MDF \(cheap & easy to procure\), HDPE or PVC is another option \(much more expensive, but it does not wear off / tear out as easily, and is immune to humidity variations\).
 
-The wasteboard needs to be held onto the machine's bed, in such a way that it can easily be removed, the usual way is to bolt it onto the bed one way or other.
+The wasteboard needs to be held onto the machine's baseboard, in such a way that it can easily be removed, the usual way is to bolt it onto the baseboard one way or other.
 
 {% hint style="info" %}
 Make sure the wasteboard X/Y dimensions are such that the router will be able to reach the whole area, with some margin: this will be important for surfacing the wasteboard. The max dimensions vary depending on the machine \(and accessories\) setup, so actually moving the router in the four corner positions, measuring where the endmill ends up being, and making the wasteboard area slightly smaller than that, is an easy way to get this right.
@@ -48,7 +44,7 @@ which requires to have threaded holes available in various places across the wor
 
 ![](.gitbook/assets/fresh_wasteboard.png)
 
-There are many different ways to make a "sea of holes" wasteboard. A popular option is to use the Shapeoko itself to drill the holes into either its own bed or the supplementary wasteboard, and then manually install **threaded inserts** in the holes.
+There are many different ways to make a "sea of holes" wasteboard. A popular option is to use the Shapeoko itself to drill the holes into either its own baseboard or the supplementary wasteboard, and then manually install **threaded inserts** in the holes.
 
 Another very popular option to attach clamps is to use **T-tracks** inserted at regular intervals between "strips" of wasteboard area:
 
@@ -60,7 +56,7 @@ The main drawback in both cases is that the area where the clamps are holding th
 * using **low-profile clamps**: this addresses the issue of collision with the dust shoe itself, as the clamps can slide under the bristles of the dust shoe. The risk of collision with the tool itself is still to be managed though. 
 * using side clamps/**eccentric clamps** as illustrated below: they push the stock from the side into a corner block, and free up the top surface of the stock completely. 
 
-![](.gitbook/assets/workholding_eccentric_clamps.png)
+![](.gitbook/assets/page_143_800.png)
 
 ## Tabs, Onion skin
 

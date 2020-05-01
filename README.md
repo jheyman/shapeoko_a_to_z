@@ -1,6 +1,6 @@
 # Introduction
 
-v3 - March 2020
+v4 - May 2020
 
 The intent of this guide is to help new users of the Shapeoko CNC learn enough about both the big picture and the underlying technical details, to feel at ease with the machine, the workflow, and CNC lingo in general.
 
@@ -56,7 +56,20 @@ Comments/corrections/contributions are most welcome, you can contact me on the S
 
 Shoutout to the whole forum community, the collective knowledge and experience accumulated over there and on the Shapeoko wiki \([https://wiki.shapeoko.com/index.php/Shapeoko\_3](https://wiki.shapeoko.com/index.php/Shapeoko_3)\) is incredible. I tried to bring out _some_ of that know-how in this e-book, but it is also tainted by my own limited experience and habits, so any potential incorrect information/guidance is my bad.
 
-Special thanks to **@snaterst** \(on the forum\) for providing the vise setup picture, **@Dusty.Tools** \(find him on Instagram\) for the T-tracks setup picture, **@Griff** for the spindle cooling system pictures, **@stutaylo** and **@PaulAlfaro** for the bullnose endmill pics, **@bikerdan** for the Z-plus pic, **@Todd** for the Sweepy pic, **@i3oilermaker** for the v-carved inlay pics, **@gmack** for his excellent feeds and speeds worksheet, **@Hooby** for the nice Janka wood hardness database included in the worksheets, **@WillAdams** and **@luc.onthego** for proofreading and suggesting lots of good improvement ideas, **@neilferreri** for his awesome ****CNCjs macros.
+Special thanks to :
+
+* **@patonclover** for the digital versions of all illustrations, which are a very welcome replacement for my initial \(poor\) hand-drawn doodles
+* **@WillAdams** and **@luc.onthego** for proofreading and suggesting lots of good improvement ideas
+* **@snaterst** \(on the forum\) for providing the vise setup picture
+* **@Dusty.Tools** \(find him on Instagram\) for the T-tracks setup picture
+* **@Griff** for the spindle cooling system pictures
+* **@stutaylo** and **@PaulAlfaro** for the bullnose endmill pics
+* **@bikerdan** for the Z-plus pic
+* **@Todd** for the Sweepy pic
+* **@i3oilermaker** for the v-carved inlay pics
+* **@gmack** for his excellent feeds and speeds worksheet
+* **@Hooby** for the nice Janka wood hardness database included in the worksheets
+* **@neilferreri** for his awesome ****CNCjs macros, Fusion360 post processor, and other goodness.
 
 This e-book is released under the Creative Commons CC BY-NC-SA license \(in plain English: do whatever you want with it except using it for commercial purposes, and if you modify & redistribute, give credit and keep the same license\).
 

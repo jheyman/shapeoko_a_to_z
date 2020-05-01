@@ -37,7 +37,7 @@ It's easy to be overwhelmed at first by the variety of cutters and their charact
 * the **direction** of rotation
   * in practice virtually all endmills are designed for a **clockwise** tool rotation \(as seen from above the cut\)
 
-![](.gitbook/assets/endmill_anatomy.png)
+![](.gitbook/assets/page_40_800_fixed.png)
 
 ## Square endmills
 
@@ -163,7 +163,7 @@ Below is a short overview of what runout is, but overall this is not something n
 
 Ideally, the rotation axis of the router shaft \(in black\), the axis of the collet \(in blue\), and the axis of the endmill \(in green\) are perfectly aligned:
 
-![](.gitbook/assets/runout_theory.png)
+![](.gitbook/assets/page_59_800_fixed.png)
 
 But in practice, manufacturing tolerances are such that there are small imperfections at all levels:
 
@@ -173,11 +173,11 @@ But in practice, manufacturing tolerances are such that there are small imperfec
 
 The end effect is that the movement of the endmill's tip in the material is the combination of the rotation along its own axis and other unintended deviations. Here's a very \(very\) exagerated view of what happens when cutting a single slot with a lot of runout:
 
-![](.gitbook/assets/runout_when_slotting.png)
+![](.gitbook/assets/page_62___800.png)
 
 The expected width of the slot is the endmill diameter, but the actual width of the slot \(effective cutting diameter\) is the sum of the endmill diameter and the amount of deviation \(runout\). This deviation can be characterized by the maximal displacement measured at a given position on the surface of the endmill as it rotates \(again, extremely exaggerated on the view below\):
 
-![](.gitbook/assets/runout_measurement_sketch.png)
+![](.gitbook/assets/page_61_800.png)
 
 Refer to the runout section in [Dimensional accuracy](x-y-z-calibration.md#managing-runout) for details on how to measure runout, and correct it \(or at least take it into account\).
 
