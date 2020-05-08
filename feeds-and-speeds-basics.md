@@ -215,7 +215,7 @@ For basic toolpaths, the stepover is often in the 40% to 50% range, and then you
 {% endhint %}
 
 {% hint style="info" %}
-If we wanted to be pedantic, the term "_chipload_" should be used for the case where there is no chip thinning, while the term "_chip thickness_" should be used to name the adjusted/effective chipload after chip thinning is taken into account.
+If we wanted to be pedantic, the term _chipload_ should be used for the case where there is no chip thinning, while the term _chip thickness_ should be used to name the adjusted/effective chipload after chip thinning is taken into account.
 {% endhint %}
 
 ## Choosing RPM and Feedrate
@@ -258,7 +258,7 @@ $$
 0.003 × 3 × 16000 = 144\ ipm
 $$
 
-* If going 144ipm still _feels_ a little fast, it possible to obtain the same chipload at lower RPM and lower feedrate, _e.g._ 12,000RPM and 108ipm, at the expense of higher cutting forces \(which or may not be a problem, see power analysis section later below\)
+* If going 144ipm still _feels_ a little fast, it is possible to obtain the same chipload at lower RPM and lower feedrate, _e.g._ 12,000RPM and 108ipm, at the expense of higher cutting forces \(which or may not be a problem, see power analysis section later below\)
 * Alternately it is also possible to lower the feedrate by targetting a smaller chipload while ensuring it is still at least at the minimum recommended value of 0.001'', and assuming you are using a sharp enough cutter: 
   * To get a 0.001'' effective target chipload, the adjusted target chipload would become 0.0015''
   * the feedrate would then be 0.0015 × 3 × 16,000 = 72ipm 
@@ -290,9 +290,9 @@ These two situations are illustrated below:
 
 ![](.gitbook/assets/page_80_800_redo.png)
 
-The "_**small WOC, high DOC**_" approach is much preferable, as it spreads the heat and tool wear much more evenly along the length of the endmill. However, it requires specific toolpath strategies \(_e.g._ to initially clear material down to the required depth, to allow small WOC to be used for the rest of the cut\), this is covered in the [Toolpaths](toolpath-basics.md) section. This is a very popular approach when cutting metals on the Shapeoko, but its benefits apply to other materials too.
+The _**small WOC, high DOC**_ approach is much preferable, as it spreads the heat and tool wear much more evenly along the length of the endmill. However, it requires specific toolpath strategies \(_e.g._ to initially clear material down to the required depth, to allow small WOC to be used for the rest of the cut\), this is covered in the [Toolpaths](toolpath-basics.md) section. This is a very popular approach when cutting metals on the Shapeoko, but its benefits apply to other materials too.
 
-The "_**large WOC, small DOC**_" approach only ever uses the tip of the endmill, so that part will wear out quickly while the rest of the endmill length of cut remains unused. But it is still a very common approach for pocketing and profile cuts on the Shapeoko, and it has simplicity going for it.
+The _**large WOC, small DOC**_ approach only ever uses the tip of the endmill, so that part will wear out quickly while the rest of the endmill length of cut remains unused. But it is still a very common approach for pocketing and profile cuts on the Shapeoko, and it has simplicity going for it.
 
 Unlike chiploads that NEED to be in a specific range to get good cuts, the situation is easier for DOC and WOC: you can just start with small, conservative values and then increase them to find the limit for your machine/endmill/material combination.
 

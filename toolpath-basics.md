@@ -64,7 +64,7 @@ To illustrate the former, considering the 6mm endmill used in this example and a
 
 ![](.gitbook/assets/toolpaths_pocketing_lowdoc.png)
 
-If we wanted instead to go for a high DOC \(say full pocket depth, i.e. 100% of endmill diameter in this case\) and a low WOC \(say 20%\), we would also need to take care of the initial clearing down to full depth, because just plunging to full depth and starting to cut the pocket would initially involve a slotting cut \(100% stepover\) at full depth...which for some materials may be too much to take for the Shapeoko.
+If we wanted instead to go for a high DOC \(say full pocket depth _i.e.,_ 100% of endmill diameter in this case\) and a low WOC \(say 20%\), we would also need to take care of the initial clearing down to full depth, because just plunging to full depth and starting to cut the pocket would initially involve a slotting cut \(100% stepover\) at full depth, which for some materials may be too much to take for the Shapeoko.
 
 If your CAM tool allows, you can just use the option of helical ramping down to the full depth of the pocket, as in this Fusion360 example:
 
@@ -86,7 +86,7 @@ In Carbide Create, you could emulate this by creating two toolpaths:
 
 ## Contour/Profile toolpaths
 
-Contour \(a.k.a. Profile\) toolpaths just follow the...contour of a shape, with the option to have the endmill positioned either on the outside or on the inside of the shape, or right on it:
+Contour \(a.k.a. Profile\) toolpaths just follow the contour of a shape, with the option to have the endmill positioned either on the outside or on the inside of the shape, or right on it:
 
 * **outside contours** are usually associated with cutting the shape out of the stock material: 
 
@@ -266,7 +266,7 @@ For drilling a hole, a first option is to use an endmill smaller than the hole, 
 
 A useful alternative is to use specific drilling toolpaths, that just plunge the endmill vertically, so it becomes possible to do a 1/4'' hole with a 1/4'' endmill. However, an endmill is very bad at drilling, it is just not designed for this, so the plunge rate should be limited, and the "**peck-drilling**" option used: the tool will cut a small DOC, retract to clear out the chips, and then plunge again, repeatedly until the full depth has been cut.
 
-A more efficient alternative is of course to use an actual drill bit instead of an endmill, but...it implies an additional tool change. Also, it's important \(for safety\) to check that the drill bits are rated for the speed the spindle will spin them at.
+A more efficient alternative is of course to use an actual drill bit instead of an endmill, but it implies an additional tool change. Also, it's important \(for safety\) to check that the drill bits are rated for the speed the spindle will spin them at.
 
 ## Previewing toolpaths from G-code
 
