@@ -42,8 +42,8 @@ The G-code file also contains instructions to control the **rotation speed** \(R
 
 The coordinate system is one of those things that can be a little confusing at first. The axis definitions themselves are straightforward:
 
-* **X** is the left-right axis, with values increasing from left to right.
-* **Y** is the front-back axis, with values increasing from front to back.
+* **X** is the left–right axis, with values increasing from left to right.
+* **Y** is the front–back axis, with values increasing from front to back.
 * **Z** is what you would expect, vertical axis pointing up, so the "altitude" if you will.
 
 The next question is, where is the origin? On a CNC like the Shapeoko, there is no mechanical feedback telling the machine where it is positioned in space at any given time, so the only thing it can do is control X/Y/Z movements **relative** to a given starting point.

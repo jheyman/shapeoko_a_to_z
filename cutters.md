@@ -97,7 +97,7 @@ Here's a 0.032'' ballnose:
 
 ![](.gitbook/assets/tools_2flute_0032inch%20%281%29.png)
 
-For carving fine 3D details, a tapered ballnose endmill can be very useful: the tip can be very small, but the tapered flutes make it much more robust than a straight endmill of the same tip diameter, so it can support much more aggressive feeds and speeds. Here's a tapered endmill with a 0.5mm \(0.02''\) ballnose tip:
+For carving fine 3D details, a **tapered** ballnose endmill can be very useful: the tip can be very small, but the tapered flutes make it much more robust than a straight endmill of the same tip diameter, so it can support much more aggressive feeds and speeds. Here's a tapered endmill with a 0.5mm \(0.02''\) ballnose tip:
 
 ![](.gitbook/assets/tools_2flute_0_5mm_tapered.png)
 

@@ -30,7 +30,7 @@ Some implications may not be immediately apparent:
 Plans to build this vertical fixture are available at [https://cutrocket.com/p/5cb25f3380844/](https://cutrocket.com/p/5cb25f3380844/)
 {% endhint %}
 
-* when designing an enclosure you may want to take this into account: the router \(and potentially the dust shoe\) will protude by a significant amount when the full area is used.
+* when designing an enclosure you may want to take this into account: the router \(and potentially the dust shoe\) will protrude by a significant amount when the full area is used.
 
 {% hint style="info" %}
 Some folks have _swapped_ the Y plates on their machine, this allows them to shift the usable cutting area towards the back _i.e._, getting larger cutting area inside the machine at the expense of losing the overhang capability.
@@ -64,7 +64,7 @@ A pulley is installed on the motor shaft, and drives a "**GT2**" belt that has a
 
 ![](.gitbook/assets/page_14_800_fixed.png)
 
-The pulleys used on the Shapeoko3 happen to have 20 teeth, with \(obviously\) the same 2mm spacing as the belt: so when the shaft does one full revolution, the belt moves by 20 teeth, i.e. 40mm.
+The pulleys used on the Shapeoko 3 happen to have 20 teeth, with \(obviously\) the same 2mm spacing as the belt: so when the shaft does one full revolution, the belt moves by 20 teeth, i.e. 40mm.
 
 This full revolution requires 1600 microsteps, which means that it requires 1600/40 = 40 steps to move by 1mm. And this is where the "**40 steps/mm**" setting in the Shapeoko controller comes from \(more on this in the [Dimensional accuracy](x-y-z-calibration.md#x-y-z-calibration) section\)
 
@@ -132,8 +132,8 @@ The brain of the Shapeoko is the controller board. There have been several revis
     * E-stop 
     * Probe 
     * Feed Hold
-* **\#17** is the "Nomad switches". The Nomad CNC uses the same controller board, this header is unused on the Shapeoko.
-* **\#18** has plated holes for soldering headers to get the following signals \(labelled on the silkscreen\) 
+* **\#17** is the "Nomad switches" \(the Nomad CNC uses the same controller board\), this header is now used for an adapter board on machines with inductive homing switches.
+* **\#18** now has a connector for a Carbide3D accessory. On older boards it has plated holes for soldering headers to get the following signals \(labelled on the silkscreen\) 
   * GND
   * PWM
   * 5V
@@ -215,7 +215,7 @@ What GRBL does is listen to incoming commands on the USB interface, and act upon
 
 ![](.gitbook/assets/page_21_800_fixed.png)
 
-* first there is a **reception buffer**, and that's a critical point because while the Arduino microcontroller can execute code with very deterministic timings, that's not the case of the host PC at the other end of the USB cable, which executes _e.g._ Carbide Motion on Windows. And as everyone has experienced, from time to time Windows or MAC OS can decide to go and do something else for a little while, and this could break the flow of G-code commands into the controller. With this buffer, the control software can send a few additional G-code commands in advance of the current one, to ensure that the controller will never starve waiting for the next command from USB.
+* first there is a **reception buffer**, and that's a critical point because while the Arduino microcontroller can execute code with very deterministic timings, that's not the case of the host PC at the other end of the USB cable, which executes _e.g._ Carbide Motion on Windows or Mac OS X. And as everyone has experienced, from time to time Windows or MAC OS can decide to go and do something else for a little while, and this could break the flow of G-code commands into the controller. With this buffer, the control software can send a few additional G-code commands in advance of the current one, to ensure that the controller will never starve waiting for the next command from USB.
 * the **G-code commands** are parsed and processed by a dedicated piece of code that generates the appropriate signals to drive the stepper driver to produce the desired motion
 * the **'$' commands** are interpreted to update various internal variables
 * the **realtime commands** consist of a single character, that has an immediate effect as soon as it is received, having priority over anything else GRBL is currently doing. For example ,  sending '!' will trigger a Feed Hold.
