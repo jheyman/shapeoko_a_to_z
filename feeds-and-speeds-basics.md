@@ -162,7 +162,9 @@ The following is an \(arguable\) table I am using as a personal reference, which
       </td>
     </tr>
   </tbody>
-</table>{% hint style="info" %}
+</table>
+
+{% hint style="info" %}
 To keep this guideline table simple, I chose to only divide woods into "soft" and "hard" categories, and this labeling is not the correct definition either \(which relates to whether the tree _seeds_ have a hard or soft shell\). I mean it in the "wood hardness" way, and there is a useful **Janka** scale that measures that. @Hooby on the forum consolidated a nice list of Janka hardness values for many types of wood, which I include here for reference. The Janka threshold for "hard" vs. "soft" is highly debatable, but a value of 1000 seems reasonable to steer the chipload selection.
 {% endhint %}
 
@@ -590,4 +592,13 @@ If your CAM software supports it, you may want to use a roughing pass and a fini
 {% hint style="info" %}
 Sometimes when using V-bits, running the G-code twice can lead to a cleaner finish.
 {% endhint %}
+
+## What about surfacing?
+
+While the principles decribed above apply, when doing a surfacing operation using either a surfacing bit \(a.k.a. Fly cutter\) or any large square endmill, the intent is usually to shave off just a thin layer of material off the top surface, so one can feed quite fast. A typical setting would be:
+
+* RPM in the 16k–20k range
+* Feedrate in the 80–100 ipm range 
+* Depth per pass in the 0.01–0.05'' range
+* Plunge rate is mostly irrelevant for such shallow passes, any value will do.
 

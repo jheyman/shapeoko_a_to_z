@@ -75,7 +75,18 @@ This e-book is released under the Creative Commons CC BY-NC-SA license \(in plai
 
 ![](.gitbook/assets/cc-by-nc-sa.png)
 
+## Legal disclaimer
 
+By accessing this eBook, you accept this disclaimer in full.  
+  
+The information provided within this eBook is for general informational purposes only. Even though I have attempted to present accurate information, there are no representations or warranties, express or implied, about the completeness, accuracy, or reliability of the information, products, services, or related graphics contained in this eBook for any purpose. The information is provided “as is,”  to be used at your own risk.  
+The methods described in this eBook represent the author’s personal experiences. They are not intended to be a definitive set of instructions. You may discover there are other methods and materials to accomplish the same end result. Your results may differ.
+
+This eBook includes information regarding products and services by third parties. I do not assume responsibility for any third party materials or opinions. Use of recommended third party materials does not guarantee that your results will mirror third party results or my own. Publication of such third party material is just a recommendation and expression of the authors’ personal opinions. Any reliance on the third party material is at your own risk.
+
+All trademarks appearing in this eBook are the property of their respective owners.  
+  
+No warranty may be created or extended by any promotional statements for this work. The author shall not be liable for any damages arising herefrom.
 
 
 
