@@ -169,3 +169,11 @@ From time to time, it is worth checking whether the belts are still guitar-strin
 A little bit of blue Loctite on the eccentric nuts helps keeping them tight for a very long time
 {% endhint %}
 
+## HDZ maintenance
+
+While the HDZ is mostly maintenance free, once in a while it does not hurt to double-check its less visible/accessible parts. Specifically, you may want to check that the two screws holding the lower part of the ballscrew are still tight, using the long allen key which comes with the Shapeoko:
+
+![](.gitbook/assets/hdz_maint_3375x500.jpeg)
+
+![](.gitbook/assets/hdz_maint_375x500.jpeg)
+

@@ -1,6 +1,6 @@
 # Introduction
 
-v4 - May 2020
+v4.1 - Nov 2020
 
 The intent of this guide is to help new users of the Shapeoko CNC learn enough about both the big picture and the underlying technical details, to feel at ease with the machine, the workflow, and CNC lingo in general.
 
@@ -70,6 +70,7 @@ Special thanks to :
 * **@gmack** for his excellent feeds and speeds worksheet
 * **@Hooby** for the nice Janka wood hardness database included in the worksheets
 * **@neilferreri** for his awesome ****CNCjs macros, Fusion360 post processor, and other goodness.
+* **@LiamN** for some of the maintenance tips and pictures.
 
 This e-book is released under the Creative Commons CC BY-NC-SA license \(in plain English: do whatever you want with it except using it for commercial purposes, and if you modify & redistribute, give credit and keep the same license\).
 
