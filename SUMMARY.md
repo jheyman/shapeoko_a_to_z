@@ -17,4 +17,5 @@
 * [Usecases: cutting metal](cutting-metal.md)
 * [Troubleshooting & maintenance](maintenance.md)
 * [HW upgrades](upgrading-the-machine.md)
+* [Glossary](glossary.md)
 
