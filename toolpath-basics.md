@@ -183,6 +183,27 @@ Carving the outside of characters within a predefined boundary is another popula
 a V-bit is very inefficient at removing large amounts of material, and even worse at carving flat-bottom pockets, so the scenario above would better make use of a first clearing toolpath using a regular endmill in flat areas, and a second toolpath taking care of V-carving around the characters.
 {% endhint %}
 
+Note that V-carving is quite sensitive to setting the Z zero properly, because any slight error in the Z direction will translate to an error in the width of the cuts, which is very visible especially in corners.
+
+An additional pitfall is that some V-bits have a very small **flat** on their tip, so their Z zero must be offset by a small amount to compensate, such that the "virtual tip" of the bit is on the surface:
+
+![](.gitbook/assets/vbit_offset.png)
+
+If the Vbit angle is V degrees, and it has a flat of diameter D, then the H offset to apply on Z zero is :
+
+$$
+H = D/2  *tan ((180 -V)/2)
+$$
+
+Here are a few examples:
+
+* a 0.02" flat on a 60° vbit will require an offset of 0.0173"
+* a 0.02" flat on a 90° vbit will require an offset of 0.01"
+* a 0.01" flat on a 60° vbit will require an offset of 0.009"
+* a 0.01" flat on a 90° vbit will require an offset of 0.005"
+
+Zero normally \(the flat part of the vbit will touch the surface\), then back off along Z by that offset and reset Z zero.
+
 ## Roughing vs. finishing toolpaths
 
 For every toolpath there are two conflicting needs: minimizing the total runtime, and getting the best finish quality and dimensional accuracy of the workpiece. Instead of settling for a middle ground that accommodates both constraints, a very common approach is to create two different toolpaths:

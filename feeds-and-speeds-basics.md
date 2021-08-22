@@ -242,10 +242,10 @@ A rule of thumb is therefore to set RPM to "**the maximum value you can tolerate
 Example:
 
 * Material is hard wood and endmill is a 3-flute 1/4'' =&gt; the chipload table recommends up to 0.002''
-* Say we use a 25% radial depth of cut / stepover, i.e. 25% of 50% of 1/4'' = 0.03125'', so adjusted chipload is: 
+* Say we use a 12.5% stepover, i.e. 12.5% of 1/4'' = 0.03125'', so adjusted chipload is: 
 
 $$
-\frac{0.25}{2 × \sqrt{(0.25 × 0.03125) - 0.03125^2}}× 0.0014 \approx 1.5×0.002 = 0.003''
+\frac{0.25}{2 × \sqrt{(0.25 × 0.03125) - 0.03125^2}}× 0.002 \approx 1.5×0.002 = 0.003''
 $$
 
 * The ideal setting would be to max out the RPM, say 24,000 \(to take an example that is reachable on the Makita, DeWalt, and common spindles\). The required feedrate would then be :

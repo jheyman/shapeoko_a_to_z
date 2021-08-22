@@ -1,6 +1,6 @@
 # Squaring, surfacing, tramming
 
-## Squaring the machine
+## Squaring the machine \(rails part\)
 
 Squaring the machine is covered in the Shapeoko assembly instructions, this section just adds a few notes on why this matters, and a few tips.
 
@@ -25,7 +25,29 @@ Here's a \(poorly executed\) example of aluminium foil shimming on my machine, t
 
 ![](.gitbook/assets/squaring_gantry_shimming.png)
 
-Once X and Y axis are square, the next step is to make the wasteboard as flat and parallel to the mechanical X/Y plane of the machine as possible, and this is what surfacing the wasteboard does.
+Once the machine is reasonably square as checked when moving the gantry manually to the front and back positions, we still have to make sure that the belt tension is even between the two Y axes, so as not to introduce another source of offset between the left and right rails.
+
+## Squaring the machine \(belt tension part\)
+
+Indeed, the belts have a default pitch of 2mm, which translates to requiring 40 steps of the motor to move by 1mm as described in [Anatomy of a Shapeoko](anatomy-of-a-shapeoko.md#pulleys-and-belts) section. But since we tension the belts, they stretch and their actual pitch changes a little bit depending on the belt tension. Now, if the belt on the left Y axis and the belt on the right Y axis are not tensioned evenly, they end up having a different effective pitch. When jogging the gantry along Y, for the same number of motor steps commanded on the left and right stepper motors, the left and right sides of the gantry will end up moving by a different amount, throwing the gantry out of square. The longer the travel the larger the offset between the two sides, so this is most visible when starting from Home position in the back, and then jogging the gantry all the way to the front of the machine:
+
+![](.gitbook/assets/shapeoko-mismatched-belt-pitches.png)
+
+But how do we _measure_ belt tension to make them equal? **@LiamN** on the community forum came up with a [great write-up](https://community.carbide3d.com/t/measuring-belt-tension-squaring-and-calibration/24712) about two methods for this: either measuring how much force it takes to pull the belt away from the rail by a given distance using a luggage scale, or measuring the frequency of the sound it produces when pinched with a smartphone app. I like this second method better since it is so straightforward.
+
+First we need to insert two small blocks under the belt to be measured, such that it does not contact the rail and has a chance to vibrate freely. The distance between the two blocks must be controlled, and that length of belt should be roughly centered at the middle of the rail's length.
+
+I choose to use the shaft part of two 1/4" endmills as convenient blocks, and install them exactly d=280mm apart, in the case of my SO3 short rails. For the longer rails on the XL/XXL models, 500mm seems like a good value.
+
+![](.gitbook/assets/belt_tension_blocks.jpeg)
+
+Then you need a device to measure sound frequency, and a convenient solution is to use a smartphone application. Gates \(the belts manufacturer\) provides a free app specifically for this purpose, and it works fairly well. Just launch the app, bring the microphone close to the belt, pinch it, and check the measured frequency. The value will vary depending on how you pinch the belt, but by doing it a few times a reasonable average value should emerge, like in the example below where I got a majority of "109Hz" values:
+
+![](.gitbook/assets/belt_pinch_frequency.png)
+
+A reasonable target range is apparently 100 to 140 Hz, I tend to aim for 120Hz or so.
+
+Now that the machine is squared, the next step is to make the wasteboard as flat and parallel to the mechanical X/Y plane of the machine as possible, and this is what surfacing the wasteboard does
 
 ## Surfacing the wasteboard
 
@@ -80,7 +102,13 @@ If the router is slightly tilted around both the Y axis and the X axis, there ca
 You should surface the wasteboard **before** tramming. If you don't, you may end up including any tilt or thickness variation of the wasteboard in the adjustment
 {% endhint %}
 
-One option is to use a dedicated tramming device mounted in the router and integrating two dial indicators. Any difference between the readout on the indicators is a sign of a tram angle. The arm can be rotated manually to check the angle in any direction:
+One option is to use a dedicated tramming device mounted in the router and integrating two dial indicators. 
+
+{% hint style="warning" %}
+When using the methods mentioned below, make sure to UNPLUG the router first, you don't want it to start spinning with those dial indicators in place if you mistakenly hit the router switch...
+{% endhint %}
+
+Any difference between the readout on the indicators is a sign of a tram angle. The arm can be rotated \(manually!\) to check the angle in any direction:
 
 ![](.gitbook/assets/page_197_800_redo.png)
 
@@ -115,7 +143,7 @@ Now on the front side of my machine, there was a non-negligeable tilt angle:
 There are \(at least\) two popular ways to fix the front/back tilt:
 
 * loosen the 8 screws on the side plates of the X extrusion, then **rotate the whole gantry** around its axis, towards the back or front, and re-tighten the screws. Again, an iterative process, because tightening the screws may make the gantry rotate very slightly. You may want to remove the powder coat inside the screw holes, to get a little wiggle room.
-* **shim the router mount**. A thin strip of aluminium folder over a few times, inserted between the bottom \(or top\) of the mount and the Z-plate, can correct the fractions of a degree of front/back tilt. 
+* **shim the router mount**. A thin strip of aluminium foil folded over a few times, inserted between the bottom \(or top\) of the mount and the Z-plate, can correct the fractions of a degree of front/back tilt. 
 
 Here is the same machine after front/back tramming:
 

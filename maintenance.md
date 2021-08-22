@@ -144,6 +144,15 @@ And then again, the level of wear that is acceptable really depends on the mater
 If your endmills wear out very quickly, it is likely that you are not using proper feeds and speeds, and/or you have too much runout.
 {% endhint %}
 
+## Collet maintenance
+
+It turns out that collets also have a lifetime, and require basic maintenance for optimal use. 
+
+* Dust, swarf, or other residue can accumulate inside the collet and collet taper. Since they probably won't accumulate uniformly, this can result in uneven pressure on the tool, leading to slippage or excessive runout.
+* A good habit is to check that the collet AND the collet taper in the router/spindle are clean each time you change a tool. If you are mostly cutting wood, just blowing through the collet and running your finger inside the taper goes a long way to prevent issues.
+* Collets life span is typically several hundred hours of use. Depending on how you use the machine, this could mean a life span of several years...or only a few months!
+* Regardless of wear, it's a good idea to have at least one spare collet available, just like spare v-wheels or belts. 
+
 ## Cleaning the belts, wheels, V-rails
 
 * a quick vacuuming along the belts length will remove the chips that may have landed there during the cut. It takes 10 seconds, and will prevent the V-wheels rolling over debris or chips getting into the pulleys/idlers.

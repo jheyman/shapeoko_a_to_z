@@ -132,7 +132,9 @@ The brain of the Shapeoko is the controller board. There have been several revis
     * E-stop 
     * Probe 
     * Feed Hold
-* **\#17** is the "Nomad switches" \(the Nomad CNC uses the same controller board\), this header is now used for an adapter board on machines with inductive homing switches.
+* **\#17** is the "Nomad switches" \(the Nomad CNC uses the same controller board\), this header is now used for an adapter board on machines with inductive homing switches. Pinout from left to right:
+  * top row: X-Lim, GND, GND, Z-Lim, GND, GND, FeedHold, ???
+  * bottom row: GND, ???, Y-Lim, GND, GND, Probe, GND, GND
 * **\#18** now has a connector for a Carbide3D accessory. On older boards it has plated holes for soldering headers to get the following signals \(labelled on the silkscreen\) 
   * GND
   * PWM
@@ -148,8 +150,8 @@ The brain of the Shapeoko is the controller board. There have been several revis
 | RESERVED | GND |
 
 * **\#21** has plated holes for the following \(unused\) signals, from top to bottom
-  * AUX 24V INPUT
-  * AUX 24V INPUT
+  * AUX 24V INPUT \(+\)
+  * AUX 24V INPUT \(GND\)
   * AUX ON/OFF
   * AUX ON/OFF
 

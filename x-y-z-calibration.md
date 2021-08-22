@@ -84,6 +84,10 @@ Another popular method is to rather measure the gantry movements themselves, ins
 The axis of the measurement tool should be aligned carefully to match the axis of the machine, any angle between the two would reduce the accuracy of the measurement.
 {% endhint %}
 
+{% hint style="info" %}
+If you tensioned the belts evenly using the frequency measurement method mentioned in [Squaring, surfacing, tramming](squaring.md#squaring-the-machine-belt-tension-part), chances are that the calibrated number of steps per mm on X and Y will be very close, and may even not require calibration at all, which is a desirable thing since using the round default value of 40 steps per mm minimizes rounding errors in GRBL's computations.
+{% endhint %}
+
 ### Limitations of belt calibration
 
 The pitfall of belt calibration is expecting to get excellent accuracy out of it alone. Unfortunately, belt stretch is not fully linear, and many users found out that the calibration values varies depending on the calibration distance, and where on the work area the measurement is made.
