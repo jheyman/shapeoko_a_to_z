@@ -1,6 +1,6 @@
 # Introduction
 
-v5 - Sept 2020
+v5 - Aug 2021
 
 The intent of this guide is to help new users of the Shapeoko CNC learn enough about both the big picture and the underlying technical details, to feel at ease with the machine, the workflow, and CNC lingo in general.
 
@@ -60,31 +60,6 @@ Special thanks to :
 
 * **@patonclover** for the digital versions of all illustrations, which are a very welcome replacement for my initial \(poor\) hand-drawn doodles
 * **@WillAdams** and **@luc.onthego** for proofreading and suggesting lots of good improvement ideas
-* **@LiamN**, for providing the content and support material for the belt tensioning techniques section. 
-* **@snaterst** \(on the forum\) for providing the vise setup picture
-* **@Dusty.Tools** \(find him on Instagram\) for the T-tracks setup picture
-* **@Griff** for the spindle cooling system pictures
-* **@stutaylo** and **@PaulAlfaro** for the bullnose endmill pics
-* **@bikerdan** for the Z-plus pic
-* **@Todd** for the Sweepy pic
-* **@i3oilermaker** for the v-carved inlay pics
-* **@gmack** for his excellent feeds and speeds worksheet
-* **@Hooby** for the nice Janka wood hardness database included in the worksheets
-* **@neilferreri** for his awesome ****CNCjs macros, Fusion360 post processor, and other goodness.
-* **@patonclover** for the digital versions of all illustrations, which are a very welcome replacement for my initial \(poor\) hand-drawn doodles
-* **@WillAdams** and **@luc.onthego** for proofreading and suggesting lots of good improvement ideas
-* **@snaterst** \(on the forum\) for providing the vise setup picture
-* **@Dusty.Tools** \(find him on Instagram\) for the T-tracks setup picture
-* **@Griff** for the spindle cooling system pictures
-* **@stutaylo** and **@PaulAlfaro** for the bullnose endmill pics
-* **@bikerdan** for the Z-plus pic
-* **@Todd** for the Sweepy pic
-* **@i3oilermaker** for the v-carved inlay pics
-* **@gmack** for his excellent feeds and speeds worksheet
-* **@Hooby** for the nice Janka wood hardness database included in the worksheets
-* **@neilferreri** for his awesome ****CNCjs macros, Fusion360 post processor, and other goodness.
-* **@patonclover** for the digital versions of all illustrations, which are a very welcome replacement for my initial \(poor\) hand-drawn doodles
-* **@WillAdams** and **@luc.onthego** for proofreading and suggesting lots of good improvement ideas
 * **@snaterst** \(on the forum\) for providing the vise setup picture
 * **@Dusty.Tools** \(find him on Instagram\) for the T-tracks setup picture
 * **@Griff** for the spindle cooling system pictures
@@ -96,6 +71,7 @@ Special thanks to :
 * **@Hooby** for the nice Janka wood hardness database included in the worksheets
 * **@neilferreri** for his awesome ****CNCjs macros, Fusion360 post processor, and other goodness
 * **@Microwave\_Monkey** for the belt change tip and associated pics
+* **@LiamN** for some of the maintenance tips and pictures.
 
 This e-book is released under the Creative Commons CC BY-NC-SA license \(in plain English: do whatever you want with it except using it for commercial purposes, and if you modify & redistribute, give credit and keep the same license\).
 
