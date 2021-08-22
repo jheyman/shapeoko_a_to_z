@@ -156,13 +156,25 @@ If your endmills wear out very quickly, it is likely that you are not using prop
 You could also use custom **wheels covers:** check out David Johnson's DIY engineering site to buy some, he also made them available on Thingiverse so if you have a 3D printer you could print them yourself.
 {% endhint %}
 
+## Changing the belts
+
+Sooner or later you will have to replace a belt, and it's less than fun to run the new belt through the idlers and pulley, so here's a handy tip from **@Microwave\_Monkey**: undo one end clamp, loop the new belt through and reinstall the clamp, then take the end of the old belt and secure it to the end of the new belt with some painters tape like so:
+
+![](.gitbook/assets/belts1.jpeg)
+
+![](.gitbook/assets/belts2.jpeg)
+
+![](.gitbook/assets/belts3.jpeg)
+
+Now it is easy to gently pull the new belt through the pulleys and such with the old belt. No fiddling around trying to coax the new belt around all of them.
+
 ## Tightening belts & wheels 
 
 From time to time, it is worth checking whether the belts are still guitar-string tight, and the eccentric nuts still keep the V-wheels right against the rails.
 
-* belts can stretch/loosen a bit, and this will not be readily apparent. Do the pinky finger test.
+* belts can stretch/loosen a bit, and this will not be readily apparent. Do the pinky finger test, or better yet actually measure the belt tension  \(using the method mentioned in [Squaring, surfacing, tramming](squaring.md#squaring-the-machine)\)
 * with the machine turned off,
-  * slide the gantry and X/Z carriage manually and check that all wheels are turning: if one of them is not moving, the eccentric nut is not tight enough, or it is worn out.
+  * slide the gantry and X/Z carriage manually and check that all wheels are turning: if one of them is not moving, either the eccentric nut is not tight enough or the wheel is worn out and should be replaced. 
   * Grab the X/Z carriage and \(gently\) try to twist it front/back and left/right: there should not be any slop.
 
 {% hint style="info" %}
